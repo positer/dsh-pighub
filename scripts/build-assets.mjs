@@ -152,6 +152,7 @@ for (const candidate of candidates) {
   }
 
   let payload = null;
+  let finalSize = { width: cropped.width, height: cropped.height };
   const ext = decision.vector ? 'svg' : 'png';
   const file = decision.id + '.' + ext;
   const target = join(imageDir, file);
@@ -171,6 +172,8 @@ for (const candidate of candidates) {
     const pipeline = sharp(Buffer.from(cropped.data), { raw: { width: cropped.width, height: cropped.height, channels: 4 } });
     if (Math.max(cropped.width, cropped.height) > limit) pipeline.resize({ width: cropped.width >= cropped.height ? limit : null, height: cropped.height > cropped.width ? limit : null });
     payload = await pipeline.png({ compressionLevel: 9 }).toBuffer();
+    const meta = await sharp(payload).metadata();
+    finalSize = { width: meta.width, height: meta.height };
   }
   // 风格化校验：只看像素分布，标题里有没有「猪」字不参与判断。
   const style = styleScore(cropped);
@@ -196,7 +199,8 @@ for (const candidate of candidates) {
     file: 'assets/img/' + file,
     bytes: produced.length,
     sha256: createHash('sha256').update(produced).digest('hex'),
-    size: { width: cropped.width, height: cropped.height },
+    // 记录**成品**尺寸（可能被压到 ≤512），不是裁剪后的原始像素——两者混用会让人以为图装错了。
+    size: finalSize,
     source: { url: candidate.url, group: candidate.source || 'pighub-online', sha256: sourceSha },
     cut: { trim: decision.cut.trim, white: decision.cut.white || 236 },
     style,

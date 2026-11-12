@@ -1,6 +1,6 @@
 {
   "assetVersion": "2026.11.12",
-  "frozenAt": "2026-11-12T11:04:11.874Z",
+  "frozenAt": "2026-11-12T11:16:39.601Z",
   "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
   "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
   "rejected": [
@@ -31,7 +31,7 @@
       "id": "pig-1131",
       "title": "像素猪",
       "kind": "live",
-      "note": "GIF 动图（像素猪）：动画本身就是内容，构建期不做去白、不描摹，原样随包分发；判定为活猪，会游走。",
+      "note": "像素风 GIF 动图。**原样随包分发**：去白/裁切/描摹都会把动画冻成静态帧，而动画本身就是内容；风格闸门评第 0 帧后放行。",
       "vector": false,
       "animated": true,
       "file": "assets/img/pig-1131.gif",
@@ -143,14 +143,14 @@
       "id": "pig-1357",
       "title": "乱停猪",
       "kind": "dead",
-      "note": "躺地睡觉 + 罚单的场景图：白底（路面上的白）去掉，裁到猪身那一块。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
+      "note": "实拍场景图（猪躺在路上 + 罚单）。规格用 163 个 erase 小框覆盖 97.55% 街景（矩形无法沿椭圆曲线切割，精确覆盖需 610 框），并用 keep 框还原罚单白纸（white=236 会削掉它）。实测：猪像素 150,478 一个不少、非猪残留 1,422px。",
       "vector": false,
       "file": "assets/img/pig-1357.png",
-      "bytes": 323776,
-      "sha256": "6a04e57f59af623d8aa28da66b166418db89016fde88704e864972017707f304",
+      "bytes": 189539,
+      "sha256": "5e6e8f42584be8cbd31a79f0ac1d4ac8920a718640fbca962c3657e050a0d94f",
       "size": {
-        "width": 640,
-        "height": 573
+        "width": 512,
+        "height": 365
       },
       "source": {
         "url": "https://pighub.top/images/%E4%B9%B1%E5%81%9C%E7%8C%AA.jpg",
@@ -168,8 +168,8 @@
       },
       "style": {
         "verdict": "match",
-        "palette": 0.584,
-        "flatness": 0.903,
+        "palette": 0.851,
+        "flatness": 0.904,
         "thresholds": {
           "paletteMin": 0.55,
           "flatnessMin": 0.35
@@ -223,8 +223,8 @@
       "bytes": 153935,
       "sha256": "3bae7eb00ab5a07671b40b5980aa51c3b0514be187a3615563b40a99840d27e9",
       "size": {
-        "width": 700,
-        "height": 668
+        "width": 512,
+        "height": 489
       },
       "source": {
         "url": "https://pighub.top/images/%E4%BD%A0%E5%B7%B2%E7%AC%A8%E5%93%AD_1.jpg",
