@@ -1,6 +1,6 @@
 {
   "assetVersion": "2026.11.12",
-  "frozenAt": "2026-11-12T11:22:06.736Z",
+  "frozenAt": "2026-11-12T11:23:34.496Z",
   "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
   "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
   "rejected": [
@@ -38,8 +38,8 @@
       "bytes": 27078,
       "sha256": "ce45538ac0f089997ba356370db759498fb072637e1c79d5194ed83e06c69dda",
       "size": {
-        "width": 0,
-        "height": 0
+        "width": 400,
+        "height": 350
       },
       "source": {
         "url": "https://pighub.top/images/%E5%83%8F%E7%B4%A0%E7%8C%AA.gif",

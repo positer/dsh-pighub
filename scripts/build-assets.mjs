@@ -78,6 +78,8 @@ for (const candidate of candidates) {
     // 风格分只评第 0 帧，用来拦掉画风不符的动图。
     // 动图原样分发，但**风格仍要评**：只看第一帧的像素分布，避免把别的画风混进来。
     let gifStyle = { verdict: 'match', palette: null, flatness: null, note: '未评分' };
+    let gifMeta = { width: 0, height: 0, pageHeight: 0 };
+    try { gifMeta = await sharp(raw, { animated: true }).metadata(); } catch { /* 取不到就写 0 */ }
     try {
       const first = await sharp(raw, { animated: false }).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
       gifStyle = styleScore({ width: first.info.width, height: first.info.height, data: first.data });
@@ -101,7 +103,8 @@ for (const candidate of candidates) {
       file: 'assets/img/' + file,
       bytes: raw.length,
       sha256: sourceSha,
-      size: { width: 0, height: 0 },
+      // 记录逻辑屏/首帧尺寸：0x0 会让人以为图坏了。
+      size: { width: gifMeta.width || 0, height: gifMeta.pageHeight || gifMeta.height || 0 },
       source: { url: candidate.url, group: candidate.source || 'pighub-online', sha256: sourceSha },
       cut: { trim: [0, 0, 1, 1], white: 0 },
       // 动图原样分发：不做去白/补洞（改一帧就等于毁掉动画）。

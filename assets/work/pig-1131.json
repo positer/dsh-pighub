@@ -1,0 +1,15 @@
+{
+  "id": "pig-1131",
+  "mode": "passthrough",
+  "frames": 8,
+  "frameSize": [
+    400,
+    350
+  ],
+  "firstFrameStyle": {
+    "palette": 1,
+    "flatness": 0.978
+  },
+  "reason": "GIF89a 27,078B（sha256 ce4553…）：sharp pages=8 / Pillow n_frames=8 / 字节级 8 个 image descriptor 三方一致，每帧 400×350（loop=0，帧延时全 0）。第 0 帧 styleScore palette=1.000（9 色全落桃/玫红/深描边带）、flatness=0.978 → match。猪非刚性位移：首帧 bbox 320×250 vs 8 帧并集 320×280；按首帧框裁会把帧3 的 1,000px 猪身切掉（1.78%）。唯一不透明内容就是猪本身，并集框到画布只剩 左30/上40/右50/下30px 透明边距，裁切零收益 → passthrough。",
+  "measuredBy": "subagent b9d378d5（sharp + Pillow + 字节级三方核对）"
+}
