@@ -97,6 +97,7 @@ check('可信来源登记表：每条都有许可结论与证据', () => {
     assert.ok(item.id && item.kind, '缺少 id/kind');
     assert.ok(known.indexOf(item.verdict) >= 0, item.id + ' 判定不在口径内：' + item.verdict);
     assert.ok(item.licenseSource && item.licenseSource.length > 6, item.id + ' 缺少许可证据');
+    assert.ok(item.licenseExcerpt && item.licenseExcerpt.length > 4, item.id + ' 缺少 LICENSE 原文摘录');
     assert.equal(typeof item.images, 'number', item.id + ' 缺少图片实测数量');
     if (item.verdict === 'reference-only') assert.ok(item.note, item.id + ' 必须写明为什么排除');
   }

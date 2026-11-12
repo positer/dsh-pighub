@@ -27,6 +27,10 @@
 | rollpig / rollpig-plus | MIT | 0（只有文字资料） | bundle（无图可打包） |
 | pig_catcher | MIT 代码 + user-provided-local-use 数据 | 0 | reference-only |
 
+许可原文摘录（前 160 字）也已抓进 `assets/libraries.json` 的 `licenseExcerpt` 字段：MIT 的三家给出真实版权行，rollpig-resources 的原文明确写着「并非单一协议覆盖全部内容」，其余四家则是**仓库根目录没有 LICENSE 文件**。
+
+``2026-11-12 更新：用户明确判定 PigHub 猪猪表情包库可信（`verdict: trusted`，判定人与日期记录在 libraries.json），该库据此按可信来源处理；其余 reference-only 结论不变。``
+
 **结论：按「能再分发」严格筛，没有任何图片库通过。** 三个真图库都没有数据许可；唯一写清数据条款的 `rollpig-resources` 明文禁止再托管；MIT 的仓库里只有猪名/描述这类文字资料，没有猪图。
 
 所以本包内的图片仍全部来自 pighub.top，按 `inherited-risk` 记录——这是用户已知悉的取舍，不是「可信开源」。若权利人提出异议，删图 + 移除判定 + 重建 + 发新版即可。
