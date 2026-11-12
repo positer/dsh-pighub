@@ -1,0 +1,10 @@
+# dsh-pighub 的 bundle 层：只插一行。
+#
+# 这一行是「已安装」的全部含义——Loader 读 package.json 的 dsh.bundle.patch，
+# 把这里的内容追加到 profile 的装配链末尾，于是 name 指向的包被 import，
+# 它的 apply(ctx) 才被执行。行 id 独立于包名，删包时按 id 回滚。
+#
+# name 必须是**包名**（Node 解析），不能写成源码相对路径。
+- insert:
+    - id: dsh-pighub
+      name: dsh-pighub

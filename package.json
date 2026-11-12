@@ -1,0 +1,74 @@
+{
+  "name": "dsh-pighub",
+  "version": "0.2.0",
+  "description": "猪猪库 PigHub 的 DeepSeek Harness 插件：侧边栏猪圈面板、每日一只猪猪、重复获得升星、可拖出的置顶桌宠，数据落在 ~/.PigHub。不内嵌任何上游图片。",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "assets/manifest.json",
+    "assets/sources.json",
+    "assets/judgements.json",
+    "cordis.patch.yml",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "test/*.mjs",
+    "scripts/check-version.mjs"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime"
+      ]
+    }
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "deepseek",
+    "cordis",
+    "pighub",
+    "pig",
+    "desktop-pet",
+    "collection"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "test": "node test/smoke.mjs && node test/store.test.mjs && node test/host.test.mjs && node test/trace.test.mjs && node test/client.test.mjs",
+    "test:client": "node test/client.test.mjs",
+    "assets:build": "node scripts/build-assets.mjs",
+    "demo:build": "node test/demo/build-demo.mjs",
+    "prepublishOnly": "node test/smoke.mjs && node test/store.test.mjs && node test/host.test.mjs && node test/trace.test.mjs && node test/client.test.mjs"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "positer"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "tag": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/positer/dsh-pighub.git"
+  },
+  "homepage": "https://github.com/positer/dsh-pighub#readme",
+  "bugs": {
+    "url": "https://github.com/positer/dsh-pighub/issues"
+  }
+}

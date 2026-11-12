@@ -1,0 +1,136 @@
+/**
+ * 冒烟测试 —— **发布闸门**（prepublishOnly 跑的就是它）。
+ *
+ * 它守的是「这个包还是个能装、能跑、能渲染的 DSH 插件吗」，不测业务规则
+ * （那是 store.test.mjs / host.test.mjs / client.test.mjs 的事）。所以它必须：
+ *   - 快（毫秒级）、离线（不联网、不写真实用户目录）；
+ *   - 只看包与宿主的契约面：manifest 声明、入口导出、槽位/路由注册、前端半的形状。
+ *
+ * 任何一条不成立就非零退出——坏包发不出去。
+ */
+import assert from 'node:assert/strict';
+import { readFileSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+
+const here = new URL('.', import.meta.url);
+const pkg = JSON.parse(readFileSync(new URL('../package.json', here), 'utf8'));
+const root = mkdtempSync(join(tmpdir(), 'pighub-smoke-'));
+
+// 上游在这里不该被访问；给了假 fetch 只是为了证明「即使调用也不会真联网」。
+globalThis.fetch = async () => ({ ok: true, status: 200, json: async () => ({ code: 0, data: [] }) });
+
+const plugin = await import(new URL('../lib/index.js', here).href);
+
+let passed = 0;
+const check = (label, fn) => { fn(); passed += 1; console.log('PASS  ' + label); };
+
+/* ---- 1. manifest ---- */
+check('导出 name / inject / apply', () => {
+  assert.equal(typeof plugin.name, 'string');
+  assert.ok(Array.isArray(plugin.inject));
+  assert.equal(typeof plugin.apply, 'function');
+});
+check('name 与 package.json 一致', () => assert.equal(plugin.name, pkg.name));
+check('inject 只声明 tools（webServer 按需查找，避免无 Web 的 profile 启动失败）', () => {
+  assert.deepEqual(plugin.inject, ['tools']);
+  const source = readFileSync(new URL('../lib/index.js', here), 'utf8');
+  assert.ok(source.indexOf('lookupWebServer') > 0, '缺少 webServer 的可选查找');
+});
+check('manifest 声明 bundle 补丁并导出补丁文件', () => {
+  assert.equal(pkg.dsh?.bundle?.patch, './cordis.patch.yml');
+  assert.equal(pkg.exports?.['./cordis.patch.yml'], './cordis.patch.yml');
+  assert.ok(existsSync(new URL('../cordis.patch.yml', here)));
+});
+check('manifest 声明浏览器半：platform=web + 导出 ./client', () => {
+  assert.equal(pkg.dsh?.client?.platform, 'web');
+  assert.equal(pkg.exports?.['./client'], './lib/client.js');
+  assert.ok(existsSync(new URL('../lib/client.js', here)), 'lib/client.js 不存在，声明 dsh.client 会让启动图取不到文件');
+});
+check('浏览器半是 closure-factory（只调用 __ModuleLoader__.load）', () => {
+  const text = readFileSync(new URL('../lib/client.js', here), 'utf8');
+  const code = text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+  assert.equal((code.match(/__ModuleLoader__\.load\(/g) || []).length, 1, '代码里必须恰好一次 __ModuleLoader__.load 调用');
+  assert.ok(text.indexOf('window.__ModuleLoader__.load(') > 0, '缺少注册调用');
+  assert.ok(text.indexOf('id: \'dsh-pighub\'') > 0, 'bundle id 必须是包名');
+  assert.equal(/^\s*(import|export)\s/m.test(text), false, '不能含 ESM 语法：它以普通脚本加载');
+});
+
+/* ---- 1.5 冻结素材库 ---- */
+check('冻结素材库随包发布且自洽（每张图都有 kind/cut/sha256）', () => {
+  const manifest = JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8'));
+  assert.ok(manifest.assetVersion, '缺少 assetVersion');
+  assert.ok(Array.isArray(manifest.pigs) && manifest.pigs.length > 0, '冻结库不能为空');
+  for (const pig of manifest.pigs) {
+    assert.ok(pig.source && pig.source.sha256 && pig.source.bytes, pig.id + ' 缺少源图指纹');
+    assert.ok(pig.kind === 'live' || pig.kind === 'dead', pig.id + ' 的 kind 必须是 live/dead');
+    assert.ok(pig.cut && Array.isArray(pig.cut.trim) && pig.cut.trim.length === 4, pig.id + ' 缺少定制切分参数');
+    assert.equal(typeof pig.cut.vector, 'boolean', pig.id + ' 缺少 vector 判定（true=描摹成 SVG）');
+    assert.ok(String(pig.note || '').length >= 6, pig.id + ' 缺少逐图判定理由');
+  }
+  const judged = JSON.parse(readFileSync(new URL('../assets/judgements.json', here), 'utf8'));
+  assert.deepEqual(
+    manifest.pigs.map((pig) => pig.id).sort(),
+    judged.judgements.map((item) => item.id).sort(),
+    '冻结库与判定表必须一一对应（逐图判定的硬约束）',
+  );
+});
+/* ---- 2. Host 半注册面 ---- */
+const tools = new Map();
+const routes = new Map();
+const disposers = [];
+const ctx = {
+  effect(fn) { const dispose = fn(); disposers.push(dispose); return dispose; },
+  tools: { register(def) { assert.ok(!tools.has(def.name), '重复注册工具'); tools.set(def.name, def); return () => tools.delete(def.name); } },
+  webServer: { register(route) { assert.ok(!routes.has(route.path), '重复注册路由'); routes.set(route.path, route); return () => routes.delete(route.path); } },
+  logger: { warn() {} },
+};
+plugin.apply(ctx, { root });
+
+check('注册了 pighub_about 工具、状态路由与图片代理', () => {
+  assert.deepEqual([...tools.keys()], ['pighub_about']);
+  assert.deepEqual([...routes.keys()].sort(), ['/pighub', '/pighub/image']);
+  for (const path of routes.keys()) assert.equal(routes.get(path).kind, 'exact');
+});
+check('每个注册都包在 ctx.effect 里（可回收）', () => {
+  assert.equal(disposers.length, 3, '工具 + 状态路由 + 图片代理各一个 disposer');
+  for (const dispose of disposers) assert.equal(typeof dispose, 'function');
+});
+check('pighub_about 的参数 schema 封闭、描述非空', () => {
+  const tool = tools.get('pighub_about');
+  assert.equal(tool.parameters.type, 'object');
+  assert.deepEqual(tool.parameters.properties, {});
+  assert.equal(tool.parameters.additionalProperties, false);
+  assert.ok(tool.description.length > 40);
+});
+check('工具描述与数据目录策略一致（声明不内嵌上游素材）', () => {
+  const tool = tools.get('pighub_about');
+  assert.equal(typeof tool.execute, 'function');
+});
+
+/* ---- 3. 工具能真跑 ---- */
+const answer = await tools.get('pighub_about').execute({}, {});
+check('pighub_about 返回自述：版本、目录、今日状态、槽位信息', () => {
+  assert.equal(answer.ok, true);
+  assert.equal(answer.plugin, pkg.name);
+  assert.equal(answer.version, pkg.version, '代码版本与 package.json 不一致');
+  assert.equal(answer.root, root);
+  assert.equal(answer.owned, 0);
+  assert.equal(answer.today.date, new Date().toLocaleDateString('sv-SE'));
+  assert.ok(answer.dataPolicy.indexOf('不再分发') > 0);
+  assert.deepEqual(answer.ui, { sidebarEntry: 'sidebar.panellist', panel: 'main', route: '/pighub' });
+});
+check('自述可无损 JSON 往返', () => assert.deepEqual(JSON.parse(JSON.stringify(answer)), answer));
+
+/* ---- 4. 回收 ---- */
+for (const dispose of disposers) dispose();
+check('disposer 之后工具表与路由表都清空', () => {
+  assert.equal(tools.size, 0);
+  assert.equal(routes.size, 0);
+});
+
+rmSync(root, { recursive: true, force: true });
+console.log('\n' + passed + ' PASS / 0 FAIL  —  ' + pkg.name + '@' + pkg.version);
+console.log('entry: ' + fileURLToPath(new URL('../lib/index.js', here)));

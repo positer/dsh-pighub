@@ -1,0 +1,150 @@
+{
+  "assetVersion": "2026.11.12",
+  "frozenAt": "2026-11-12T08:12:15.878Z",
+  "policy": "冻结库：抽猪池只认这里；每张图带逐图判定（live/dead）、定制切分参数与源图 sha256。",
+  "counts": {
+    "total": 6,
+    "live": 2,
+    "dead": 4
+  },
+  "pigs": [
+    {
+      "id": "pig-1354",
+      "title": "挂科猪",
+      "kind": "dead",
+      "note": "漫画格：左侧整块白色对白气泡就是内容主体。整图保留，不裁、不去白（气泡里的白是画的一部分）。 判定：场景/照片类 → 保留位图（描摹会更脏）。",
+      "cut": {
+        "trim": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "white": 236,
+        "vector": false
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E6%8C%82%E7%A7%91%E7%8C%AA.jpg",
+        "origin": "pighub",
+        "sha256": "926d216a988acf8b41576f0e12ad9493d6b33d472dc50b56ad177eae752cb0dc",
+        "bytes": 59552
+      },
+      "vendored": null
+    },
+    {
+      "id": "pig-1355",
+      "title": "怪猪",
+      "kind": "live",
+      "note": "单只猪全身、干净白底、四腿站立 —— 唯一一张可以直接当角色精灵图的。裁到猪身外框，去白底。 判定：平涂卡通 → 描摹成 SVG（放大不糊）。",
+      "cut": {
+        "trim": [
+          0.06,
+          0.1,
+          0.88,
+          0.86
+        ],
+        "white": 236,
+        "vector": true
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E6%80%AA%E7%8C%AA.jpg",
+        "origin": "pighub",
+        "sha256": "0b15fc66ff0fb622d6d667b87bdb17d6fa0d181c1ebb99737329ee0612e50fef",
+        "bytes": 14281
+      },
+      "vendored": null
+    },
+    {
+      "id": "pig-1357",
+      "title": "乱停猪",
+      "kind": "dead",
+      "note": "躺地睡觉 + 罚单的场景图：它本来就是「不动的猪」，判定为死猪；整图保留（路面与罚单是语义的一部分）。 判定：场景/照片类 → 保留位图（描摹会更脏）。",
+      "cut": {
+        "trim": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "white": 226,
+        "vector": false
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E4%B9%B1%E5%81%9C%E7%8C%AA.jpg",
+        "origin": "pighub",
+        "sha256": "c6ea79a460b2f2ee1004e5f3d02ff3a2b1c6ac55efa249e72388c98a1f975b99",
+        "bytes": 31768
+      },
+      "vendored": null
+    },
+    {
+      "id": "pig-1358",
+      "title": "萝卜猪",
+      "kind": "dead",
+      "note": "夜景海报：紫色夜空 + 星星 + 标题，猪只是画面元素。整图保留，静态展示。 判定：场景/照片类 → 保留位图（描摹会更脏）。",
+      "cut": {
+        "trim": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "white": 236,
+        "vector": false
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E8%90%9D%E5%8D%9C%E7%8C%AA.jpg",
+        "origin": "pighub",
+        "sha256": "40f31fac7d709a5e7503dadd64438e6b5e13f81ea1bbae341cb14d4280229010",
+        "bytes": 13912
+      },
+      "vendored": null
+    },
+    {
+      "id": "pig-1360",
+      "title": "你已笨哭",
+      "kind": "dead",
+      "note": "电脑前 + 文案的场景卡，整图保留，静态。 判定：场景/照片类 → 保留位图（描摹会更脏）。",
+      "cut": {
+        "trim": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "white": 226,
+        "vector": false
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E4%BD%A0%E5%B7%B2%E7%AC%A8%E5%93%AD_1.jpg",
+        "origin": "pighub",
+        "sha256": "425c8084e4caa13c8ee6b2e63a881d4d7d1fd818fec675800ee214f478efdc9b",
+        "bytes": 42218
+      },
+      "vendored": null
+    },
+    {
+      "id": "pig-1361",
+      "title": "你知道吗",
+      "kind": "live",
+      "note": "上半是重复文字，下半是干净的一只猪 —— **定制切分**：只取猪身那一条，文字不要。切完是合格的活动精灵。 判定：平涂卡通 → 描摹成 SVG（放大不糊）。",
+      "cut": {
+        "trim": [
+          0.06,
+          0.34,
+          0.88,
+          0.62
+        ],
+        "white": 236,
+        "vector": true
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97.jpg",
+        "origin": "pighub",
+        "sha256": "c61c93ea5608c54f008a04868f18af4fc9976b3668899a74833e5dcb09f153ad",
+        "bytes": 45462
+      },
+      "vendored": null
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+# 发布流水线：**两条腿，各自成立**。
+#
+#   pack    —— 无任何凭据。校验 tag 与 package.json 版本一致、跑离线测试、产出 tarball。
+#              任何一次运行都会跑它，所以「这个 tag 能不能发」在拿到凭据之前就有答案。
+#   publish —— 只消费 pack 的字节（不重建），用 GitHub OIDC 换 npm 的短期凭据发布，
+#              并生成 provenance 签名。**仓库里没有任何长期 token**。
+#
+# Trusted Publishing 的三项匹配（在 npmjs.com 上配置，见 README「发布」一节）：
+#   Provider = GitHub Actions · Repository = <owner>/<repo> · Workflow filename = publish.yml
+# 三者任一不符，npm 会拒绝换发凭据——这就是它比 token 安全的地方：泄露不了的凭据，
+# 也没法被另一个仓库借用来发你的包。
+name: publish
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
+jobs:
+  pack:
+    name: pack (no credentials)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      # tag 与 manifest 必须同源。不一致就停在这里，而不是发出一个和 tag 对不上的版本。
+      - name: 校验 tag 与 package.json 版本
+        run: node scripts/check-version.mjs
+
+      # 三个测试都是离线的：不联网、不启动 DSH、不写真实用户目录。
+      - name: 离线测试
+        run: |
+          node test/smoke.mjs
+          node test/store.test.mjs
+          node test/host.test.mjs
+
+      - name: 打包
+        run: npm pack
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pack
+          path: '*.tgz'
+          if-no-files-found: error
+
+  publish:
+    name: publish (OIDC + provenance)
+    needs: pack
+    runs-on: ubuntu-latest
+    # 与 npmjs.com 上 Trusted Publisher 配置里的 Environment 同名；没有配置就留空这一行。
+    environment: npm-publish
+    permissions:
+      contents: read
+      id-token: write   # 少了这一行，npm 拿不到 OIDC 断言，发布会退化成「无凭据」并失败
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: pack
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+
+      # 不设 NODE_AUTH_TOKEN：凭据由 OIDC 现换，tarball 里的字节就是 pack 产出的字节。
+      - name: 发布（provenance 签名）
+        run: npm publish ./*.tgz --provenance --access public

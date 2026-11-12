@@ -1,0 +1,47 @@
+{
+  "note": "候选池：从 PigHub 公开接口的 1,361 只里挑出来、准备逐图判定的一批。sources.json 是『候选』，assets/manifest.json 是『冻结版』；只有 manifest 里的猪才会被抽到。",
+  "candidates": [
+    {
+      "id": "pig-1354",
+      "title": "挂科猪",
+      "filename": "挂科猪.jpg",
+      "url": "https://pighub.top/images/%E6%8C%82%E7%A7%91%E7%8C%AA.jpg",
+      "source": "pighub"
+    },
+    {
+      "id": "pig-1358",
+      "title": "萝卜猪",
+      "filename": "萝卜猪.jpg",
+      "url": "https://pighub.top/images/%E8%90%9D%E5%8D%9C%E7%8C%AA.jpg",
+      "source": "pighub"
+    },
+    {
+      "id": "pig-1355",
+      "title": "怪猪",
+      "filename": "怪猪.jpg",
+      "url": "https://pighub.top/images/%E6%80%AA%E7%8C%AA.jpg",
+      "source": "pighub"
+    },
+    {
+      "id": "pig-1357",
+      "title": "乱停猪",
+      "filename": "乱停猪.jpg",
+      "url": "https://pighub.top/images/%E4%B9%B1%E5%81%9C%E7%8C%AA.jpg",
+      "source": "pighub"
+    },
+    {
+      "id": "pig-1361",
+      "title": "你知道吗",
+      "filename": "你知道吗.jpg",
+      "url": "https://pighub.top/images/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97.jpg",
+      "source": "pighub"
+    },
+    {
+      "id": "pig-1360",
+      "title": "你已笨哭",
+      "filename": "你已笨哭_1.jpg",
+      "url": "https://pighub.top/images/%E4%BD%A0%E5%B7%B2%E7%AC%A8%E5%93%AD_1.jpg",
+      "source": "pighub"
+    }
+  ]
+}

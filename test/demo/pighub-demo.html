@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>dsh-pighub 版面验证台</title>
+<!-- 由 test/demo/build-demo.mjs 生成，请勿手改。 -->
+<style>
+html,body{margin:0;background:#f3f0e8;color:#1f2328}
+body{font-family:"Microsoft YaHei UI","Segoe UI",sans-serif}
+.stage{display:grid;grid-template-columns:56px 1fr;height:100vh}
+.rail{background:#e7e2d8;border-right:1px solid #d5cfc2;padding-top:14px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.rail .slot{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:#5a5a5a}
+.rail .slot.on{background:#e2543a;color:#fff}
+.main{min-width:0;height:100vh;overflow:hidden}
+#panel{height:100%}
+</style>
+</head>
+<body>
+<div class="stage"><div class="rail" id="rail"></div><div class="main"><div id="panel"></div></div></div>
+<script src="vendor/react.js"></script>
+<script src="vendor/react-dom.js"></script>
+<script>window.__ModuleLoader__={load:function(def){window.__PIGHUB_DEF__=def;}};</script>
+<script src="../../lib/client.js"></script>
+<script>
+window.__ERR__ = "";
+window.addEventListener("error", function (e) { window.__ERR__ = e.message; });
+try {
+  var SNAPSHOT = {"ok":true,"version":"0.2.0","root":"C:\\Users\\demo\\.PigHub","today":{"date":"2026-11-12","drawn":false,"pigId":""},"pigs":[{"id":"pig-1354","title":"挂科猪","imageUrl":"https://pighub.top/images/%E6%8C%82%E7%A7%91%E7%8C%AA.jpg","kind":"dead","cut":{"trim":[0,0,1,1],"white":236,"vector":false},"rarity":"common","rarityLabel":"普通","stars":1,"firstObtainedAt":"2026-11-03T02:10:00.000Z","lastUpgradedAt":"2026-11-12T01:20:00.000Z"},{"id":"pig-1355","title":"怪猪","imageUrl":"https://pighub.top/images/%E6%80%AA%E7%8C%AA.jpg","kind":"live","cut":{"trim":[0.06,0.1,0.88,0.86],"white":236,"vector":true},"rarity":"common","rarityLabel":"普通","stars":2,"firstObtainedAt":"2026-11-04T02:10:00.000Z","lastUpgradedAt":"2026-11-12T01:20:00.000Z"},{"id":"pig-1357","title":"乱停猪","imageUrl":"https://pighub.top/images/%E4%B9%B1%E5%81%9C%E7%8C%AA.jpg","kind":"dead","cut":{"trim":[0,0,1,1],"white":226,"vector":false},"rarity":"common","rarityLabel":"普通","stars":1,"firstObtainedAt":"2026-11-06T02:10:00.000Z","lastUpgradedAt":"2026-11-12T01:20:00.000Z"},{"id":"pig-1358","title":"萝卜猪","imageUrl":"https://pighub.top/images/%E8%90%9D%E5%8D%9C%E7%8C%AA.jpg","kind":"dead","cut":{"trim":[0,0,1,1],"white":236,"vector":false},"rarity":"common","rarityLabel":"普通","stars":1,"firstObtainedAt":"2026-11-07T02:10:00.000Z","lastUpgradedAt":"2026-11-12T01:20:00.000Z"},{"id":"pig-1360","title":"你已笨哭","imageUrl":"https://pighub.top/images/%E4%BD%A0%E5%B7%B2%E7%AC%A8%E5%93%AD_1.jpg","kind":"dead","cut":{"trim":[0,0,1,1],"white":226,"vector":false},"rarity":"common","rarityLabel":"普通","stars":1,"firstObtainedAt":"2026-11-01T02:10:00.000Z","lastUpgradedAt":"2026-11-12T01:20:00.000Z"}],"pets":["pig-1355"],"sort":"time","prefs":{"sort":"time","starDisplay":"always"},"draws":6,"assets":{"version":"2026.11.12","total":6,"live":2,"dead":4,"available":true},"catalog":{"count":1361,"fetchedAt":"2026-11-12T00:00:00.000Z","source":"https://pighub.top/api/images?sort=2","sources":[{"id":"pighub","count":1361,"ok":true,"error":""}],"stale":false,"error":""}};
+  var DEAD = ["挂科猪","乱停猪","萝卜猪","你已笨哭"];
+  var DRAWABLE = {"id":"pig-1361","title":"你知道吗","imageUrl":"https://pighub.top/images/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97.jpg","kind":"live","cut":{"trim":[0.06,0.34,0.88,0.62],"white":236,"vector":true},"rarity":"common","rarityLabel":"普通","stars":2,"firstObtainedAt":"2026-11-02T02:10:00.000Z","lastUpgradedAt":"2026-11-12T01:20:00.000Z"};
+  var definition = window.__PIGHUB_DEF__;
+  if (!definition) throw new Error("client bundle 没有注册 factory");
+  var mod = definition.factory(function (id) { if (id === "react") return window.React; throw new Error("unexpected require: " + id); });
+  var realFetch = window.fetch.bind(window);
+  window.fetch = async function (url, options) {
+    var target = String(url);
+    if (target.indexOf("/pighub/image") >= 0) {
+      var src = decodeURIComponent(target.split("src=")[1] || "");
+      var match = SNAPSHOT.pigs.filter(function (p) { return p.imageUrl === src; })[0] || (DRAWABLE.imageUrl === src ? DRAWABLE : undefined);
+      var local = "./vendor/pigs/" + (match ? match.id : "missing") + ".img";
+      var response = await realFetch(local);
+      return { ok: response.ok, status: response.status, blob: function () { return response.blob(); }, text: async function () { return ""; } };
+    }
+    var payload = { ok: true, status: 200, text: async function () { return JSON.stringify(SNAPSHOT); } };
+    if (String(url) === "/pighub" && options && options.body && String(options.body).indexOf("draw") >= 0) window.__DRAWS__ = (window.__DRAWS__ || 0) + 1;
+    var body = options && options.body ? JSON.parse(options.body) : null;
+    if (body && body.action === "draw") {
+      var drawn = Object.assign({}, DRAWABLE, { stars: 1, firstObtainedAt: "2026-11-12T03:00:00.000Z", lastUpgradedAt: "2026-11-12T03:00:00.000Z" });
+      var next = JSON.parse(JSON.stringify(SNAPSHOT));
+      next.pigs = next.pigs.concat([drawn]);
+      next.today = { date: SNAPSHOT.today.date, drawn: true, pigId: drawn.id };
+      next.draw = { ok: true, pigId: drawn.id, upgraded: false, stars: 1, date: SNAPSHOT.today.date };
+      return { ok: true, status: 200, text: async function () { return JSON.stringify(next); } };
+    }
+    return payload;
+  };
+  if (location.hash === "#zoom") {
+    // 取证用：把猪圈放大 3 倍，肉眼比对「矢量不糊、位图会糊」。
+    var zoom = document.createElement("style");
+    zoom.textContent = ".pighub-pen{zoom:3} .pighub-panel{padding:8px}";
+    document.head.appendChild(zoom);
+  }
+  if (location.hash === "#freeze-fly") {
+    // 取证用：把飞行过渡拉长到 30s，截图就能拍到真正的半空一帧（不改产品代码）。
+    var slow = document.createElement("style");
+    slow.textContent = ".pighub-reveal.is-fly{transition-duration:30s !important}";
+    document.head.appendChild(slow);
+    setTimeout(function () { var b = document.querySelector(".pighub-draw"); if (b) b.click(); }, 900);
+  }
+  if (location.hash === "#pin-pet") {
+    var style = document.createElement("style");
+    style.textContent = ".pighub-pet{left:700px !important;top:250px !important;transition:none !important}";
+    document.head.appendChild(style);
+  }
+  var registered = [];
+  var ctx = { effect: function (fn) { return fn(); }, slots: { inject: function (name, factory) { return factory(); }, register: function (options, component) { registered.push({ options: options, component: component }); return function () {}; } } };
+  mod.apply(ctx);
+  var findBy = function (name) { return registered.filter(function (r) { return r.options.name === name; })[0].component; };
+  var rail = document.getElementById("rail");
+  var slot = document.createElement("div"); slot.className = "slot on"; slot.title = "PigHub"; rail.appendChild(slot);
+  ReactDOM.createRoot(slot).render(React.createElement(findBy("sidebar.panellist"), { size: 20 }));
+  ReactDOM.createRoot(document.getElementById("panel")).render(React.createElement(findBy("main")));
+  var overlayHost = document.createElement("div"); document.body.appendChild(overlayHost);
+  ReactDOM.createRoot(overlayHost).render(React.createElement(findBy("shell.overlay")));
+  function alphaProbe() {
+    var out = [];
+    Array.prototype.slice.call(document.querySelectorAll(".pighub-actor img, .pighub-pet img")).forEach(function (img) {
+      if (!img.complete || !img.naturalWidth) { out.push(img.alt + ":pending"); return; }
+      var canvas = document.createElement("canvas");
+      canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
+      var surface = canvas.getContext("2d");
+      surface.drawImage(img, 0, 0);
+      var data;
+      try { data = surface.getImageData(0, 0, canvas.width, canvas.height).data; } catch (error) { out.push(img.alt + ":tainted"); return; }
+      var w = canvas.width, h = canvas.height;
+      var at = function (x, y) { return data[(y * w + x) * 4 + 3]; };
+      var kind = String(img.currentSrc || img.src).indexOf("blob:") === 0 ? "b" : "remote";
+      out.push(img.alt + "[" + kind + "]=" + [at(0,0), at(w-1,0), at(0,h-1), at(w-1,h-1)].join("/"));
+    });
+    return out.join(" | ");
+  }
+  function snapActors() { return Array.prototype.slice.call(document.querySelectorAll(".pighub-actor")).map(function (el) { var i = el.querySelector("img"); return { title: i ? i.alt : "", pos: el.style.left + "," + el.style.top }; }); }
+  function snapPets() { return Array.prototype.slice.call(document.querySelectorAll(".pighub-pet")).map(function (el) { return el.style.left + "," + el.style.top; }); }
+  var startActors = [], startPets = [];
+  setTimeout(function () { startActors = snapActors(); startPets = snapPets(); }, 2600);
+  setTimeout(function () {
+    var nowActors = snapActors();
+    var nowPets = snapPets();
+    var deadMoved = 0, liveMoved = 0, deadTotal = 0, liveTotal = 0;
+    nowActors.forEach(function (entry, index) {
+      var moved = entry.pos !== (startActors[index] || {}).pos;
+      if (DEAD.indexOf(entry.title) >= 0) { deadTotal += 1; if (moved) deadMoved += 1; }
+      else { liveTotal += 1; if (moved) liveMoved += 1; }
+    });
+    var petsMoved = nowPets.filter(function (pos, index) { return pos !== (startPets[index] || ""); }).length;
+    var SVGS = Array.prototype.slice.call(document.querySelectorAll(".pighub-actor img, .pighub-pet img")).filter(function (img) { return String(img.currentSrc || img.src).indexOf("data:image/svg+xml") === 0; }).length;
+    var DIAG = "diag{svg=" + SVGS + " draws=" + (window.__DRAWS__ || 0) + " btn=" + (document.querySelector(".pighub-draw") ? (document.querySelector(".pighub-draw").disabled ? "disabled" : "enabled") : "missing") + " actors=" + document.querySelectorAll(".pighub-actor").length + " rows=" + document.querySelectorAll(".pighub-row").length + " pen=" + (document.querySelector(".pighub-empty") ? "empty" : "filled") + " err=" + (window.__ERR__ || "none") + "}";
+    var MOTION = "motion{live=" + liveMoved + "/" + liveTotal + " dead=" + deadMoved + "/" + deadTotal + " pets=" + petsMoved + "/" + nowPets.length + "}";
+    var ALPHA = "alpha[" + alphaProbe() + "]";
+    var PHASES = [];
+    var lastCenter = null;
+    var FLY_GAP = null;
+    var FLY_DEBUG = "-";
+    var drawButton = document.querySelector(".pighub-draw");
+    var poll = setInterval(function () {
+      var el = document.querySelector(".pighub-reveal");
+      if (!el) return;
+      var phase = el.className.indexOf("is-pop") >= 0 ? "pop" : (el.className.indexOf("is-fly") >= 0 ? "fly" : "?");
+      if (PHASES.indexOf(phase) < 0) PHASES.push(phase);
+      var r = el.getBoundingClientRect();
+      lastCenter = { x: r.left + r.width / 2, y: r.top + r.height / 2, phase: phase };
+      // 飞行途中每一拍都量「动画中心 ↔ 这只猪此刻的中心」，取最后一拍（最接近落地）作为落地精度。
+      if (phase === "fly" && FLY_GAP === null) {
+        var target = Array.prototype.slice.call(document.querySelectorAll(".pighub-actor")).filter(function (node) { var im = node.querySelector("img"); return im && im.alt === DRAWABLE.title; })[0];
+        if (target) {
+          var tr = target.getBoundingClientRect();
+          var tf = el.style.transform.match(/translate3d\(([-0-9.]+)px, ([-0-9.]+)px/);
+          var half = el.offsetWidth / 2;   // 用布局尺寸，不受 transform 缩放影响
+          var landX = (tf ? parseFloat(tf[1]) : 0) + (tf ? half : 0);
+          var landY = (tf ? parseFloat(tf[2]) : 0) + (tf ? half : 0);
+          FLY_GAP = Math.round(Math.hypot(landX - (tr.left + tr.width / 2), landY - (tr.top + tr.height / 2)) * 10) / 10;
+          FLY_DEBUG = "landed(" + Math.round(landX) + "," + Math.round(landY) + ") pig(" + Math.round(tr.left + tr.width / 2) + "," + Math.round(tr.top + tr.height / 2) + ")";
+        }
+      }
+    }, 40);
+    if (drawButton) drawButton.click();
+    setTimeout(function () {
+      clearInterval(poll);
+      var drawn = Array.prototype.slice.call(document.querySelectorAll(".pighub-actor")).filter(function (el) { var i = el.querySelector("img"); return i && i.alt === DRAWABLE.title; })[0];
+      var actorCenter = null;
+      if (drawn) { var ar = drawn.getBoundingClientRect(); actorCenter = { x: ar.left + ar.width / 2, y: ar.top + ar.height / 2 }; }
+      var dx = FLY_GAP === null ? "-" : FLY_GAP;
+      var dy = "-";
+      var SVGS2 = Array.prototype.slice.call(document.querySelectorAll(".pighub-actor img, .pighub-pet img")).filter(function (img) { return String(img.currentSrc || img.src).indexOf("data:image/svg+xml") === 0; }).length;
+      var drawnImg = Array.prototype.slice.call(document.querySelectorAll(".pighub-actor img")).filter(function (img) { return img.alt === DRAWABLE.title; })[0];
+      var drawnSrc = drawnImg ? String(drawnImg.currentSrc || drawnImg.src).slice(0, 24) : "missing";
+      var POST = "post{svg=" + SVGS2 + " src=" + drawnSrc + " draws=" + (window.__DRAWS__ || 0) + " rows=" + document.querySelectorAll(".pighub-row").length + " drawn=" + (document.querySelectorAll(".pighub-actor").length) + " err=" + (window.__ERR__ || "none") + "}";
+      document.title = "PROBE " + DIAG + " " + POST + " " + ALPHA + " " + MOTION + " reveal{phases=" + PHASES.join("+") + " landGapPx=" + dx + " " + FLY_DEBUG + "}";
+    }, 2400);
+  }, 7200);
+} catch (error) {
+  document.title = "ERR " + error.message;
+  var box = document.createElement("pre");
+  box.style.cssText = "position:fixed;left:70px;top:10px;z-index:99;color:#b00;font-size:12px;white-space:pre-wrap";
+  box.textContent = "验证台失败：" + error.message;
+  document.body.appendChild(box);
+}
+</script>
+</body>
+</html>
