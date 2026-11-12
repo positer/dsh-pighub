@@ -22,7 +22,7 @@ import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
-import { refineWhite, stripAllWhite, contentBounds, cropFrame, vectorise, TRACE_MAX_EDGE, restoreRects, eraseRects, addOutline } from '../lib/imaging.js';
+import { refineWhite, stripAllWhite, contentBounds, cropFrame, vectorise, TRACE_MAX_EDGE, restoreRects, eraseRects, addOutline, styleScore } from '../lib/imaging.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const assetsDir = join(here, '..', 'assets');
@@ -57,6 +57,7 @@ mkdirSync(imageDir, { recursive: true });
 if (keepSources) mkdirSync(join(assetsDir, 'source'), { recursive: true });
 
 const pigs = [];
+const rejected = [];
 for (const candidate of candidates) {
   const decision = judged.find((item) => item.id === candidate.id);
   // 只接受 jpeg/png：jimp 不认 webp，而部分 CDN 会按 Accept 协商成 webp。
@@ -68,6 +69,18 @@ for (const candidate of candidates) {
 
   // GIF 动图：原样随包分发。动画是内容本身，去白/裁切/描摹都会把它冻成一张静态图。
   if (raw.subarray(0, 3).toString('ascii') === 'GIF') {
+    // 动图原样分发，但**风格仍要评**：只看第一帧的像素分布，避免把别的画风混进来。
+    let gifStyle = { verdict: 'match', palette: null, flatness: null, note: '未评分' };
+    try {
+      const first = await sharp(raw, { animated: false }).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+      gifStyle = styleScore({ width: first.info.width, height: first.info.height, data: first.data });
+    } catch { /* 解不出第一帧就放行，但记账 */ }
+    const gifOverride = decision.styleOverride === true;
+    if (gifStyle.verdict === 'reject' && !gifOverride) {
+      rejected.push({ id: candidate.id, title: candidate.title, style: gifStyle });
+      console.log('  SKIP ' + candidate.id + ' 风格校验未通过（GIF 首帧 palette=' + gifStyle.palette + '）');
+      continue;
+    }
     const file = candidate.id + '.gif';
     writeFileSync(join(imageDir, file), raw);
     pigs.push({
@@ -81,8 +94,9 @@ for (const candidate of candidates) {
       bytes: raw.length,
       sha256: sourceSha,
       size: { width: 0, height: 0 },
-      source: { url: candidate.url, group: candidate.source || 'pighub', sha256: sourceSha },
+      source: { url: candidate.url, group: candidate.source || 'pighub-online', sha256: sourceSha },
       cut: { trim: [0, 0, 1, 1], white: 0 },
+      style: gifStyle,
     });
     continue;
   }
@@ -148,6 +162,16 @@ for (const candidate of candidates) {
     if (Math.max(cropped.width, cropped.height) > limit) pipeline.resize({ width: cropped.width >= cropped.height ? limit : null, height: cropped.height > cropped.width ? limit : null });
     writeFileSync(target, await pipeline.png({ compressionLevel: 9 }).toBuffer());
   }
+  // 风格化校验：只看像素分布，标题里有没有「猪」字不参与判断。
+  const style = styleScore(cropped);
+  const override = decision.styleOverride === true;
+  if (style.verdict === 'reject' && !override) {
+    // 风格不对的图**不进包**：记进 rejected，等它拿到逐素材规格（裁到猪身）后自然会通过。
+    rejected.push({ id: candidate.id, title: candidate.title, style });
+    console.log('  SKIP ' + candidate.id + ' 风格校验未通过（palette=' + style.palette + ' flatness=' + style.flatness + '）');
+    continue;
+  }
+
   const produced = readFileSync(target);
   pigs.push({
     id: candidate.id,
@@ -159,8 +183,9 @@ for (const candidate of candidates) {
     bytes: produced.length,
     sha256: createHash('sha256').update(produced).digest('hex'),
     size: { width: cropped.width, height: cropped.height },
-    source: { url: candidate.url, group: candidate.source || 'pighub', sha256: sourceSha },
+    source: { url: candidate.url, group: candidate.source || 'pighub-online', sha256: sourceSha },
     cut: { trim: decision.cut.trim, white: decision.cut.white || 236 },
+    style,
   });
 }
 
@@ -192,6 +217,7 @@ const manifest = {
   frozenAt: new Date().toISOString(),
   policy: '素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。',
   attribution: '素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。',
+  rejected,
   counts: {
     total: pigs.length,
     live: pigs.filter((pig) => pig.kind === 'live').length,

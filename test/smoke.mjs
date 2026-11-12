@@ -77,12 +77,37 @@ check('冻结素材随包分发且自洽（贴图存在、指纹对得上、来�
     assert.ok(pig.source && pig.source.url, pig.id + ' 缺少来源署名');
   }
   const judged = JSON.parse(readFileSync(new URL('../assets/judgements.json', here), 'utf8'));
-  assert.deepEqual(
-    manifest.pigs.map((pig) => pig.id).sort(),
-    judged.judgements.map((item) => item.id).sort(),
-    '冻结库与判定表必须一一对应（逐图判定的硬约束）',
-  );
+  // 判定表必须覆盖候选池；但成品可以少于判定表——风格校验未过的会进 rejected。
+  const built = new Set(manifest.pigs.map((pig) => pig.id));
+  const rejected = new Set((manifest.rejected || []).map((item) => item.id));
+  for (const item of judged.judgements) {
+    assert.ok(built.has(item.id) || rejected.has(item.id), item.id + ' 既没进包也没进 rejected');
+  }
+  for (const pig of manifest.pigs) {
+    assert.ok(judged.judgements.some((item) => item.id === pig.id), pig.id + ' 没有判定记录');
+    assert.equal(pig.style.verdict, 'match', pig.id + ' 进了包却不是 match');
+  }
 });
+/* ---- 1.6 可信来源登记表 ---- */
+check('可信来源登记表：每条都有许可结论与证据', () => {
+  const libs = JSON.parse(readFileSync(new URL('../assets/libraries.json', here), 'utf8'));
+  assert.ok(libs.verdictPolicy && libs.verdictPolicy.bundle, '缺少判定口径');
+  const known = ['bundle', 'reference-only', 'inherited-risk'];
+  for (const item of libs.libraries) {
+    assert.ok(item.id && item.kind, '缺少 id/kind');
+    assert.ok(known.indexOf(item.verdict) >= 0, item.id + ' 判定不在口径内：' + item.verdict);
+    assert.ok(item.licenseSource && item.licenseSource.length > 6, item.id + ' 缺少许可证据');
+    assert.equal(typeof item.images, 'number', item.id + ' 缺少图片实测数量');
+    if (item.verdict === 'reference-only') assert.ok(item.note, item.id + ' 必须写明为什么排除');
+  }
+  // 打包的素材只能来自 bundle 或 inherited-risk，绝不能来自 reference-only
+  const manifest = JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8'));
+  const allowed = new Set(libs.libraries.filter((item) => item.verdict !== 'reference-only').map((item) => item.id));
+  for (const pig of manifest.pigs) {
+    assert.ok(allowed.has(pig.source.group), pig.id + ' 的来源 ' + pig.source.group + ' 未获准打包');
+  }
+});
+
 /* ---- 2. Host 半注册面 ---- */
 const tools = new Map();
 const routes = new Map();

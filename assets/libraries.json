@@ -1,0 +1,111 @@
+{
+  "checkedAt": "2026-11-12",
+  "method": "逐仓库查 GitHub API 的 license.spdx_id（权威字段，不是 README 自述），并核对是否写了数据条款。判定只回答一个问题：**能不能把图打进包里再分发**。",
+  "verdictPolicy": {
+    "bundle": "SPDX 许可明确允许再分发（MIT 等）且仓库内确有图片 → 可进候选池、可打包",
+    "reference-only": "无 LICENSE / NOASSERTION / 自定义禁止再托管 → 只登记出处，不打包",
+    "inherited-risk": "已被用户明确接受、但许可缺失的来源 → 记录风险，不当作「可信」"
+  },
+  "libraries": [
+    {
+      "id": "pighub-online",
+      "repo": null,
+      "kind": "图片库（线上）",
+      "url": "https://pighub.top/api/images?sort=2",
+      "license": null,
+      "licenseSource": "站点无任何数据许可声明",
+      "images": 1361,
+      "verdict": "inherited-risk",
+      "note": "当前包内 8 张素材的来源；用户已知悉并接受署名+不再分发条款缺失的风险。"
+    },
+    {
+      "id": "pighub-db",
+      "repo": "BadFish-HSrui/PigHub-DB",
+      "kind": "图片库（官方镜像）",
+      "url": "https://github.com/BadFish-HSrui/PigHub-DB",
+      "license": null,
+      "licenseSource": "GitHub API license.spdx_id = null",
+      "images": 1303,
+      "verdict": "reference-only",
+      "note": "无 LICENSE，默认保留全部权利；不打包。"
+    },
+    {
+      "id": "pigpicpot",
+      "repo": "SCP5637/PigPicPot",
+      "kind": "图片库（独立收集）",
+      "url": "https://github.com/SCP5637/PigPicPot",
+      "license": null,
+      "licenseSource": "GitHub API license.spdx_id = null",
+      "images": 327,
+      "verdict": "reference-only",
+      "note": "无 LICENSE；与 PigHub 不同源，不打包。"
+    },
+    {
+      "id": "rollpig-resources",
+      "repo": "Felis2026/rollpig-resources",
+      "kind": "图片+资料资源仓",
+      "url": "https://github.com/Felis2026/rollpig-resources",
+      "license": "NOASSERTION",
+      "licenseSource": "GitHub API license.spdx_id = NOASSERTION（自定义 RollPig Resources License v1.0）",
+      "images": 267,
+      "verdict": "reference-only",
+      "note": "许可明确禁止未经许可的系统性镜像/再托管 —— 这条直接排除打包。"
+    },
+    {
+      "id": "todaypig-snapshot",
+      "repo": "M0nk3yOuO/TodayPig",
+      "kind": "资料库（PigHub 快照）",
+      "url": "https://github.com/M0nk3yOuO/TodayPig",
+      "license": null,
+      "licenseSource": "GitHub API license.spdx_id = null",
+      "images": 1303,
+      "verdict": "reference-only",
+      "note": "无 LICENSE；内容是 PigHub 快照，等同无许可。"
+    },
+    {
+      "id": "rollpig-upstream",
+      "repo": "Bearlele/nonebot-plugin-rollpig",
+      "kind": "资料库",
+      "url": "https://github.com/Bearlele/nonebot-plugin-rollpig",
+      "license": "MIT",
+      "licenseSource": "GitHub API license.spdx_id = MIT",
+      "images": 0,
+      "verdict": "bundle",
+      "note": "MIT 覆盖仓库内容；但它是**资料库**（pig.json 名称/描述/解析），不含猪图，因此可用的只有文字元数据。"
+    },
+    {
+      "id": "rollpig-plus",
+      "repo": "Felis2026/nonebot-plugin-rollpig-plus",
+      "kind": "资料库",
+      "url": "https://github.com/Felis2026/nonebot-plugin-rollpig-plus",
+      "license": "MIT",
+      "licenseSource": "GitHub API license.spdx_id = MIT",
+      "images": 0,
+      "verdict": "bundle",
+      "note": "同上，165 条资料。"
+    },
+    {
+      "id": "pig-catcher",
+      "repo": "buruqu/pig_catcher",
+      "kind": "内容库（游戏）",
+      "url": "https://github.com/buruqu/pig_catcher",
+      "license": "MIT",
+      "licenseSource": "GitHub API license.spdx_id = MIT；但目录自带 user-provided-local-use 标注",
+      "images": 0,
+      "verdict": "reference-only",
+      "note": "代码 MIT，数据被作者标注为「用户本地使用」，与 MIT 冲突，按更严格者处理：不打包。"
+    },
+    {
+      "id": "pighub-mirror",
+      "repo": "Labyrinth0419/Pighub-Mirror",
+      "kind": "镜像站实现（代码）",
+      "url": "https://github.com/Labyrinth0419/Pighub-Mirror",
+      "license": null,
+      "licenseSource": "GitHub API license.spdx_id = null",
+      "images": 0,
+      "verdict": "reference-only",
+      "note": "只有实现，无图片；且无 LICENSE。"
+    }
+  ],
+  "conclusion": "按「能再分发」这一条严格筛，**没有任何一个图片库通过**：三个真图库（PigHub/PigHub-DB/PigPicPot）全部没有数据许可；唯一写清数据条款的 rollpig-resources 明文禁止再托管。MIT 的仓库里只有「猪名/描述」这类文字资料，没有猪图。所以本包的图片仍然全部来自 pighub.top 并标记为 inherited-risk —— 这不是「可信开源」，是用户已知悉风险的取舍。"
+}

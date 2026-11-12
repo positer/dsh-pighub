@@ -94,8 +94,13 @@ npm run assets:build      # 重新生成包内贴图（需要源图；会把处�
 
 走 **GitHub Actions + npm Trusted Publishing**，仓库里不放长期 token：`pack` job 无凭据校验 tag 与版本并跑全部测试，`publish` job 消费同一份 tarball，用 OIDC 换短期凭据发布并生成 provenance。npm 后台三项匹配（仓库 / `publish.yml` / `npm-publish`）任一不符都会被拒。
 
-## 许可
+## 素材来源与许可（重要）
 
+逐仓库核过 GitHub 的 `license.spdx_id` 后，结论是**没有一个可信的猪图开源库**：三个真图库（pighub.top / PigHub-DB / PigPicPot）都没有数据许可，rollpig-resources 明文禁止再托管，MIT 的仓库只有文字资料没有图。
+
+本包内的图因此按 `inherited-risk` 记录（用户已知悉），出处与指纹见 [assets/ATTRIBUTION.md](./assets/ATTRIBUTION.md)，机器可读的判定见 [assets/libraries.json](./assets/libraries.json)。
+
+## 许可
 - **本插件代码**：MIT，见 [LICENSE](./LICENSE)。
 - **上游 PigHub 素材**：未声明数据许可。本包**不含图片字节**，只含判定与参数；图片由用户浏览器按冻结 URL 直取。若上游给出许可条款，以它为准。
 
