@@ -1,16 +1,19 @@
-# Agent 行为产物：不进入公开仓库
-#
-# 这些文件记录的是「某次会话里 agent 做了什么、为什么这么设计」，不是项目本身。
-# 它们留在本地工作区，但不该出现在公开仓库里——否则每个 clone 的人都会看到一堆
-# 与本项目无关的巡检记录与设计草稿。
-archive/
+# 仓库只保留「可构建/可安装」的部分 + README + CHANGELOG。
+# 设计、参考、agent 行为记录一律不进去：它们是本地的思考过程，不是项目本身。
+design.md
 taste.md
 OVERVIEW.md
 AGENTS.md
 CLAUDE.md
-design.md
+archive/
+docs/
 .dsh/
 .agent-presets/
+
+# 本地开发资产（验证台、上游图副本、截图、判定接触表）
+test/demo/
+assets/contact-sheet.*
+test/_dbg*
 
 # 依赖与构建产物
 node_modules/
@@ -20,11 +23,5 @@ lib/types/
 # 运行时产物与临时文件
 *.tmp
 *.log
-test/_dbg*
 .DS_Store
 Thumbs.db
-
-# 验证台的本地副本与产物（上游素材，不入库）
-test/demo/vendor/pigs/
-test/demo/shot*.png
-assets/contact-sheet.png

@@ -58,7 +58,7 @@ dsh-pighub/
 ├── lib/client.js            浏览器半：closure-factory bundle，注册三个槽位
 ├── assets/                  冻结素材库（候选 / 判定 / 产物）
 ├── scripts/build-assets.mjs 冻结库构建（逐图判定校验）
-├── test/                    离线测试 + test/demo 版面验证台
+├── test/                    离线测试（发布闸门）
 └── .github/workflows/       pack → OIDC 发布
 ```
 
@@ -71,20 +71,17 @@ dsh-pighub/
 ## 验证
 
 ```sh
-npm test                  # 四份离线测试共 57 项断言
-npm run demo:build        # 从冻结库生成版面验证台
+npm test                  # 65 项离线断言：契约 / 规则 / HTTP 面 / 矢量描摹 / 浏览器半结构
 ```
 
-界面验证台 `test/demo/pighub-demo.html` 按宿主契约把 `lib/client.js` 挂到普通页面上，并埋两个探针，读数写进 `<title>`：
+界面另有一套**本地**验证台（不随仓库分发、不进 npm 包）：它按宿主契约把 `lib/client.js` 挂到普通页面上，并埋四个探针——
 
-- **alpha 探针**：把渲染出来的图重画到 canvas 上逐像素读四角 alpha，证明白底真的被抠掉；
-- **motion 探针**：记录 4.2 秒前后的落脚点，分别统计活猪/死猪/桌宠移动了多少只；
-- **reveal 探针**：自动点一次「今日猪猪」，采样动画阶段，并解析飞行目标的最终中心与猪的 DOM 中心作差（当前基线 **landGapPx = 0**）。
+- **alpha**：把渲染出来的图重画到 canvas 逐像素读四角 alpha，证明白底真被抠掉；
+- **motion**：4.2 秒前后各采一次落脚点，分别统计活猪/死猪/桌宠移动了多少只；
+- **reveal**：自动点一次「今日猪猪」，采样动画阶段并比较落点与真身中心的像素差；
+- **svg**：统计以 `data:image/svg+xml` 渲染的图数量，确认矢量化的就是那些图。
 
-```sh
-msedge --headless=new --disable-gpu --virtual-time-budget=16000 \
-  --dump-dom "http://127.0.0.1:<port>/test/demo/pighub-demo.html"
-```
+当前基线：`live=1/1 dead=0/4 pets=1/1`、活猪四角 alpha 全 0、`landGapPx=0`、`svg=2`。
 
 ## 发布
 
