@@ -86,6 +86,7 @@ check('冻结素材随包分发且自洽（贴图存在、指纹对得上、来�
   for (const pig of manifest.pigs) {
     assert.ok(judged.judgements.some((item) => item.id === pig.id), pig.id + ' 没有判定记录');
     assert.equal(pig.style.verdict, 'match', pig.id + ' 进了包却不是 match');
+    assert.ok(pig.patch && typeof pig.patch.holes === 'number' && typeof pig.patch.filled === 'number', pig.id + ' 缺少补洞（补洞=受损处用原色填回）记录');
   }
 });
 /* ---- 1.6 可信来源登记表 ---- */
