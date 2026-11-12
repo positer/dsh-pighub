@@ -22,7 +22,7 @@ import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
-import { refineWhite, contentBounds, cropFrame, vectorise, TRACE_MAX_EDGE } from '../lib/imaging.js';
+import { refineWhite, contentBounds, cropFrame, vectorise, TRACE_MAX_EDGE, restoreRects, eraseRects, addOutline } from '../lib/imaging.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const assetsDir = join(here, '..', 'assets');
@@ -66,6 +66,27 @@ for (const candidate of candidates) {
   const sourceSha = createHash('sha256').update(raw).digest('hex');
   if (keepSources) writeFileSync(join(assetsDir, 'source', candidate.id + guessExt(candidate.filename, 'jpg')), raw);
 
+  // GIF 动图：原样随包分发。动画是内容本身，去白/裁切/描摹都会把它冻成一张静态图。
+  if (raw.subarray(0, 3).toString('ascii') === 'GIF') {
+    const file = candidate.id + '.gif';
+    writeFileSync(join(imageDir, file), raw);
+    pigs.push({
+      id: candidate.id,
+      title: candidate.title,
+      kind: decision.kind,
+      note: decision.note,
+      vector: false,
+      animated: true,
+      file: 'assets/img/' + file,
+      bytes: raw.length,
+      sha256: sourceSha,
+      size: { width: 0, height: 0 },
+      source: { url: candidate.url, group: candidate.source || 'pighub', sha256: sourceSha },
+      cut: { trim: [0, 0, 1, 1], white: 0 },
+    });
+    continue;
+  }
+
   // 解码成 RGBA（sharp 支持 jpeg/png/webp —— 上游有把 webp 标成 image/jpeg 的情况）
   const decoded = await sharp(raw).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   const frame = { width: decoded.info.width, height: decoded.info.height, data: decoded.data };
@@ -80,10 +101,28 @@ for (const candidate of candidates) {
     Math.max(1, Math.round(frame.height * trim[3])),
   );
 
-  // 2) 全域去白（信息白保留）  3) 踩到猪身（按内容外接框再裁一次）
+  // 2) 逐素材专项处理：先记下去白前的样子，供 keep/restore 用
+  const before = { width: trimmed.width, height: trimmed.height, data: Uint8Array.from(trimmed.data) };
   refineWhite(trimmed, decision.cut.white || 236);
+  // assets/work/<id>.json 是「这张图的专项规格」：文字框保留、配件删除、描边。
+  const workPath = join(assetsDir, 'work', decision.id + '.json');
+  const work = existsSync(workPath) ? JSON.parse(readFileSync(workPath, 'utf8')) : null;
+  if (work) {
+    if (Array.isArray(work.trim)) {
+      const t2 = work.trim;
+      const re = cropFrame(trimmed, Math.round(trimmed.width * t2[0]), Math.round(trimmed.height * t2[1]), Math.max(1, Math.round(trimmed.width * t2[2])), Math.max(1, Math.round(trimmed.height * t2[3])));
+      trimmed.data = re.data; trimmed.width = re.width; trimmed.height = re.height;
+    }
+    if (Array.isArray(work.keep) && work.keep.length) restoreRects(trimmed, work.sourceForKeep || before, work.keep.map((r) => r));
+    if (Array.isArray(work.erase) && work.erase.length) eraseRects(trimmed, work.erase);
+  }
+
+  // 3) 踩到猪身（按内容外接框再裁一次）
   const box = contentBounds(trimmed, 1);
-  const cropped = cropFrame(trimmed, box.x, box.y, box.w, box.h);
+  let cropped = cropFrame(trimmed, box.x, box.y, box.w, box.h);
+  if (work && work.outline && work.outline.width > 0) {
+    cropped = addOutline(cropped, work.outline.width, work.outline.color || [43, 26, 16]);
+  }
 
   const ext = decision.vector ? 'svg' : 'png';
   const file = decision.id + '.' + ext;

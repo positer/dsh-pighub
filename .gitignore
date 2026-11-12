@@ -12,6 +12,7 @@ docs/
 
 # 本地开发资产（验证台、上游图副本、截图、判定接触表）
 test/demo/
+# 注意：assets/work/ 是逐素材规格，必须进仓库
 assets/contact-sheet.*
 test/_dbg*
 test/_*.mjs

@@ -91,11 +91,19 @@ await acheck('sort / prefs / pet / state 各自生效', async () => {
   const prefs = await call('POST', { action: 'prefs', starDisplay: 'always' });
   assert.equal(prefs.json.prefs.starDisplay, 'always');
   assert.equal(prefs.json.sort, 'stars', '只改星级不应重置排序');
-  const on = await call('POST', { action: 'pet', pigId: drawn.id, pet: true });
-  assert.deepEqual(on.json.pets, [drawn.id]);
-  const off = await call('POST', { action: 'pet', pigId: drawn.id, pet: false });
-  assert.deepEqual(off.json.pets, []);
-  assert.equal((await call('POST', { action: 'pet', pigId: 'nope', pet: true })).json.error, 'unknown_pig');
+  // 三态位置：猪圈 → 桌宠 → 库存，互斥
+  const asPet = await call('POST', { action: 'place', pigId: drawn.id, to: 'pet' });
+  assert.deepEqual(asPet.json.pets, [drawn.id]);
+  assert.equal(asPet.json.pigs[0].place, 'pet');
+  const asStore = await call('POST', { action: 'place', pigId: drawn.id, to: 'store' });
+  assert.deepEqual(asStore.json.pets, [], '进仓库后应从桌宠列表移除');
+  assert.deepEqual(asStore.json.store, [drawn.id]);
+  assert.equal(asStore.json.pigs[0].place, 'store');
+  const back = await call('POST', { action: 'place', pigId: drawn.id, to: 'pen' });
+  assert.deepEqual(back.json.store, []);
+  assert.equal(back.json.pigs[0].place, 'pen');
+  assert.equal((await call('POST', { action: 'place', pigId: 'nope', to: 'store' })).json.error, 'unknown_pig');
+  assert.equal((await call('POST', { action: 'place', pigId: drawn.id, to: 'moon' })).json.error, 'unknown_pig');
   assert.equal((await call('POST', { action: 'state' })).json.pigs.length, 1);
 });
 
@@ -115,7 +123,7 @@ await acheck('素材路由：能取到字节、类型正确、且拒绝非 GET',
   const res = makeRes();
   await route.handler({ method: 'GET' }, res);
   assert.equal(res.status, 200);
-  assert.ok(/^image\/(png|svg\+xml)$/.test(res.headers['content-type']), '类型：' + res.headers['content-type']);
+  assert.ok(/^image\/(png|svg\+xml|gif)$/.test(res.headers['content-type']), '类型：' + res.headers['content-type']);
   assert.ok(Buffer.byteLength(res.body) > 100, '应返回真实字节');
   const bad = makeRes();
   await route.handler({ method: 'POST' }, bad);

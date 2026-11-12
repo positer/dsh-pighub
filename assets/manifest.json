@@ -1,15 +1,72 @@
 {
   "assetVersion": "2026.11.12",
-  "frozenAt": "2026-11-12T09:01:38.614Z",
+  "frozenAt": "2026-11-12T09:28:44.030Z",
   "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
   "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
   "counts": {
-    "total": 6,
-    "live": 2,
+    "total": 8,
+    "live": 4,
     "dead": 4,
     "vector": 2
   },
   "pigs": [
+    {
+      "id": "pig-1131",
+      "title": "像素猪",
+      "kind": "live",
+      "note": "GIF 动图（像素猪）：动画本身就是内容，构建期不做去白、不描摹，原样随包分发；判定为活猪，会游走。",
+      "vector": false,
+      "animated": true,
+      "file": "assets/img/pig-1131.gif",
+      "bytes": 27078,
+      "sha256": "ce45538ac0f089997ba356370db759498fb072637e1c79d5194ed83e06c69dda",
+      "size": {
+        "width": 0,
+        "height": 0
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E5%83%8F%E7%B4%A0%E7%8C%AA.gif",
+        "group": "pighub",
+        "sha256": "ce45538ac0f089997ba356370db759498fb072637e1c79d5194ed83e06c69dda"
+      },
+      "cut": {
+        "trim": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "white": 0
+      }
+    },
+    {
+      "id": "pig-1300",
+      "title": "被捕捉的小🐖",
+      "kind": "live",
+      "note": "GIF 动图（被捕捉的小猪）：同上，保留原始动画。",
+      "vector": false,
+      "file": "assets/img/pig-1300.png",
+      "bytes": 63748,
+      "sha256": "f0c0825d1814c7c54051b13f0d6f5c483ce45e75fd94cdeff01bd7453a8d2e0a",
+      "size": {
+        "width": 206,
+        "height": 200
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E8%A2%AB%E6%8D%95%E6%8D%89%E7%9A%84%E5%B0%8F%F0%9F%90%96.gif",
+        "group": "pighub",
+        "sha256": "768694a245ea9a225a0de33e43d7bcef5601b81bf4e7a000d0c43299a5fd9e1d"
+      },
+      "cut": {
+        "trim": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "white": 236
+      }
+    },
     {
       "id": "pig-1354",
       "title": "挂科猪",
@@ -129,8 +186,8 @@
       "note": "电脑前场景卡：卡片白底去掉（里面塞着图，密度高），屏幕里的白清单是信息白，保留。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
       "vector": false,
       "file": "assets/img/pig-1360.png",
-      "bytes": 167246,
-      "sha256": "6bea98dc3ae388d2165565bcdfde2178151f1f7b822df2888611c2017c938b21",
+      "bytes": 177781,
+      "sha256": "7c0aa52915d1b39ef65239e7b780c50b591e54f871cf4fee4fced855d3577142",
       "size": {
         "width": 1454,
         "height": 1080

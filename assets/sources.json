@@ -1,5 +1,5 @@
 {
-  "note": "候选池：从 PigHub 公开接口的 1,361 只里挑出来、准备逐图判定的一批。sources.json 是『候选』，assets/manifest.json 是『冻结版』；只有 manifest 里的猪才会被抽到。",
+  "note": "候选池：从 PigHub 公开接口的 1,361 只里挑出来、准备逐图判定的一批。sources.json 是『候选』，assets/manifest.json 是『冻结版』；只有 manifest 里的猪才会被抽到。 GIF 素材靠 magic 判定，构建期不做去白与描摹，原样随包分发（否则动画会被冻成一张静态图）。",
   "candidates": [
     {
       "id": "pig-1354",
@@ -41,6 +41,20 @@
       "title": "你已笨哭",
       "filename": "你已笨哭_1.jpg",
       "url": "https://pighub.top/images/%E4%BD%A0%E5%B7%B2%E7%AC%A8%E5%93%AD_1.jpg",
+      "source": "pighub"
+    },
+    {
+      "id": "pig-1131",
+      "title": "像素猪",
+      "filename": "像素猪.gif",
+      "url": "https://pighub.top/images/%E5%83%8F%E7%B4%A0%E7%8C%AA.gif",
+      "source": "pighub"
+    },
+    {
+      "id": "pig-1300",
+      "title": "被捕捉的小🐖",
+      "filename": "被捕捉的小🐖.gif",
+      "url": "https://pighub.top/images/%E8%A2%AB%E6%8D%95%E6%8D%89%E7%9A%84%E5%B0%8F%F0%9F%90%96.gif",
       "source": "pighub"
     }
   ]

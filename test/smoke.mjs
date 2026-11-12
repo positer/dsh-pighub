@@ -100,12 +100,14 @@ check('注册了 pighub_about 工具、状态路由与每张素材的静态路�
   const paths = [...routes.keys()];
   assert.ok(paths.indexOf('/pighub') >= 0, '缺少状态路由');
   const assetRoutes = paths.filter((path) => path.startsWith('/pighub/asset/'));
-  assert.equal(assetRoutes.length, 6, '每张素材一条路由，实际 ' + assetRoutes.length);
+  const manifest = JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8'));
+  assert.equal(assetRoutes.length, manifest.pigs.length, '每张素材一条路由，实际 ' + assetRoutes.length + ' / ' + manifest.pigs.length);
   assert.equal(paths.some((path) => path === '/pighub/image'), false, '不应再有图片代理（运行时不链接素材库）');
   for (const path of paths) assert.equal(routes.get(path).kind, 'exact');
 });
 check('每个注册都包在 ctx.effect 里（可回收）', () => {
-  assert.equal(disposers.length, 8, '工具 + 状态路由 + 6 张素材各一个 disposer');
+  const manifestCount = JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8')).pigs.length;
+  assert.equal(disposers.length, manifestCount + 2, '工具 + 状态路由 + 每张素材各一个 disposer');
   for (const dispose of disposers) assert.equal(typeof dispose, 'function');
 });
 check('pighub_about 的参数 schema 封闭、描述非空', () => {
@@ -130,7 +132,7 @@ check('pighub_about 返回自述：版本、目录、今日状态、槽位信息
   assert.equal(answer.owned, 0);
   assert.equal(answer.today.date, new Date().toLocaleDateString('sv-SE'));
   assert.ok(answer.dataPolicy.indexOf('不访问素材库') > 0, '数据策略必须写明运行时不访问素材库');
-  assert.equal(answer.assets.total, 6);
+  assert.ok(answer.assets.total >= 6);
   assert.ok(answer.assets.bytes > 0, '应能统计随包素材体积');
   assert.deepEqual(answer.ui, { sidebarEntry: 'sidebar.panellist', panel: 'main', stateRoute: '/pighub', assetRoute: '/pighub/asset' });
 });

@@ -48,8 +48,8 @@ const snapshot = {
   root: 'C:\\Users\\test\\.PigHub',
   today: { date: '2026-11-12', drawn: true, pigId: '3' },
   pigs: [
-    { id: '3', title: '丙猪', assetUrl: '/pighub/asset/pig-c.png', kind: 'live', rarity: 'common', rarityLabel: '普通', stars: 2, firstObtainedAt: '2026-11-12T01:00:00.000Z', lastUpgradedAt: '2026-11-12T02:00:00.000Z' },
-    { id: '1', title: '甲猪', assetUrl: '/pighub/asset/pig-a.png', kind: 'dead', rarity: 'common', rarityLabel: '普通', stars: 1, firstObtainedAt: '2026-11-11T01:00:00.000Z', lastUpgradedAt: '2026-11-11T01:00:00.000Z' },
+    { id: '3', title: '丙猪', assetUrl: '/pighub/asset/pig-c.png', kind: 'live', place: 'pen', rarity: 'common', rarityLabel: '普通', stars: 2, firstObtainedAt: '2026-11-12T01:00:00.000Z', lastUpgradedAt: '2026-11-12T02:00:00.000Z' },
+    { id: '1', title: '甲猪', assetUrl: '/pighub/asset/pig-a.png', kind: 'dead', place: 'pen', rarity: 'common', rarityLabel: '普通', stars: 1, firstObtainedAt: '2026-11-11T01:00:00.000Z', lastUpgradedAt: '2026-11-11T01:00:00.000Z' },
   ],
   pets: [],
   sort: 'time',
@@ -63,9 +63,11 @@ globalThis.__requests = requests;
 globalThis.fetch = async (url, options) => {
   const body = options && options.body ? JSON.parse(options.body) : {};
   requests.push({ url, body });
-  if (body.action === 'pet') {
-    const pets = body.pet ? [body.pigId] : [];
-    return { ok: true, status: 200, text: async () => JSON.stringify(Object.assign({}, snapshot, { pets })) };
+  if (body.action === 'place') {
+    const pets = body.to === 'pet' ? [body.pigId] : [];
+    const store = body.to === 'store' ? [body.pigId] : [];
+    const pigs = snapshot.pigs.map((pig) => (pig.id === body.pigId ? Object.assign({}, pig, { place: body.to }) : pig));
+    return { ok: true, status: 200, text: async () => JSON.stringify(Object.assign({}, snapshot, { pets, store, pigs })) };
   }
   if (body.action === 'draw') {
     return { ok: true, status: 200, text: async () => JSON.stringify(Object.assign({}, snapshot, { draw: { ok: true, pigId: '3', upgraded: true, stars: 2 } })) };
@@ -246,8 +248,13 @@ await acheck('面板首帧：猪圈（空）、像素标题、「今日猪猪」
   assert.ok(text.indexOf('今日猪猪') >= 0 || text.indexOf('今日已获取') >= 0, '缺少今日按钮');
   assert.ok(text.indexOf('按获取时间') >= 0 && text.indexOf('按星级') >= 0 && text.indexOf('按稀有度') >= 0, '缺少排序按钮');
   assert.ok(findByClass(tree, 'pighub-pen').length === 1, '缺少猪圈');
-  const fence = findByClass(tree, 'pighub-fence');
-  assert.equal(fence.length, 1, '缺少围栏');
+  // 卡通围栏分前后两层：远侧在猪后（z1）、近侧在猪前（z3），这就是「高度」与遮挡。
+  const bands = findByClass(tree, 'pighub-fence-band');
+  assert.equal(bands.length, 2, '应有两层围栏（远/近），实际 ' + bands.length);
+  assert.equal(findByClass(tree, 'is-back').length, 1, '缺少远侧围栏');
+  assert.equal(findByClass(tree, 'is-front').length, 1, '缺少近侧围栏');
+  assert.equal(findByClass(tree, 'pighub-fence-side').length, 2, '缺左右侧栏');
+  assert.equal(findByClass(tree, 'pighub-house').length, 1, '缺少仓库小屋');
   const title = collect(tree).filter((x) => typeof x === 'object' && x.props && x.props['aria-label'] === 'PigHub');
   assert.equal(title.length, 1, '缺少像素标题');
   const rects = collect(title[0]).filter((x) => typeof x === 'object' && x.type === 'rect');
@@ -287,21 +294,21 @@ await acheck('拖动猪：小幅移动不触发桌宠，拖出猪圈才变成桌
   const actor = actorImg(tree);
   assert.equal(typeof actor.props.onPointerDown, 'function', '猪圈里的猪要能开始拖拽');
   const capture = { setPointerCapture() {}, releasePointerCapture() {} };
-  const before = requests.filter((r) => r.body.action === 'pet').length;
+  const before = requests.filter((r) => r.body.action === 'place').length;
 
   // ① 原地抖一下（< 5px 阈值）：不该改变归属
   actor.props.onPointerDown({ button: 0, pointerId: 1, clientX: 300, clientY: 300, currentTarget: capture });
   actor.props.onPointerMove({ button: 0, clientX: 302, clientY: 302 });
   actor.props.onPointerUp({ clientX: 302, clientY: 302 });
   await new Promise((r) => setTimeout(r, 10));
-  assert.equal(requests.filter((r) => r.body.action === 'pet').length, before, '阈值内的抖动不应发起 pet 请求');
+  assert.equal(requests.filter((r) => r.body.action === 'place').length, before, '阈值内的抖动不应发起放置请求');
 
   // ② 拖出去（> 5px 且落点在猪圈外）：变成桌宠
   actor.props.onPointerDown({ button: 0, pointerId: 1, clientX: 300, clientY: 300, currentTarget: capture });
   actor.props.onPointerMove({ clientX: 900, clientY: 640 });
   actor.props.onPointerUp({ clientX: 900, clientY: 640 });
   await new Promise((r) => setTimeout(r, 20));
-  const petRequests = requests.filter((r) => r.body.action === 'pet' && r.body.pet === true);
+  const petRequests = requests.filter((r) => r.body.action === 'place' && r.body.to === 'pet');
   assert.equal(petRequests.length, 1, '拖出猪圈应发一次 pet=true');
   assert.equal(petRequests[0].body.pigId, '3', '被拖走的应是那只猪');
 });
@@ -330,10 +337,10 @@ await acheck('桌宠层：有桌宠时渲染在页面级容器里，可拖动、
   assert.ok(moved.props.style.left.endsWith('px'));
 
   // 双击：回猪圈（pet=false）
-  const before = requests.filter((r) => r.body.action === 'pet' && r.body.pet === false).length;
+  const before = requests.filter((r) => r.body.action === 'place' && r.body.to === 'pen').length;
   moved.props.onDoubleClick();
   await new Promise((r) => setTimeout(r, 20));
-  assert.equal(requests.filter((r) => r.body.action === 'pet' && r.body.pet === false).length, before + 1, '双击应发一次 pet=false');
+  assert.equal(requests.filter((r) => r.body.action === 'place' && r.body.to === 'pen').length, before + 1, '双击应发一次放回猪圈');
 });
 
 await acheck('设置按钮在面板右上角，三档星级显示可切换', async () => {
