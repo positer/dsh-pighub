@@ -128,7 +128,9 @@
         "white": 236,
         "vector": false
       },
-      "note": "GIF 动图（被捕捉的小猪）：同上，保留原始动画。"
+      "note": "源文件实为 **62 帧动图 WebP**（.gif 扩展名不实，magic=RIFF/WEBP+ANIM）。按「动图原样分发、不做去白/裁切/描摹」的规则处理：整图风格分 0.361、裁到联合框但不做去白时 0.488，都低于闸门 0.55，**因此不进包**。要收它必须先实现「逐帧去白后重编码动图」（当前管线未做）。",
+      "animated": true,
+      "excludedReason": "animated_webp_needs_per_frame_alpha"
     }
   ]
 }

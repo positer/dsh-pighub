@@ -68,7 +68,14 @@ for (const candidate of candidates) {
   if (keepSources) writeFileSync(join(assetsDir, 'source', candidate.id + guessExt(candidate.filename, 'jpg')), raw);
 
   // GIF 动图：原样随包分发。动画是内容本身，去白/裁切/描摹都会把它冻成一张静态图。
-  if (raw.subarray(0, 3).toString('ascii') === 'GIF') {
+  const head = raw.subarray(0, 64).toString('latin1');
+  const isGif = raw.subarray(0, 3).toString('ascii') === 'GIF';
+  const isAnimatedWebp = raw.subarray(0, 4).toString('ascii') === 'RIFF'
+    && raw.subarray(8, 12).toString('ascii') === 'WEBP'
+    && head.indexOf('ANIM') >= 0;
+  if (isGif || isAnimatedWebp) {
+    // 动图：原样随包分发。**不做 trim/去白/描摹**——那会把动画冻成一帧；
+    // 风格分只评第 0 帧，用来拦掉画风不符的动图。
     // 动图原样分发，但**风格仍要评**：只看第一帧的像素分布，避免把别的画风混进来。
     let gifStyle = { verdict: 'match', palette: null, flatness: null, note: '未评分' };
     try {
@@ -77,11 +84,12 @@ for (const candidate of candidates) {
     } catch { /* 解不出第一帧就放行，但记账 */ }
     const gifOverride = decision.styleOverride === true;
     if (gifStyle.verdict === 'reject' && !gifOverride) {
-      rejected.push({ id: candidate.id, title: candidate.title, style: gifStyle });
+      rejected.push({ id: candidate.id, title: candidate.title, style: gifStyle, animated: true, reason: 'animated_passthrough_needs_per_frame_alpha' });
       console.log('  SKIP ' + candidate.id + ' 风格校验未通过（GIF 首帧 palette=' + gifStyle.palette + '）');
       continue;
     }
-    const file = candidate.id + '.gif';
+    const ext = isGif ? '.gif' : '.webp';
+    const file = candidate.id + ext;
     writeFileSync(join(imageDir, file), raw);
     pigs.push({
       id: candidate.id,

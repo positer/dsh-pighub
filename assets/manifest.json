@@ -1,6 +1,6 @@
 {
   "assetVersion": "2026.11.12",
-  "frozenAt": "2026-11-12T10:52:09.118Z",
+  "frozenAt": "2026-11-12T11:04:11.874Z",
   "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
   "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
   "rejected": [
@@ -15,7 +15,9 @@
           "paletteMin": 0.55,
           "flatnessMin": 0.35
         }
-      }
+      },
+      "animated": true,
+      "reason": "animated_passthrough_needs_per_frame_alpha"
     }
   ],
   "counts": {
