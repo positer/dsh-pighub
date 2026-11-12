@@ -184,6 +184,24 @@
       "category": "species",
       "categoryReason": "愤怒猪是一种猪的表情造型（种类），不是行为场景。",
       "note": "黑底素材：猪被画布四边裁切，trim 只能整图；去背景用 background 色键（dark/40）。"
+    },
+    {
+      "id": "pighub-366",
+      "kind": "live",
+      "vector": false,
+      "cut": {
+        "trim": [
+          0,
+          0.001014,
+          0.999,
+          0.997972
+        ],
+        "white": 236,
+        "vector": false
+      },
+      "category": "species",
+      "categoryReason": "圆猪是一种猪的造型（种类），无场景无动作。",
+      "note": "源图已自带 alpha：猪身是单一连通块 748,676px、bbox 几乎等于整幅；无可删的文字/水印/边框（不透明近白 0px）。卷尾环内有 3 个封闭透明洞，属于要保留的负空间。"
     }
   ],
   "categoryNote": "只收「猪的种类」（species）：角色/品种/风格本身。带场景或动作的行为梗（behavior）一律不收——它们描述的是猪在做某件事，不是一种猪。"

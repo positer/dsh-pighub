@@ -162,7 +162,7 @@ for (const candidate of candidates) {
 
   // 2.5) 补洞：删字幕/配件时若在猪身上开了洞，用周围原色中位值填回去。
   const inpaint = !(work && work.inpaint === false);
-  const patched = inpaint ? fillHoles(trimmed) : { holes: 0, filled: 0 };
+  const patched = inpaint ? fillHoles(trimmed, { only: Array.isArray(work && work.erase) ? work.erase.map(toFrame) : [] }) : { holes: 0, filled: 0, skipped: 'inpaint_disabled' };
 
   // 3) 踩到猪身（按内容外接框再裁一次）。pad 要给描边留位置，否则紧框会把描边环裁掉。
   const outlineWidth = work && work.outline && work.outline.width > 0 ? work.outline.width : 0;
