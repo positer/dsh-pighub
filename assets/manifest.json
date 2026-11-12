@@ -1,6 +1,6 @@
 {
   "assetVersion": "2026.11.12",
-  "frozenAt": "2026-11-12T10:17:24.145Z",
+  "frozenAt": "2026-11-12T10:21:16.836Z",
   "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
   "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
   "rejected": [
@@ -83,11 +83,11 @@
       "note": "漫画格：左侧白色对白气泡承载信息（文字），按规则**保留**；卡片其余白底去掉，裁到猪身。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
       "vector": false,
       "file": "assets/img/pig-1354.png",
-      "bytes": 220316,
-      "sha256": "d74d5c37a429413d606a22146c13557a288ea44da764d975418b9a6ebae01735",
+      "bytes": 85397,
+      "sha256": "5da06091492d4800b195e6dcc18f7a73849064288f56d36a05b824d659fb347c",
       "size": {
-        "width": 996,
-        "height": 986
+        "width": 446,
+        "height": 370
       },
       "source": {
         "url": "https://pighub.top/images/%E6%8C%82%E7%A7%91%E7%8C%AA.jpg",
@@ -105,8 +105,8 @@
       },
       "style": {
         "verdict": "match",
-        "palette": 0.597,
-        "flatness": 0.645,
+        "palette": 0.962,
+        "flatness": 0.975,
         "thresholds": {
           "paletteMin": 0.55,
           "flatnessMin": 0.35
@@ -231,11 +231,11 @@
       "note": "上半是重复文字、下半是干净一只猪：定制切分只取猪身那一条，再踩到猪身。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
       "vector": true,
       "file": "assets/img/pig-1361.svg",
-      "bytes": 10813,
-      "sha256": "6f20f1bd66bbf9b81b93bc30c3244e5192f9d54a4ef9de307112b15b98396647",
+      "bytes": 15110,
+      "sha256": "66e0b9a641657e03a219bfb434e34b75bc479c6a9f9ed72dc413ada9a95fd178",
       "size": {
-        "width": 770,
-        "height": 681
+        "width": 722,
+        "height": 597
       },
       "source": {
         "url": "https://pighub.top/images/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97.jpg",
@@ -253,8 +253,8 @@
       },
       "style": {
         "verdict": "match",
-        "palette": 0.974,
-        "flatness": 0.986,
+        "palette": 0.976,
+        "flatness": 0.976,
         "thresholds": {
           "paletteMin": 0.55,
           "flatnessMin": 0.35
