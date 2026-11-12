@@ -34,4 +34,6 @@ assets/library/
 
 # assets/work 只提交规格 JSON；测量脚本/掩膜/截图是子代理临时产物
 assets/work/*
-!assets/work/*.json
+!assets/work/pig-*.json
+!assets/work/pighub-*.json
+!assets/work/coin-pig.json

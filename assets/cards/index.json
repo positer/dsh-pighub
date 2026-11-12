@@ -10,10 +10,10 @@
     "animated": 1,
     "skipped": 8,
     "vision": {
-      "checked": 24,
-      "pass": 15,
-      "fail": 9,
-      "pending": 26
+      "checked": 41,
+      "pass": 26,
+      "fail": 15,
+      "pending": 0
     }
   },
   "cards": [
@@ -965,7 +965,7 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "27edfbeedb6276c404c2df1dc5e8d17eabff7ebce452d8bc1fa8b0e3f8408d62",
-      "vision": "pending"
+      "vision": "pass"
     },
     {
       "id": "pighub-1182",
@@ -1000,7 +1000,7 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "4ef948e41dade0c24ab9ae4c7103b7b146ca3252564d3a87949d4aee813729e9",
-      "vision": "pending"
+      "vision": "pass"
     },
     {
       "id": "pighub-1320",
@@ -1035,7 +1035,7 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "c01036451053e6a155e4bb128a5f96a5def80d2e124bd96441ad787f17850cd8",
-      "vision": "pending"
+      "vision": "pass"
     },
     {
       "id": "pighub-118",
@@ -1081,7 +1081,7 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "095d69479d7eea91470a2bdc9f39932db0ffcc9a1c12bd145a72eaedd5b304fb",
-      "vision": "pending"
+      "vision": "pass"
     },
     {
       "id": "pighub-442",
@@ -1116,7 +1116,8 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "a8f2e8f08e9c7c993686bbc769f4d0c647ee57258013dc1238abcabf899fd58c",
-      "vision": "pending"
+      "vision": "fail",
+      "visionReason": "**底卡没去掉**：方形色块被当成猪身"
     },
     {
       "id": "pighub-65",
@@ -1151,7 +1152,7 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "eb6f4ed2838f12ea221b74af5440710fe06173f0031ff11db94d24ca6caa5e1f",
-      "vision": "pending"
+      "vision": "pass"
     },
     {
       "id": "pighub-1256",
@@ -1186,7 +1187,7 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "cb95b4423f74df5e7da0ceab75a6ffdd1929f1918d168ac7e14da2458372d7b1",
-      "vision": "pending"
+      "vision": "pass"
     },
     {
       "id": "pighub-1286",
@@ -1221,7 +1222,8 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "7cdeefd69f9ba748f7e51276f1d516b4d2a26f0a120499f1ba6ea7400c81ef0d",
-      "vision": "pending"
+      "vision": "fail",
+      "visionReason": "**图上有字**：牌子写着「站街」等文字"
     },
     {
       "id": "pighub-450",
@@ -1256,7 +1258,8 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "3342e2f262a39af96872247b0f61212c46da46375413ef7c438f37879f695ba2",
-      "vision": "pending"
+      "vision": "fail",
+      "visionReason": "**图上有字**：「笨猪!」压在猪身上"
     },
     {
       "id": "pighub-461",
@@ -1291,7 +1294,7 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "71e24fefa3b4439fe06f286ba94f341b3118d3514898e03976297aa1abda30e3",
-      "vision": "pending"
+      "vision": "pass"
     },
     {
       "id": "pighub-719",
@@ -1326,7 +1329,8 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "bdd1dc71cbc4f767e2cd066ab822fad80a335ae429fbebe7cdaecff63ad23945",
-      "vision": "pending"
+      "vision": "fail",
+      "visionReason": "多只猪 + 篝火，属于场景而非单一角色"
     },
     {
       "id": "pighub-96",
@@ -1361,7 +1365,7 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "14a4697a21081b74a4dce00ef36c80aaefcce7f29466437fa767d6d50754d580",
-      "vision": "pending"
+      "vision": "pass"
     },
     {
       "id": "pighub-744",
@@ -1396,7 +1400,7 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "70fbd89a842d52e755ffac3bd97c981275f27fafd09851b60eec6098196f5974",
-      "vision": "pending"
+      "vision": "pass"
     },
     {
       "id": "pighub-1185",
@@ -1442,7 +1446,8 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "a4acbffcbfb03150b259085a94b5bd33ee9245415ec60e43f5542758a4e23081",
-      "vision": "pending"
+      "vision": "fail",
+      "visionReason": "整张被压成扁平长条（源图就是横带）"
     },
     {
       "id": "pighub-1260",
@@ -1488,7 +1493,7 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "1be772fce60876b029f3303a3c719855101e6a3b3cf33290dbad0e6889c72fbf",
-      "vision": "pending"
+      "vision": "pass"
     },
     {
       "id": "pighub-935",
@@ -1523,7 +1528,8 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "10fb555eb75a4d6009bb6c62ef223c8a7f6bf2e2cb47b6b6420834d59e9342f5",
-      "vision": "pending"
+      "vision": "fail",
+      "visionReason": "**底卡没去掉**：圆形色块 + 中间留白"
     },
     {
       "id": "pighub-1191",
@@ -1558,7 +1564,7 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "3ea237a599de36fc349278584d9a81b25921cae48f412a7012e416d9e235e306",
-      "vision": "pending"
+      "vision": "pass"
     }
   ]
 }
