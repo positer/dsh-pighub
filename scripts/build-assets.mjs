@@ -22,7 +22,7 @@ import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
-import { refineWhite, contentBounds, cropFrame, vectorise, TRACE_MAX_EDGE, restoreRects, eraseRects, addOutline } from '../lib/imaging.js';
+import { refineWhite, stripAllWhite, contentBounds, cropFrame, vectorise, TRACE_MAX_EDGE, restoreRects, eraseRects, addOutline } from '../lib/imaging.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const assetsDir = join(here, '..', 'assets');
@@ -91,8 +91,10 @@ for (const candidate of candidates) {
   const decoded = await sharp(raw).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   const frame = { width: decoded.info.width, height: decoded.info.height, data: decoded.data };
 
-  // 1) 定制切分：按判定里的归一化裁切框
-  const trim = decision.cut.trim;
+  // 1) 定制切分：work 里若有 trim（原图归一化坐标）就用它，否则用判定里的 cut.trim
+  const workPath = join(assetsDir, 'work', decision.id + '.json');
+  const work = existsSync(workPath) ? JSON.parse(readFileSync(workPath, 'utf8')) : null;
+  const trim = work && Array.isArray(work.trim) ? work.trim : decision.cut.trim;
   const trimmed = cropFrame(
     frame,
     Math.max(0, Math.round(frame.width * trim[0])),
@@ -101,20 +103,22 @@ for (const candidate of candidates) {
     Math.max(1, Math.round(frame.height * trim[3])),
   );
 
-  // 2) 逐素材专项处理：先记下去白前的样子，供 keep/restore 用
+  // 2) 逐素材专项处理。约定：work 里的 trim / keep / erase 全部是**原图归一化坐标**
+  //    （和逐图判定一样，人以整张图为参照给框），这里统一映射到工作帧。
+  const trimRect = trim;
+  // work 里的框是**原图坐标系**，映射成裁后帧坐标
+  const toFrame = (rect) => [
+    (rect[0] - trimRect[0]) / trimRect[2],
+    (rect[1] - trimRect[1]) / trimRect[3],
+    rect[2] / trimRect[2],
+    rect[3] / trimRect[3],
+  ];
   const before = { width: trimmed.width, height: trimmed.height, data: Uint8Array.from(trimmed.data) };
-  refineWhite(trimmed, decision.cut.white || 236);
-  // assets/work/<id>.json 是「这张图的专项规格」：文字框保留、配件删除、描边。
-  const workPath = join(assetsDir, 'work', decision.id + '.json');
-  const work = existsSync(workPath) ? JSON.parse(readFileSync(workPath, 'utf8')) : null;
+  if (work && work.whiteAll) stripAllWhite(trimmed, (work.white || decision.cut.white) || 236);
+  else refineWhite(trimmed, (work && work.white) || decision.cut.white || 236);
   if (work) {
-    if (Array.isArray(work.trim)) {
-      const t2 = work.trim;
-      const re = cropFrame(trimmed, Math.round(trimmed.width * t2[0]), Math.round(trimmed.height * t2[1]), Math.max(1, Math.round(trimmed.width * t2[2])), Math.max(1, Math.round(trimmed.height * t2[3])));
-      trimmed.data = re.data; trimmed.width = re.width; trimmed.height = re.height;
-    }
-    if (Array.isArray(work.keep) && work.keep.length) restoreRects(trimmed, work.sourceForKeep || before, work.keep.map((r) => r));
-    if (Array.isArray(work.erase) && work.erase.length) eraseRects(trimmed, work.erase);
+    if (Array.isArray(work.keep) && work.keep.length) restoreRects(trimmed, before, work.keep.map(toFrame));
+    if (Array.isArray(work.erase) && work.erase.length) eraseRects(trimmed, work.erase.map(toFrame));
   }
 
   // 3) 踩到猪身（按内容外接框再裁一次）
