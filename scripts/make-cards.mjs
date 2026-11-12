@@ -62,11 +62,14 @@ function keepPigBlob(frame) {
     stack.length = 0; stack.push(seed); seen[seed] = 1;
     const members = [seed];
     let pigment = 0;
+    let minX = width, minY = height, maxX = -1, maxY = -1;
     while (stack.length) {
       const p = stack.pop();
       const r = data[p * 4], g = data[p * 4 + 1], b = data[p * 4 + 2];
       if (r > 150 && r > b && g > 90) pigment += 1;
       const x = p % width; const y = (p - x) / width;
+      if (x < minX) minX = x; if (x > maxX) maxX = x;
+      if (y < minY) minY = y; if (y > maxY) maxY = y;
       for (const q of [x > 0 ? p - 1 : -1, x < width - 1 ? p + 1 : -1, y > 0 ? p - width : -1, y < height - 1 ? p + width : -1]) {
         if (q < 0 || seen[q] || data[q * 4 + 3] < 24) continue;
         seen[q] = 1; stack.push(q); members.push(q);
@@ -74,14 +77,17 @@ function keepPigBlob(frame) {
     }
     const likeness = members.length ? pigment / members.length : 0;
     const value = likeness * likeness * members.length;
-    if (!best || value > best.value) best = { members, value };
+    const boxW = maxX - minX + 1, boxH = maxY - minY + 1;
+    const fill = members.length / (boxW * boxH);
+    // 触边：bbox 贴到画布边的边数（0..4）。贴边说明源图把猪裁掉了。
+    const edges = (minX <= 0 ? 1 : 0) + (minY <= 0 ? 1 : 0) + (maxX >= width - 1 ? 1 : 0) + (maxY >= height - 1 ? 1 : 0);
+    if (!best || value > best.value) best = { members, value, likeness, fill, edges };
   }
-  if (!best) return { area: 0, likeness: 0 };
-  const likeness = best.likeness;
+  if (!best) return { area: 0, likeness: 0, fill: 1, edges: 0 };
   const keep = new Uint8Array(total);
   for (const p of best.members) keep[p] = 1;
   for (let i = 0; i < total; i += 1) if (!keep[i]) data[i * 4 + 3] = 0;
-  return { area: best.members.length, likeness };
+  return { area: best.members.length, likeness: best.likeness, fill: best.fill, edges: best.edges };
 }
 
 /** 数连通块与「像文字的深色小碎块」。 */
@@ -162,8 +168,9 @@ for (const item of chosen) {
       bgOptions = alt;
     }
     const pigArea = kept.area;
-    if (pigArea < frame.width * frame.height * 0.02 || kept.likeness < 0.45) {
-      cards.push({ id: item.id, title: item.title, kind: 'skipped', category: 'unknown', categoryBasis: '去掉背景后没有「像猪」的色块（area=' + pigArea + ' likeness=' + (kept.likeness || 0).toFixed(2) + '）', nameRemoved: 'n/a', flags: ['no_pig'] });
+    const cardLike = kept.fill >= 0.92 && pigArea > frame.width * frame.height * 0.25;
+    if (pigArea < frame.width * frame.height * 0.02 || kept.likeness < 0.45 || cardLike) {
+      cards.push({ id: item.id, title: item.title, kind: 'skipped', category: 'unknown', categoryBasis: (cardLike ? '选中的是矩形底卡（填充率 ' + kept.fill.toFixed(3) + '），不是猪' : '没有「像猪」的色块（likeness ' + (kept.likeness || 0).toFixed(2) + '）'), nameRemoved: 'n/a', flags: [cardLike ? 'card_like' : 'no_pig'] });
       continue;
     }
     const box = contentBounds(frame, 2);
@@ -189,6 +196,8 @@ for (const item of chosen) {
       size: [Math.round(frame.width * scale), Math.round(frame.height * scale)],
       style: score,
       blobs: stats.blobs, darkSpecks: stats.darkSpecks,
+      fillRatio: Math.round(kept.fill * 1000) / 1000,
+      flatEdges: kept.edges,
       background: bgOptions,
       category: 'character',
       categoryBasis: '标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）',

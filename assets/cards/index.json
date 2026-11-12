@@ -1,73 +1,32 @@
 {
   "summary": {
-    "generatedAt": "2026-11-12T12:45:54.418Z",
+    "generatedAt": "2026-11-12T12:51:35.221Z",
     "source": "https://pighub.top/api/images?sort=2",
     "requested": 50,
     "produced": 50,
-    "character": 49,
-    "nameRemoved": 48,
+    "character": 42,
+    "nameRemoved": 41,
     "flagged": 0,
     "animated": 1,
-    "skipped": 0,
-    "special": 1,
+    "skipped": 8,
     "vision": {
-      "checked": 25,
-      "pass": 14,
-      "fail": 11,
+      "checked": 24,
+      "pass": 15,
+      "fail": 9,
       "pending": 26
     }
   },
   "cards": [
     {
-      "id": "coin-pig",
-      "title": "猪币",
-      "kind": "static",
-      "special": true,
-      "file": "assets/cards/img/coin-pig.png",
-      "bytes": 31667,
-      "size": [
-        256,
-        256
-      ],
-      "category": "character",
-      "categoryBasis": "自绘特殊角色卡：金币造型的猪脸，代表「猪币」",
-      "nameRemoved": "verified",
-      "flags": [],
-      "vision": "pass"
-    },
-    {
       "id": "pighub-521",
       "title": "巨大猪",
-      "kind": "static",
-      "file": "assets/cards/img/pighub-521.png",
-      "bytes": 13201,
-      "size": [
-        256,
-        144
-      ],
-      "style": {
-        "verdict": "match",
-        "palette": 0.928,
-        "flatness": 0.996,
-        "thresholds": {
-          "paletteMin": 0.55,
-          "flatnessMin": 0.35
-        }
-      },
-      "blobs": 1,
-      "darkSpecks": 0,
-      "background": {
-        "key": "dark",
-        "threshold": 40,
-        "all": false
-      },
-      "category": "character",
-      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
-      "nameRemoved": "verified",
-      "flags": [],
-      "sha256": "d3aa56546d7bf91f5962468c7f5e84b50439ae79ba48ffe32e1468841312a6a8",
-      "vision": "fail",
-      "visionReason": "源图把猪裁在画布边，成图是直角切边"
+      "kind": "skipped",
+      "category": "unknown",
+      "categoryBasis": "选中的是矩形底卡（填充率 1.000），不是猪",
+      "nameRemoved": "n/a",
+      "flags": [
+        "card_like"
+      ]
     },
     {
       "id": "pighub-366",
@@ -90,6 +49,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.763,
+      "flatEdges": 3,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -123,6 +84,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.702,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -167,6 +130,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.703,
+      "flatEdges": 0,
       "background": {
         "key": "dark",
         "threshold": 40,
@@ -200,6 +165,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.877,
+      "flatEdges": 1,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -211,7 +178,7 @@
       "flags": [],
       "sha256": "a38bb0411ca6710873456cde83f85369528597aacdec3020be84ce1f8c329b21",
       "vision": "fail",
-      "visionReason": "源图把猪裁在画布边，成图是直角切边"
+      "visionReason": "源图把猪裁在画布边，成品是直角切边"
     },
     {
       "id": "pighub-1189",
@@ -234,6 +201,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.748,
+      "flatEdges": 4,
       "background": {
         "key": "dark",
         "threshold": 40,
@@ -268,6 +237,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.718,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -301,6 +272,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.768,
+      "flatEdges": 2,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -311,7 +284,8 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "01093fe3f02afe85a055746381ef9e87398e5f4e942c91563a61118cfb4373ea",
-      "vision": "pass"
+      "vision": "fail",
+      "visionReason": "源图把猪裁在画布边，成品是直角切边"
     },
     {
       "id": "pighub-1205",
@@ -334,6 +308,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.795,
+      "flatEdges": 2,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -345,7 +321,7 @@
       "flags": [],
       "sha256": "97f04910822449df22f87b24213aad53c4cb877d68dca877959ee6c835e6a7d4",
       "vision": "fail",
-      "visionReason": "源图把猪裁在画布边，成图是直角切边"
+      "visionReason": "源图把猪裁在画布边，成品是直角切边"
     },
     {
       "id": "pighub-60",
@@ -368,6 +344,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.818,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -379,41 +357,18 @@
       "flags": [],
       "sha256": "4bbe92d79273b4edae7b238a8e11518528b018b1cd6ed917cb0f99c0d5a591c6",
       "vision": "fail",
-      "visionReason": "**不是猪**：选中了圆角矩形底卡，没有脸"
+      "visionReason": "**不是猪**：圆角矩形底卡被当成猪身，没有脸"
     },
     {
       "id": "pighub-1099",
       "title": "俯视猪",
-      "kind": "static",
-      "file": "assets/cards/img/pighub-1099.png",
-      "bytes": 27051,
-      "size": [
-        256,
-        256
-      ],
-      "style": {
-        "verdict": "match",
-        "palette": 0.8,
-        "flatness": 0.982,
-        "thresholds": {
-          "paletteMin": 0.55,
-          "flatnessMin": 0.35
-        }
-      },
-      "blobs": 1,
-      "darkSpecks": 0,
-      "background": {
-        "key": "dark",
-        "threshold": 40,
-        "all": false
-      },
-      "category": "character",
-      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
-      "nameRemoved": "verified",
-      "flags": [],
-      "sha256": "424929e0de3d19418ed5bd22583f1f0167f893890bcdaae4cb954152a7fc4464",
-      "vision": "fail",
-      "visionReason": "源图把猪裁在画布边，成图是直角切边"
+      "kind": "skipped",
+      "category": "unknown",
+      "categoryBasis": "选中的是矩形底卡（填充率 1.000），不是猪",
+      "nameRemoved": "n/a",
+      "flags": [
+        "card_like"
+      ]
     },
     {
       "id": "pighub-974",
@@ -436,6 +391,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.875,
+      "flatEdges": 2,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -447,7 +404,7 @@
       "flags": [],
       "sha256": "2d86865a049d80786f2615bafc8a62e494cc719b759a40f822f2d408dd86726b",
       "vision": "fail",
-      "visionReason": "源图把猪裁在画布边，成图是直角切边"
+      "visionReason": "源图把猪裁在画布边，成品是直角切边"
     },
     {
       "id": "pighub-1305",
@@ -470,6 +427,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.691,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -485,81 +444,59 @@
     {
       "id": "pighub-1236",
       "title": "猪伤心哼！猪",
-      "kind": "failed",
-      "category": "unknown",
-      "categoryBasis": "下载或解码失败",
-      "nameRemoved": "n/a",
-      "flags": [
-        "error"
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1236.png",
+      "bytes": 43999,
+      "size": [
+        256,
+        225
       ],
-      "error": "Input Buffer is empty"
+      "style": {
+        "verdict": "match",
+        "palette": 0.968,
+        "flatness": 0.99,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "fillRatio": 0.705,
+      "flatEdges": 1,
+      "background": {
+        "key": "dark",
+        "threshold": 40,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "d2a4d166c5ae2c29ac8b3f71271b088a8649249b8ee00ddf97c4bfdacc94395a",
+      "vision": "pass"
     },
     {
       "id": "pighub-909",
       "title": "明日方猪",
-      "kind": "static",
-      "file": "assets/cards/img/pighub-909.png",
-      "bytes": 28564,
-      "size": [
-        255,
-        256
-      ],
-      "style": {
-        "verdict": "match",
-        "palette": 0.988,
-        "flatness": 0.969,
-        "thresholds": {
-          "paletteMin": 0.55,
-          "flatnessMin": 0.35
-        }
-      },
-      "blobs": 1,
-      "darkSpecks": 0,
-      "background": {
-        "key": "light",
-        "threshold": 236,
-        "all": false
-      },
-      "category": "character",
-      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
-      "nameRemoved": "verified",
-      "flags": [],
-      "sha256": "7c3510558e30715478538a5b21181068a8eb8e149e7f5a398f896bfe52a0d665",
-      "vision": "fail",
-      "visionReason": "**底卡没去掉**：方块/三角/圆形色块被当成猪身"
+      "kind": "skipped",
+      "category": "unknown",
+      "categoryBasis": "选中的是矩形底卡（填充率 0.997），不是猪",
+      "nameRemoved": "n/a",
+      "flags": [
+        "card_like"
+      ]
     },
     {
       "id": "pighub-996",
       "title": "明日放猪",
-      "kind": "static",
-      "file": "assets/cards/img/pighub-996.png",
-      "bytes": 31377,
-      "size": [
-        256,
-        256
-      ],
-      "style": {
-        "verdict": "match",
-        "palette": 0.993,
-        "flatness": 0.961,
-        "thresholds": {
-          "paletteMin": 0.55,
-          "flatnessMin": 0.35
-        }
-      },
-      "blobs": 1,
-      "darkSpecks": 0,
-      "background": {
-        "key": "light",
-        "threshold": 236,
-        "all": false
-      },
-      "category": "character",
-      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
-      "nameRemoved": "verified",
-      "flags": [],
-      "sha256": "fb8a89535ab4b2d02e18fc7a4d3f9a04e18a6e897e6aa0fdf6953f3d1c6fbc6e",
-      "vision": "pass"
+      "kind": "skipped",
+      "category": "unknown",
+      "categoryBasis": "选中的是矩形底卡（填充率 0.989），不是猪",
+      "nameRemoved": "n/a",
+      "flags": [
+        "card_like"
+      ]
     },
     {
       "id": "pighub-373",
@@ -582,6 +519,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.52,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -593,7 +532,7 @@
       "flags": [],
       "sha256": "02580b548967d9711a5f246a37b30f45f9500f902c0411c10fc08ab403b6d3ab",
       "vision": "fail",
-      "visionReason": "**底卡没去掉**：方块/三角/圆形色块被当成猪身"
+      "visionReason": "**底卡没去掉**：三角/圆形色块被当成猪身（填充率 0.5~0.8，逃过了 0.92 阈值）"
     },
     {
       "id": "pighub-408",
@@ -616,6 +555,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.635,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -649,6 +590,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.786,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -660,7 +603,7 @@
       "flags": [],
       "sha256": "04439255219dc81b2bc062f3a7f0b22813cb28fed8b1220e1073da12b586162f",
       "vision": "fail",
-      "visionReason": "**底卡没去掉**：方块/三角/圆形色块被当成猪身"
+      "visionReason": "**底卡没去掉**：三角/圆形色块被当成猪身（填充率 0.5~0.8，逃过了 0.92 阈值）"
     },
     {
       "id": "pighub-1019",
@@ -683,6 +626,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.717,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -694,7 +639,7 @@
       "flags": [],
       "sha256": "3abcd3bddc0f6abafb894f785049e2148fa00c12decc84cafe871e7130df7b8d",
       "vision": "fail",
-      "visionReason": "**底卡没去掉**：方块/三角/圆形色块被当成猪身"
+      "visionReason": "**底卡没去掉**：三角/圆形色块被当成猪身（填充率 0.5~0.8，逃过了 0.92 阈值）"
     },
     {
       "id": "pighub-598",
@@ -717,6 +662,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.602,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -750,6 +697,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.789,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -783,6 +732,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.69,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -816,6 +767,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.722,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -849,6 +802,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.687,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -882,6 +837,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.693,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -892,7 +849,7 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "9f775920ff532e11c2973f1fd1fd6578949a78342ecf393cd7c1c6596781d37e",
-      "vision": "pending"
+      "vision": "pass"
     },
     {
       "id": "pighub-1162",
@@ -915,6 +872,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.696,
+      "flatEdges": 0,
       "background": {
         "key": "dark",
         "threshold": 40,
@@ -925,7 +884,7 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "c1f346c78abe022df7df2c794b6541959b40b78446490bc5ae0d23f61df013da",
-      "vision": "pending"
+      "vision": "pass"
     },
     {
       "id": "pighub-664",
@@ -948,6 +907,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.705,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -958,40 +919,18 @@
       "nameRemoved": "verified",
       "flags": [],
       "sha256": "e5ac45136d9634708e096355697e0463203757104034d7233894687bc8805493",
-      "vision": "pending"
+      "vision": "pass"
     },
     {
       "id": "pighub-1301",
       "title": "织猪",
-      "kind": "static",
-      "file": "assets/cards/img/pighub-1301.png",
-      "bytes": 42695,
-      "size": [
-        208,
-        256
-      ],
-      "style": {
-        "verdict": "match",
-        "palette": 0.768,
-        "flatness": 0.982,
-        "thresholds": {
-          "paletteMin": 0.55,
-          "flatnessMin": 0.35
-        }
-      },
-      "blobs": 1,
-      "darkSpecks": 0,
-      "background": {
-        "key": "dark",
-        "threshold": 40,
-        "all": false
-      },
-      "category": "character",
-      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
-      "nameRemoved": "verified",
-      "flags": [],
-      "sha256": "55b2f1f95ebde1604db1e93c55771611b55b73332ac9b8479053dc70b07f7bfd",
-      "vision": "pending"
+      "kind": "skipped",
+      "category": "unknown",
+      "categoryBasis": "没有「像猪」的色块（likeness 0.17）",
+      "nameRemoved": "n/a",
+      "flags": [
+        "no_pig"
+      ]
     },
     {
       "id": "pighub-658",
@@ -1014,6 +953,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.76,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -1047,6 +988,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.71,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -1080,6 +1023,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.691,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -1095,35 +1040,13 @@
     {
       "id": "pighub-118",
       "title": "小红猪",
-      "kind": "static",
-      "file": "assets/cards/img/pighub-118.png",
-      "bytes": 28020,
-      "size": [
-        256,
-        255
-      ],
-      "style": {
-        "verdict": "match",
-        "palette": 0.721,
-        "flatness": 0.967,
-        "thresholds": {
-          "paletteMin": 0.55,
-          "flatnessMin": 0.35
-        }
-      },
-      "blobs": 1,
-      "darkSpecks": 0,
-      "background": {
-        "key": "light",
-        "threshold": 236,
-        "all": false
-      },
-      "category": "character",
-      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
-      "nameRemoved": "verified",
-      "flags": [],
-      "sha256": "38eb2f2410b67be97f80c814a3a9bf4f42c5fff7bd44d97ef36547deedcea9f0",
-      "vision": "pending"
+      "kind": "skipped",
+      "category": "unknown",
+      "categoryBasis": "选中的是矩形底卡（填充率 0.986），不是猪",
+      "nameRemoved": "n/a",
+      "flags": [
+        "card_like"
+      ]
     },
     {
       "id": "pighub-1063",
@@ -1146,6 +1069,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.701,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -1179,6 +1104,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.888,
+      "flatEdges": 4,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -1212,6 +1139,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.843,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -1245,6 +1174,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.658,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -1278,6 +1209,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.499,
+      "flatEdges": 3,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -1311,6 +1244,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.713,
+      "flatEdges": 3,
       "background": {
         "key": "dark",
         "threshold": 40,
@@ -1344,6 +1279,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.585,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -1377,6 +1314,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.637,
+      "flatEdges": 0,
       "background": {
         "key": "dark",
         "threshold": 40,
@@ -1410,6 +1349,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.873,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -1443,6 +1384,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.531,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -1458,35 +1401,13 @@
     {
       "id": "pighub-1185",
       "title": "b站猪",
-      "kind": "static",
-      "file": "assets/cards/img/pighub-1185.png",
-      "bytes": 66722,
-      "size": [
-        256,
-        255
-      ],
-      "style": {
-        "verdict": "match",
-        "palette": 0.88,
-        "flatness": 0.959,
-        "thresholds": {
-          "paletteMin": 0.55,
-          "flatnessMin": 0.35
-        }
-      },
-      "blobs": 1,
-      "darkSpecks": 0,
-      "background": {
-        "key": "light",
-        "threshold": 236,
-        "all": false
-      },
-      "category": "character",
-      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
-      "nameRemoved": "verified",
-      "flags": [],
-      "sha256": "bd36f4d7f30a650fba42224bff19f0ac4720b8a1f345e95304564c84c70ba0e5",
-      "vision": "pending"
+      "kind": "skipped",
+      "category": "unknown",
+      "categoryBasis": "选中的是矩形底卡（填充率 0.993），不是猪",
+      "nameRemoved": "n/a",
+      "flags": [
+        "card_like"
+      ]
     },
     {
       "id": "pighub-949",
@@ -1509,6 +1430,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.689,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -1524,35 +1447,13 @@
     {
       "id": "pighub-1260",
       "title": "黑客猪",
-      "kind": "static",
-      "file": "assets/cards/img/pighub-1260.png",
-      "bytes": 47537,
-      "size": [
-        256,
-        188
-      ],
-      "style": {
-        "verdict": "match",
-        "palette": 0.954,
-        "flatness": 0.95,
-        "thresholds": {
-          "paletteMin": 0.55,
-          "flatnessMin": 0.35
-        }
-      },
-      "blobs": 1,
-      "darkSpecks": 0,
-      "background": {
-        "key": "light",
-        "threshold": 236,
-        "all": false
-      },
-      "category": "character",
-      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
-      "nameRemoved": "verified",
-      "flags": [],
-      "sha256": "bcb46d4e618afca50f3f831d5dda6e9e942e810d44b08e0fd1a90d6de4ff6a63",
-      "vision": "pending"
+      "kind": "skipped",
+      "category": "unknown",
+      "categoryBasis": "没有「像猪」的色块（likeness 0.39）",
+      "nameRemoved": "n/a",
+      "flags": [
+        "no_pig"
+      ]
     },
     {
       "id": "pighub-737",
@@ -1575,6 +1476,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.674,
+      "flatEdges": 0,
       "background": {
         "key": "dark",
         "threshold": 40,
@@ -1608,6 +1511,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.728,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
@@ -1641,6 +1546,8 @@
       },
       "blobs": 1,
       "darkSpecks": 0,
+      "fillRatio": 0.646,
+      "flatEdges": 0,
       "background": {
         "key": "light",
         "threshold": 236,
