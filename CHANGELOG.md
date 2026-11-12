@@ -3,6 +3,17 @@
 本项目遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)；每条记录只写「对使用者可见的变化」，
 内部重构不单列。README 只描述项目整体，**版本相关内容一律记在这里**。
 
+## [0.5.9] — 2026-11-12（未发布）
+
+### Fixed
+
+- **真实宿主装不上**：宿主 `@deepseek-ai/dsh-tools` 0.2.2-rc.1 起 `ToolDefinition.output` 是必填项，
+  `pighub_about` 没声明它，整行插件在装配时报
+  `TypeError: tool "pighub_about" must declare output { schema, render, presentationMeta? }`，
+  Host 半不激活（`application: failed`），浏览器半也就没有 `/pighub` 数据路由可用。
+  补上 `output: { schema: { type: 'object' }, render }`（`render` 返回单个 text ContentBlock）。
+  冒烟测试相应加一条断言：`ToolDefinition.output` 缺失、schema 非 object、render 不返回 ContentBlock 都算失败。
+
 ## [0.5.8] — 2026-11-12（未发布）
 
 ### Changed

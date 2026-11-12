@@ -150,6 +150,16 @@ check('pighub_about 的参数 schema 封闭、描述非空', () => {
   assert.equal(tool.parameters.additionalProperties, false);
   assert.ok(tool.description.length > 40);
 });
+check('pighub_about 声明了 output（宿主强制要求，缺了整行不激活）', () => {
+  const tool = tools.get('pighub_about');
+  assert.ok(tool.output, 'ToolDefinition.output 缺失：宿主会报 must declare output');
+  assert.equal(tool.output.schema.type, 'object');
+  assert.equal(typeof tool.output.render, 'function');
+  const blocks = tool.output.render({}, { ok: true });
+  assert.ok(Array.isArray(blocks) && blocks.length === 1, 'render 必须返回 ContentBlock 数组');
+  assert.equal(blocks[0].type, 'text');
+  assert.ok(blocks[0].text.indexOf('"ok": true') >= 0, 'render 应把值序列化成文本');
+});
 check('工具描述与数据目录策略一致（声明不内嵌上游素材）', () => {
   const tool = tools.get('pighub_about');
   assert.equal(typeof tool.execute, 'function');
