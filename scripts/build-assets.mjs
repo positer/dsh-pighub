@@ -143,6 +143,7 @@ for (const candidate of candidates) {
     cropped = addOutline(cropped, work.outline.width, work.outline.color || [43, 26, 16]);
   }
 
+  let payload = null;
   const ext = decision.vector ? 'svg' : 'png';
   const file = decision.id + '.' + ext;
   const target = join(imageDir, file);
@@ -155,13 +156,13 @@ for (const candidate of candidates) {
     const small = scale === 1 ? cropped : resizeNearest(cropped, smallW, smallH);
     const svg = vectorise(small);
     if (!svg) { console.error(candidate.id + ' 描摹失败（判定为 vector 却没有可描内容）'); process.exit(1); }
-    writeFileSync(target, svg, 'utf8');
+    payload = svg;
   } else {
     // 显示尺寸远小于原始像素：最长边压到 ≤ 512，包体从数 MB 降到百 KB 量级。
     const limit = 512;
     const pipeline = sharp(Buffer.from(cropped.data), { raw: { width: cropped.width, height: cropped.height, channels: 4 } });
     if (Math.max(cropped.width, cropped.height) > limit) pipeline.resize({ width: cropped.width >= cropped.height ? limit : null, height: cropped.height > cropped.width ? limit : null });
-    writeFileSync(target, await pipeline.png({ compressionLevel: 9 }).toBuffer());
+    payload = await pipeline.png({ compressionLevel: 9 }).toBuffer();
   }
   // 风格化校验：只看像素分布，标题里有没有「猪」字不参与判断。
   const style = styleScore(cropped);
@@ -169,10 +170,14 @@ for (const candidate of candidates) {
   if (style.verdict === 'reject' && !override) {
     // 风格不对的图**不进包**：记进 rejected，等它拿到逐素材规格（裁到猪身）后自然会通过。
     rejected.push({ id: candidate.id, title: candidate.title, style });
+    // 被拒的图绝不能留在 assets/img（package.files 收了该目录，会把它打进包）。
+    rmSync(target, { force: true });
     console.log('  SKIP ' + candidate.id + ' 风格校验未通过（palette=' + style.palette + ' flatness=' + style.flatness + '）');
     continue;
   }
 
+  // 判定通过才落盘：先写再判会让被拒的图残留在 assets/img 并被发出去。
+  writeFileSync(target, payload);
   const produced = readFileSync(target);
   pigs.push({
     id: candidate.id,
