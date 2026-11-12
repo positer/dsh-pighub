@@ -143,4 +143,21 @@ check('fillHoles：洞在 erase 框外 → 保持透明（源图自带的负空�
   assert.equal(frame.data[centre + 3], 0, '卷尾环内那种负空间必须保持透明');
 });
 
+
+/* ---- padFrame：给被画布裁切的猪留出描边空间 ---- */
+const { padFrame } = trace;
+
+check('padFrame：四周加透明边，内容不偏移', () => {
+  const src = { width: 4, height: 3, data: new Uint8Array(4 * 3 * 4) };
+  for (let i = 0; i < 4 * 3; i += 1) { src.data[i * 4] = 200; src.data[i * 4 + 3] = 255; }
+  const padded = padFrame(src, 2);
+  assert.equal(padded.width, 8);
+  assert.equal(padded.height, 7);
+  const alphaAt = (x, y) => padded.data[(y * 8 + x) * 4 + 3];
+  assert.equal(alphaAt(0, 0), 0, '新加的边必须透明');
+  assert.equal(alphaAt(7, 6), 0, '右下角也透明');
+  assert.equal(alphaAt(2, 2), 255, '原图左上角应落在 (2,2)');
+  assert.equal(alphaAt(5, 4), 255, '原图右下角应落在 (5,4)');
+});
+
 console.log('\n' + passed + ' PASS / 0 FAIL  —  imaging & tracer');
