@@ -1,6 +1,6 @@
 {
   "assetVersion": "2026.11.12",
-  "frozenAt": "2026-11-12T12:04:55.248Z",
+  "frozenAt": "2026-11-12T12:11:53.204Z",
   "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
   "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
   "rejected": [],
@@ -87,11 +87,11 @@
       "note": "单只猪全身、干净白底，判定为活猪。**不做矢量化**：源图是纯填充、无描线（体色 246,210,183 实心填充，最暗结构色只有眼/鼻孔），描摹会把眼睛、腮红、描边环一起压成色块碎片（实测 220px 描摹后细节丢失）；这一只保留 PNG。",
       "vector": false,
       "file": "assets/img/pig-1355.png",
-      "bytes": 69139,
-      "sha256": "4328d8c5b74686fabf974ad256c5a74638da7256b440e7512c7f38c208be6cdb",
+      "bytes": 69244,
+      "sha256": "2904089c196bdf8a092e30fbee4b632250b540a833d560ad3d8ec327ee446e0d",
       "size": {
-        "width": 392,
-        "height": 373
+        "width": 400,
+        "height": 381
       },
       "source": {
         "url": "https://pighub.top/images/%E6%80%AA%E7%8C%AA.jpg",
@@ -110,7 +110,7 @@
       "style": {
         "verdict": "match",
         "palette": 0.968,
-        "flatness": 0.971,
+        "flatness": 0.969,
         "thresholds": {
           "paletteMin": 0.55,
           "flatnessMin": 0.35
@@ -133,11 +133,11 @@
       "note": "夜景海报：卡片底下的白去掉，裁到猪身；海报文字随内容一起被裁掉。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
       "vector": false,
       "file": "assets/img/pig-1358.png",
-      "bytes": 61290,
-      "sha256": "880f395387ae01923789853e88cbf22ab0a8245e8437dbd53a5f9c38b2909da2",
+      "bytes": 61427,
+      "sha256": "4131bb0d6c27f6784a1414c0f5a73fffef346f14698398a0c6be0ddc5dfcdecb",
       "size": {
-        "width": 264,
-        "height": 376
+        "width": 272,
+        "height": 384
       },
       "source": {
         "url": "https://pighub.top/images/%E8%90%9D%E5%8D%9C%E7%8C%AA.jpg",
@@ -179,11 +179,11 @@
       "note": "上半是重复文字、下半是干净一只猪：定制切分只取猪身那一条，再踩到猪身。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
       "vector": true,
       "file": "assets/img/pig-1361.svg",
-      "bytes": 14730,
-      "sha256": "791045331d0da0bbb7b36ee44b6e02b0d3dbc687fc85d6aa347a8b2155e105b1",
+      "bytes": 15133,
+      "sha256": "25e09fe1f80113ef613ed58ee23a4862c44871550dde521e7d903c9c2f5de217",
       "size": {
-        "width": 728,
-        "height": 603
+        "width": 736,
+        "height": 611
       },
       "source": {
         "url": "https://pighub.top/images/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97.jpg",
@@ -225,8 +225,8 @@
       "note": "矮脚猪：干净的猪形象图。实测全图只有 1 个非白连通块（猪身 2,164,020px），无文字/水印/边框可删，erase 为空；white=236（体色中位 min 通道 172，距阈值 64 余量）。",
       "vector": false,
       "file": "assets/img/pighub-1018.png",
-      "bytes": 130621,
-      "sha256": "b7339d4b90795887e890da557de1734e976470a855deb7ecae73d61767a4bdde",
+      "bytes": 130589,
+      "sha256": "5ceca73223c289f9d25b3708e4082a05c813e880cf8e14844469b1990808e895",
       "size": {
         "width": 512,
         "height": 438
@@ -271,8 +271,8 @@
       "note": "源图已自带 alpha：猪身是单一连通块 748,676px、bbox 几乎等于整幅；无可删的文字/水印/边框（不透明近白 0px）。卷尾环内有 3 个封闭透明洞，属于要保留的负空间。",
       "vector": false,
       "file": "assets/img/pighub-366.png",
-      "bytes": 76997,
-      "sha256": "212a6f2b89179e779f8dd8b18714fad661bcaa56d326beb5c0516691149bec6b",
+      "bytes": 77248,
+      "sha256": "bbdf26c25c299ac2958aeb416fbc445a1b75053380e5d92b54e1f0be7248b297",
       "size": {
         "width": 512,
         "height": 504
@@ -294,7 +294,7 @@
       "style": {
         "verdict": "match",
         "palette": 0.999,
-        "flatness": 0.988,
+        "flatness": 0.987,
         "thresholds": {
           "paletteMin": 0.55,
           "flatnessMin": 0.35
@@ -317,11 +317,11 @@
       "note": "黑底素材：猪被画布四边裁切，trim 只能整图；去背景用 background 色键（dark/40）。",
       "vector": false,
       "file": "assets/img/pighub-55.png",
-      "bytes": 144286,
-      "sha256": "56dd1adbd77319ef27935a39d572fefc779f69bf245e9727a17c37a3e30ec681",
+      "bytes": 142805,
+      "sha256": "e125a90439da64158d75d1e96aeef771149ed883ebf07adadcfef8a24b1296cd",
       "size": {
         "width": 512,
-        "height": 454
+        "height": 455
       },
       "source": {
         "url": "https://pighub.top/images/%E6%84%A4%E6%80%92%E7%8C%AA.jpg",
@@ -339,22 +339,21 @@
       },
       "style": {
         "verdict": "match",
-        "palette": 0.983,
-        "flatness": 0.956,
+        "palette": 0.984,
+        "flatness": 0.952,
         "thresholds": {
           "paletteMin": 0.55,
           "flatnessMin": 0.35
         }
       },
       "patch": {
-        "holes": 0,
-        "filled": 0
+        "holes": 1,
+        "filled": 319
       },
       "background": {
-        "key": "dark",
-        "threshold": 40,
-        "all": false,
-        "removed": 82333
+        "key": "light",
+        "threshold": 255,
+        "all": false
       }
     },
     {
@@ -364,11 +363,11 @@
       "note": "黑底素材，用 background 色键（dark/32）去背景；原方案 621 个 erase 框已被色键取代。",
       "vector": false,
       "file": "assets/img/pighub-66.png",
-      "bytes": 176082,
-      "sha256": "5b51c7dee63929420e956c35703cf13485526dc401c58aa174a3c6fa342760f8",
+      "bytes": 171859,
+      "sha256": "089bb2f15b20fe6da805fc9d7a120fe659e4cdcb85ebf27c941bed700edbe0f3",
       "size": {
         "width": 512,
-        "height": 451
+        "height": 452
       },
       "source": {
         "url": "https://pighub.top/images/%E5%B0%8F%E7%9C%BC%E7%8C%AA.jpg",

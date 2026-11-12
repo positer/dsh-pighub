@@ -22,7 +22,7 @@ import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
-import { stripBackground, refineWhite, stripAllWhite, contentBounds, cropFrame, vectorise, TRACE_MAX_EDGE, restoreRects, eraseRects, addOutline, styleScore, fillHoles } from '../lib/imaging.js';
+import { stripBackground, refineWhite, stripAllWhite, contentBounds, cropFrame, padFrame, vectorise, TRACE_MAX_EDGE, restoreRects, eraseRects, addOutline, styleScore, fillHoles } from '../lib/imaging.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const assetsDir = join(here, '..', 'assets');
@@ -169,6 +169,8 @@ for (const candidate of candidates) {
   const box = contentBounds(trimmed, outlineWidth + 1);
   let cropped = cropFrame(trimmed, box.x, box.y, box.w, box.h);
   if (work && work.outline && work.outline.width > 0) {
+    // 先加一圈透明边：猪被画布裁切的图（愤怒猪四边都贴边）不加的话描边会断在边上。
+    cropped = padFrame(cropped, work.outline.width + 1);
     cropped = addOutline(cropped, work.outline.width, work.outline.color || [43, 26, 16]);
   }
 
