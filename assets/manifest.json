@@ -1,6 +1,6 @@
 {
   "assetVersion": "2026.11.12",
-  "frozenAt": "2026-11-12T12:11:53.204Z",
+  "frozenAt": "2026-11-12T12:13:45.831Z",
   "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
   "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
   "rejected": [],
@@ -317,8 +317,8 @@
       "note": "黑底素材：猪被画布四边裁切，trim 只能整图；去背景用 background 色键（dark/40）。",
       "vector": false,
       "file": "assets/img/pighub-55.png",
-      "bytes": 142805,
-      "sha256": "e125a90439da64158d75d1e96aeef771149ed883ebf07adadcfef8a24b1296cd",
+      "bytes": 142136,
+      "sha256": "37cf23b21d535971fc63da50182e79d408505f27b4dc50f3a6e068382ad799c2",
       "size": {
         "width": 512,
         "height": 455
@@ -339,21 +339,23 @@
       },
       "style": {
         "verdict": "match",
-        "palette": 0.984,
-        "flatness": 0.952,
+        "palette": 0.983,
+        "flatness": 0.956,
         "thresholds": {
           "paletteMin": 0.55,
           "flatnessMin": 0.35
         }
       },
       "patch": {
-        "holes": 1,
-        "filled": 319
+        "holes": 0,
+        "filled": 0,
+        "skipped": "inpaint_disabled"
       },
       "background": {
-        "key": "light",
-        "threshold": 255,
-        "all": false
+        "key": "dark",
+        "threshold": 40,
+        "all": false,
+        "removed": 82333
       }
     },
     {
