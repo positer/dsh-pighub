@@ -17,7 +17,7 @@
  * 用法：node scripts/build-assets.mjs [--vendor]
  *   --vendor 额外把**原始源图**留一份到 assets/source/（默认不留，产物已经够用）。
  */
-import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -55,6 +55,11 @@ for (const decision of judged) {
 rmSync(imageDir, { recursive: true, force: true });
 mkdirSync(imageDir, { recursive: true });
 if (keepSources) mkdirSync(join(assetsDir, 'source'), { recursive: true });
+
+// 规格目录里只应出现 <id>.json；子代理的中间产物一旦混进来就报警（避免仓库被污染）。
+const workFiles = readdirSync(join(assetsDir, 'work')).filter((name) => name.endsWith('.json'));
+const stray = workFiles.filter((name) => !candidateIds.has(name.replace(/\.json$/, '')));
+if (stray.length) console.warn('assets/work 里有与候选对不上的文件（可能是子代理中间产物）：' + stray.join(', '));
 
 const pigs = [];
 const rejected = [];
