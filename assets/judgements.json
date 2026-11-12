@@ -220,6 +220,24 @@
       "category": "species",
       "categoryReason": "小眼猪是一种猪的造型（种类）。",
       "note": "黑底素材，用 background 色键（dark/32）去背景；原方案 621 个 erase 框已被色键取代。"
+    },
+    {
+      "id": "pighub-974",
+      "kind": "live",
+      "vector": false,
+      "cut": {
+        "trim": [
+          0.072992701,
+          0.028,
+          0.927007299,
+          0.972
+        ],
+        "white": 236,
+        "vector": false
+      },
+      "category": "species",
+      "categoryReason": "斗鸡眼猪是一种猪的造型（种类），斗鸡眼是它的形象特征，不是行为场景。",
+      "note": "白底素材，但「白」有两种：背景 57,958px（四边连通）+ **眼白 11,462px**（两只 98×98 / 99×99，斗鸡眼的全部特征）。所以 background.all 必须 false，否则一次删光眼睛。阈值 236 两侧余量 1/5（猪身最亮 min 235、背景 p1 241）。"
     }
   ],
   "categoryNote": "只收「猪的种类」（species）：角色/品种/风格本身。带场景或动作的行为梗（behavior）一律不收——它们描述的是猪在做某件事，不是一种猪。"

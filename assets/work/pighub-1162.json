@@ -1,0 +1,26 @@
+{
+  "id": "pighub-1162",
+  "trim": [
+    0.041015625,
+    0.126953125,
+    0.921875,
+    0.814453125
+  ],
+  "background": {
+    "key": "light",
+    "threshold": 236,
+    "all": false
+  },
+  "keep": [],
+  "erase": [],
+  "outline": {
+    "width": 3,
+    "color": [
+      43,
+      26,
+      16
+    ]
+  },
+  "inpaint": false,
+  "reason": "512×512 RGBA（URL 后缀 .png，魔数 52 49 46 46 57 45 42 50 = RIFF/WEBP，5,216 B，sha256 f2fd93dd…，Pillow 12.3.0 逐像素）实测：背景本来就是**全透明**——alpha==0 共 125,202 px=47.761%，四边环 2,048 px 全为 alpha=0，故无边框；透明像素下存的 RGB 是黑 (0,0,0) 101,149 px 等，但管线 stripBackground 跳过 alpha<24（imaging.js:645），这些「黑」既删不掉也不该删。猪 = alpha≥128 的**唯一** 8 连通块 136,911 px（占画布 52.227%；alpha≥1/≥24 计 136,942/136,923，三档 bbox 完全相同）→ bbox x[21,492] y[65,481]=472×417，trim 取 [0.041015625,0.126953125,0.921875,0.814453125]（反算 21/65/472/417，1:1 无取整误差）。**无文字/水印/配件**：不透明连通块只有 1 个，块外不透明像素 0，故 erase=0 框（框内猪像素 0，无从报告），keep=0。背景键取 light/236 是**无害的空操作**：猪身最亮像素 (255,246,229) 的 min 通道 229，全图不透明像素中 min≥236 的为 0（≥229 的仅 1 px），236 位于猪身最亮值上方 7；真管线复跑 stripBackground(light,236,all:false) removed=0，all:true 也 removed=0，opaque 136,923→136,923 一像素未掉 → all 取 false，只关掉「撞上浅色高光」那一个方向的隐患。不用 dark：猪身有 3,170 px 的 max(R,G,B)≤40（最暗 (4,0,0)），墨镜主体是 (51,51,51) 2,401 px、(77,77,77) 944 px、(52,52,52) 832 px，dark 键取 threshold≥51 会连墨镜一起删、取 ≤40 仍删 3,170 px 猪身，没有安全档位。封闭透明洞 1 个 246 px（x[457,469] y[103,127]，卷尾环内负空间）保留；erase 为空故 fillHoles 不会碰它，inpaint=false 作护栏。真 lib/imaging.js 复跑：crop 472×417 → contentBounds(pad=4)=(0,0,472,417) → padFrame(4) → addOutline(3,[43,26,16]) ⇒ 成品 480×425（73,389 B），styleScore palette 0.976 / flatness 0.978 = match，猪像素损失 0。"
+}
