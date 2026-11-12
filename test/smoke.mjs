@@ -91,6 +91,7 @@ check('冻结素材随包分发且自洽（贴图存在、指纹对得上、来�
     assert.equal(record.category, 'species', pig.id + ' 不是「猪的种类」，不该进包');
     assert.equal(pig.style.verdict, 'match', pig.id + ' 进了包却不是 match');
     assert.ok(pig.patch && typeof pig.patch.holes === 'number' && typeof pig.patch.filled === 'number', pig.id + ' 缺少补洞（补洞=受损处用原色填回）记录');
+    assert.ok(pig.background && typeof pig.background.key === 'string' && typeof pig.background.removed === 'number', pig.id + ' 缺少背景决策记录（key/removed）');
   }
 });
 /* ---- 1.6 可信来源登记表 ---- */

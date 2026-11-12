@@ -1,6 +1,6 @@
 {
   "assetVersion": "2026.11.12",
-  "frozenAt": "2026-11-12T12:25:39.030Z",
+  "frozenAt": "2026-11-12T12:31:58.599Z",
   "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
   "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
   "rejected": [],
@@ -31,8 +31,8 @@
     }
   ],
   "counts": {
-    "total": 9,
-    "live": 8,
+    "total": 11,
+    "live": 10,
     "dead": 1,
     "vector": 1
   },
@@ -68,6 +68,13 @@
       "patch": {
         "holes": 0,
         "filled": 0,
+        "skipped": "animated_passthrough"
+      },
+      "background": {
+        "key": "none",
+        "threshold": 0,
+        "all": false,
+        "removed": 0,
         "skipped": "animated_passthrough"
       },
       "style": {
@@ -123,7 +130,8 @@
       "background": {
         "key": "light",
         "threshold": 236,
-        "all": true
+        "all": true,
+        "removed": 40461
       }
     },
     {
@@ -169,7 +177,8 @@
       "background": {
         "key": "light",
         "threshold": 236,
-        "all": true
+        "all": true,
+        "removed": 38570
       }
     },
     {
@@ -215,7 +224,8 @@
       "background": {
         "key": "light",
         "threshold": 236,
-        "all": true
+        "all": true,
+        "removed": 202502
       }
     },
     {
@@ -261,7 +271,104 @@
       "background": {
         "key": "light",
         "threshold": 236,
-        "all": true
+        "all": true,
+        "removed": 923480
+      }
+    },
+    {
+      "id": "pighub-1099",
+      "title": "俯视猪",
+      "kind": "live",
+      "note": "白底 61,096px（阈值 236 下 68,525px）100% 与四边连通、封闭白 0px；猪 4-连通单一块 291,475px，非白连通块只有这 1 个 ⇒ 无文字/水印/边框。阈值安全空档 [210,250]（实测 T=200 丢 33px、T=190 丢 565px 猪身）。俯视近景被源图画布裁在左/右/下三边。",
+      "vector": false,
+      "file": "assets/img/pighub-1099.png",
+      "bytes": 92295,
+      "sha256": "0dec63dd408d94e285bfdee52678b1710d5d869fb6d5287ba3bfbfbf2a56f411",
+      "size": {
+        "width": 512,
+        "height": 475
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E4%BF%AF%E8%A7%86%E7%8C%AA.jpg",
+        "group": "pighub-online",
+        "sha256": "78758b7ae8068268f4d4b919cc613d1f22bc6ac89653629ae4fae8b714afcecf"
+      },
+      "cut": {
+        "trim": [
+          0,
+          0.0733,
+          1,
+          0.9267
+        ],
+        "white": 236
+      },
+      "style": {
+        "verdict": "match",
+        "palette": 0.986,
+        "flatness": 0.98,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "patch": {
+        "holes": 0,
+        "filled": 0,
+        "skipped": "inpaint_disabled"
+      },
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false,
+        "removed": 42125
+      }
+    },
+    {
+      "id": "pighub-1162",
+      "title": "墨镜猪",
+      "kind": "live",
+      "note": "源图自带 alpha（背景全透明 125,202px=47.76%，四边环全 alpha=0），不透明连通块只有 1 个（猪 136,911px），无文字/水印/配件，erase 为空。白键是**无害空操作**（removed=0，猪身最亮 min 通道 229）；不能用 dark 键——墨镜主体 (51,51,51)/(77,77,77)，dark 取 ≥51 会连墨镜一起删、取 ≤40 仍删 3,170px 猪身暗部，没有安全档位。",
+      "vector": false,
+      "file": "assets/img/pighub-1162.png",
+      "bytes": 73389,
+      "sha256": "df05266bbd7f5b422bc4aab80ecf684e47378c7456c719468fae3ba62c982d0c",
+      "size": {
+        "width": 480,
+        "height": 425
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E5%A2%A8%E9%95%9C%E7%8C%AA.png",
+        "group": "pighub-online",
+        "sha256": "f2fd93ddb19a2d487d79a3b89c3bb95a054bd3c161edc3f7d53f829754b2fc44"
+      },
+      "cut": {
+        "trim": [
+          0.041015625,
+          0.126953125,
+          0.921875,
+          0.814453125
+        ],
+        "white": 236
+      },
+      "style": {
+        "verdict": "match",
+        "palette": 0.977,
+        "flatness": 0.966,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "patch": {
+        "holes": 0,
+        "filled": 0,
+        "skipped": "inpaint_disabled"
+      },
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false,
+        "removed": 0
       }
     },
     {
@@ -307,7 +414,8 @@
       "background": {
         "key": "light",
         "threshold": 236,
-        "all": true
+        "all": true,
+        "removed": 0
       }
     },
     {

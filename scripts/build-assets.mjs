@@ -116,6 +116,7 @@ for (const candidate of candidates) {
       cut: { trim: [0, 0, 1, 1], white: 0 },
       // 动图原样分发：不做去白/补洞（改一帧就等于毁掉动画）。
       patch: { holes: 0, filled: 0, skipped: 'animated_passthrough' },
+      background: { key: 'none', threshold: 0, all: false, removed: 0, skipped: 'animated_passthrough' },
       style: gifStyle,
     });
     continue;
@@ -153,8 +154,12 @@ for (const candidate of candidates) {
   let bgRemoved = 0;
   if (bg) {
     bgRemoved = stripBackground(trimmed, bg).removed;
-  } else if (work && work.whiteAll) stripAllWhite(trimmed, (work.white || decision.cut.white) || 236);
-  else refineWhite(trimmed, (work && work.white) || decision.cut.white || 236);
+  } else {
+    // 统一走 stripBackground 的 light 分支：参数与 refineWhite/stripAllWhite 等价，但能报出去掉了多少像素。
+    const whiteMin = (work && work.white) || decision.cut.white || 236;
+    const removeAll = work ? work.whiteAll === true : true;
+    bgRemoved = stripBackground(trimmed, { key: 'light', threshold: whiteMin, all: removeAll }).removed;
+  }
   if (work) {
     if (Array.isArray(work.keep) && work.keep.length) restoreRects(trimmed, before, work.keep.map(toFrame));
     if (Array.isArray(work.erase) && work.erase.length) eraseRects(trimmed, work.erase.map(toFrame));
@@ -228,7 +233,12 @@ for (const candidate of candidates) {
     cut: { trim: decision.cut.trim, white: decision.cut.white || 236 },
     style,
     patch: patched,
-    background: bg ? { key: bg.key || 'light', threshold: bg.threshold || 236, all: bg.all === true, removed: bgRemoved } : { key: 'light', threshold: (work && work.white) || decision.cut.white || 236, all: work && work.whiteAll === true },
+    background: {
+      key: bg ? (bg.key === 'dark' ? 'dark' : 'light') : 'light',
+      threshold: bg ? bg.threshold : ((work && work.white) || decision.cut.white || 236),
+      all: bg ? bg.all === true : !!(work && work.whiteAll),
+      removed: bgRemoved,
+    },
   });
 }
 
