@@ -1,6 +1,6 @@
 {
   "assetVersion": "2026.11.12",
-  "frozenAt": "2026-11-12T11:26:12.661Z",
+  "frozenAt": "2026-11-12T11:48:35.884Z",
   "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
   "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
   "rejected": [],
@@ -31,8 +31,8 @@
     }
   ],
   "counts": {
-    "total": 4,
-    "live": 3,
+    "total": 5,
+    "live": 4,
     "dead": 1,
     "vector": 1
   },
@@ -201,6 +201,47 @@
       "patch": {
         "holes": 1,
         "filled": 418
+      }
+    },
+    {
+      "id": "pighub-1018",
+      "title": "矮脚猪",
+      "kind": "live",
+      "note": "矮脚猪：干净的猪形象图。实测全图只有 1 个非白连通块（猪身 2,164,020px），无文字/水印/边框可删，erase 为空；white=236（体色中位 min 通道 172，距阈值 64 余量）。",
+      "vector": false,
+      "file": "assets/img/pighub-1018.png",
+      "bytes": 130374,
+      "sha256": "ddf35563de22779df2419d6408e3eccb894e0f342c4a49a4f6f9aa386c12abc4",
+      "size": {
+        "width": 512,
+        "height": 438
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E7%9F%AE%E8%84%9A%E7%8C%AA.png",
+        "group": "pighub-online",
+        "sha256": "5c6314b58d502860d343f1819ce067271afa1abad3d080da090f1ef05b16700d"
+      },
+      "cut": {
+        "trim": [
+          0.042,
+          0.1123,
+          0.9277,
+          0.7935
+        ],
+        "white": 236
+      },
+      "style": {
+        "verdict": "match",
+        "palette": 0.995,
+        "flatness": 0.987,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "patch": {
+        "holes": 38,
+        "filled": 4292
       }
     }
   ]

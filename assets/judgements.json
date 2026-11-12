@@ -148,6 +148,24 @@
       "excludedReason": "animated_webp_needs_per_frame_alpha",
       "category": "behavior",
       "categoryReason": "被网兜捕捉 + 「哼唧」：捕捉行为的情境，不是一种猪。"
+    },
+    {
+      "id": "pighub-1018",
+      "kind": "live",
+      "vector": false,
+      "cut": {
+        "trim": [
+          0.042,
+          0.1123,
+          0.9277,
+          0.7935
+        ],
+        "white": 236,
+        "vector": false
+      },
+      "note": "矮脚猪：干净的猪形象图。实测全图只有 1 个非白连通块（猪身 2,164,020px），无文字/水印/边框可删，erase 为空；white=236（体色中位 min 通道 172，距阈值 64 余量）。",
+      "category": "species",
+      "categoryReason": "矮脚猪是一种猪的品种/造型，无场景无动作。"
     }
   ],
   "categoryNote": "只收「猪的种类」（species）：角色/品种/风格本身。带场景或动作的行为梗（behavior）一律不收——它们描述的是猪在做某件事，不是一种猪。"

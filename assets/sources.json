@@ -1,5 +1,5 @@
 {
-  "note": "候选池：从 PigHub 公开接口的 1,361 只里挑出来、准备逐图判定的一批。sources.json 是『候选』，assets/manifest.json 是『冻结版』；只有 manifest 里的猪才会被抽到。 GIF 素材靠 magic 判定，构建期不做去白与描摹，原样随包分发（否则动画会被冻成一张静态图）。",
+  "note": "候选池。新增条目须与 judgements.json 一一对应；最终进包与否由 judgements 的 category 与构建时的风格闸门决定。",
   "candidates": [
     {
       "id": "pig-1354",
@@ -55,6 +55,13 @@
       "title": "被捕捉的小🐖",
       "filename": "被捕捉的小🐖.gif",
       "url": "https://pighub.top/images/%E8%A2%AB%E6%8D%95%E6%8D%89%E7%9A%84%E5%B0%8F%F0%9F%90%96.gif",
+      "source": "pighub-online"
+    },
+    {
+      "id": "pighub-1018",
+      "title": "矮脚猪",
+      "filename": "矮脚猪.png",
+      "url": "https://pighub.top/images/%E7%9F%AE%E8%84%9A%E7%8C%AA.png",
       "source": "pighub-online"
     }
   ]
