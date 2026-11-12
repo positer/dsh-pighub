@@ -1,6 +1,6 @@
 {
   "assetVersion": "2026.11.12",
-  "frozenAt": "2026-11-12T11:56:46.360Z",
+  "frozenAt": "2026-11-12T12:00:45.733Z",
   "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
   "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
   "rejected": [],
@@ -31,8 +31,8 @@
     }
   ],
   "counts": {
-    "total": 7,
-    "live": 6,
+    "total": 8,
+    "live": 7,
     "dead": 1,
     "vector": 1
   },
@@ -355,6 +355,53 @@
         "threshold": 40,
         "all": false,
         "removed": 82333
+      }
+    },
+    {
+      "id": "pighub-66",
+      "title": "小眼猪",
+      "kind": "live",
+      "note": "黑底素材，用 background 色键（dark/32）去背景；原方案 621 个 erase 框已被色键取代。",
+      "vector": false,
+      "file": "assets/img/pighub-66.png",
+      "bytes": 176082,
+      "sha256": "5b51c7dee63929420e956c35703cf13485526dc401c58aa174a3c6fa342760f8",
+      "size": {
+        "width": 512,
+        "height": 451
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E5%B0%8F%E7%9C%BC%E7%8C%AA.jpg",
+        "group": "pighub-online",
+        "sha256": "13599e03b7ec29246bf42bbb8abb626ce81ba85868bd6113027ca3c0824ff1a9"
+      },
+      "cut": {
+        "trim": [
+          0.2080078125,
+          0.1203125,
+          0.5888671875,
+          0.8296875
+        ],
+        "white": 236
+      },
+      "style": {
+        "verdict": "match",
+        "palette": 0.981,
+        "flatness": 0.951,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "patch": {
+        "holes": 0,
+        "filled": 0,
+        "skipped": "inpaint_disabled"
+      },
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": true
       }
     }
   ]
