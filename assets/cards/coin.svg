@@ -1,0 +1,19 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'>
+  <defs>
+    <radialGradient id='g' cx='38%' cy='32%' r='75%'>
+      <stop offset='0%' stop-color='#ffe9a8'/><stop offset='55%' stop-color='#f5c443'/><stop offset='100%' stop-color='#d99b1f'/>
+    </radialGradient>
+  </defs>
+  <circle cx='100' cy='100' r='92' fill='url(#g)' stroke='#8a5a12' stroke-width='6'/>
+  <circle cx='100' cy='100' r='78' fill='none' stroke='#a9711a' stroke-width='3' opacity='.55'/>
+  <!-- 猪脸 -->
+  <ellipse cx='100' cy='104' rx='52' ry='46' fill='#f7cdb4' stroke='#8a5a12' stroke-width='4'/>
+  <path d='M56 70 q10 -22 26 -10' fill='none' stroke='#c0285c' stroke-width='7' stroke-linecap='round'/>
+  <path d='M144 70 q-10 -22 -26 -10' fill='none' stroke='#c0285c' stroke-width='7' stroke-linecap='round'/>
+  <circle cx='82' cy='96' r='7' fill='#2b1a10'/>
+  <circle cx='118' cy='96' r='7' fill='#2b1a10'/>
+  <ellipse cx='100' cy='122' rx='24' ry='18' fill='#f09aa0' stroke='#b8575f' stroke-width='2'/>
+  <ellipse cx='91' cy='121' rx='5' ry='7' fill='#b8575f'/>
+  <ellipse cx='109' cy='121' rx='5' ry='7' fill='#b8575f'/>
+  <text x='100' y='176' text-anchor='middle' font-family='sans-serif' font-size='20' font-weight='700' fill='#7a4a0e'>PIG COIN</text>
+</svg>

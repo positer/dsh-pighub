@@ -1,0 +1,1657 @@
+{
+  "summary": {
+    "generatedAt": "2026-11-12T12:45:54.418Z",
+    "source": "https://pighub.top/api/images?sort=2",
+    "requested": 50,
+    "produced": 50,
+    "character": 49,
+    "nameRemoved": 48,
+    "flagged": 0,
+    "animated": 1,
+    "skipped": 0,
+    "special": 1,
+    "vision": {
+      "checked": 25,
+      "pass": 14,
+      "fail": 11,
+      "pending": 26
+    }
+  },
+  "cards": [
+    {
+      "id": "coin-pig",
+      "title": "猪币",
+      "kind": "static",
+      "special": true,
+      "file": "assets/cards/img/coin-pig.png",
+      "bytes": 31667,
+      "size": [
+        256,
+        256
+      ],
+      "category": "character",
+      "categoryBasis": "自绘特殊角色卡：金币造型的猪脸，代表「猪币」",
+      "nameRemoved": "verified",
+      "flags": [],
+      "vision": "pass"
+    },
+    {
+      "id": "pighub-521",
+      "title": "巨大猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-521.png",
+      "bytes": 13201,
+      "size": [
+        256,
+        144
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.928,
+        "flatness": 0.996,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "dark",
+        "threshold": 40,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "d3aa56546d7bf91f5962468c7f5e84b50439ae79ba48ffe32e1468841312a6a8",
+      "vision": "fail",
+      "visionReason": "源图把猪裁在画布边，成图是直角切边"
+    },
+    {
+      "id": "pighub-366",
+      "title": "圆猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-366.png",
+      "bytes": 27617,
+      "size": [
+        256,
+        252
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.999,
+        "flatness": 0.987,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "530d3dfb5a3e3cceac8efa8b27a55ec47801e4a4a52f2e557628812f64859bad",
+      "vision": "pass"
+    },
+    {
+      "id": "pighub-1018",
+      "title": "矮脚猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1018.png",
+      "bytes": 48015,
+      "size": [
+        256,
+        219
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.993,
+        "flatness": 0.987,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "8bb30982a29efbe0a74d1d00a4b8c2367d15ceeff26559fcc81375a56b8fb760",
+      "vision": "pass"
+    },
+    {
+      "id": "pighub-1131",
+      "title": "像素猪",
+      "kind": "animated",
+      "file": "assets/cards/img/pighub-1131.gif",
+      "bytes": 27078,
+      "category": "character",
+      "categoryBasis": "标题为角色名且为动图角色形象",
+      "nameRemoved": "passthrough",
+      "flags": []
+    },
+    {
+      "id": "pighub-66",
+      "title": "小眼猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-66.png",
+      "bytes": 51369,
+      "size": [
+        256,
+        226
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.981,
+        "flatness": 0.95,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "dark",
+        "threshold": 40,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "dddb3c85f13da3b1fec834ef41b31a07081da9674afb8dd5ddb536539d275747",
+      "vision": "pass"
+    },
+    {
+      "id": "pighub-410",
+      "title": "不许+1猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-410.png",
+      "bytes": 58649,
+      "size": [
+        256,
+        229
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.982,
+        "flatness": 0.992,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "a38bb0411ca6710873456cde83f85369528597aacdec3020be84ce1f8c329b21",
+      "vision": "fail",
+      "visionReason": "源图把猪裁在画布边，成图是直角切边"
+    },
+    {
+      "id": "pighub-1189",
+      "title": "恶语相向 猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1189.png",
+      "bytes": 45378,
+      "size": [
+        245,
+        256
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.836,
+        "flatness": 0.948,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "dark",
+        "threshold": 40,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "73b2fe6f5b2de026a9b80d8fc7c9755c307a143bbded78cbe94ccfc368f708b8",
+      "vision": "fail",
+      "visionReason": "**图上仍有角色台词文字**（顶部整句），名字没去净"
+    },
+    {
+      "id": "pighub-780",
+      "title": "抽象猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-780.png",
+      "bytes": 42221,
+      "size": [
+        256,
+        222
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.989,
+        "flatness": 0.983,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "c24dfbc8f9f0b2916899bc6e27519bfd6770e38ad67ddd0a90d2e85e4f66f09a",
+      "vision": "pass"
+    },
+    {
+      "id": "pighub-1220",
+      "title": "流鼻涕猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1220.png",
+      "bytes": 59813,
+      "size": [
+        227,
+        256
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.982,
+        "flatness": 0.987,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "01093fe3f02afe85a055746381ef9e87398e5f4e942c91563a61118cfb4373ea",
+      "vision": "pass"
+    },
+    {
+      "id": "pighub-1205",
+      "title": "流鼻涕猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1205.png",
+      "bytes": 54710,
+      "size": [
+        247,
+        256
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.98,
+        "flatness": 0.99,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "97f04910822449df22f87b24213aad53c4cb877d68dca877959ee6c835e6a7d4",
+      "vision": "fail",
+      "visionReason": "源图把猪裁在画布边，成图是直角切边"
+    },
+    {
+      "id": "pighub-60",
+      "title": "安卓猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-60.png",
+      "bytes": 7722,
+      "size": [
+        210,
+        256
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.993,
+        "flatness": 0.975,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "4bbe92d79273b4edae7b238a8e11518528b018b1cd6ed917cb0f99c0d5a591c6",
+      "vision": "fail",
+      "visionReason": "**不是猪**：选中了圆角矩形底卡，没有脸"
+    },
+    {
+      "id": "pighub-1099",
+      "title": "俯视猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1099.png",
+      "bytes": 27051,
+      "size": [
+        256,
+        256
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.8,
+        "flatness": 0.982,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "dark",
+        "threshold": 40,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "424929e0de3d19418ed5bd22583f1f0167f893890bcdaae4cb954152a7fc4464",
+      "vision": "fail",
+      "visionReason": "源图把猪裁在画布边，成图是直角切边"
+    },
+    {
+      "id": "pighub-974",
+      "title": "斗鸡眼猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-974.png",
+      "bytes": 54042,
+      "size": [
+        256,
+        245
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.932,
+        "flatness": 0.982,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "2d86865a049d80786f2615bafc8a62e494cc719b759a40f822f2d408dd86726b",
+      "vision": "fail",
+      "visionReason": "源图把猪裁在画布边，成图是直角切边"
+    },
+    {
+      "id": "pighub-1305",
+      "title": "欺负一只小猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1305.png",
+      "bytes": 37250,
+      "size": [
+        256,
+        227
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.982,
+        "flatness": 0.983,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "400dd91a5246f204e4c83065d557363dd5e2ef4a701618f88526623e1bed8fbf",
+      "vision": "pass"
+    },
+    {
+      "id": "pighub-1236",
+      "title": "猪伤心哼！猪",
+      "kind": "failed",
+      "category": "unknown",
+      "categoryBasis": "下载或解码失败",
+      "nameRemoved": "n/a",
+      "flags": [
+        "error"
+      ],
+      "error": "Input Buffer is empty"
+    },
+    {
+      "id": "pighub-909",
+      "title": "明日方猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-909.png",
+      "bytes": 28564,
+      "size": [
+        255,
+        256
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.988,
+        "flatness": 0.969,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "7c3510558e30715478538a5b21181068a8eb8e149e7f5a398f896bfe52a0d665",
+      "vision": "fail",
+      "visionReason": "**底卡没去掉**：方块/三角/圆形色块被当成猪身"
+    },
+    {
+      "id": "pighub-996",
+      "title": "明日放猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-996.png",
+      "bytes": 31377,
+      "size": [
+        256,
+        256
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.993,
+        "flatness": 0.961,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "fb8a89535ab4b2d02e18fc7a4d3f9a04e18a6e897e6aa0fdf6953f3d1c6fbc6e",
+      "vision": "pass"
+    },
+    {
+      "id": "pighub-373",
+      "title": "三角猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-373.png",
+      "bytes": 40161,
+      "size": [
+        255,
+        256
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.977,
+        "flatness": 0.978,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "02580b548967d9711a5f246a37b30f45f9500f902c0411c10fc08ab403b6d3ab",
+      "vision": "fail",
+      "visionReason": "**底卡没去掉**：方块/三角/圆形色块被当成猪身"
+    },
+    {
+      "id": "pighub-408",
+      "title": "+1猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-408.png",
+      "bytes": 41324,
+      "size": [
+        256,
+        201
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.948,
+        "flatness": 0.985,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "41d4d0a35132e6a27c4c593fa6a18fc76826e244f7cf561b635e00dfc4cb0e70",
+      "vision": "pass"
+    },
+    {
+      "id": "pighub-901",
+      "title": "昨夜圆猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-901.png",
+      "bytes": 41309,
+      "size": [
+        256,
+        253
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.985,
+        "flatness": 0.97,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "04439255219dc81b2bc062f3a7f0b22813cb28fed8b1220e1073da12b586162f",
+      "vision": "fail",
+      "visionReason": "**底卡没去掉**：方块/三角/圆形色块被当成猪身"
+    },
+    {
+      "id": "pighub-1019",
+      "title": "上流猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1019.png",
+      "bytes": 55401,
+      "size": [
+        256,
+        221
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.952,
+        "flatness": 0.98,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "3abcd3bddc0f6abafb894f785049e2148fa00c12decc84cafe871e7130df7b8d",
+      "vision": "fail",
+      "visionReason": "**底卡没去掉**：方块/三角/圆形色块被当成猪身"
+    },
+    {
+      "id": "pighub-598",
+      "title": "白羊猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-598.png",
+      "bytes": 50804,
+      "size": [
+        256,
+        204
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.978,
+        "flatness": 0.971,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "d061ac1c76335e4d7458b890e850f55a44edc0e081fbeabdda67ee3d58b45bbf",
+      "vision": "pass"
+    },
+    {
+      "id": "pighub-369",
+      "title": "苹果猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-369.png",
+      "bytes": 39117,
+      "size": [
+        256,
+        243
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.99,
+        "flatness": 0.958,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "d497931b8e98a5873bf643a6f874d9566598a3ba7e7996e9f7f369d974e21986",
+      "vision": "pass"
+    },
+    {
+      "id": "pighub-249",
+      "title": "对牛弹猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-249.png",
+      "bytes": 33271,
+      "size": [
+        256,
+        228
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.977,
+        "flatness": 0.968,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "0d6414cb32b050304b6aa5bd3f84a4c782b5b3f4babbc398c80a9202fc9407f2",
+      "vision": "pass"
+    },
+    {
+      "id": "pighub-604",
+      "title": "双子猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-604.png",
+      "bytes": 40657,
+      "size": [
+        256,
+        157
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.97,
+        "flatness": 0.975,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "8f78e3a06b27bb848e93cba98bda97846504edff62e506c139d7a2dc57dd7944",
+      "vision": "pass"
+    },
+    {
+      "id": "pighub-1199",
+      "title": "简单风格猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1199.png",
+      "bytes": 41686,
+      "size": [
+        256,
+        228
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.982,
+        "flatness": 0.963,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "fced2b7157d1d4c74e1f3e8ac72374dabc52d054dfbf3ab32d8d6bb273597cdb",
+      "vision": "pass"
+    },
+    {
+      "id": "pighub-1114",
+      "title": "你是小猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1114.png",
+      "bytes": 46685,
+      "size": [
+        256,
+        229
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.965,
+        "flatness": 0.977,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "9f775920ff532e11c2973f1fd1fd6578949a78342ecf393cd7c1c6596781d37e",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-1162",
+      "title": "墨镜猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1162.png",
+      "bytes": 43791,
+      "size": [
+        256,
+        227
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.977,
+        "flatness": 0.965,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "dark",
+        "threshold": 40,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "c1f346c78abe022df7df2c794b6541959b40b78446490bc5ae0d23f61df013da",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-664",
+      "title": "猪叠猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-664.png",
+      "bytes": 47278,
+      "size": [
+        216,
+        256
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.977,
+        "flatness": 0.966,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "e5ac45136d9634708e096355697e0463203757104034d7233894687bc8805493",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-1301",
+      "title": "织猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1301.png",
+      "bytes": 42695,
+      "size": [
+        208,
+        256
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.768,
+        "flatness": 0.982,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "dark",
+        "threshold": 40,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "55b2f1f95ebde1604db1e93c55771611b55b73332ac9b8479053dc70b07f7bfd",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-658",
+      "title": "萝卜幽灵猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-658.png",
+      "bytes": 42205,
+      "size": [
+        256,
+        246
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.943,
+        "flatness": 0.992,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "27edfbeedb6276c404c2df1dc5e8d17eabff7ebce452d8bc1fa8b0e3f8408d62",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-1182",
+      "title": "天气指令猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1182.png",
+      "bytes": 49077,
+      "size": [
+        256,
+        230
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.969,
+        "flatness": 0.961,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "4ef948e41dade0c24ab9ae4c7103b7b146ca3252564d3a87949d4aee813729e9",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-1320",
+      "title": "续订猪猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1320.png",
+      "bytes": 43050,
+      "size": [
+        256,
+        227
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.955,
+        "flatness": 0.976,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "c01036451053e6a155e4bb128a5f96a5def80d2e124bd96441ad787f17850cd8",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-118",
+      "title": "小红猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-118.png",
+      "bytes": 28020,
+      "size": [
+        256,
+        255
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.721,
+        "flatness": 0.967,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "38eb2f2410b67be97f80c814a3a9bf4f42c5fff7bd44d97ef36547deedcea9f0",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-1063",
+      "title": "好猪好猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1063.png",
+      "bytes": 50960,
+      "size": [
+        256,
+        220
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.966,
+        "flatness": 0.961,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "095d69479d7eea91470a2bdc9f39932db0ffcc9a1c12bd145a72eaedd5b304fb",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-442",
+      "title": "无辜猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-442.png",
+      "bytes": 18240,
+      "size": [
+        231,
+        231
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.984,
+        "flatness": 0.937,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "a8f2e8f08e9c7c993686bbc769f4d0c647ee57258013dc1238abcabf899fd58c",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-65",
+      "title": "幽灵猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-65.png",
+      "bytes": 43647,
+      "size": [
+        181,
+        256
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.966,
+        "flatness": 0.963,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "eb6f4ed2838f12ea221b74af5440710fe06173f0031ff11db94d24ca6caa5e1f",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-1256",
+      "title": "红包猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1256.png",
+      "bytes": 60924,
+      "size": [
+        256,
+        234
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.943,
+        "flatness": 0.984,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "cb95b4423f74df5e7da0ceab75a6ffdd1929f1918d168ac7e14da2458372d7b1",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-1286",
+      "title": "挡路猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1286.png",
+      "bytes": 40183,
+      "size": [
+        251,
+        256
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.951,
+        "flatness": 0.974,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "7cdeefd69f9ba748f7e51276f1d516b4d2a26f0a120499f1ba6ea7400c81ef0d",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-450",
+      "title": "鉴定为笨猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-450.png",
+      "bytes": 71366,
+      "size": [
+        256,
+        218
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.885,
+        "flatness": 0.973,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "dark",
+        "threshold": 40,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "3342e2f262a39af96872247b0f61212c46da46375413ef7c438f37879f695ba2",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-461",
+      "title": "猪外有猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-461.png",
+      "bytes": 36423,
+      "size": [
+        152,
+        256
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.955,
+        "flatness": 0.968,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "71e24fefa3b4439fe06f286ba94f341b3118d3514898e03976297aa1abda30e3",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-719",
+      "title": "篝火小猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-719.png",
+      "bytes": 45855,
+      "size": [
+        256,
+        194
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.892,
+        "flatness": 0.95,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "dark",
+        "threshold": 40,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "bdd1dc71cbc4f767e2cd066ab822fad80a335ae429fbebe7cdaecff63ad23945",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-96",
+      "title": "双面幽灵猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-96.png",
+      "bytes": 59704,
+      "size": [
+        239,
+        256
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.96,
+        "flatness": 0.962,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "14a4697a21081b74a4dce00ef36c80aaefcce7f29466437fa767d6d50754d580",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-744",
+      "title": "超级赛亚猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-744.png",
+      "bytes": 46777,
+      "size": [
+        256,
+        240
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.97,
+        "flatness": 0.95,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "70fbd89a842d52e755ffac3bd97c981275f27fafd09851b60eec6098196f5974",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-1185",
+      "title": "b站猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1185.png",
+      "bytes": 66722,
+      "size": [
+        256,
+        255
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.88,
+        "flatness": 0.959,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "bd36f4d7f30a650fba42224bff19f0ac4720b8a1f345e95304564c84c70ba0e5",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-949",
+      "title": "二维猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-949.png",
+      "bytes": 15578,
+      "size": [
+        256,
+        43
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.959,
+        "flatness": 0.955,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "a4acbffcbfb03150b259085a94b5bd33ee9245415ec60e43f5542758a4e23081",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-1260",
+      "title": "黑客猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1260.png",
+      "bytes": 47537,
+      "size": [
+        256,
+        188
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.954,
+        "flatness": 0.95,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "bcb46d4e618afca50f3f831d5dda6e9e942e810d44b08e0fd1a90d6de4ff6a63",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-737",
+      "title": "恐怖猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-737.png",
+      "bytes": 50763,
+      "size": [
+        256,
+        228
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.869,
+        "flatness": 0.955,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "dark",
+        "threshold": 40,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "1be772fce60876b029f3303a3c719855101e6a3b3cf33290dbad0e6889c72fbf",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-935",
+      "title": "鸿蒙猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-935.png",
+      "bytes": 47699,
+      "size": [
+        256,
+        218
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.603,
+        "flatness": 0.983,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "10fb555eb75a4d6009bb6c62ef223c8a7f6bf2e2cb47b6b6420834d59e9342f5",
+      "vision": "pending"
+    },
+    {
+      "id": "pighub-1191",
+      "title": "猪咪猪咪猪",
+      "kind": "static",
+      "file": "assets/cards/img/pighub-1191.png",
+      "bytes": 42989,
+      "size": [
+        184,
+        256
+      ],
+      "style": {
+        "verdict": "match",
+        "palette": 0.945,
+        "flatness": 0.961,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "blobs": 1,
+      "darkSpecks": 0,
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": false
+      },
+      "category": "character",
+      "categoryBasis": "标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）",
+      "nameRemoved": "verified",
+      "flags": [],
+      "sha256": "3ea237a599de36fc349278584d9a81b25921cae48f412a7012e416d9e235e306",
+      "vision": "pending"
+    }
+  ]
+}
