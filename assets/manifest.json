@@ -1,6 +1,6 @@
 {
   "assetVersion": "2026.11.12",
-  "frozenAt": "2026-11-12T13:13:56.221Z",
+  "frozenAt": "2026-11-12T13:17:30.580Z",
   "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
   "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
   "rejected": [],
@@ -31,8 +31,8 @@
     }
   ],
   "counts": {
-    "total": 13,
-    "live": 12,
+    "total": 14,
+    "live": 13,
     "dead": 1,
     "vector": 1
   },
@@ -560,6 +560,54 @@
         "threshold": 40,
         "all": false,
         "removed": 82333
+      }
+    },
+    {
+      "id": "pighub-65",
+      "title": "幽灵猪",
+      "kind": "live",
+      "note": "**双色背景**：白 52.62%（中间光柱）+ 紫 14.22%（左右角）。收紧 trim 后紫只剩左上 479px 三角，用 1 个 erase 框删；白用色键（threshold 220，猪身最亮 min=214，T=220 误删 0px）all:true。装饰（光环、底部斑点）被 trim 挤出画布。成品不透明连通块 = 1。",
+      "vector": false,
+      "file": "assets/img/pighub-65.png",
+      "bytes": 96407,
+      "sha256": "c352dbd907c6905eb1e7a968f0f366f758d90b1cc3db5bc6a75b6b9c0ef21c01",
+      "size": {
+        "width": 349,
+        "height": 497
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E5%B9%BD%E7%81%B5%E7%8C%AA.jpg",
+        "group": "pighub-online",
+        "sha256": "e126d4babeaff87c1f1361dcd35bf84003c36470bdf3dfa4382685dc659fd5d8"
+      },
+      "cut": {
+        "trim": [
+          0.1681159420289855,
+          0.18604651162790697,
+          0.49420289855072463,
+          0.6317829457364341
+        ],
+        "white": 220
+      },
+      "style": {
+        "verdict": "match",
+        "palette": 0.982,
+        "flatness": 0.964,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "patch": {
+        "holes": 0,
+        "filled": 0,
+        "skipped": "inpaint_disabled"
+      },
+      "background": {
+        "key": "light",
+        "threshold": 220,
+        "all": true,
+        "removed": 22000
       }
     },
     {
