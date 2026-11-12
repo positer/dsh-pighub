@@ -16,6 +16,7 @@ test/demo/
 assets/contact-sheet.*
 test/_dbg*
 test/_*.mjs
+scripts/_*.mjs
 
 # 依赖与构建产物
 node_modules/

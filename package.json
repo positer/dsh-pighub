@@ -1,6 +1,6 @@
 {
   "name": "dsh-pighub",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "猪猪库 PigHub 的 DeepSeek Harness 插件：侧边栏猪圈面板、每日一只猪猪、重复获得升星、可拖出的置顶桌宠，数据落在 ~/.PigHub。不内嵌任何上游图片。",
   "type": "module",
   "main": "./lib/index.js",

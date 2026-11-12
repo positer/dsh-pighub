@@ -1,22 +1,9 @@
 {
   "assetVersion": "2026.11.12",
-  "frozenAt": "2026-11-12T10:43:05.355Z",
+  "frozenAt": "2026-11-12T10:48:20.084Z",
   "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
   "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
   "rejected": [
-    {
-      "id": "pig-1358",
-      "title": "萝卜猪",
-      "style": {
-        "verdict": "reject",
-        "palette": 0.275,
-        "flatness": 0.939,
-        "thresholds": {
-          "paletteMin": 0.55,
-          "flatnessMin": 0.35
-        }
-      }
-    },
     {
       "id": "pig-1300",
       "title": "被捕捉的小🐖",
@@ -32,9 +19,9 @@
     }
   ],
   "counts": {
-    "total": 6,
+    "total": 7,
     "live": 3,
-    "dead": 3,
+    "dead": 4,
     "vector": 1
   },
   "pigs": [
@@ -181,6 +168,43 @@
         "verdict": "match",
         "palette": 0.584,
         "flatness": 0.903,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      }
+    },
+    {
+      "id": "pig-1358",
+      "title": "萝卜猪",
+      "kind": "dead",
+      "note": "夜景海报：卡片底下的白去掉，裁到猪身；海报文字随内容一起被裁掉。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
+      "vector": false,
+      "file": "assets/img/pig-1358.png",
+      "bytes": 61290,
+      "sha256": "880f395387ae01923789853e88cbf22ab0a8245e8437dbd53a5f9c38b2909da2",
+      "size": {
+        "width": 264,
+        "height": 376
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E8%90%9D%E5%8D%9C%E7%8C%AA.jpg",
+        "group": "pighub-online",
+        "sha256": "40f31fac7d709a5e7503dadd64438e6b5e13f81ea1bbae341cb14d4280229010"
+      },
+      "cut": {
+        "trim": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "white": 236
+      },
+      "style": {
+        "verdict": "match",
+        "palette": 0.96,
+        "flatness": 0.929,
         "thresholds": {
           "paletteMin": 0.55,
           "flatnessMin": 0.35
