@@ -27,3 +27,6 @@ lib/types/
 *.log
 .DS_Store
 Thumbs.db
+
+# 全库精修的中间产物（体积大，尚未决定是否随包）
+assets/library/

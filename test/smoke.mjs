@@ -92,7 +92,7 @@ check('冻结素材随包分发且自洽（贴图存在、指纹对得上、来�
 check('可信来源登记表：每条都有许可结论与证据', () => {
   const libs = JSON.parse(readFileSync(new URL('../assets/libraries.json', here), 'utf8'));
   assert.ok(libs.verdictPolicy && libs.verdictPolicy.bundle, '缺少判定口径');
-  const known = ['bundle', 'reference-only', 'inherited-risk'];
+  const known = ['bundle', 'reference-only', 'inherited-risk', 'trusted'];
   for (const item of libs.libraries) {
     assert.ok(item.id && item.kind, '缺少 id/kind');
     assert.ok(known.indexOf(item.verdict) >= 0, item.id + ' 判定不在口径内：' + item.verdict);
@@ -103,6 +103,7 @@ check('可信来源登记表：每条都有许可结论与证据', () => {
   // 打包的素材只能来自 bundle 或 inherited-risk，绝不能来自 reference-only
   const manifest = JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8'));
   const allowed = new Set(libs.libraries.filter((item) => item.verdict !== 'reference-only').map((item) => item.id));
+  // trusted / bundle / inherited-risk 都允许进包；reference-only 一份都不许
   for (const pig of manifest.pigs) {
     assert.ok(allowed.has(pig.source.group), pig.id + ' 的来源 ' + pig.source.group + ' 未获准打包');
   }

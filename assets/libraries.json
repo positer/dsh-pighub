@@ -4,7 +4,8 @@
   "verdictPolicy": {
     "bundle": "SPDX 许可明确允许再分发（MIT 等）且仓库内确有图片 → 可进候选池、可打包",
     "reference-only": "无 LICENSE / NOASSERTION / 自定义禁止再托管 → 只登记出处，不打包",
-    "inherited-risk": "已被用户明确接受、但许可缺失的来源 → 记录风险，不当作「可信」"
+    "inherited-risk": "已被用户明确接受、但许可缺失的来源 → 记录风险，不当作「可信」",
+    "trusted": "用户明确判定可信的来源 → 可处理全库、可打包；判定与决定人写在条目里"
   },
   "libraries": [
     {
@@ -13,10 +14,11 @@
       "kind": "图片库（线上）",
       "url": "https://pighub.top/api/images?sort=2",
       "license": null,
-      "licenseSource": "站点无任何数据许可声明",
+      "licenseSource": "站点无任何数据许可声明；**用户于 2026-11-12 明确判定「PigHub 的猪猪表情包库可信」，据此按 trusted 处理全库**",
       "images": 1361,
-      "verdict": "inherited-risk",
-      "note": "当前包内 8 张素材的来源；用户已知悉并接受署名+不再分发条款缺失的风险。"
+      "verdict": "trusted",
+      "note": "用户明确判定可信并授权处理全库；仍保留署名与指纹，ATTRIBUTION 记录该决定。",
+      "decidedBy": "用户（2026-11-12）"
     },
     {
       "id": "pighub-db",
@@ -107,5 +109,5 @@
       "note": "只有实现，无图片；且无 LICENSE。"
     }
   ],
-  "conclusion": "按「能再分发」这一条严格筛，**没有任何一个图片库通过**：三个真图库（PigHub/PigHub-DB/PigPicPot）全部没有数据许可；唯一写清数据条款的 rollpig-resources 明文禁止再托管。MIT 的仓库里只有「猪名/描述」这类文字资料，没有猪图。所以本包的图片仍然全部来自 pighub.top 并标记为 inherited-risk —— 这不是「可信开源」，是用户已知悉风险的取舍。"
+  "conclusion": "按「能再分发」这一条严格筛，**没有任何一个图片库通过**：三个真图库（PigHub/PigHub-DB/PigPicPot）全部没有数据许可；唯一写清数据条款的 rollpig-resources 明文禁止再托管。MIT 的仓库里只有「猪名/描述」这类文字资料，没有猪图。所以本包的图片仍然全部来自 pighub.top 并标记为 inherited-risk —— 这不是「可信开源」，是用户已知悉风险的取舍。 —— 2026-11-12 补充：用户明确判定 PigHub 猪猪表情包库可信，因此该库从 inherited-risk 升为 trusted，按全库精修处理；其余 reference-only 的结论不变。"
 }
