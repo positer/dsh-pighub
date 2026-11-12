@@ -17,9 +17,11 @@
       "licenseSource": "站点无任何数据许可声明；**用户于 2026-11-12 明确判定「PigHub 的猪猪表情包库可信」，据此按 trusted 处理全库**",
       "images": 1361,
       "verdict": "trusted",
-      "note": "用户明确判定可信并授权处理全库；仍保留署名与指纹，ATTRIBUTION 记录该决定。",
+      "note": "用户 2026-11-12 决定：PigHub 是唯一可信源。全部素材只从这里采集。",
       "decidedBy": "用户（2026-11-12）",
-      "licenseExcerpt": "（站点无 LICENSE 页、无数据条款；用户 2026-11-12 明确判定该表情包库可信）"
+      "licenseExcerpt": "（站点无 LICENSE 页、无数据条款；用户 2026-11-12 明确判定该表情包库可信）",
+      "role": "唯一可信源",
+      "collected": true
     },
     {
       "id": "pighub-db",
@@ -30,8 +32,10 @@
       "licenseSource": "GitHub API license.spdx_id = null",
       "images": 1303,
       "verdict": "reference-only",
-      "note": "无 LICENSE，默认保留全部权利；不打包。",
-      "licenseExcerpt": "（仓库根目录没有 LICENSE 文件；GitHub API license = null）"
+      "note": "无 LICENSE，默认保留全部权利；不打包。 **不采集**：唯一可信源是 PigHub。",
+      "licenseExcerpt": "（仓库根目录没有 LICENSE 文件；GitHub API license = null）",
+      "role": "参考（不采集）",
+      "collected": false
     },
     {
       "id": "pigpicpot",
@@ -42,8 +46,10 @@
       "licenseSource": "GitHub API license.spdx_id = null",
       "images": 327,
       "verdict": "reference-only",
-      "note": "无 LICENSE；与 PigHub 不同源，不打包。",
-      "licenseExcerpt": "（仓库根目录没有 LICENSE 文件；GitHub API license = null）"
+      "note": "无 LICENSE；与 PigHub 不同源，不打包。 **不采集**：唯一可信源是 PigHub。",
+      "licenseExcerpt": "（仓库根目录没有 LICENSE 文件；GitHub API license = null）",
+      "role": "参考（不采集）",
+      "collected": false
     },
     {
       "id": "rollpig-resources",
@@ -54,8 +60,10 @@
       "licenseSource": "GitHub API license.spdx_id = NOASSERTION（自定义 RollPig Resources License v1.0）",
       "images": 267,
       "verdict": "reference-only",
-      "note": "许可明确禁止未经许可的系统性镜像/再托管 —— 这条直接排除打包。",
-      "licenseExcerpt": "本仓库（rollpig-resources）包含多个类别的内容，分别适用不同的授权条款， 并非单一协议覆盖全部内容。请根据你要使用的具体内容查阅对应部分。 ================================================================================ 一"
+      "note": "许可明确禁止未经许可的系统性镜像/再托管 —— 这条直接排除打包。 **不采集**：唯一可信源是 PigHub。",
+      "licenseExcerpt": "本仓库（rollpig-resources）包含多个类别的内容，分别适用不同的授权条款， 并非单一协议覆盖全部内容。请根据你要使用的具体内容查阅对应部分。 ================================================================================ 一",
+      "role": "参考（不采集）",
+      "collected": false
     },
     {
       "id": "todaypig-snapshot",
@@ -66,8 +74,10 @@
       "licenseSource": "GitHub API license.spdx_id = null",
       "images": 1303,
       "verdict": "reference-only",
-      "note": "无 LICENSE；内容是 PigHub 快照，等同无许可。",
-      "licenseExcerpt": "（仓库根目录没有 LICENSE 文件；GitHub API license = null）"
+      "note": "无 LICENSE；内容是 PigHub 快照，等同无许可。 **不采集**：唯一可信源是 PigHub。",
+      "licenseExcerpt": "（仓库根目录没有 LICENSE 文件；GitHub API license = null）",
+      "role": "参考（不采集）",
+      "collected": false
     },
     {
       "id": "rollpig-upstream",
@@ -78,8 +88,10 @@
       "licenseSource": "GitHub API license.spdx_id = MIT",
       "images": 0,
       "verdict": "bundle",
-      "note": "MIT 覆盖仓库内容；但它是**资料库**（pig.json 名称/描述/解析），不含猪图，因此可用的只有文字元数据。",
-      "licenseExcerpt": "MIT License Copyright (c) 2025 Bear_lele Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentat"
+      "note": "MIT 覆盖仓库内容；但它是**资料库**（pig.json 名称/描述/解析），不含猪图，因此可用的只有文字元数据。 **不采集**：唯一可信源是 PigHub。",
+      "licenseExcerpt": "MIT License Copyright (c) 2025 Bear_lele Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentat",
+      "role": "参考（不采集）",
+      "collected": false
     },
     {
       "id": "rollpig-plus",
@@ -90,8 +102,10 @@
       "licenseSource": "GitHub API license.spdx_id = MIT",
       "images": 0,
       "verdict": "bundle",
-      "note": "同上，165 条资料。",
-      "licenseExcerpt": "MIT License Copyright (c) 2025 Bear_lele Copyright (c) 2025-2026 Felis Permission is hereby granted, free of charge, to any person obtaining a copy of this soft"
+      "note": "同上，165 条资料。 **不采集**：唯一可信源是 PigHub。",
+      "licenseExcerpt": "MIT License Copyright (c) 2025 Bear_lele Copyright (c) 2025-2026 Felis Permission is hereby granted, free of charge, to any person obtaining a copy of this soft",
+      "role": "参考（不采集）",
+      "collected": false
     },
     {
       "id": "pig-catcher",
@@ -102,8 +116,10 @@
       "licenseSource": "GitHub API license.spdx_id = MIT；但目录自带 user-provided-local-use 标注",
       "images": 0,
       "verdict": "reference-only",
-      "note": "代码 MIT，数据被作者标注为「用户本地使用」，与 MIT 冲突，按更严格者处理：不打包。",
-      "licenseExcerpt": "MIT License Copyright (c) 2026 buruqu Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation"
+      "note": "代码 MIT，数据被作者标注为「用户本地使用」，与 MIT 冲突，按更严格者处理：不打包。 **不采集**：唯一可信源是 PigHub。",
+      "licenseExcerpt": "MIT License Copyright (c) 2026 buruqu Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation",
+      "role": "参考（不采集）",
+      "collected": false
     },
     {
       "id": "pighub-mirror",
@@ -114,9 +130,12 @@
       "licenseSource": "GitHub API license.spdx_id = null",
       "images": 0,
       "verdict": "reference-only",
-      "note": "只有实现，无图片；且无 LICENSE。",
-      "licenseExcerpt": "（仓库根目录没有 LICENSE 文件；GitHub API license = null）"
+      "note": "只有实现，无图片；且无 LICENSE。 **不采集**：唯一可信源是 PigHub。",
+      "licenseExcerpt": "（仓库根目录没有 LICENSE 文件；GitHub API license = null）",
+      "role": "参考（不采集）",
+      "collected": false
     }
   ],
-  "conclusion": "按「能再分发」这一条严格筛，**没有任何一个图片库通过**：三个真图库（PigHub/PigHub-DB/PigPicPot）全部没有数据许可；唯一写清数据条款的 rollpig-resources 明文禁止再托管。MIT 的仓库里只有「猪名/描述」这类文字资料，没有猪图。所以本包的图片仍然全部来自 pighub.top 并标记为 inherited-risk —— 这不是「可信开源」，是用户已知悉风险的取舍。 —— 2026-11-12 补充：用户明确判定 PigHub 猪猪表情包库可信，因此该库从 inherited-risk 升为 trusted，按全库精修处理；其余 reference-only 的结论不变。"
+  "conclusion": "PigHub（pighub.top）是唯一可信源，全部素材只从该库采集并逐图精修；其余仓库仅登记事实（是什么、许可如何），一律不采集。",
+  "policy": "**PigHub（pighub.top）是唯一可信源**（用户 2026-11-12 决定）。其余仓库只做登记，说明它们是什么、许可如何，以及为什么**不采集**。"
 }

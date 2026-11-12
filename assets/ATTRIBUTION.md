@@ -13,7 +13,11 @@
 | 你已笨哭（pig-1360） | pighub | https://pighub.top/images/%E4%BD%A0%E5%B7%B2%E7%AC%A8%E5%93%AD_1.jpg | `425c8084e4caa13c…` |
 | 你知道吗（pig-1361） | pighub | https://pighub.top/images/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97.jpg | `c61c93ea5608c54f…` |
 
-## 可信来源登记（assets/libraries.json）
+## 唯一可信源（assets/libraries.json）
+
+**PigHub（pighub.top 猪猪表情包库）是唯一可信源**——用户 2026-11-12 的决定。全部素材只从该库采集；其余仓库只登记事实，**一律不采集**。
+
+下表保留其它仓库的许可实测，是为了说明「为什么不去用它们」，而不是候选：
 
 逐仓库查了 GitHub API 的 `license.spdx_id`（权威字段，不是 README 自述），并按「能不能把图打进包里再分发」判定：
 

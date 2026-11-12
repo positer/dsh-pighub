@@ -106,7 +106,7 @@ check('可信来源登记表：每条都有许可结论与证据', () => {
   const allowed = new Set(libs.libraries.filter((item) => item.verdict !== 'reference-only').map((item) => item.id));
   // trusted / bundle / inherited-risk 都允许进包；reference-only 一份都不许
   for (const pig of manifest.pigs) {
-    assert.ok(allowed.has(pig.source.group), pig.id + ' 的来源 ' + pig.source.group + ' 未获准打包');
+    assert.equal(pig.source.group, 'pighub-online', pig.id + ' 必须来自唯一可信源 PigHub，实际 ' + pig.source.group);
   }
 });
 

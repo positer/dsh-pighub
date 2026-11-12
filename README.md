@@ -96,6 +96,8 @@ npm run assets:build      # 重新生成包内贴图（需要源图；会把处�
 
 ## 素材来源与许可（重要）
 
+**唯一可信源：PigHub（pighub.top 猪猪表情包库）**。全部素材只从该库采集、逐图精修，其余仓库一律不采集（登记在 [assets/libraries.json](./assets/libraries.json)，只作为「为什么不用」的记录）。
+
 逐仓库核过 GitHub 的 `license.spdx_id` 后，结论是**没有一个可信的猪图开源库**：三个真图库（pighub.top / PigHub-DB / PigPicPot）都没有数据许可，rollpig-resources 明文禁止再托管，MIT 的仓库只有文字资料没有图。
 
 本包内的图因此按 `inherited-risk` 记录（用户已知悉），出处与指纹见 [assets/ATTRIBUTION.md](./assets/ATTRIBUTION.md)，机器可读的判定见 [assets/libraries.json](./assets/libraries.json)。
