@@ -3,6 +3,13 @@
 本项目遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)；每条记录只写「对使用者可见的变化」，
 内部重构不单列。README 只描述项目整体，**版本相关内容一律记在这里**。
 
+## [0.4.4] — 2026-11-12（未发布）
+
+### Added
+
+- **背景色键 `stripBackground()`**：素材不都是白底。实测「愤怒猪」是**纯黑底**（82,333 px，占 31.28%），而 `refineWhite`/`stripAllWhite` 的判据是 `min(r,g,b) ≥ 236`，对黑底**一个像素都不删**。新增 `work.background = { key: 'dark'|'light', threshold, all }`：从画布四边泛洪，删掉匹配判据的连通像素；`all: true` 则不看连通性。实测 `removed: 82333`，与逐像素预测**完全一致**。
+- **pighub-55 愤怒猪**：黑底素材，成品 512×454，牙齿/嘴/眉毛完好。若改用 `whiteAll` 会把 1,309 px 牙齿近白像素当白底删掉（实测与边框连通的近白像素为 0，所以 `whiteAll=false` 才安全）。
+
 ## [0.4.3] — 2026-11-12（未发布）
 
 ### Added

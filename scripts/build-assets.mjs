@@ -22,7 +22,7 @@ import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
-import { refineWhite, stripAllWhite, contentBounds, cropFrame, vectorise, TRACE_MAX_EDGE, restoreRects, eraseRects, addOutline, styleScore, fillHoles } from '../lib/imaging.js';
+import { stripBackground, refineWhite, stripAllWhite, contentBounds, cropFrame, vectorise, TRACE_MAX_EDGE, restoreRects, eraseRects, addOutline, styleScore, fillHoles } from '../lib/imaging.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const assetsDir = join(here, '..', 'assets');
@@ -148,7 +148,12 @@ for (const candidate of candidates) {
     rect[3] / trimRect[3],
   ];
   const before = { width: trimmed.width, height: trimmed.height, data: Uint8Array.from(trimmed.data) };
-  if (work && work.whiteAll) stripAllWhite(trimmed, (work.white || decision.cut.white) || 236);
+  // 背景色键：默认按白底处理；work.background 可切成黑底或「全删」。
+  const bg = work && work.background ? work.background : null;
+  let bgRemoved = 0;
+  if (bg) {
+    bgRemoved = stripBackground(trimmed, bg).removed;
+  } else if (work && work.whiteAll) stripAllWhite(trimmed, (work.white || decision.cut.white) || 236);
   else refineWhite(trimmed, (work && work.white) || decision.cut.white || 236);
   if (work) {
     if (Array.isArray(work.keep) && work.keep.length) restoreRects(trimmed, before, work.keep.map(toFrame));
@@ -221,6 +226,7 @@ for (const candidate of candidates) {
     cut: { trim: decision.cut.trim, white: decision.cut.white || 236 },
     style,
     patch: patched,
+    background: bg ? { key: bg.key || 'light', threshold: bg.threshold || 236, all: bg.all === true, removed: bgRemoved } : { key: 'light', threshold: (work && work.white) || decision.cut.white || 236, all: work && work.whiteAll === true },
   });
 }
 

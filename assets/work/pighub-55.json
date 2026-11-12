@@ -1,0 +1,26 @@
+{
+  "id": "pighub-55",
+  "trim": [
+    0,
+    0,
+    1,
+    1
+  ],
+  "background": {
+    "key": "dark",
+    "threshold": 40,
+    "all": false
+  },
+  "keep": [],
+  "erase": [],
+  "outline": {
+    "width": 3,
+    "color": [
+      43,
+      26,
+      16
+    ]
+  },
+  "reason": "临时的机制验证规格（待 subagent 最终 JSON 覆盖）：实测黑底 82,333px 占 31.28%，从四边泛洪 max(R,G,B)<=40 可一次删除；whiteAll 必须为 false，否则会删掉 1,309px 的牙齿近白像素。",
+  "measuredBy": "subagent 03f730ea（实测数字）"
+}

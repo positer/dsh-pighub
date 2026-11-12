@@ -166,6 +166,24 @@
       "note": "矮脚猪：干净的猪形象图。实测全图只有 1 个非白连通块（猪身 2,164,020px），无文字/水印/边框可删，erase 为空；white=236（体色中位 min 通道 172，距阈值 64 余量）。",
       "category": "species",
       "categoryReason": "矮脚猪是一种猪的品种/造型，无场景无动作。"
+    },
+    {
+      "id": "pighub-55",
+      "kind": "live",
+      "vector": false,
+      "cut": {
+        "trim": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "white": 236,
+        "vector": false
+      },
+      "category": "species",
+      "categoryReason": "愤怒猪是一种猪的表情造型（种类），不是行为场景。",
+      "note": "黑底素材：猪被画布四边裁切，trim 只能整图；去背景用 background 色键（dark/40）。"
     }
   ],
   "categoryNote": "只收「猪的种类」（species）：角色/品种/风格本身。带场景或动作的行为梗（behavior）一律不收——它们描述的是猪在做某件事，不是一种猪。"

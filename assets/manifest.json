@@ -1,6 +1,6 @@
 {
   "assetVersion": "2026.11.12",
-  "frozenAt": "2026-11-12T11:48:35.884Z",
+  "frozenAt": "2026-11-12T11:53:47.484Z",
   "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
   "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
   "rejected": [],
@@ -31,8 +31,8 @@
     }
   ],
   "counts": {
-    "total": 5,
-    "live": 4,
+    "total": 6,
+    "live": 5,
     "dead": 1,
     "vector": 1
   },
@@ -119,6 +119,11 @@
       "patch": {
         "holes": 0,
         "filled": 0
+      },
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": true
       }
     },
     {
@@ -160,6 +165,11 @@
       "patch": {
         "holes": 1,
         "filled": 281
+      },
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": true
       }
     },
     {
@@ -201,6 +211,11 @@
       "patch": {
         "holes": 1,
         "filled": 418
+      },
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": true
       }
     },
     {
@@ -242,6 +257,58 @@
       "patch": {
         "holes": 38,
         "filled": 4292
+      },
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": true
+      }
+    },
+    {
+      "id": "pighub-55",
+      "title": "愤怒猪",
+      "kind": "live",
+      "note": "黑底素材：猪被画布四边裁切，trim 只能整图；去背景用 background 色键（dark/40）。",
+      "vector": false,
+      "file": "assets/img/pighub-55.png",
+      "bytes": 144286,
+      "sha256": "56dd1adbd77319ef27935a39d572fefc779f69bf245e9727a17c37a3e30ec681",
+      "size": {
+        "width": 512,
+        "height": 454
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E6%84%A4%E6%80%92%E7%8C%AA.jpg",
+        "group": "pighub-online",
+        "sha256": "a1c308cac960b4c1a203789d3a63af3df1469ee814f53d3bc7ada35836b87099"
+      },
+      "cut": {
+        "trim": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "white": 236
+      },
+      "style": {
+        "verdict": "match",
+        "palette": 0.983,
+        "flatness": 0.956,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "patch": {
+        "holes": 0,
+        "filled": 0
+      },
+      "background": {
+        "key": "dark",
+        "threshold": 40,
+        "all": false,
+        "removed": 82333
       }
     }
   ]
