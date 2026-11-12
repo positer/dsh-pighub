@@ -31,3 +31,7 @@ Thumbs.db
 
 # 全库精修的中间产物（体积大，尚未决定是否随包）
 assets/library/
+
+# assets/work 只提交规格 JSON；测量脚本/掩膜/截图是子代理临时产物
+assets/work/*
+!assets/work/*.json

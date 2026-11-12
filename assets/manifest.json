@@ -1,6 +1,6 @@
 {
   "assetVersion": "2026.11.12",
-  "frozenAt": "2026-11-12T13:11:33.850Z",
+  "frozenAt": "2026-11-12T13:13:56.221Z",
   "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
   "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
   "rejected": [],
@@ -31,8 +31,8 @@
     }
   ],
   "counts": {
-    "total": 12,
-    "live": 11,
+    "total": 13,
+    "live": 12,
     "dead": 1,
     "vector": 1
   },
@@ -369,6 +369,54 @@
         "threshold": 236,
         "all": false,
         "removed": 0
+      }
+    },
+    {
+      "id": "pighub-1256",
+      "title": "红包猪",
+      "kind": "live",
+      "note": "白底 51.46%。猪 718,931px、bbox 1093×1000。**all 必须 true**：trim 内还有 598px 封闭白（尾卷环内的背景），all:false 会留成白斑（两版帧 sha 不同）。阈值 236 被夹死（猪身最亮 235、背景 p0.1=237）。红包+金币 37,424px **保留**：1px 外环 1,615px 全接猪身、接背景 0px，擦掉等于在猪背正中挖洞。文字与卷轴全在 trim 外。",
+      "vector": false,
+      "file": "assets/img/pighub-1256.png",
+      "bytes": 195067,
+      "sha256": "997bb40387a0849b3c905f554279cf8eb6944531de9e86b80b58c29a9bb568bb",
+      "size": {
+        "width": 512,
+        "height": 469
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E7%BA%A2%E5%8C%85%E7%8C%AA.jpg",
+        "group": "pighub-online",
+        "sha256": "cb62401eb8f97aa90fda552543bcea628584090e71be43c385ab66d91b9ffe11"
+      },
+      "cut": {
+        "trim": [
+          0.2166666667,
+          0.2609375,
+          0.5692708333,
+          0.5208333333
+        ],
+        "white": 236
+      },
+      "style": {
+        "verdict": "match",
+        "palette": 0.944,
+        "flatness": 0.984,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "patch": {
+        "holes": 0,
+        "filled": 0,
+        "skipped": "inpaint_disabled"
+      },
+      "background": {
+        "key": "light",
+        "threshold": 236,
+        "all": true,
+        "removed": 374664
       }
     },
     {
