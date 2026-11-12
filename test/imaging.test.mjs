@@ -1,19 +1,12 @@
 /**
- * 矢量描摹的单元测试。
+ * 成像与描摹的单元测试：直接 import lib/imaging.js（构建期用的那份实现）。
  *
- * 被测代码**直接从 lib/client.js 里取**（@trace:begin…@trace:end 之间）：
- * client.js 是闭包工厂，没法 import；复制一份来测，测的就不是发布出去的那份。
- * 取出来的是一段纯函数代码，没有 DOM 依赖，可以在 Node 里直接跑。
+ * 素材处理已经整体搬到构建期，所以这些函数是 Node ESM 模块，不再是闭包里的一段代码。
  */
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
-const source = readFileSync(new URL('../lib/client.js', import.meta.url), 'utf8');
-const begin = source.indexOf('/* @trace:begin');
-const end = source.indexOf('/* @trace:end */');
-assert.ok(begin >= 0 && end > begin, 'bundle 里找不到 @trace 标记');
-const slice = source.slice(source.indexOf('*/', begin) + 2, end);
-const trace = new Function(slice + 'return { vectorise, quantize, contours };')();
+const trace = await import(new URL('../lib/imaging.js', import.meta.url).href);
 
 let passed = 0;
 const check = (label, fn) => { fn(); passed += 1; console.log('PASS  ' + label); };

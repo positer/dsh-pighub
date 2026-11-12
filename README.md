@@ -2,7 +2,9 @@
 
 **PigHub（猪猪库）的 DeepSeek Harness 插件：**在侧边栏养一个猪圈。每天领一只猪猪，重复的升星，攒够了把猪拖到桌面上遛。
 
-猪猪素材来自 [PigHub](https://pighub.top) 与它的开源镜像，但**每个版本都冻结一次**：本版本用哪几只猪、每只是「死猪」还是「活猪」、怎么裁、怎么去白底，全部写在 `assets/manifest.json` 里。插件不打包图片字节，只用冻结下来的判定与参数。
+猪猪素材来自 PigHub 社区图库及其开源镜像，**在构建期就处理好并随包分发**：去白底、裁到猪身、判定是死猪还是活猪、要不要描摹成 SVG，全部在 `npm run assets:build` 时完成，产物是包内普通文件。
+
+**运行时不访问素材库**：不请求上游、不做图像计算、不占用户算力。署名与出处见 [assets/ATTRIBUTION.md](./assets/ATTRIBUTION.md)，内容按版本手动更新。
 
 ## 它长什么样
 
@@ -57,7 +59,7 @@ dsh-pighub/
 ├── lib/store.js             抽取 / 升星 / 排序 / 原子写盘
 ├── lib/assets.js            冻结库读取（抽猪池只认它）
 ├── lib/client.js            浏览器半：closure-factory bundle，注册三个槽位
-├── assets/                  冻结素材库（候选 / 判定 / 产物）
+├── assets/                  冻结素材库：候选 / 判定 / 产物贴图（img/）/ 署名
 ├── scripts/build-assets.mjs 冻结库构建（逐图判定校验）
 ├── test/                    离线测试（发布闸门）
 └── .github/workflows/       pack → OIDC 发布
@@ -72,7 +74,8 @@ dsh-pighub/
 ## 验证
 
 ```sh
-npm test                  # 65 项离线断言：契约 / 规则 / HTTP 面 / 矢量描摹 / 浏览器半结构
+npm test                  # 57 项离线断言：契约 / 规则 / HTTP 面 / 成像与描摹 / 浏览器半结构
+npm run assets:build      # 重新生成包内贴图（需要源图；会把处理结果写进 assets/img）
 ```
 
 界面另有一套**本地**验证台（不随仓库分发、不进 npm 包）：它按宿主契约把 `lib/client.js` 挂到普通页面上，并埋四个探针——

@@ -3,6 +3,19 @@
 本项目遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)；每条记录只写「对使用者可见的变化」，
 内部重构不单列。README 只描述项目整体，**版本相关内容一律记在这里**。
 
+## [0.3.0] — 2026-11-12（未发布）
+
+### Changed
+
+- **素材改为构建期处理好、随包分发**：去白底、裁到猪身、矢量化都在 `npm run assets:build` 完成，产物是 `assets/img/*.png|svg`；运行时**不再访问素材库、不做任何图像计算**（去掉了图片代理与浏览器内的 canvas 处理）。
+- 新增 `assets/ATTRIBUTION.md`：保留来源与许可说明，但运行时不再链接素材库。
+- 数据目录精简为 `state.json` + `prefs.json`（不再缓存上游目录）。
+- 素材量：6 张（PNG 4 / SVG 2），合计约 860 KB，最长边 ≤ 512。
+
+### Removed
+
+- 图片代理 `GET /pighub/image` 与浏览器侧的去白/描摹管线（搬进 `lib/imaging.js`，只在构建期使用）。
+
 ## [0.2.0] — 2026-11-12（未发布）
 
 ### Added

@@ -1,18 +1,33 @@
 {
   "assetVersion": "2026.11.12",
-  "frozenAt": "2026-11-12T08:12:15.878Z",
-  "policy": "冻结库：抽猪池只认这里；每张图带逐图判定（live/dead）、定制切分参数与源图 sha256。",
+  "frozenAt": "2026-11-12T09:01:38.614Z",
+  "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
+  "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
   "counts": {
     "total": 6,
     "live": 2,
-    "dead": 4
+    "dead": 4,
+    "vector": 2
   },
   "pigs": [
     {
       "id": "pig-1354",
       "title": "挂科猪",
       "kind": "dead",
-      "note": "漫画格：左侧整块白色对白气泡就是内容主体。整图保留，不裁、不去白（气泡里的白是画的一部分）。 判定：场景/照片类 → 保留位图（描摹会更脏）。",
+      "note": "漫画格：左侧白色对白气泡承载信息（文字），按规则**保留**；卡片其余白底去掉，裁到猪身。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
+      "vector": false,
+      "file": "assets/img/pig-1354.png",
+      "bytes": 220316,
+      "sha256": "d74d5c37a429413d606a22146c13557a288ea44da764d975418b9a6ebae01735",
+      "size": {
+        "width": 996,
+        "height": 986
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E6%8C%82%E7%A7%91%E7%8C%AA.jpg",
+        "group": "pighub",
+        "sha256": "926d216a988acf8b41576f0e12ad9493d6b33d472dc50b56ad177eae752cb0dc"
+      },
       "cut": {
         "trim": [
           0,
@@ -20,22 +35,27 @@
           1,
           1
         ],
-        "white": 236,
-        "vector": false
-      },
-      "source": {
-        "url": "https://pighub.top/images/%E6%8C%82%E7%A7%91%E7%8C%AA.jpg",
-        "origin": "pighub",
-        "sha256": "926d216a988acf8b41576f0e12ad9493d6b33d472dc50b56ad177eae752cb0dc",
-        "bytes": 59552
-      },
-      "vendored": null
+        "white": 236
+      }
     },
     {
       "id": "pig-1355",
       "title": "怪猪",
       "kind": "live",
-      "note": "单只猪全身、干净白底、四腿站立 —— 唯一一张可以直接当角色精灵图的。裁到猪身外框，去白底。 判定：平涂卡通 → 描摹成 SVG（放大不糊）。",
+      "note": "单只猪全身、干净白底，去白后踩到猪身；平涂卡通，额外描摹成 SVG。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
+      "vector": true,
+      "file": "assets/img/pig-1355.svg",
+      "bytes": 9582,
+      "sha256": "7dd1e83ae9196ac9bc7dc066439e952799f7bdbb8eb7da12e22f3da52aad6093",
+      "size": {
+        "width": 417,
+        "height": 354
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E6%80%AA%E7%8C%AA.jpg",
+        "group": "pighub",
+        "sha256": "0b15fc66ff0fb622d6d667b87bdb17d6fa0d181c1ebb99737329ee0612e50fef"
+      },
       "cut": {
         "trim": [
           0.06,
@@ -43,22 +63,27 @@
           0.88,
           0.86
         ],
-        "white": 236,
-        "vector": true
-      },
-      "source": {
-        "url": "https://pighub.top/images/%E6%80%AA%E7%8C%AA.jpg",
-        "origin": "pighub",
-        "sha256": "0b15fc66ff0fb622d6d667b87bdb17d6fa0d181c1ebb99737329ee0612e50fef",
-        "bytes": 14281
-      },
-      "vendored": null
+        "white": 236
+      }
     },
     {
       "id": "pig-1357",
       "title": "乱停猪",
       "kind": "dead",
-      "note": "躺地睡觉 + 罚单的场景图：它本来就是「不动的猪」，判定为死猪；整图保留（路面与罚单是语义的一部分）。 判定：场景/照片类 → 保留位图（描摹会更脏）。",
+      "note": "躺地睡觉 + 罚单的场景图：白底（路面上的白）去掉，裁到猪身那一块。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
+      "vector": false,
+      "file": "assets/img/pig-1357.png",
+      "bytes": 323776,
+      "sha256": "6a04e57f59af623d8aa28da66b166418db89016fde88704e864972017707f304",
+      "size": {
+        "width": 640,
+        "height": 573
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E4%B9%B1%E5%81%9C%E7%8C%AA.jpg",
+        "group": "pighub",
+        "sha256": "c6ea79a460b2f2ee1004e5f3d02ff3a2b1c6ac55efa249e72388c98a1f975b99"
+      },
       "cut": {
         "trim": [
           0,
@@ -66,22 +91,27 @@
           1,
           1
         ],
-        "white": 226,
-        "vector": false
-      },
-      "source": {
-        "url": "https://pighub.top/images/%E4%B9%B1%E5%81%9C%E7%8C%AA.jpg",
-        "origin": "pighub",
-        "sha256": "c6ea79a460b2f2ee1004e5f3d02ff3a2b1c6ac55efa249e72388c98a1f975b99",
-        "bytes": 31768
-      },
-      "vendored": null
+        "white": 226
+      }
     },
     {
       "id": "pig-1358",
       "title": "萝卜猪",
       "kind": "dead",
-      "note": "夜景海报：紫色夜空 + 星星 + 标题，猪只是画面元素。整图保留，静态展示。 判定：场景/照片类 → 保留位图（描摹会更脏）。",
+      "note": "夜景海报：卡片底下的白去掉，裁到猪身；海报文字随内容一起被裁掉。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
+      "vector": false,
+      "file": "assets/img/pig-1358.png",
+      "bytes": 131827,
+      "sha256": "40cbea431c257cbc17000022f1c22067fa23968faf288c2942dc74eb6fb7dc52",
+      "size": {
+        "width": 719,
+        "height": 631
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E8%90%9D%E5%8D%9C%E7%8C%AA.jpg",
+        "group": "pighub",
+        "sha256": "40f31fac7d709a5e7503dadd64438e6b5e13f81ea1bbae341cb14d4280229010"
+      },
       "cut": {
         "trim": [
           0,
@@ -89,22 +119,27 @@
           1,
           1
         ],
-        "white": 236,
-        "vector": false
-      },
-      "source": {
-        "url": "https://pighub.top/images/%E8%90%9D%E5%8D%9C%E7%8C%AA.jpg",
-        "origin": "pighub",
-        "sha256": "40f31fac7d709a5e7503dadd64438e6b5e13f81ea1bbae341cb14d4280229010",
-        "bytes": 13912
-      },
-      "vendored": null
+        "white": 236
+      }
     },
     {
       "id": "pig-1360",
       "title": "你已笨哭",
       "kind": "dead",
-      "note": "电脑前 + 文案的场景卡，整图保留，静态。 判定：场景/照片类 → 保留位图（描摹会更脏）。",
+      "note": "电脑前场景卡：卡片白底去掉（里面塞着图，密度高），屏幕里的白清单是信息白，保留。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
+      "vector": false,
+      "file": "assets/img/pig-1360.png",
+      "bytes": 167246,
+      "sha256": "6bea98dc3ae388d2165565bcdfde2178151f1f7b822df2888611c2017c938b21",
+      "size": {
+        "width": 1454,
+        "height": 1080
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E4%BD%A0%E5%B7%B2%E7%AC%A8%E5%93%AD_1.jpg",
+        "group": "pighub",
+        "sha256": "425c8084e4caa13c8ee6b2e63a881d4d7d1fd818fec675800ee214f478efdc9b"
+      },
       "cut": {
         "trim": [
           0,
@@ -112,22 +147,27 @@
           1,
           1
         ],
-        "white": 226,
-        "vector": false
-      },
-      "source": {
-        "url": "https://pighub.top/images/%E4%BD%A0%E5%B7%B2%E7%AC%A8%E5%93%AD_1.jpg",
-        "origin": "pighub",
-        "sha256": "425c8084e4caa13c8ee6b2e63a881d4d7d1fd818fec675800ee214f478efdc9b",
-        "bytes": 42218
-      },
-      "vendored": null
+        "white": 226
+      }
     },
     {
       "id": "pig-1361",
       "title": "你知道吗",
       "kind": "live",
-      "note": "上半是重复文字，下半是干净的一只猪 —— **定制切分**：只取猪身那一条，文字不要。切完是合格的活动精灵。 判定：平涂卡通 → 描摹成 SVG（放大不糊）。",
+      "note": "上半是重复文字、下半是干净一只猪：定制切分只取猪身那一条，再踩到猪身。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
+      "vector": true,
+      "file": "assets/img/pig-1361.svg",
+      "bytes": 10813,
+      "sha256": "6f20f1bd66bbf9b81b93bc30c3244e5192f9d54a4ef9de307112b15b98396647",
+      "size": {
+        "width": 770,
+        "height": 681
+      },
+      "source": {
+        "url": "https://pighub.top/images/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97.jpg",
+        "group": "pighub",
+        "sha256": "c61c93ea5608c54f008a04868f18af4fc9976b3668899a74833e5dcb09f153ad"
+      },
       "cut": {
         "trim": [
           0.06,
@@ -135,16 +175,8 @@
           0.88,
           0.62
         ],
-        "white": 236,
-        "vector": true
-      },
-      "source": {
-        "url": "https://pighub.top/images/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97.jpg",
-        "origin": "pighub",
-        "sha256": "c61c93ea5608c54f008a04868f18af4fc9976b3668899a74833e5dcb09f153ad",
-        "bytes": 45462
-      },
-      "vendored": null
+        "white": 236
+      }
     }
   ]
 }

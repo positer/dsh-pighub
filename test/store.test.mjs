@@ -19,7 +19,6 @@ const check = (label, fn) => { fn(); passed += 1; console.log('PASS  ' + label);
 
 const root = mkdtempSync(join(tmpdir(), 'pighub-store-'));
 const catalog = {
-  source: mod.CATALOG_SOURCE,
   fetchedAt: '2026-11-12T00:00:00.000Z',
   count: 3,
   images: [
@@ -150,24 +149,4 @@ check('prefs：排序与星级显示各自独立，非法值退回默认', () =>
   assert.equal(mod.writePrefs(root, { starDisplay: 'nope' }).starDisplay, 'hover');
 });
 
-check('catalog：归一去重 + 图片 URL 只拼不下载', () => {
-  const payload = { code: 0, data: [
-    { id: 2, title: '乙', filename: 'b.jpg', image_url: '/images/b.jpg' },
-    { id: 2, title: '重复', filename: 'b2.jpg' },
-    { id: 1, title: '甲', filename: 'a b.jpg' },
-  ] };
-  const c = mod.normaliseCatalog(payload, '2026-11-12T00:00:00.000Z');
-  assert.equal(c.count, 2);
-  assert.equal(c.images[0].imageUrl, 'https://pighub.top/images/b.jpg');
-  assert.equal(c.images[1].imageUrl, 'https://pighub.top/images/a%20b.jpg');
-});
 
-check('catalogIsStale：缺/过期/未来时间都算过期', () => {
-  assert.equal(mod.catalogIsStale(null), true);
-  assert.equal(mod.catalogIsStale({ fetchedAt: new Date().toISOString() }, Date.now(), 60000), false);
-  assert.equal(mod.catalogIsStale({ fetchedAt: '2000-01-01T00:00:00.000Z' }, Date.now(), 60000), true);
-  assert.equal(mod.catalogIsStale({ fetchedAt: '2999-01-01T00:00:00.000Z' }, Date.now(), 60000), true);
-});
-
-rmSync(root, { recursive: true, force: true });
-console.log('\n' + passed + ' PASS / 0 FAIL  —  store rules');

@@ -10,6 +10,7 @@
  */
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -59,16 +60,21 @@ check('浏览器半是 closure-factory（只调用 __ModuleLoader__.load）', ()
 });
 
 /* ---- 1.5 冻结素材库 ---- */
-check('冻结素材库随包发布且自洽（每张图都有 kind/cut/sha256）', () => {
+check('冻结素材随包分发且自洽（贴图存在、指纹对得上、来源署名在）', () => {
   const manifest = JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8'));
   assert.ok(manifest.assetVersion, '缺少 assetVersion');
   assert.ok(Array.isArray(manifest.pigs) && manifest.pigs.length > 0, '冻结库不能为空');
   for (const pig of manifest.pigs) {
-    assert.ok(pig.source && pig.source.sha256 && pig.source.bytes, pig.id + ' 缺少源图指纹');
     assert.ok(pig.kind === 'live' || pig.kind === 'dead', pig.id + ' 的 kind 必须是 live/dead');
-    assert.ok(pig.cut && Array.isArray(pig.cut.trim) && pig.cut.trim.length === 4, pig.id + ' 缺少定制切分参数');
-    assert.equal(typeof pig.cut.vector, 'boolean', pig.id + ' 缺少 vector 判定（true=描摹成 SVG）');
+    assert.equal(typeof pig.vector, 'boolean', pig.id + ' 缺少 vector 判定');
+    assert.ok(/^assets\/img\/[a-zA-Z0-9._-]+$/.test(pig.file), pig.id + ' 贴图必须是包内相对路径：' + pig.file);
+    const file = new URL('../' + pig.file, here);
+    assert.ok(existsSync(file), pig.id + ' 的贴图不存在（先跑 npm run assets:build）');
+    const bytes = readFileSync(file);
+    assert.equal(bytes.length, pig.bytes, pig.id + ' 记录的字节数与文件不符');
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), pig.sha256, pig.id + ' 的 sha256 与文件不符');
     assert.ok(String(pig.note || '').length >= 6, pig.id + ' 缺少逐图判定理由');
+    assert.ok(pig.source && pig.source.url, pig.id + ' 缺少来源署名');
   }
   const judged = JSON.parse(readFileSync(new URL('../assets/judgements.json', here), 'utf8'));
   assert.deepEqual(
@@ -89,13 +95,17 @@ const ctx = {
 };
 plugin.apply(ctx, { root });
 
-check('注册了 pighub_about 工具、状态路由与图片代理', () => {
+check('注册了 pighub_about 工具、状态路由与每张素材的静态路由', () => {
   assert.deepEqual([...tools.keys()], ['pighub_about']);
-  assert.deepEqual([...routes.keys()].sort(), ['/pighub', '/pighub/image']);
-  for (const path of routes.keys()) assert.equal(routes.get(path).kind, 'exact');
+  const paths = [...routes.keys()];
+  assert.ok(paths.indexOf('/pighub') >= 0, '缺少状态路由');
+  const assetRoutes = paths.filter((path) => path.startsWith('/pighub/asset/'));
+  assert.equal(assetRoutes.length, 6, '每张素材一条路由，实际 ' + assetRoutes.length);
+  assert.equal(paths.some((path) => path === '/pighub/image'), false, '不应再有图片代理（运行时不链接素材库）');
+  for (const path of paths) assert.equal(routes.get(path).kind, 'exact');
 });
 check('每个注册都包在 ctx.effect 里（可回收）', () => {
-  assert.equal(disposers.length, 3, '工具 + 状态路由 + 图片代理各一个 disposer');
+  assert.equal(disposers.length, 8, '工具 + 状态路由 + 6 张素材各一个 disposer');
   for (const dispose of disposers) assert.equal(typeof dispose, 'function');
 });
 check('pighub_about 的参数 schema 封闭、描述非空', () => {
@@ -119,8 +129,10 @@ check('pighub_about 返回自述：版本、目录、今日状态、槽位信息
   assert.equal(answer.root, root);
   assert.equal(answer.owned, 0);
   assert.equal(answer.today.date, new Date().toLocaleDateString('sv-SE'));
-  assert.ok(answer.dataPolicy.indexOf('不再分发') > 0);
-  assert.deepEqual(answer.ui, { sidebarEntry: 'sidebar.panellist', panel: 'main', route: '/pighub' });
+  assert.ok(answer.dataPolicy.indexOf('不访问素材库') > 0, '数据策略必须写明运行时不访问素材库');
+  assert.equal(answer.assets.total, 6);
+  assert.ok(answer.assets.bytes > 0, '应能统计随包素材体积');
+  assert.deepEqual(answer.ui, { sidebarEntry: 'sidebar.panellist', panel: 'main', stateRoute: '/pighub', assetRoute: '/pighub/asset' });
 });
 check('自述可无损 JSON 往返', () => assert.deepEqual(JSON.parse(JSON.stringify(answer)), answer));
 

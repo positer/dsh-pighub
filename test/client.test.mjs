@@ -48,8 +48,8 @@ const snapshot = {
   root: 'C:\\Users\\test\\.PigHub',
   today: { date: '2026-11-12', drawn: true, pigId: '3' },
   pigs: [
-    { id: '3', title: '丙猪', imageUrl: 'https://pighub.top/images/c.jpg', kind: 'live', cut: { trim: [0.1, 0.1, 0.8, 0.8], white: 236 }, rarity: 'common', rarityLabel: '普通', stars: 2, firstObtainedAt: '2026-11-12T01:00:00.000Z', lastUpgradedAt: '2026-11-12T02:00:00.000Z' },
-    { id: '1', title: '甲猪', imageUrl: 'https://pighub.top/images/a.jpg', kind: 'dead', cut: { trim: [0, 0, 1, 1], white: 226 }, rarity: 'common', rarityLabel: '普通', stars: 1, firstObtainedAt: '2026-11-11T01:00:00.000Z', lastUpgradedAt: '2026-11-11T01:00:00.000Z' },
+    { id: '3', title: '丙猪', assetUrl: '/pighub/asset/pig-c.png', kind: 'live', rarity: 'common', rarityLabel: '普通', stars: 2, firstObtainedAt: '2026-11-12T01:00:00.000Z', lastUpgradedAt: '2026-11-12T02:00:00.000Z' },
+    { id: '1', title: '甲猪', assetUrl: '/pighub/asset/pig-a.png', kind: 'dead', rarity: 'common', rarityLabel: '普通', stars: 1, firstObtainedAt: '2026-11-11T01:00:00.000Z', lastUpgradedAt: '2026-11-11T01:00:00.000Z' },
   ],
   pets: [],
   sort: 'time',
@@ -316,7 +316,7 @@ await acheck('桌宠层：有桌宠时渲染在页面级容器里，可拖动、
   assert.equal(pet[0].type, 'div', '桌宠是容器（内含 img 与星级胶囊）');
   const petImg = collect(pet[0]).find((x) => typeof x === 'object' && x.type === 'img');
   assert.ok(petImg, '桌宠容器里应有 img');
-  assert.equal(petImg.props.src, 'https://pighub.top/images/c.jpg');
+  assert.equal(petImg.props.src, '/pighub/asset/pig-c.png');
   assert.equal(typeof pet[0].props.onPointerDown, 'function');
   assert.equal(typeof pet[0].props.onDoubleClick, 'function');
   assert.ok(pet[0].props.style.left.endsWith('px') && pet[0].props.style.top.endsWith('px'));
@@ -380,7 +380,8 @@ await acheck('清单标出死猪/活猪，抽到的猪带切分参数', async ()
   const tree = await render(main);
   const text = textOf(tree);
   assert.ok(text.indexOf('死猪') >= 0 && text.indexOf('活猪') >= 0, '清单应同时出现活猪与死猪标签');
+  // 素材是包内文件：渲染地址必须是静态路由，且运行时不发起任何图片请求。
   const requests = globalThis.__requests || [];
-  assert.ok(requests.some((r) => String(r.url).indexOf('/pighub/image?src=') >= 0), '图片必须走 /pighub/image 代理（否则 canvas 会被标 tainted）');
+  assert.equal(requests.some((r) => String(r.url).indexOf('/pighub/image') >= 0), false, '不应再走图片代理');
 });
 console.log('\n' + passed + ' PASS / 0 FAIL  —  client bundle structure');
