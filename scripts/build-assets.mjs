@@ -104,6 +104,8 @@ for (const candidate of candidates) {
       size: { width: 0, height: 0 },
       source: { url: candidate.url, group: candidate.source || 'pighub-online', sha256: sourceSha },
       cut: { trim: [0, 0, 1, 1], white: 0 },
+      // 动图原样分发：不做去白/补洞（改一帧就等于毁掉动画）。
+      patch: { holes: 0, filled: 0, skipped: 'animated_passthrough' },
       style: gifStyle,
     });
     continue;
