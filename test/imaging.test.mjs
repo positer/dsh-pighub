@@ -160,4 +160,39 @@ check('padFrame：四周加透明边，内容不偏移', () => {
   assert.equal(alphaAt(5, 4), 255, '原图右下角应落在 (5,4)');
 });
 
+
+/* ---- 最小补色：擦掉粘连在猪身上的字，用紧邻猪身色长回去 ---- */
+const { patchMinimal } = trace;
+
+check('patchMinimal：字擦掉后用周围颜色补满，且不扩散到擦除框外', () => {
+  // 40x40 猪身（桃色 247,205,180），中间横贯一条 6px 高的「深色字」
+  const width = 40, height = 40;
+  const frame = { width, height, data: new Uint8Array(width * height * 4) };
+  for (let y = 0; y < height; y += 1) {
+    for (let x = 0; x < width; x += 1) {
+      const i = (y * width + x) * 4;
+      const isText = y >= 17 && y <= 22;
+      frame.data[i] = isText ? 20 : 247;
+      frame.data[i + 1] = isText ? 20 : 205;
+      frame.data[i + 2] = isText ? 20 : 180;
+      frame.data[i + 3] = 255;
+    }
+  }
+  // 模拟「擦掉字」：把那条擦成透明
+  for (let y = 17; y <= 22; y += 1) for (let x = 0; x < width; x += 1) frame.data[(y * width + x) * 4 + 3] = 0;
+  const result = patchMinimal(frame, { only: [[0, 0.42, 1, 0.16]] });
+  assert.ok(result.filled > 0, '应该有像素被补上');
+  const at = (x, y) => { const i = (y * width + x) * 4; return [frame.data[i], frame.data[i + 1], frame.data[i + 2], frame.data[i + 3]]; };
+  const mid = at(20, 19);
+  assert.equal(mid[3], 255, '字的位置应变成不透明');
+  assert.deepEqual(mid.slice(0, 3), [247, 205, 180], '颜色应该取自紧邻的猪身，而不是黑或白');
+  assert.equal(at(20, 0)[3], 255, '擦除框外的像素不受影响');
+});
+
+check('patchMinimal：没有 erase 框时什么都不做', () => {
+  const frame = { width: 4, height: 4, data: new Uint8Array(4 * 4 * 4) };
+  const result = patchMinimal(frame, { only: [] });
+  assert.equal(result.filled, 0);
+});
+
 console.log('\n' + passed + ' PASS / 0 FAIL  —  imaging & tracer');

@@ -22,7 +22,7 @@ import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
-import { stripBackground, refineWhite, stripAllWhite, contentBounds, cropFrame, padFrame, vectorise, TRACE_MAX_EDGE, restoreRects, eraseRects, addOutline, styleScore, fillHoles } from '../lib/imaging.js';
+import { stripBackground, patchMinimal, refineWhite, stripAllWhite, contentBounds, cropFrame, padFrame, vectorise, TRACE_MAX_EDGE, restoreRects, eraseRects, addOutline, styleScore, fillHoles } from '../lib/imaging.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const assetsDir = join(here, '..', 'assets');
@@ -166,8 +166,12 @@ for (const candidate of candidates) {
   }
 
   // 2.5) 补洞：删字幕/配件时若在猪身上开了洞，用周围原色中位值填回去。
-  const inpaint = !(work && work.inpaint === false);
-  const patched = inpaint ? fillHoles(trimmed, { only: Array.isArray(work && work.erase) ? work.erase.map(toFrame) : [] }) : { holes: 0, filled: 0, skipped: 'inpaint_disabled' };
+  const inpaintMode = work && work.inpaint;
+  const eraseFrames = Array.isArray(work && work.erase) ? work.erase.map(toFrame) : [];
+  let patched;
+  if (inpaintMode === false) patched = { holes: 0, filled: 0, skipped: 'inpaint_disabled' };
+  else if (inpaintMode === 'minimal') patched = patchMinimal(trimmed, { only: eraseFrames });
+  else patched = fillHoles(trimmed, { only: eraseFrames });
 
   // 3) 踩到猪身（按内容外接框再裁一次）。pad 要给描边留位置，否则紧框会把描边环裁掉。
   const outlineWidth = work && work.outline && work.outline.width > 0 ? work.outline.width : 0;
