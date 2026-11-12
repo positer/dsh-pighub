@@ -80,11 +80,15 @@ check('冻结素材随包分发且自洽（贴图存在、指纹对得上、来�
   // 判定表必须覆盖候选池；但成品可以少于判定表——风格校验未过的会进 rejected。
   const built = new Set(manifest.pigs.map((pig) => pig.id));
   const rejected = new Set((manifest.rejected || []).map((item) => item.id));
+  const excluded = new Set((manifest.excluded || []).map((item) => item.id));
+  for (const item of manifest.excluded || []) assert.ok(item.reason, item.id + ' 被排除必须写原因');
   for (const item of judged.judgements) {
-    assert.ok(built.has(item.id) || rejected.has(item.id), item.id + ' 既没进包也没进 rejected');
+    assert.ok(built.has(item.id) || rejected.has(item.id) || excluded.has(item.id), item.id + ' 既没进包也没进 rejected/excluded');
   }
   for (const pig of manifest.pigs) {
-    assert.ok(judged.judgements.some((item) => item.id === pig.id), pig.id + ' 没有判定记录');
+    const record = judged.judgements.find((item) => item.id === pig.id);
+    assert.ok(record, pig.id + ' 没有判定记录');
+    assert.equal(record.category, 'species', pig.id + ' 不是「猪的种类」，不该进包');
     assert.equal(pig.style.verdict, 'match', pig.id + ' 进了包却不是 match');
     assert.ok(pig.patch && typeof pig.patch.holes === 'number' && typeof pig.patch.filled === 'number', pig.id + ' 缺少补洞（补洞=受损处用原色填回）记录');
   }
@@ -160,7 +164,8 @@ check('pighub_about 返回自述：版本、目录、今日状态、槽位信息
   assert.equal(answer.owned, 0);
   assert.equal(answer.today.date, new Date().toLocaleDateString('sv-SE'));
   assert.ok(answer.dataPolicy.indexOf('不访问素材库') > 0, '数据策略必须写明运行时不访问素材库');
-  assert.ok(answer.assets.total >= 6);
+  const manifestNow = JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8'));
+  assert.equal(answer.assets.total, manifestNow.pigs.length, '工具报的素材数必须与 manifest 一致');
   assert.ok(answer.assets.bytes > 0, '应能统计随包素材体积');
   assert.deepEqual(answer.ui, { sidebarEntry: 'sidebar.panellist', panel: 'main', stateRoute: '/pighub', assetRoute: '/pighub/asset' });
 });

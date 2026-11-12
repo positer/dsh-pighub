@@ -1,29 +1,39 @@
 {
   "assetVersion": "2026.11.12",
-  "frozenAt": "2026-11-12T11:23:34.496Z",
+  "frozenAt": "2026-11-12T11:26:12.661Z",
   "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
   "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
-  "rejected": [
+  "rejected": [],
+  "excluded": [
+    {
+      "id": "pig-1354",
+      "title": "挂科猪",
+      "category": "behavior",
+      "reason": "求情气泡 + 挂科情境：猪在做一件事（求别挂科），属于行为梗，不是一种猪。"
+    },
+    {
+      "id": "pig-1357",
+      "title": "乱停猪",
+      "category": "behavior",
+      "reason": "躺在马路上贴罚单（乱停被贴）：明确的行为情境，不是一种猪。"
+    },
+    {
+      "id": "pig-1360",
+      "title": "你已笨哭",
+      "category": "behavior",
+      "reason": "在电脑前哭（你已笨哭）：场景 + 行为，不是一种猪。"
+    },
     {
       "id": "pig-1300",
       "title": "被捕捉的小🐖",
-      "style": {
-        "verdict": "reject",
-        "palette": 0.361,
-        "flatness": 0.516,
-        "thresholds": {
-          "paletteMin": 0.55,
-          "flatnessMin": 0.35
-        }
-      },
-      "animated": true,
-      "reason": "animated_passthrough_needs_per_frame_alpha"
+      "category": "behavior",
+      "reason": "被网兜捕捉 + 「哼唧」：捕捉行为的情境，不是一种猪。"
     }
   ],
   "counts": {
-    "total": 7,
+    "total": 4,
     "live": 3,
-    "dead": 4,
+    "dead": 1,
     "vector": 1
   },
   "pigs": [
@@ -71,47 +81,6 @@
       }
     },
     {
-      "id": "pig-1354",
-      "title": "挂科猪",
-      "kind": "dead",
-      "note": "漫画格：左侧白色对白气泡承载信息（文字），按规则**保留**；卡片其余白底去掉，裁到猪身。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
-      "vector": false,
-      "file": "assets/img/pig-1354.png",
-      "bytes": 85509,
-      "sha256": "0ebfc896dc513fea3ec795797dcc06180a886f26b26fefe867bb3ba31f0ebbc4",
-      "size": {
-        "width": 452,
-        "height": 376
-      },
-      "source": {
-        "url": "https://pighub.top/images/%E6%8C%82%E7%A7%91%E7%8C%AA.jpg",
-        "group": "pighub-online",
-        "sha256": "926d216a988acf8b41576f0e12ad9493d6b33d472dc50b56ad177eae752cb0dc"
-      },
-      "cut": {
-        "trim": [
-          0,
-          0,
-          1,
-          1
-        ],
-        "white": 236
-      },
-      "style": {
-        "verdict": "match",
-        "palette": 0.959,
-        "flatness": 0.975,
-        "thresholds": {
-          "paletteMin": 0.55,
-          "flatnessMin": 0.35
-        }
-      },
-      "patch": {
-        "holes": 2,
-        "filled": 383
-      }
-    },
-    {
       "id": "pig-1355",
       "title": "怪猪",
       "kind": "live",
@@ -153,47 +122,6 @@
       }
     },
     {
-      "id": "pig-1357",
-      "title": "乱停猪",
-      "kind": "dead",
-      "note": "实拍场景图（猪躺在路上 + 罚单）。规格用 163 个 erase 小框覆盖 97.55% 街景（矩形无法沿椭圆曲线切割，精确覆盖需 610 框），并用 keep 框还原罚单白纸（white=236 会削掉它）。实测：猪像素 150,478 一个不少、非猪残留 1,422px。",
-      "vector": false,
-      "file": "assets/img/pig-1357.png",
-      "bytes": 189251,
-      "sha256": "88e45338d4aa7808d214e71d1dfa09071e6e3a609c5463725dc80fe7c928b0dc",
-      "size": {
-        "width": 512,
-        "height": 365
-      },
-      "source": {
-        "url": "https://pighub.top/images/%E4%B9%B1%E5%81%9C%E7%8C%AA.jpg",
-        "group": "pighub-online",
-        "sha256": "c6ea79a460b2f2ee1004e5f3d02ff3a2b1c6ac55efa249e72388c98a1f975b99"
-      },
-      "cut": {
-        "trim": [
-          0,
-          0,
-          1,
-          1
-        ],
-        "white": 226
-      },
-      "style": {
-        "verdict": "match",
-        "palette": 0.851,
-        "flatness": 0.904,
-        "thresholds": {
-          "paletteMin": 0.55,
-          "flatnessMin": 0.35
-        }
-      },
-      "patch": {
-        "holes": 2,
-        "filled": 334
-      }
-    },
-    {
       "id": "pig-1358",
       "title": "萝卜猪",
       "kind": "dead",
@@ -232,47 +160,6 @@
       "patch": {
         "holes": 1,
         "filled": 281
-      }
-    },
-    {
-      "id": "pig-1360",
-      "title": "你已笨哭",
-      "kind": "dead",
-      "note": "电脑前场景卡：卡片白底去掉（里面塞着图，密度高），屏幕里的白清单是信息白，保留。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
-      "vector": false,
-      "file": "assets/img/pig-1360.png",
-      "bytes": 153580,
-      "sha256": "432334bf3ec592679d7db5fcd477906297e73213b3daa20662915be675517042",
-      "size": {
-        "width": 512,
-        "height": 489
-      },
-      "source": {
-        "url": "https://pighub.top/images/%E4%BD%A0%E5%B7%B2%E7%AC%A8%E5%93%AD_1.jpg",
-        "group": "pighub-online",
-        "sha256": "425c8084e4caa13c8ee6b2e63a881d4d7d1fd818fec675800ee214f478efdc9b"
-      },
-      "cut": {
-        "trim": [
-          0,
-          0,
-          1,
-          1
-        ],
-        "white": 226
-      },
-      "style": {
-        "verdict": "match",
-        "palette": 0.985,
-        "flatness": 0.971,
-        "thresholds": {
-          "paletteMin": 0.55,
-          "flatnessMin": 0.35
-        }
-      },
-      "patch": {
-        "holes": 3,
-        "filled": 455
       }
     },
     {

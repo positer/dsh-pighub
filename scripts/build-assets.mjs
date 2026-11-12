@@ -58,8 +58,15 @@ if (keepSources) mkdirSync(join(assetsDir, 'source'), { recursive: true });
 
 const pigs = [];
 const rejected = [];
+const excluded = [];
 for (const candidate of candidates) {
   const decision = judged.find((item) => item.id === candidate.id);
+  // 只收「猪的种类」；行文/场景类（behavior）不进包。
+  if (decision.category !== 'species') {
+    excluded.push({ id: candidate.id, title: candidate.title, category: decision.category || 'unknown', reason: decision.categoryReason || '' });
+    console.log('  EXCLUDE ' + candidate.id + '（' + (decision.category || 'unknown') + '）' + candidate.title);
+    continue;
+  }
   // 只接受 jpeg/png：jimp 不认 webp，而部分 CDN 会按 Accept 协商成 webp。
   const response = await fetch(candidate.url, { headers: { accept: 'image/jpeg,image/png' } });
   if (!response.ok) { console.error(candidate.id + ' 取源图失败：HTTP ' + response.status); process.exit(1); }
@@ -246,6 +253,7 @@ const manifest = {
   policy: '素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。',
   attribution: '素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。',
   rejected,
+  excluded,
   counts: {
     total: pigs.length,
     live: pigs.filter((pig) => pig.kind === 'live').length,
