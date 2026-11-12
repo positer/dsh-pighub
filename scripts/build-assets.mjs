@@ -135,8 +135,9 @@ for (const candidate of candidates) {
     if (Array.isArray(work.erase) && work.erase.length) eraseRects(trimmed, work.erase.map(toFrame));
   }
 
-  // 3) 踩到猪身（按内容外接框再裁一次）
-  const box = contentBounds(trimmed, 1);
+  // 3) 踩到猪身（按内容外接框再裁一次）。pad 要给描边留位置，否则紧框会把描边环裁掉。
+  const outlineWidth = work && work.outline && work.outline.width > 0 ? work.outline.width : 0;
+  const box = contentBounds(trimmed, outlineWidth + 1);
   let cropped = cropFrame(trimmed, box.x, box.y, box.w, box.h);
   if (work && work.outline && work.outline.width > 0) {
     cropped = addOutline(cropped, work.outline.width, work.outline.color || [43, 26, 16]);

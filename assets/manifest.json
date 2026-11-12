@@ -1,6 +1,6 @@
 {
   "assetVersion": "2026.11.12",
-  "frozenAt": "2026-11-12T10:21:16.836Z",
+  "frozenAt": "2026-11-12T10:43:05.355Z",
   "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
   "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
   "rejected": [
@@ -35,7 +35,7 @@
     "total": 6,
     "live": 3,
     "dead": 3,
-    "vector": 2
+    "vector": 1
   },
   "pigs": [
     {
@@ -83,11 +83,11 @@
       "note": "漫画格：左侧白色对白气泡承载信息（文字），按规则**保留**；卡片其余白底去掉，裁到猪身。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
       "vector": false,
       "file": "assets/img/pig-1354.png",
-      "bytes": 85397,
-      "sha256": "5da06091492d4800b195e6dcc18f7a73849064288f56d36a05b824d659fb347c",
+      "bytes": 85518,
+      "sha256": "0e4197d537bcb5afbdff3112995fe928173f40df4fce1b7be521e847bc2515ff",
       "size": {
-        "width": 446,
-        "height": 370
+        "width": 452,
+        "height": 376
       },
       "source": {
         "url": "https://pighub.top/images/%E6%8C%82%E7%A7%91%E7%8C%AA.jpg",
@@ -117,14 +117,14 @@
       "id": "pig-1355",
       "title": "怪猪",
       "kind": "live",
-      "note": "单只猪全身、干净白底，去白后踩到猪身；平涂卡通，额外描摹成 SVG。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
-      "vector": true,
-      "file": "assets/img/pig-1355.svg",
-      "bytes": 9582,
-      "sha256": "7dd1e83ae9196ac9bc7dc066439e952799f7bdbb8eb7da12e22f3da52aad6093",
+      "note": "单只猪全身、干净白底，判定为活猪。**不做矢量化**：源图是纯填充、无描线（体色 246,210,183 实心填充，最暗结构色只有眼/鼻孔），描摹会把眼睛、腮红、描边环一起压成色块碎片（实测 220px 描摹后细节丢失）；这一只保留 PNG。",
+      "vector": false,
+      "file": "assets/img/pig-1355.png",
+      "bytes": 69139,
+      "sha256": "4328d8c5b74686fabf974ad256c5a74638da7256b440e7512c7f38c208be6cdb",
       "size": {
-        "width": 417,
-        "height": 354
+        "width": 392,
+        "height": 373
       },
       "source": {
         "url": "https://pighub.top/images/%E6%80%AA%E7%8C%AA.jpg",
@@ -142,8 +142,8 @@
       },
       "style": {
         "verdict": "match",
-        "palette": 0.965,
-        "flatness": 0.982,
+        "palette": 0.968,
+        "flatness": 0.971,
         "thresholds": {
           "paletteMin": 0.55,
           "flatnessMin": 0.35
@@ -194,11 +194,11 @@
       "note": "电脑前场景卡：卡片白底去掉（里面塞着图，密度高），屏幕里的白清单是信息白，保留。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
       "vector": false,
       "file": "assets/img/pig-1360.png",
-      "bytes": 153976,
-      "sha256": "6052eafe02173dbac7bd09c20478c0fbd5c23bff5647753a0d21c183c546c2f3",
+      "bytes": 153935,
+      "sha256": "3bae7eb00ab5a07671b40b5980aa51c3b0514be187a3615563b40a99840d27e9",
       "size": {
-        "width": 697,
-        "height": 662
+        "width": 700,
+        "height": 668
       },
       "source": {
         "url": "https://pighub.top/images/%E4%BD%A0%E5%B7%B2%E7%AC%A8%E5%93%AD_1.jpg",
@@ -231,11 +231,11 @@
       "note": "上半是重复文字、下半是干净一只猪：定制切分只取猪身那一条，再踩到猪身。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
       "vector": true,
       "file": "assets/img/pig-1361.svg",
-      "bytes": 15110,
-      "sha256": "66e0b9a641657e03a219bfb434e34b75bc479c6a9f9ed72dc413ada9a95fd178",
+      "bytes": 14730,
+      "sha256": "791045331d0da0bbb7b36ee44b6e02b0d3dbc687fc85d6aa347a8b2155e105b1",
       "size": {
-        "width": 722,
-        "height": 597
+        "width": 728,
+        "height": 603
       },
       "source": {
         "url": "https://pighub.top/images/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97.jpg",
