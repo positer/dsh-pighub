@@ -28,6 +28,7 @@ from PIL import Image
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(BASE, "assets", "img", "pighub-868.png")
+ARCHIVE = "20261113-235843-fix-868-belly"   # 归档目录：汇报与复跑产物都落在它下面
 
 FILL = (245, 211, 181)
 OUT_DARK = (81, 70, 60)      # 边界最外 1px（原图腹底 247 行的实际像素）
@@ -234,24 +235,28 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true")
     ap.add_argument("--tag", default="cand")
-    ap.add_argument("--out", default=os.path.join(BASE, ".tmp-868"))
+    ap.add_argument("--baseline", default=os.path.join(BASE, "archive", "asset-backup", "pighub-868.before-bellyfix.png"),
+                    help="「改之前」的对照图；复跑时用它给出可复现的前后读数")
+    ap.add_argument("--out", default=os.path.join(BASE, "archive", ARCHIVE, "rerun"))
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
 
     cur = load(SRC)
+    pres = load(args.baseline) if os.path.exists(args.baseline) else cur
     yb = build_mask(cur.shape[:2])
     new, M = render(cur, yb)
 
     changed = int((cur != new).any(axis=2).sum())
-    print("changed px:", changed)
-    print("seam step  before(current) :", json.dumps(seam_step(cur)))
+    print("in :", os.path.relpath(SRC, BASE), " baseline:", os.path.relpath(args.baseline, BASE) if os.path.exists(args.baseline) else "(缺失=用当前图)")
+    print("changed px (输入 -> 产物):", changed)
+    print("seam step  baseline        :", json.dumps(seam_step(pres)))
     print("seam step  after           :", json.dumps(seam_step(new)))
     ref = os.path.join(BASE, "archive", "20261113-223028-complete-all-pigs", "after", "pighub-868.png")
     if os.path.exists(ref):
         print("seam step  reference(archive after):", json.dumps(seam_step(load(ref))))
     # 只看「身体」那几段（腿的圆底本来就有水平段，不算切边）
     body_cols = [x for x in range(XL, XR + 1) if not any(a <= x <= b for a, b in LEG_SPANS)]
-    p0 = bottom_profile(cur, XL, XR)
+    p0 = bottom_profile(pres, XL, XR)
     p1 = bottom_profile(new, XL, XR)
     idx = [x - XL for x in body_cols]
     print("belly(非腿列) 严格平段  before: %d cols   after: %d cols" % (
@@ -261,10 +266,10 @@ def main():
     print("belly(非腿列) bottom  before:", " ".join(str(v) for v in p0[idx][::4]))
     print("belly(非腿列) bottom  after :", " ".join(str(v) for v in p1[idx][::4]))
     print("bottom ybot range: %.1f .. %.1f" % (float(yb[XL:XR + 1].min()), float(yb[XL:XR + 1].max())))
-    print("stray dark px (inside new silhouette, >4px from edge, y>=%d)  before: %d  after: %d" % (
-        Y0, stray_dark(cur, M, Y0), stray_dark(new, M, Y0)))
+    print("stray dark px (inside new silhouette, >4px from edge, y>=%d)  baseline: %d  after: %d" % (
+        Y0, stray_dark(pres, M, Y0), stray_dark(new, M, Y0)))
     tmp = os.path.join(args.out, "_audit_tmp.png")
-    print("audit before:", json.dumps(audit_of(cur, tmp)))
+    print("audit baseline:", json.dumps(audit_of(pres, tmp)))
     print("audit after :", json.dumps(audit_of(new, tmp)))
 
     p = os.path.join(args.out, args.tag + ".png")

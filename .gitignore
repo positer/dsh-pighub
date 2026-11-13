@@ -37,3 +37,5 @@ assets/work/*
 !assets/work/pig-*.json
 !assets/work/pighub-*.json
 !assets/work/coin-pig.json
+# agent 临时草稿目录（.tmp-xxx/），不进仓库
+.tmp-*/
