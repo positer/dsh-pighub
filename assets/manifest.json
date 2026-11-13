@@ -6274,7 +6274,19 @@
       "mood": "cute",
       "moodReason": "叉腰姿势的单猪，可爱",
       "adopted": true,
-      "sizeRatio": 84.24
+      "sizeRatio": 84.24,
+      "completion": {
+        "mode": "belly-arc-redraw",
+        "at": "2026-11-13",
+        "reference": "standard-pig",
+        "note": "底缘重绘：用 21 点单调保形三次插值（PCHIP）定义身体底部曲线 ybot(x)，与腿的既有底边取 max 作为剪影，再按到边界的距离贴 2px 描边（(81,70,60)/a240 与 (163,140,120)/a255），内部填体色 (245,211,181)；腿段原黑描边一个像素未动。",
+        "metrics": {
+          "flatRunColumnsBefore": 42,
+          "flatRunColumnsAfter": 12,
+          "strayDarkPixelsBefore": 102,
+          "strayDarkPixelsAfter": 0
+        }
+      }
     },
     {
       "id": "pighub-872",
