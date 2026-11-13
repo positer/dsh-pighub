@@ -50,6 +50,24 @@ for (const decision of judged) {
     process.exit(1);
   }
   if (!decision.note || String(decision.note).trim().length < 6) { console.error(decision.id + ' 缺少判定理由'); process.exit(1); }
+  // 可爱闸门（2026-11-12 用户新增约束：要可爱，血腥怪异的不要）：与 kind 一样是逐图判定的一部分，
+  // 没有 mood 或不给理由都不许生成冻结库。
+  if (decision.mood !== 'cute' && decision.mood !== 'reject') { console.error(decision.id + ' 的 mood 必须是 cute/reject'); process.exit(1); }
+  if (!decision.moodReason || String(decision.moodReason).trim().length < 6) { console.error(decision.id + ' 缺少可爱闸门的判定理由'); process.exit(1); }
+}
+
+/* 收编过的卡片（adopted:true）不来自 sources.json，build 不会重新产出它们。
+ * 但这里会 rm -rf assets/img，所以先把它们的字节读进内存，重建后再放回去——
+ * 否则「重跑一次构建，扩包就静默消失」。 */
+const previousManifest = existsSync(join(assetsDir, 'manifest.json'))
+  ? JSON.parse(readFileSync(join(assetsDir, 'manifest.json'), 'utf8'))
+  : null;
+const carriedAdopted = [];
+for (const pig of (previousManifest && Array.isArray(previousManifest.pigs) ? previousManifest.pigs : [])) {
+  if (pig.adopted !== true) continue;
+  const file = join(assetsDir, '..', String(pig.file || ''));
+  if (!existsSync(file)) { console.warn('  WARN 收编素材的贴图不见了，跳过：' + pig.id + ' ' + pig.file); continue; }
+  carriedAdopted.push({ pig, bytes: readFileSync(file) });
 }
 
 rmSync(imageDir, { recursive: true, force: true });
@@ -64,12 +82,19 @@ if (stray.length) console.warn('assets/work 里有与候选对不上的文件（
 const pigs = [];
 const rejected = [];
 const excluded = [];
+const moodRejected = [];
 for (const candidate of candidates) {
   const decision = judged.find((item) => item.id === candidate.id);
   // 只收「猪的种类」；行文/场景类（behavior）不进包。
   if (decision.category !== 'species') {
     excluded.push({ id: candidate.id, title: candidate.title, category: decision.category || 'unknown', reason: decision.categoryReason || '' });
     console.log('  EXCLUDE ' + candidate.id + '（' + (decision.category || 'unknown') + '）' + candidate.title);
+    continue;
+  }
+  // 可爱闸门拒收：判定表里写 reject 的，不进包，只留档（含理由）。
+  if (decision.mood === 'reject') {
+    moodRejected.push({ id: candidate.id, title: candidate.title, reason: decision.moodReason || '' });
+    console.log('  MOOD-REJECT ' + candidate.id + candidate.title);
     continue;
   }
   // 只接受 jpeg/png：jimp 不认 webp，而部分 CDN 会按 Accept 协商成 webp。
@@ -239,6 +264,8 @@ for (const candidate of candidates) {
     // 记录**成品**尺寸（可能被压到 ≤512），不是裁剪后的原始像素——两者混用会让人以为图装错了。
     size: finalSize,
     source: { url: candidate.url, group: candidate.source || 'pighub-online', sha256: sourceSha },
+    mood: decision.mood,
+    moodReason: decision.moodReason,
     cut: { trim: decision.cut.trim, white: decision.cut.white || 236 },
     style,
     patch: patched,
@@ -273,19 +300,35 @@ function guessExt(filename, fallback) {
   return match ? match[0] : '.' + fallback;
 }
 
+/* 收编素材回填：文件字节原样写回，清单条目原样保留（含指纹与可爱闸门理由）。
+ * 这样「重跑 build」不会把扩包吃掉，而收编本身由 scripts/adopt-cards.mjs 负责。 */
+for (const { pig, bytes } of carriedAdopted) {
+  const name = String(pig.file || '').split('/').pop();
+  if (!name) continue;
+  writeFileSync(join(imageDir, name), bytes);
+  pigs.push(pig);
+}
+
 pigs.sort((a, b) => a.id.localeCompare(b.id));
 const manifest = {
-  assetVersion: decisions.assetVersion,
+  assetVersion: previousManifest && carriedAdopted.length && decisions.assetVersion === previousManifest.assetVersion
+    ? previousManifest.assetVersion
+    : decisions.assetVersion,
   frozenAt: new Date().toISOString(),
   policy: '素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。',
   attribution: '素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。',
+  moodGate: previousManifest && previousManifest.moodGate
+    ? previousManifest.moodGate
+    : { rule: '只收可爱；血腥（獠牙撕咬/伤口/血）、身体恐怖（一具身体多张脸）、惊悚造型一律 reject。' },
   rejected,
   excluded,
+  moodRejected: moodRejected.length ? moodRejected : ((previousManifest && previousManifest.moodRejected) || []),
   counts: {
     total: pigs.length,
     live: pigs.filter((pig) => pig.kind === 'live').length,
     dead: pigs.filter((pig) => pig.kind === 'dead').length,
     vector: pigs.filter((pig) => pig.vector).length,
+    adopted: pigs.filter((pig) => pig.adopted === true).length,
   },
   pigs,
 };

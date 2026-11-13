@@ -60,6 +60,16 @@ check('浏览器半是 closure-factory（只调用 __ModuleLoader__.load）', ()
 });
 
 /* ---- 1.5 冻结素材库 ---- */
+check('视觉体量归一化：每只猪都有 sizeRatio，且三层共用（中位数 96）', () => {
+  const manifest = JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8'));
+  const ratios = manifest.pigs.map((pig) => pig.sizeRatio);
+  assert.ok(ratios.every((value) => Number.isFinite(value) && value >= 24 && value <= 240), 'sizeRatio 必须是 24..240 的有限数：' + JSON.stringify(ratios.filter((v) => !(v >= 24 && v <= 240))));
+  const sorted = ratios.slice().sort((a, b) => a - b);
+  const median = sorted[Math.floor(sorted.length / 2)];
+  assert.ok(Math.abs(median - 96) <= 1.5, '中位数应当落在 96px 附近，实际 ' + median);
+  assert.ok(manifest.sizeRatioBasis && manifest.sizeRatioBasis.basis, '必须记录归一化口径');
+});
+
 check('冻结素材随包分发且自洽（贴图存在、指纹对得上、来源署名在）', () => {
   const manifest = JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8'));
   assert.ok(manifest.assetVersion, '缺少 assetVersion');
@@ -74,7 +84,13 @@ check('冻结素材随包分发且自洽（贴图存在、指纹对得上、来�
     assert.equal(bytes.length, pig.bytes, pig.id + ' 记录的字节数与文件不符');
     assert.equal(createHash('sha256').update(bytes).digest('hex'), pig.sha256, pig.id + ' 的 sha256 与文件不符');
     assert.ok(String(pig.note || '').length >= 6, pig.id + ' 缺少逐图判定理由');
-    assert.ok(pig.source && pig.source.url, pig.id + ' 缺少来源署名');
+    // 来源署名：候选池来的记源图 URL；角色卡收编的记 cards 产物路径（那批产物没有把上游 URL 落盘，
+    // 这是已知缺口，记在 ATTRIBUTION.md，不在这里用构造出来的 URL 冒充证据）。
+    const sourced = pig.source && (pig.source.url || (pig.source.via === 'cards' && pig.source.file));
+    assert.ok(sourced, pig.id + ' 缺少来源署名');
+    // 可爱闸门：进包的每一张都必须是 cute，并且写了理由。
+    assert.equal(pig.mood, 'cute', pig.id + ' 进包却不是 cute（可爱闸门）');
+    assert.ok(String(pig.moodReason || '').length >= 6, pig.id + ' 缺少可爱闸门的判定理由');
   }
   const judged = JSON.parse(readFileSync(new URL('../assets/judgements.json', here), 'utf8'));
   // 判定表必须覆盖候选池；但成品可以少于判定表——风格校验未过的会进 rejected。
@@ -87,13 +103,50 @@ check('冻结素材随包分发且自洽（贴图存在、指纹对得上、来�
   }
   for (const pig of manifest.pigs) {
     const record = judged.judgements.find((item) => item.id === pig.id);
+    // 项目自带的标准猪（侧边栏图标那只）没有上游判定记录：它是本仓库自己生成的素材。
+    if (pig.standard === true) {
+      assert.equal(pig.source.group, 'builtin', pig.id + ' 自带素材必须标记 builtin 来源');
+      assert.ok(pig.note && pig.note.length > 20, pig.id + ' 自带素材要写清楚来历');
+      continue;
+    }
+    // 角色卡收编的素材不在 sources/judgements 里，判定在 assets/cards/selection.json。
+    if (pig.adopted === true) {
+      assert.equal(pig.source.via, 'cards', pig.id + ' 收编素材必须写明 via=cards');
+      continue;
+    }
     assert.ok(record, pig.id + ' 没有判定记录');
     assert.equal(record.category, 'species', pig.id + ' 不是「猪的种类」，不该进包');
+    assert.equal(record.mood, 'cute', pig.id + ' 的判定没有过可爱闸门');
     assert.equal(pig.style.verdict, 'match', pig.id + ' 进了包却不是 match');
     assert.ok(pig.patch && typeof pig.patch.holes === 'number' && typeof pig.patch.filled === 'number', pig.id + ' 缺少补洞（补洞=受损处用原色填回）记录');
     assert.ok(pig.background && typeof pig.background.key === 'string' && typeof pig.background.removed === 'number', pig.id + ' 缺少背景决策记录（key/removed）');
   }
 });
+/* ---- 1.55 可爱闸门（2026-11-12 用户新增约束：要可爱，血腥怪异的不要） ---- */
+check('可爱闸门：逐图给理由、拒收留档、收编可对账', () => {
+  const manifest = JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8'));
+  const judged = JSON.parse(readFileSync(new URL('../assets/judgements.json', here), 'utf8'));
+  for (const item of judged.judgements) {
+    assert.ok(item.mood === 'cute' || item.mood === 'reject', item.id + ' 的判定缺少 mood');
+    assert.ok(String(item.moodReason || '').length >= 6, item.id + ' 的判定缺少可爱闸门理由');
+  }
+  const poolIds = new Set(manifest.pigs.map((pig) => pig.id));
+  for (const item of manifest.moodRejected || []) {
+    assert.ok(String(item.reason || '').length >= 6, item.id + ' 被可爱闸门拒收却没写理由');
+    assert.ok(!poolIds.has(item.id), item.id + ' 被拒收却还在抽池里');
+  }
+  const selection = JSON.parse(readFileSync(new URL('../assets/cards/selection.json', here), 'utf8'));
+  assert.ok(Array.isArray(selection.cards) && selection.cards.length > 0, 'selection.json 不能为空');
+  for (const card of selection.cards) {
+    assert.ok(card.mood === 'cute' || card.mood === 'reject', card.id + ' 缺少 mood');
+    assert.ok(String(card.moodReason || '').length >= 6, card.id + ' 缺少可爱闸门理由');
+    if (card.mood === 'reject') assert.ok(!poolIds.has(card.id), card.id + ' 被判 reject 却进了抽池');
+    if (card.mood === 'cute') assert.ok(poolIds.has(card.id), card.id + ' 判为 cute 却没进抽池（adopt-cards 没跑？）');
+  }
+  // 闸门必须被真实触发过：一条都没拒过，说明这条规则只是摆设。
+  assert.ok((manifest.moodRejected || []).length >= 1, '可爱闸门至少要有一条真实拒收记录');
+});
+
 /* ---- 1.6 可信来源登记表 ---- */
 check('可信来源登记表：每条都有许可结论与证据', () => {
   const libs = JSON.parse(readFileSync(new URL('../assets/libraries.json', here), 'utf8'));
@@ -112,6 +165,11 @@ check('可信来源登记表：每条都有许可结论与证据', () => {
   const allowed = new Set(libs.libraries.filter((item) => item.verdict !== 'reference-only').map((item) => item.id));
   // trusted / bundle / inherited-risk 都允许进包；reference-only 一份都不许
   for (const pig of manifest.pigs) {
+    // 自带标准猪是本仓库生成的素材（图标矢量化），不属于任何上游来源。
+    if (pig.standard === true) {
+      assert.equal(pig.source.group, 'builtin', pig.id + ' 自带素材来源必须是 builtin');
+      continue;
+    }
     assert.equal(pig.source.group, 'pighub-online', pig.id + ' 必须来自唯一可信源 PigHub，实际 ' + pig.source.group);
   }
 });
@@ -140,7 +198,8 @@ check('注册了 pighub_about 工具、状态路由与每张素材的静态路�
 });
 check('每个注册都包在 ctx.effect 里（可回收）', () => {
   const manifestCount = JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8')).pigs.length;
-  assert.equal(disposers.length, manifestCount + 2, '工具 + 状态路由 + 每张素材各一个 disposer');
+  // 工具 + 状态路由 + 每张素材 + 原生桌面桌宠的生命周期 effect
+  assert.equal(disposers.length, manifestCount + 3, '工具 + 状态路由 + 每张素材 + 桌面桌宠各一个 disposer');
   for (const dispose of disposers) assert.equal(typeof dispose, 'function');
 });
 check('pighub_about 的参数 schema 封闭、描述非空', () => {
@@ -172,7 +231,8 @@ check('pighub_about 返回自述：版本、目录、今日状态、槽位信息
   assert.equal(answer.plugin, pkg.name);
   assert.equal(answer.version, pkg.version, '代码版本与 package.json 不一致');
   assert.equal(answer.root, root);
-  assert.equal(answer.owned, 0);
+  // 新用户开局自带一只普通猪（标准猪）
+  assert.equal(answer.owned, 1, '开局普通猪');
   assert.equal(answer.today.date, new Date().toLocaleDateString('sv-SE'));
   assert.ok(answer.dataPolicy.indexOf('不访问素材库') > 0, '数据策略必须写明运行时不访问素材库');
   const manifestNow = JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8'));

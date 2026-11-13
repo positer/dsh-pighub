@@ -88,8 +88,20 @@ check('随机索引落在边界内（rng 返回 1 时取最后一只，不越界
   assert.equal(r.pig.id, '3');
 });
 
+check('新手开局：新状态自带一只普通猪（标准猪）', () => {
+  const state = mod.emptyState();
+  const pig = state.pigs[mod.STANDARD_PIG_ID];
+  assert.ok(pig, '新状态必须含标准猪');
+  assert.equal(pig.title, '普通猪');
+  assert.equal(pig.rarity, 'common');
+  assert.equal(pig.stars, 1);
+  assert.equal(mod.placeOf(state, mod.STANDARD_PIG_ID), 'pen', '开局就应该在猪圈里');
+});
+
 check('三种排序：主键不同、平手时退回获得时间倒序', () => {
   const state = mod.emptyState();
+  // 排序断言只关心抽到的三只，先把开局的普通猪摘掉
+  delete state.pigs[mod.STANDARD_PIG_ID];
   mod.draw(state, catalog, { now: new Date(2026, 10, 12, 8, 0, 0), rng: () => 0 });        // id 1, 首次 11-12
   mod.draw(state, catalog, { now: new Date(2026, 10, 13, 8, 0, 0), rng: () => 0.34 });     // id 2, 首次 11-13
   mod.draw(state, catalog, { now: new Date(2026, 10, 14, 8, 0, 0), rng: () => 0.99 });     // id 3, 首次 11-14
@@ -123,20 +135,78 @@ check('读写 state：能落盘并能读回', () => {
   assert.ok(existsSync(join(root, 'state.json')));
   const again = mod.readState(root);
   assert.equal(again.draws, 1);
-  assert.equal(Object.keys(again.pigs).length, 1);
+  // 抽到 1 只 + 开局自带的普通猪 = 2
+  assert.equal(Object.keys(again.pigs).length, 2);
+  assert.ok(again.pigs[mod.STANDARD_PIG_ID], '普通猪要一直在');
 });
 
 check('坏 state.json：退回空状态，并把原文改名保留', () => {
   const badRoot = mkdtempSync(join(tmpdir(), 'pighub-bad-'));
   writeFileSync(join(badRoot, 'state.json'), '{ this is not json', 'utf8');
   const state = mod.readState(badRoot);
-  assert.equal(Object.keys(state.pigs).length, 0, '退回空状态');
+  // 退回的是「新用户状态」：自带一只普通猪
+  assert.equal(Object.keys(state.pigs).length, 1, '退回空状态（含开局普通猪）');
+  assert.ok(state.pigs[mod.STANDARD_PIG_ID], '开局普通猪仍在');
   assert.ok(state.note, '把解析失败的原因留在 note 上');
   assert.equal(existsSync(join(badRoot, 'state.json')), false, '原文件已被改名');
   const leftovers = readdirSync(badRoot).filter((name) => name.startsWith('state.json.corrupt-'));
   assert.equal(leftovers.length, 1, '留下恰好一个 .corrupt 备份');
   assert.equal(readFileSync(join(badRoot, leftovers[0]), 'utf8'), '{ this is not json', '备份内容与原文一致');
   rmSync(badRoot, { recursive: true, force: true });
+});
+
+check('猪圈容量 12：第 13 只自动进仓库，并回 capped', () => {
+  const state = mod.emptyState();
+  // 容量测试要干净的猪圈：把开局普通猪摘掉
+  delete state.pigs[mod.STANDARD_PIG_ID];
+  for (let i = 1; i <= 12; i += 1) {
+    state.pigs['p' + i] = { id: 'p' + i, title: '猪' + i, kind: 'live', motion: true, stars: 1, firstObtainedAt: '2026-11-12T00:00:00.000Z', lastUpgradedAt: '2026-11-12T00:00:00.000Z' };
+  }
+  assert.equal(mod.penCount(state), 12);
+  // 第 12 只放回猪圈：仍然接受
+  assert.equal(mod.place(state, 'p1', 'pen').capped, false);
+  state.pigs.p13 = { id: 'p13', title: '猪13', kind: 'live', motion: true, stars: 1 };
+  const moved = mod.place(state, 'p13', 'pen');
+  assert.equal(moved.ok, true);
+  assert.equal(moved.capped, true, '猪圈已满 12 只时应标记 capped');
+  assert.equal(moved.to, 'store', '超出的猪要落到仓库');
+  assert.ok(state.store.indexOf('p13') >= 0);
+  assert.equal(mod.placeOf(state, 'p13'), 'store');
+});
+
+check('抽到猪时猪圈已满：新猪直接进仓库', () => {
+  const state = mod.emptyState();
+  for (let i = 1; i <= 12; i += 1) {
+    state.pigs['q' + i] = { id: 'q' + i, title: '猪' + i, kind: 'live', motion: true, stars: 1 };
+  }
+  const r = mod.draw(state, catalog, { now: new Date(2026, 10, 12), rng: () => 0 });
+  assert.equal(r.ok, true);
+  assert.equal(r.capped, true, '抽到的猪应带 capped 标记');
+  assert.ok(state.store.indexOf(r.pig.id) >= 0, '新猪应进仓库');
+  assert.equal(mod.placeOf(state, r.pig.id), 'store');
+});
+
+check('落脚点：写回 state 且越界/非数字一律拒收', () => {
+  const state = mod.emptyState();
+  state.pigs.y = { id: 'y', title: '某猪', kind: 'live', motion: true, stars: 1 };
+  assert.equal(mod.setPosition(state, 'y', 30, 40).ok, true);
+  assert.deepEqual(state.pigs.y.pos, { x: 30, y: 40 });
+  assert.equal(mod.setPosition(state, 'y', -5, 40).ok, false, '越界要被拒');
+  assert.equal(mod.setPosition(state, 'y', 30, 140).ok, false, '越界要被拒');
+  assert.equal(mod.setPosition(state, 'y', 'abc', 10).ok, false, '非数字要被拒');
+  assert.deepEqual(state.pigs.y.pos, { x: 30, y: 40 }, '被拒的写入不能改掉旧落点');
+  assert.equal(mod.setPosition(state, 'nope', 1, 1).ok, false);
+});
+
+check('运动开关：显式布尔可写、null 回到素材默认、落在 state 里', () => {
+  const state = mod.emptyState();
+  state.pigs.x = { id: 'x', title: '某猪', kind: 'live', motion: true, stars: 1 };
+  assert.equal(mod.setMotion(state, 'x', false).ok, true);
+  assert.equal(state.pigs.x.motion, false);
+  assert.equal(mod.setMotion(state, 'x', true).motion, true);
+  assert.equal(mod.setMotion(state, 'x', null).ok, true);
+  assert.equal('motion' in state.pigs.x, false, 'null 表示清掉覆盖');
+  assert.equal(mod.setMotion(state, 'nope', false).ok, false);
 });
 
 check('prefs：排序与星级显示各自独立，非法值退回默认', () => {

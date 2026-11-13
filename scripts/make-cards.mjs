@@ -7,9 +7,21 @@
  *   - 名字是否去净：成图里**除主体外不得有独立连通块**，且不得有小的深色碎块（文字特征）。
  * 任何一项不过就标 flagged，并写进报告等人工复核——不假装全绿。
  *
- * 用法：node scripts/make-cards.mjs [--n 50]
+ * 用法：node scripts/make-cards.mjs [--n 50] [--append] [--loose]
+ *   --append  不清空 assets/cards，只补**还没出现过的**新候选；索引合并后重写。
+ *             扩包必须走这个模式：默认模式会 rm -rf 整个 cards 目录（历史判定会被抹掉）。
+ *   --loose   放开「标题不含行为词」与「标题 ≤10 字」两条**预筛**，只保留「标题含猪 + 没判过」。
+ *             2026-11-13 补 254→256 时新增：上游 /api/images 返回的 1361 条与本地
+ *             assets/library/index.json 的 1361 条**逐 id 一致**（没有新图），而「角色名型」预筛
+ *             能选出的候选已被判完（本次末尾一次 --append 输出「候选不足：只有 0 张」）。
+ *             剩下 123 张含猪标题的库内图从未出过卡，它们只是被行为词预筛挡住的。
+ *             行为词从来只是"能不能进候选"的启发式，**是不是角色、可不可爱仍然逐图目检**，
+ *             所以让它们出成卡再判，比因为没有新图就宣布无法扩包更接近事实。
+ *
+ * 每条记录都带 `url`（源图地址）。这是 2026-11-13 补上的缺口：此前只存了产物与指纹，
+ * 导致收编进冻结库时 source 里没有 url，只能说「来自 cards 批次」而指不到具体地址。
  */
-import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -20,6 +32,9 @@ const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
 const cardDir = join(root, 'assets', 'cards', 'img');
 const want = Number((process.argv[process.argv.indexOf('--n') + 1] || '50')) || 50;
+const appendMode = process.argv.includes('--append');
+// 放开预筛（见头注释 --loose）：只用于「角色名型候选已判完、上游无新图」的情况。
+const looseMode = process.argv.includes('--loose');
 const MAX_EDGE = 256;
 
 /* 行为/情绪词：标题里出现就判为「行为梗」，不进角色卡 */
@@ -32,14 +47,35 @@ const pool = index.items.filter((item) => item.status === 'ok' || item.status ==
 function titleOf(id) { const row = pool.find((p) => p.id === id); return row ? row.title : ''; }
 
 /* 选卡：名字以「猪 / 豚 / 包」结尾、不含行为词、长度 2..8，优先单块且分数高 */
+const indexPath = join(root, 'assets', 'cards', 'index.json');
+const previousCards = appendMode && existsSync(indexPath)
+  ? JSON.parse(readFileSync(indexPath, 'utf8')).cards || []
+  : [];
+const doneIds = new Set(previousCards.map((card) => card.id));
+
+/* 「像角色」的两档判据：
+ *   A. 标题以 猪/豚/包 结尾（老口径，最可靠）；
+ *   B. 标题里含「猪」但不以它结尾（例如「猪头」「反求猪己」），2026-11-13 为凑够 100 张放开——
+ *      放开只是"能进候选"，是不是角色仍由后面的像素判定 + 逐图目检决定。 */
+const CHARACTER_ANY = /猪/;
 const chosen = pool
   .filter((item) => {
     const title = String(item.title || '').trim();
-    if (!CHARACTER_TAIL.test(title)) return false;
-    if (title.length < 2 || title.length > 8) return false;
+    if (doneIds.has(item.id)) return false;
+    if (!CHARACTER_TAIL.test(title) && !CHARACTER_ANY.test(title)) return false;
+    // 2026-11-13：上限从 8 放到 10。角色名常见「XX猪」「YY豚」四到六字，但「猪咪猪咪猪」这类叠词更长；
+    // 放宽只影响"能不能选出候选"，不影响判定——是不是角色、可不可爱仍然逐图目检。
+    if (looseMode) return true;
+    if (title.length < 2 || title.length > 10) return false;
     return !BEHAVIOR.some((word) => title.indexOf(word) >= 0);
   })
-  .sort((a, b) => (b.style.palette + b.style.flatness) - (a.style.palette + a.style.flatness))
+  // 先排「以猪结尾」的（老口径更可靠），再按风格分排序
+  .sort((a, b) => {
+    const ta = String(a.title || '').trim(), tb = String(b.title || '').trim();
+    const tailA = CHARACTER_TAIL.test(ta) ? 1 : 0, tailB = CHARACTER_TAIL.test(tb) ? 1 : 0;
+    if (tailA !== tailB) return tailB - tailA;
+    return (b.style.palette + b.style.flatness) - (a.style.palette + a.style.flatness);
+  })
   .slice(0, want);
 
 if (chosen.length < want) console.warn('候选不足：只有 ' + chosen.length + ' 张满足「角色型」条件');
@@ -47,8 +83,9 @@ if (chosen.length < want) console.warn('候选不足：只有 ' + chosen.length 
 const api = await (await fetch('https://pighub.top/api/images?sort=2', { headers: { accept: 'application/json' } })).json();
 const rows = new Map((api.data || []).map((row) => ['pighub-' + row.id, row]));
 
-rmSync(join(root, 'assets', 'cards'), { recursive: true, force: true });
+if (!appendMode) rmSync(join(root, 'assets', 'cards'), { recursive: true, force: true });
 mkdirSync(cardDir, { recursive: true });
+if (appendMode) console.log('追加模式：已有 ' + previousCards.length + ' 条，本次最多补 ' + want + ' 条');
 
 /** 取「最像猪」的连通块：按 桃色/玫红 占比 × 面积。 */
 function keepPigBlob(frame) {
@@ -141,7 +178,7 @@ for (const item of chosen) {
       // 动图：原样分发，占位记录，不做像素判定
       const ext = isGif ? '.gif' : '.webp';
       writeFileSync(join(cardDir, item.id + ext), raw);
-      cards.push({ id: item.id, title: item.title, kind: 'animated', file: 'assets/cards/img/' + item.id + ext, bytes: raw.length, category: 'character', categoryBasis: '标题为角色名且为动图角色形象', nameRemoved: 'passthrough', flags: [] });
+      cards.push({ id: item.id, title: item.title, url, kind: 'animated', file: 'assets/cards/img/' + item.id + ext, bytes: raw.length, category: 'character', categoryBasis: '标题为角色名且为动图角色形象', nameRemoved: 'passthrough', flags: [] });
       continue;
     }
     const decoded = await sharp(raw).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
@@ -170,7 +207,7 @@ for (const item of chosen) {
     const pigArea = kept.area;
     const cardLike = kept.fill >= 0.92 && pigArea > frame.width * frame.height * 0.25;
     if (pigArea < frame.width * frame.height * 0.02 || kept.likeness < 0.45 || cardLike) {
-      cards.push({ id: item.id, title: item.title, kind: 'skipped', category: 'unknown', categoryBasis: (cardLike ? '选中的是矩形底卡（填充率 ' + kept.fill.toFixed(3) + '），不是猪' : '没有「像猪」的色块（likeness ' + (kept.likeness || 0).toFixed(2) + '）'), nameRemoved: 'n/a', flags: [cardLike ? 'card_like' : 'no_pig'] });
+      cards.push({ id: item.id, title: item.title, url, kind: 'skipped', category: 'unknown', categoryBasis: (cardLike ? '选中的是矩形底卡（填充率 ' + kept.fill.toFixed(3) + '），不是猪' : '没有「像猪」的色块（likeness ' + (kept.likeness || 0).toFixed(2) + '）'), nameRemoved: 'n/a', flags: [cardLike ? 'card_like' : 'no_pig'] });
       continue;
     }
     const box = contentBounds(frame, 2);
@@ -191,7 +228,7 @@ for (const item of chosen) {
     if (stats.darkSpecks > 0) flags.push('text_like_specks');
     if (score.verdict !== 'match') flags.push('style');
     cards.push({
-      id: item.id, title: item.title, kind: 'static',
+      id: item.id, title: item.title, url, kind: 'static',
       file, bytes: png.length,
       size: [Math.round(frame.width * scale), Math.round(frame.height * scale)],
       style: score,
@@ -200,27 +237,39 @@ for (const item of chosen) {
       flatEdges: kept.edges,
       background: bgOptions,
       category: 'character',
-      categoryBasis: '标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）',
+      categoryBasis: looseMode
+        ? '标题含「猪」；成图仅一个连通块（无场景残留）——标题只是预筛，是不是角色由逐图目检定'
+        : '标题以「猪/豚/包」结尾且不含行为词；成图仅一个连通块（无场景残留）',
       nameRemoved: flags.length === 0 ? 'verified' : 'flagged',
       flags,
       sha256: createHash('sha256').update(png).digest('hex'),
     });
   } catch (error) {
-    cards.push({ id: item.id, title: item.title, kind: 'failed', category: 'unknown', categoryBasis: '下载或解码失败', nameRemoved: 'n/a', flags: ['error'], error: String(error.message || error) });
+    cards.push({ id: item.id, title: item.title, url, kind: 'failed', category: 'unknown', categoryBasis: '下载或解码失败', nameRemoved: 'n/a', flags: ['error'], error: String(error.message || error) });
   }
   if (cards.length % 10 === 0) console.log('  已处理 ' + cards.length + '/' + chosen.length);
 }
 
+const all = previousCards.concat(cards);
 const summary = {
   generatedAt: new Date().toISOString(),
   source: 'https://pighub.top/api/images?sort=2',
-  requested: want,
-  produced: cards.filter((c) => !c.flags.includes('error') && c.kind !== 'failed').length,
-  character: cards.filter((c) => c.category === 'character').length,
-  nameRemoved: cards.filter((c) => c.nameRemoved === 'verified').length,
-  flagged: cards.filter((c) => c.nameRemoved === 'flagged').length,
-  animated: cards.filter((c) => c.kind === 'animated').length,
-  skipped: cards.filter((c) => c.kind === 'skipped').length,
+  requested: all.length,
+  produced: all.filter((c) => !(c.flags || []).includes('error') && c.kind !== 'failed').length,
+  character: all.filter((c) => c.category === 'character').length,
+  nameRemoved: all.filter((c) => c.nameRemoved === 'verified').length,
+  flagged: all.filter((c) => c.nameRemoved === 'flagged').length,
+  animated: all.filter((c) => c.kind === 'animated').length,
+  skipped: all.filter((c) => c.kind === 'skipped').length,
+  // 目检结果沿用已有记录（append 模式不能把上次的判定洗掉）
+  vision: {
+    checked: all.filter((c) => c.vision && c.vision !== 'pending').length,
+    pass: all.filter((c) => c.vision === 'pass').length,
+    fail: all.filter((c) => c.vision === 'fail').length,
+    pending: all.filter((c) => !c.vision || c.vision === 'pending').length,
+  },
 };
-writeFileSync(join(root, 'assets', 'cards', 'index.json'), JSON.stringify({ summary, cards }, null, 2) + '\n');
+// 新条目默认 vision=pending：判不判是人的事，脚本不替人下结论。
+for (const card of cards) if (!card.vision) card.vision = 'pending';
+writeFileSync(join(root, 'assets', 'cards', 'index.json'), JSON.stringify({ summary, cards: all }, null, 2) + '\n');
 console.log(JSON.stringify(summary, null, 2));

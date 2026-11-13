@@ -1,0 +1,4700 @@
+{
+  "note": "角色卡样例集里通过「可爱闸门」的候选项。adopt 会把这些图从 assets/cards/img 复制进 assets/img 并写进冻结清单；reject 只留档不进包。来源与证据：assets/cards/index.json（同一批产出，同一套逐图校验）。",
+  "cards": [
+    {
+      "id": "pighub-366",
+      "title": "圆猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-366.png",
+      "url": "https://pighub.top/images/%E5%9C%86%E7%8C%AA.png",
+      "bytes": 27617,
+      "size": {
+        "width": 256,
+        "height": 252
+      },
+      "sha256": "530d3dfb5a3e3cceac8efa8b27a55ec47801e4a4a52f2e557628812f64859bad"
+    },
+    {
+      "id": "pighub-1018",
+      "title": "矮脚猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1018.png",
+      "url": "https://pighub.top/images/%E7%9F%AE%E8%84%9A%E7%8C%AA.png",
+      "bytes": 48015,
+      "size": {
+        "width": 256,
+        "height": 219
+      },
+      "sha256": "8bb30982a29efbe0a74d1d00a4b8c2367d15ceeff26559fcc81375a56b8fb760"
+    },
+    {
+      "id": "pighub-66",
+      "title": "小眼猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-66.png",
+      "url": "https://pighub.top/images/%E5%B0%8F%E7%9C%BC%E7%8C%AA.jpg",
+      "bytes": 51369,
+      "size": {
+        "width": 256,
+        "height": 226
+      },
+      "sha256": "dddb3c85f13da3b1fec834ef41b31a07081da9674afb8dd5ddb536539d275747"
+    },
+    {
+      "id": "pighub-780",
+      "title": "抽象猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-780.png",
+      "url": "https://pighub.top/images/%E6%8A%BD%E8%B1%A1%E7%8C%AA.png",
+      "bytes": 42221,
+      "size": {
+        "width": 256,
+        "height": 222
+      },
+      "sha256": "c24dfbc8f9f0b2916899bc6e27519bfd6770e38ad67ddd0a90d2e85e4f66f09a"
+    },
+    {
+      "id": "pighub-1305",
+      "title": "欺负一只小猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1305.png",
+      "url": "https://pighub.top/images/%E6%AC%BA%E8%B4%9F%E4%B8%80%E5%8F%AA%E5%B0%8F%E7%8C%AA.jpg",
+      "bytes": 37250,
+      "size": {
+        "width": 256,
+        "height": 227
+      },
+      "sha256": "400dd91a5246f204e4c83065d557363dd5e2ef4a701618f88526623e1bed8fbf"
+    },
+    {
+      "id": "pighub-1236",
+      "title": "猪伤心哼！猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1236.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E4%BC%A4%E5%BF%83%E5%93%BC%EF%BC%81%E7%8C%AA.png",
+      "bytes": 43999,
+      "size": {
+        "width": 256,
+        "height": 225
+      },
+      "sha256": "d2a4d166c5ae2c29ac8b3f71271b088a8649249b8ee00ddf97c4bfdacc94395a"
+    },
+    {
+      "id": "pighub-408",
+      "title": "+1猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-408.png",
+      "url": "https://pighub.top/images/%2B1%E7%8C%AA.jpg",
+      "bytes": 41324,
+      "size": {
+        "width": 256,
+        "height": 201
+      },
+      "sha256": "41d4d0a35132e6a27c4c593fa6a18fc76826e244f7cf561b635e00dfc4cb0e70"
+    },
+    {
+      "id": "pighub-598",
+      "title": "白羊猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-598.png",
+      "url": "https://pighub.top/images/%E7%99%BD%E7%BE%8A%E7%8C%AA.jpg",
+      "bytes": 50804,
+      "size": {
+        "width": 256,
+        "height": 204
+      },
+      "sha256": "d061ac1c76335e4d7458b890e850f55a44edc0e081fbeabdda67ee3d58b45bbf"
+    },
+    {
+      "id": "pighub-369",
+      "title": "苹果猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-369.png",
+      "url": "https://pighub.top/images/%E8%8B%B9%E6%9E%9C%E7%8C%AA.png",
+      "bytes": 39117,
+      "size": {
+        "width": 256,
+        "height": 243
+      },
+      "sha256": "d497931b8e98a5873bf643a6f874d9566598a3ba7e7996e9f7f369d974e21986"
+    },
+    {
+      "id": "pighub-249",
+      "title": "对牛弹猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-249.png",
+      "url": "https://pighub.top/images/%E5%AF%B9%E7%89%9B%E5%BC%B9%E7%8C%AA.jpg",
+      "bytes": 33271,
+      "size": {
+        "width": 256,
+        "height": 228
+      },
+      "sha256": "0d6414cb32b050304b6aa5bd3f84a4c782b5b3f4babbc398c80a9202fc9407f2"
+    },
+    {
+      "id": "pighub-604",
+      "title": "双子猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-604.png",
+      "url": "https://pighub.top/images/%E5%8F%8C%E5%AD%90%E7%8C%AA.jpg",
+      "bytes": 40657,
+      "size": {
+        "width": 256,
+        "height": 157
+      },
+      "sha256": "8f78e3a06b27bb848e93cba98bda97846504edff62e506c139d7a2dc57dd7944"
+    },
+    {
+      "id": "pighub-1199",
+      "title": "简单风格猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1199.png",
+      "url": "https://pighub.top/images/%E7%AE%80%E5%8D%95%E9%A3%8E%E6%A0%BC%E7%8C%AA.jpg",
+      "bytes": 41686,
+      "size": {
+        "width": 256,
+        "height": 228
+      },
+      "sha256": "fced2b7157d1d4c74e1f3e8ac72374dabc52d054dfbf3ab32d8d6bb273597cdb"
+    },
+    {
+      "id": "pighub-1114",
+      "title": "你是小猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1114.png",
+      "url": "https://pighub.top/images/%E4%BD%A0%E6%98%AF%E5%B0%8F%E7%8C%AA.jpg",
+      "bytes": 46685,
+      "size": {
+        "width": 256,
+        "height": 229
+      },
+      "sha256": "9f775920ff532e11c2973f1fd1fd6578949a78342ecf393cd7c1c6596781d37e"
+    },
+    {
+      "id": "pighub-1162",
+      "title": "墨镜猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1162.png",
+      "url": "https://pighub.top/images/%E5%A2%A8%E9%95%9C%E7%8C%AA.png",
+      "bytes": 43791,
+      "size": {
+        "width": 256,
+        "height": 227
+      },
+      "sha256": "c1f346c78abe022df7df2c794b6541959b40b78446490bc5ae0d23f61df013da"
+    },
+    {
+      "id": "pighub-664",
+      "title": "猪叠猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-664.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%8F%A0%E7%8C%AA.jpg",
+      "bytes": 47278,
+      "size": {
+        "width": 216,
+        "height": 256
+      },
+      "sha256": "e5ac45136d9634708e096355697e0463203757104034d7233894687bc8805493"
+    },
+    {
+      "id": "pighub-658",
+      "title": "萝卜幽灵猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-658.png",
+      "url": "https://pighub.top/images/%E8%90%9D%E5%8D%9C%E5%B9%BD%E7%81%B5%E7%8C%AA.jpg",
+      "bytes": 42205,
+      "size": {
+        "width": 256,
+        "height": 246
+      },
+      "sha256": "27edfbeedb6276c404c2df1dc5e8d17eabff7ebce452d8bc1fa8b0e3f8408d62"
+    },
+    {
+      "id": "pighub-1182",
+      "title": "天气指令猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1182.png",
+      "url": "https://pighub.top/images/%E5%A4%A9%E6%B0%94%E6%8C%87%E4%BB%A4%E7%8C%AA.png",
+      "bytes": 49077,
+      "size": {
+        "width": 256,
+        "height": 230
+      },
+      "sha256": "4ef948e41dade0c24ab9ae4c7103b7b146ca3252564d3a87949d4aee813729e9"
+    },
+    {
+      "id": "pighub-1320",
+      "title": "续订猪猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1320.png",
+      "url": "https://pighub.top/images/%E7%BB%AD%E8%AE%A2%E7%8C%AA%E7%8C%AA.jpg",
+      "bytes": 43050,
+      "size": {
+        "width": 256,
+        "height": 227
+      },
+      "sha256": "c01036451053e6a155e4bb128a5f96a5def80d2e124bd96441ad787f17850cd8"
+    },
+    {
+      "id": "pighub-1063",
+      "title": "好猪好猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1063.png",
+      "url": "https://pighub.top/images/%E5%A5%BD%E7%8C%AA%E5%A5%BD%E7%8C%AA.jpg",
+      "bytes": 50960,
+      "size": {
+        "width": 256,
+        "height": 220
+      },
+      "sha256": "095d69479d7eea91470a2bdc9f39932db0ffcc9a1c12bd145a72eaedd5b304fb"
+    },
+    {
+      "id": "pighub-65",
+      "title": "幽灵猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-65.png",
+      "url": "https://pighub.top/images/%E5%B9%BD%E7%81%B5%E7%8C%AA.jpg",
+      "bytes": 43647,
+      "size": {
+        "width": 181,
+        "height": 256
+      },
+      "sha256": "eb6f4ed2838f12ea221b74af5440710fe06173f0031ff11db94d24ca6caa5e1f"
+    },
+    {
+      "id": "pighub-1256",
+      "title": "红包猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1256.png",
+      "url": "https://pighub.top/images/%E7%BA%A2%E5%8C%85%E7%8C%AA.jpg",
+      "bytes": 60924,
+      "size": {
+        "width": 256,
+        "height": 234
+      },
+      "sha256": "cb95b4423f74df5e7da0ceab75a6ffdd1929f1918d168ac7e14da2458372d7b1"
+    },
+    {
+      "id": "pighub-461",
+      "title": "猪外有猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-461.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%A4%96%E6%9C%89%E7%8C%AA.png",
+      "bytes": 36423,
+      "size": {
+        "width": 152,
+        "height": 256
+      },
+      "sha256": "71e24fefa3b4439fe06f286ba94f341b3118d3514898e03976297aa1abda30e3"
+    },
+    {
+      "id": "pighub-744",
+      "title": "超级赛亚猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-744.png",
+      "url": "https://pighub.top/images/%E8%B6%85%E7%BA%A7%E8%B5%9B%E4%BA%9A%E7%8C%AA.png",
+      "bytes": 46777,
+      "size": {
+        "width": 256,
+        "height": 240
+      },
+      "sha256": "70fbd89a842d52e755ffac3bd97c981275f27fafd09851b60eec6098196f5974"
+    },
+    {
+      "id": "pighub-1191",
+      "title": "猪咪猪咪猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1191.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%92%AA%E7%8C%AA%E5%92%AA%E7%8C%AA.jpg",
+      "bytes": 42989,
+      "size": {
+        "width": 184,
+        "height": 256
+      },
+      "sha256": "3ea237a599de36fc349278584d9a81b25921cae48f412a7012e416d9e235e306"
+    },
+    {
+      "id": "pighub-1135",
+      "title": "简单风 写实风 猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净的单只粉猪，无道具无文字",
+      "visionReason": "干净的单只粉猪，无道具无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1135.png",
+      "url": "https://pighub.top/images/%E7%AE%80%E5%8D%95%E9%A3%8E%20%E5%86%99%E5%AE%9E%E9%A3%8E%20%E7%8C%AA.jpg",
+      "bytes": 42253,
+      "size": {
+        "width": 256,
+        "height": 228
+      },
+      "sha256": "6515011980f9b427a80911ee9dbc392f3117605042c00cf7b1429aca69ef61dd"
+    },
+    {
+      "id": "pighub-701",
+      "title": "理工猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "戴细框眼镜的单猪，表情温和",
+      "visionReason": "戴细框眼镜的单猪，表情温和",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-701.png",
+      "url": "https://pighub.top/images/%E7%90%86%E5%B7%A5%E7%8C%AA.png",
+      "bytes": 47815,
+      "size": {
+        "width": 256,
+        "height": 224
+      },
+      "sha256": "86f44d0b745f5b1128f7a2fd7f242cc96d64a03a0b1c09956cbe30610bbb4a31"
+    },
+    {
+      "id": "pighub-606",
+      "title": "巨蟹猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "单猪 + 小蟹钳/小鱼配件，整体仍是一只可爱猪",
+      "visionReason": "单猪 + 小蟹钳/小鱼配件，整体仍是一只可爱猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-606.png",
+      "url": "https://pighub.top/images/%E5%B7%A8%E8%9F%B9%E7%8C%AA.jpg",
+      "bytes": 49230,
+      "size": {
+        "width": 256,
+        "height": 184
+      },
+      "sha256": "6a8489c62ee77049db20276906830441a1145d2bb9060ca48218b3bb5ec7866e"
+    },
+    {
+      "id": "pighub-334",
+      "title": "妹抖猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "戴女仆发带的单猪，可爱",
+      "visionReason": "戴女仆发带的单猪，可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-334.png",
+      "url": "https://pighub.top/images/%E5%A6%B9%E6%8A%96%E7%8C%AA.jpg",
+      "bytes": 59459,
+      "size": {
+        "width": 256,
+        "height": 227
+      },
+      "sha256": "4d888405d3db577df270dc13e165e707c2c32640d0727ee7c5e48ddad4bcccc9"
+    },
+    {
+      "id": "pighub-589",
+      "title": "安安的猪猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，圆脸圆鼻",
+      "visionReason": "干净单猪，圆脸圆鼻",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-589.png",
+      "url": "https://pighub.top/images/%E5%AE%89%E5%AE%89%E7%9A%84%E7%8C%AA%E7%8C%AA.jpeg",
+      "bytes": 67236,
+      "size": {
+        "width": 256,
+        "height": 235
+      },
+      "sha256": "21fcbbf419454e22b51ed1cf2cf3511f362e83e014642a6f5b353d5cc4c63b19"
+    },
+    {
+      "id": "pighub-356",
+      "title": "引诱猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "单猪 + 逗猪小杆，动作可爱、无武器",
+      "visionReason": "单猪 + 逗猪小杆，动作可爱、无武器",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-356.png",
+      "url": "https://pighub.top/images/%E5%BC%95%E8%AF%B1%E7%8C%AA.png",
+      "bytes": 34373,
+      "size": {
+        "width": 252,
+        "height": 256
+      },
+      "sha256": "dc8ae401b18ed2b4df8258be984e87228f590d5aa67ce42c29afd1e01c84bc7a"
+    },
+    {
+      "id": "pighub-661",
+      "title": "热猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "热狗造型猪，幽默不怪",
+      "visionReason": "热狗造型猪，幽默不怪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-661.png",
+      "url": "https://pighub.top/images/%E7%83%AD%E7%8C%AA.png",
+      "bytes": 42946,
+      "size": {
+        "width": 129,
+        "height": 256
+      },
+      "sha256": "3c2d824854ead1d8357b662b819fb4a3ea35b307ae9744e233aabd68d36fe5df"
+    },
+    {
+      "id": "pighub-906",
+      "title": "咕咕猪包",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "包子造型猪，圆润可爱",
+      "visionReason": "包子造型猪，圆润可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-906.png",
+      "url": "https://pighub.top/images/%E5%92%95%E5%92%95%E7%8C%AA%E5%8C%85.jpg",
+      "bytes": 62437,
+      "size": {
+        "width": 256,
+        "height": 238
+      },
+      "sha256": "d43ec71d1c9996f65294afe5d5301808d931c4b4f251607122a5b8e14be711ba"
+    },
+    {
+      "id": "pighub-981",
+      "title": "想送你一只猪猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，表情憨",
+      "visionReason": "干净单猪，表情憨",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-981.png",
+      "url": "https://pighub.top/images/%E6%83%B3%E9%80%81%E4%BD%A0%E4%B8%80%E5%8F%AA%E7%8C%AA%E7%8C%AA.jpg",
+      "bytes": 23376,
+      "size": {
+        "width": 171,
+        "height": 153
+      },
+      "sha256": "8f79ebe9a7f09dc83df011908d063353bad6314e5aca683442bea0a42273ae00"
+    },
+    {
+      "id": "pighub-328",
+      "title": "土猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "单猪，身上是褐色泥土不是伤口",
+      "visionReason": "单猪，身上是褐色泥土不是伤口",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-328.png",
+      "url": "https://pighub.top/images/%E5%9C%9F%E7%8C%AA.png",
+      "bytes": 57685,
+      "size": {
+        "width": 256,
+        "height": 228
+      },
+      "sha256": "76ff2fca2042dfa856c9798609334c88aeedbde233ec2f3d1b44ac9bb9b125e6"
+    },
+    {
+      "id": "pighub-1183",
+      "title": "上面的是猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1183.png",
+      "url": "https://pighub.top/images/%E4%B8%8A%E9%9D%A2%E7%9A%84%E6%98%AF%E7%8C%AA.png",
+      "bytes": 21808,
+      "size": {
+        "width": 161,
+        "height": 145
+      },
+      "sha256": "4d728c821a18aba5c353a1c649dc12ffcb72ae192b5660e0f6cabe8371716926"
+    },
+    {
+      "id": "pighub-1172",
+      "title": "下面的是猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1172.png",
+      "url": "https://pighub.top/images/%E4%B8%8B%E9%9D%A2%E7%9A%84%E6%98%AF%E7%8C%AA.png",
+      "bytes": 21836,
+      "size": {
+        "width": 162,
+        "height": 145
+      },
+      "sha256": "23d4da1b1d53ec11c497856e2988f0fd93c19e4cbeadf8c3911b6bfa079fcc8c"
+    },
+    {
+      "id": "pighub-1181",
+      "title": "上下都是猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1181.png",
+      "url": "https://pighub.top/images/%E4%B8%8A%E4%B8%8B%E9%83%BD%E6%98%AF%E7%8C%AA.png",
+      "bytes": 16820,
+      "size": {
+        "width": 143,
+        "height": 127
+      },
+      "sha256": "4bceab7be39edc52fac5f0e936b15fedc5ef94be05def041041b8608a4cf34ec"
+    },
+    {
+      "id": "pighub-910",
+      "title": "丸子猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "团子串造型的三只小猪，可爱",
+      "visionReason": "团子串造型的三只小猪，可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-910.png",
+      "url": "https://pighub.top/images/%E4%B8%B8%E5%AD%90%E7%8C%AA.jpg",
+      "bytes": 28163,
+      "size": {
+        "width": 196,
+        "height": 256
+      },
+      "sha256": "7d3fd7b5e589b59bbe3dd4170048b88026b1b8a2819cd3acd513d88db64c25e6"
+    },
+    {
+      "id": "pighub-182",
+      "title": "猪包",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "包子造型猪 + 光环，可爱",
+      "visionReason": "包子造型猪 + 光环，可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-182.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%8C%85.jpg",
+      "bytes": 61940,
+      "size": {
+        "width": 256,
+        "height": 242
+      },
+      "sha256": "16b33428df98a1e6f359f865e6d844388bcb420181dc143aaabc8c7b015ed6a7"
+    },
+    {
+      "id": "pighub-351",
+      "title": "疑惑猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "单猪 + 问号气泡，表情困惑、不吓人",
+      "visionReason": "单猪 + 问号气泡，表情困惑、不吓人",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-351.png",
+      "url": "https://pighub.top/images/%E7%96%91%E6%83%91%E7%8C%AA.png",
+      "bytes": 62678,
+      "size": {
+        "width": 243,
+        "height": 256
+      },
+      "sha256": "4ab44ee75be79f6f70756b33f2b18439f3ce1bb84fe338ed100b5e348b50d357"
+    },
+    {
+      "id": "pighub-610",
+      "title": "天秤猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "单猪 + 天平道具，无武器",
+      "visionReason": "单猪 + 天平道具，无武器",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-610.png",
+      "url": "https://pighub.top/images/%E5%A4%A9%E7%A7%A4%E7%8C%AA.jpg",
+      "bytes": 47334,
+      "size": {
+        "width": 256,
+        "height": 194
+      },
+      "sha256": "0550902a2747e6a996355aa89824eeaa1b92d5ceeccc6c38a63fa4242c842b8f"
+    },
+    {
+      "id": "pighub-1252",
+      "title": "碧蓝航线引诱猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1252.png",
+      "url": "https://pighub.top/images/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%BC%95%E8%AF%B1%E7%8C%AA.png",
+      "bytes": 32816,
+      "size": {
+        "width": 209,
+        "height": 211
+      },
+      "sha256": "b4cf0a5b8c9c7be5269def453ef7fab1984f20c64bd10b33f08109e125f990b3"
+    },
+    {
+      "id": "pighub-600",
+      "title": "室女猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "单猪 + 小扫帚，可爱",
+      "visionReason": "单猪 + 小扫帚，可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-600.png",
+      "url": "https://pighub.top/images/%E5%AE%A4%E5%A5%B3%E7%8C%AA.jpg",
+      "bytes": 53705,
+      "size": {
+        "width": 256,
+        "height": 212
+      },
+      "sha256": "ff7881a1a373b9f5c74d4ee368127b33144f5606d3dd22e2415c4f7ae40b563f"
+    },
+    {
+      "id": "pighub-659",
+      "title": "小丑猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "小丑造型猪，红鼻头是化妆不是伤口",
+      "visionReason": "小丑造型猪，红鼻头是化妆不是伤口",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-659.png",
+      "url": "https://pighub.top/images/%E5%B0%8F%E4%B8%91%E7%8C%AA.png",
+      "bytes": 79244,
+      "size": {
+        "width": 249,
+        "height": 256
+      },
+      "sha256": "ba792e0ae632df658c44655c39f6a4552e559f957b5760b5b22760ad7297a0f9"
+    },
+    {
+      "id": "pighub-468",
+      "title": "乞讨猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-468.png",
+      "url": "https://pighub.top/images/%E4%B9%9E%E8%AE%A8%E7%8C%AA.jpg",
+      "bytes": 43252,
+      "size": {
+        "width": 256,
+        "height": 235
+      },
+      "sha256": "e7fc61c88ba7f48a9ace41f741e961a4d5e35da8c429994350e2a094e37ce32d"
+    },
+    {
+      "id": "pighub-341",
+      "title": "流泪猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "落泪的单猪，卡通泪不是血",
+      "visionReason": "落泪的单猪，卡通泪不是血",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-341.png",
+      "url": "https://pighub.top/images/%E6%B5%81%E6%B3%AA%E7%8C%AA.png",
+      "bytes": 46007,
+      "size": {
+        "width": 256,
+        "height": 220
+      },
+      "sha256": "6057b4f84841a78ceb1e4dc95379ea92fb6e77c35eab24aa4cdb9195d789d0b0"
+    },
+    {
+      "id": "pighub-1279",
+      "title": "爱心馅猪包",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "包子造型猪 + 爱心，可爱",
+      "visionReason": "包子造型猪 + 爱心，可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1279.png",
+      "url": "https://pighub.top/images/%E7%88%B1%E5%BF%83%E9%A6%85%E7%8C%AA%E5%8C%85.jpg",
+      "bytes": 61233,
+      "size": {
+        "width": 256,
+        "height": 193
+      },
+      "sha256": "8492a11a5248ad8bbf6a47ab616cf085f7b1180eb8321ac111bb8ddf083c6ae9"
+    },
+    {
+      "id": "pighub-710",
+      "title": "Doro猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "粉发圆身造型猪，可爱",
+      "visionReason": "粉发圆身造型猪，可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-710.png",
+      "url": "https://pighub.top/images/Doro%E7%8C%AA.jpg",
+      "bytes": 77858,
+      "size": {
+        "width": 256,
+        "height": 194
+      },
+      "sha256": "8b63c1223ee65ebdd34daf481773c0de2dafad141ecc35cabc18016a3343cb11"
+    },
+    {
+      "id": "pighub-67",
+      "title": "黄猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "黄色配色单猪，干净",
+      "visionReason": "黄色配色单猪，干净",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-67.png",
+      "url": "https://pighub.top/images/%E9%BB%84%E7%8C%AA.jpg",
+      "bytes": 33892,
+      "size": {
+        "width": 256,
+        "height": 228
+      },
+      "sha256": "387a17afbb690c56f673a2d29579a766551f589d5ba3b914d7e0d7a20b87db59"
+    },
+    {
+      "id": "pighub-986",
+      "title": "圣诞猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圣诞帽单猪，可爱",
+      "visionReason": "圣诞帽单猪，可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-986.png",
+      "url": "https://pighub.top/images/%E5%9C%A3%E8%AF%9E%E7%8C%AA.jpg",
+      "bytes": 73346,
+      "size": {
+        "width": 256,
+        "height": 254
+      },
+      "sha256": "fd403b6119503b13b67d3430b3014b647ce66d581cbed24e54239c4e8d684648"
+    },
+    {
+      "id": "pighub-993",
+      "title": "肥猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-993.png",
+      "url": "https://pighub.top/images/%E8%82%A5%E7%8C%AA.png",
+      "bytes": 32060,
+      "size": {
+        "width": 256,
+        "height": 239
+      },
+      "sha256": "350daa47b9856661ee2016ea9be18c987b41b5c35f7a2a7e7a963ceb267332aa"
+    },
+    {
+      "id": "pighub-462",
+      "title": "地球猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "站在地球上的单猪，构型完整",
+      "visionReason": "站在地球上的单猪，构型完整",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-462.png",
+      "url": "https://pighub.top/images/%E5%9C%B0%E7%90%83%E7%8C%AA.png",
+      "bytes": 55533,
+      "size": {
+        "width": 256,
+        "height": 241
+      },
+      "sha256": "8f3fb37fe6c6abf5055fbf6dc1b7cc017f2fa62d5fa358f57f3e46ac8378f0ba"
+    },
+    {
+      "id": "pighub-463",
+      "title": "西瓜猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "西瓜造型猪，可爱",
+      "visionReason": "西瓜造型猪，可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-463.png",
+      "url": "https://pighub.top/images/%E8%A5%BF%E7%93%9C%E7%8C%AA.png",
+      "bytes": 57883,
+      "size": {
+        "width": 256,
+        "height": 244
+      },
+      "sha256": "e652c50574f1cff21c40a86cb009e0858d5d9191420177c8d80a1f37b436c169"
+    },
+    {
+      "id": "pighub-88",
+      "title": "冲猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "洗淋浴的单猪，水珠道具，无武器",
+      "visionReason": "洗淋浴的单猪，水珠道具，无武器",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-88.png",
+      "url": "https://pighub.top/images/%E5%86%B2%E7%8C%AA.jpg",
+      "bytes": 41458,
+      "size": {
+        "width": 161,
+        "height": 256
+      },
+      "sha256": "0a8394f592238e0327813ff3599a8ce5297bc5fa7657cbe08e2b0c79fe355b96"
+    },
+    {
+      "id": "pighub-641",
+      "title": "生科猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "戴护目镜拿试管的单猪，可爱",
+      "visionReason": "戴护目镜拿试管的单猪，可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-641.png",
+      "url": "https://pighub.top/images/%E7%94%9F%E7%A7%91%E7%8C%AA.jpg",
+      "bytes": 70746,
+      "size": {
+        "width": 256,
+        "height": 225
+      },
+      "sha256": "3f8ed7c452ee47c377175803641c7d49e25f19bc3674eb00e00c72dc63cc5a59"
+    },
+    {
+      "id": "pighub-599",
+      "title": "摩羯猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "摩羯座造型猪（羊角+鱼尾），单主体",
+      "visionReason": "摩羯座造型猪（羊角+鱼尾），单主体",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-599.png",
+      "url": "https://pighub.top/images/%E6%91%A9%E7%BE%AF%E7%8C%AA.jpg",
+      "bytes": 59313,
+      "size": {
+        "width": 256,
+        "height": 245
+      },
+      "sha256": "763093a0317e4e54716379dc0c8715dc93d8e1c2c96889e6d397a3dc182d0d66"
+    },
+    {
+      "id": "pighub-1012",
+      "title": "金翅猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "金翅单猪，可爱",
+      "visionReason": "金翅单猪，可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1012.png",
+      "url": "https://pighub.top/images/%E9%87%91%E7%BF%85%E7%8C%AA.jpg",
+      "bytes": 54348,
+      "size": {
+        "width": 256,
+        "height": 247
+      },
+      "sha256": "ea2f6798b032c9e83b3f3fbba9340eb5dd69d950282f71ad6bf1ab7e420d5760"
+    },
+    {
+      "id": "pighub-609",
+      "title": "宝瓶猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "戴皇冠捧花瓶的单猪，可爱",
+      "visionReason": "戴皇冠捧花瓶的单猪，可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-609.png",
+      "url": "https://pighub.top/images/%E5%AE%9D%E7%93%B6%E7%8C%AA.jpg",
+      "bytes": 62842,
+      "size": {
+        "width": 256,
+        "height": 255
+      },
+      "sha256": "f797a198d16ef88bf7404369c368421d0aad15c3fef9fd01aa99a77a041d16be"
+    },
+    {
+      "id": "pighub-608",
+      "title": "天蝎猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "天蝎座造型猪（蝎尾），单主体",
+      "visionReason": "天蝎座造型猪（蝎尾），单主体",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-608.png",
+      "url": "https://pighub.top/images/%E5%A4%A9%E8%9D%8E%E7%8C%AA.jpg",
+      "bytes": 53129,
+      "size": {
+        "width": 256,
+        "height": 203
+      },
+      "sha256": "d6d89300f81fcc3d16f55a6bdcdbf5ea82c60648b16dc6d24f67cd1a1d90b463"
+    },
+    {
+      "id": "pighub-560",
+      "title": "鸽猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "带小翅膀的单猪，可爱",
+      "visionReason": "带小翅膀的单猪，可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-560.png",
+      "url": "https://pighub.top/images/%E9%B8%BD%E7%8C%AA.jpeg",
+      "bytes": 47681,
+      "size": {
+        "width": 221,
+        "height": 256
+      },
+      "sha256": "0e8443aa4862200da120f35044f40a1c93217d124c756ce3d07391c45303c78f"
+    },
+    {
+      "id": "pighub-12",
+      "title": "just猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-12.png",
+      "url": "https://pighub.top/images/just%E7%8C%AA.jpg",
+      "bytes": 58023,
+      "size": {
+        "width": 256,
+        "height": 226
+      },
+      "sha256": "e46df7bfd67bb7ad2dcb48bf6feaae0d9fe8b2e7f9eb7c153f628dce541fb802"
+    },
+    {
+      "id": "pighub-878",
+      "title": "吊猪",
+      "kind": "live",
+      "vector": false,
+      "animated": true,
+      "mood": "cute",
+      "moodReason": "造型圆胖、黑点眼睛和粉色鼻头，无獠牙血迹",
+      "visionReason": "单只圆胖小猪，被一条棕色皮带从上方吊起，全身完整无文字",
+      "note": "角色卡样例集产出（动画 GIF：已去白底、裁到动画全程的内容框），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-878.gif",
+      "url": "https://pighub.top/images/%E5%90%8A%E7%8C%AA.gif",
+      "bytes": 1576545
+    },
+    {
+      "id": "pighub-129",
+      "title": "掌上明猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "单猪 + 暖色光晕，构图完整",
+      "visionReason": "单猪 + 暖色光晕，构图完整",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-129.png",
+      "url": "https://pighub.top/images/%E6%8E%8C%E4%B8%8A%E6%98%8E%E7%8C%AA.png",
+      "bytes": 69277,
+      "size": {
+        "width": 226,
+        "height": 256
+      },
+      "sha256": "0d0c335f77a3112877a2536af2ddb9157cc54cfed1c7754e9fb99e8ba33d9bff"
+    },
+    {
+      "id": "pighub-1020",
+      "title": "你其实是猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1020.png",
+      "url": "https://pighub.top/images/%E4%BD%A0%E5%85%B6%E5%AE%9E%E6%98%AF%E7%8C%AA.png",
+      "bytes": 39508,
+      "size": {
+        "width": 229,
+        "height": 208
+      },
+      "sha256": "928da908cf7c4587a1269f9a76ba85e1f9ca4e021c336b4d41f54e37776eca33"
+    },
+    {
+      "id": "pighub-115",
+      "title": "蜗是猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "蜗牛壳造型猪，可爱",
+      "visionReason": "蜗牛壳造型猪，可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-115.png",
+      "url": "https://pighub.top/images/%E8%9C%97%E6%98%AF%E7%8C%AA.png",
+      "bytes": 67740,
+      "size": {
+        "width": 256,
+        "height": 232
+      },
+      "sha256": "9ba0e101d517f4f121fdc530a095c44966b44170aa582ea29d081e54d76f4897"
+    },
+    {
+      "id": "pighub-1208",
+      "title": "程序猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "戴眼镜敲笔记本的单猪，可爱",
+      "visionReason": "戴眼镜敲笔记本的单猪，可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1208.png",
+      "url": "https://pighub.top/images/%E7%A8%8B%E5%BA%8F%E7%8C%AA.png",
+      "bytes": 76220,
+      "size": {
+        "width": 256,
+        "height": 215
+      },
+      "sha256": "15cb9b3ea1a54efb7df13a0dad20382b325d52356bffef1e4e1ac050033fe841"
+    },
+    {
+      "id": "pighub-607",
+      "title": "狮子猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "狮子鬃毛造型猪，可爱",
+      "visionReason": "狮子鬃毛造型猪，可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-607.png",
+      "url": "https://pighub.top/images/%E7%8B%AE%E5%AD%90%E7%8C%AA.jpg",
+      "bytes": 74099,
+      "size": {
+        "width": 256,
+        "height": 218
+      },
+      "sha256": "ea382dc29d7138a8847bd8547d2dfea149a4c32ea5bd1ffe6272ad11dc5448be"
+    },
+    {
+      "id": "pighub-417",
+      "title": "苹果、猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "单猪 + 苹果，造型甜",
+      "visionReason": "单猪 + 苹果，造型甜",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-417.png",
+      "url": "https://pighub.top/images/%E8%8B%B9%E6%9E%9C%E3%80%81%E7%8C%AA.png",
+      "bytes": 102257,
+      "size": {
+        "width": 256,
+        "height": 216
+      },
+      "sha256": "b639982eae635ce55fd875e75b9765171ce93bfcc75ffebad7019be9365e721f"
+    },
+    {
+      "id": "pighub-872",
+      "title": "救世猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "单猪，白色头发造型，不吓人",
+      "visionReason": "单猪，白色头发造型，不吓人",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-872.png",
+      "url": "https://pighub.top/images/%E6%95%91%E4%B8%96%E7%8C%AA.jpg",
+      "bytes": 77898,
+      "size": {
+        "width": 256,
+        "height": 235
+      },
+      "sha256": "3dce2ace8923ed189cc76837e745cfec912c78391259e7e1f636f1e5ecb38972"
+    },
+    {
+      "id": "pighub-29",
+      "title": "可爱猪翻身",
+      "kind": "live",
+      "vector": false,
+      "animated": true,
+      "mood": "cute",
+      "moodReason": "圆胖造型配粉色腮线，闭口微笑，无獠牙血迹",
+      "visionReason": "单只侧身小猪，圆胖身体、粉色鼻子与卷尾，干净抠图无文字",
+      "note": "角色卡样例集产出（动画 GIF：已去白底、裁到动画全程的内容框），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-29.gif",
+      "url": "https://pighub.top/images/%E5%8F%AF%E7%88%B1%E7%8C%AA%E7%BF%BB%E8%BA%AB.gif",
+      "bytes": 493148
+    },
+    {
+      "id": "pighub-829",
+      "title": "猪名言(哼唧！)",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，无文字无武器",
+      "visionReason": "干净单猪，无文字无武器",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-829.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%90%8D%E8%A8%80(%E5%93%BC%E5%94%A7%EF%BC%81).png",
+      "bytes": 26078,
+      "size": {
+        "width": 256,
+        "height": 227
+      },
+      "sha256": "1711ad243854c3abc156747dc564ef43ecfc88366156f41c3852b0345f90eff2"
+    },
+    {
+      "id": "pighub-613",
+      "title": "猪变圆",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆成一个球的单猪，可爱",
+      "visionReason": "圆成一个球的单猪，可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-613.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%8F%98%E5%9C%86.jpg",
+      "bytes": 35002,
+      "size": {
+        "width": 256,
+        "height": 254
+      },
+      "sha256": "3673c761f952a939e232936b194f8c968e7cc2933543f0fca905220c2622f8fa"
+    },
+    {
+      "id": "pighub-868",
+      "title": "猪叉腰",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "叉腰姿势的单猪，可爱",
+      "visionReason": "叉腰姿势的单猪，可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-868.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%8F%89%E8%85%B0.jpg",
+      "bytes": 37886,
+      "size": {
+        "width": 256,
+        "height": 248
+      },
+      "sha256": "01267c71e90ec1ba0e53db70d67dbdc5509bf244e5cc9b8c2925c6c6827dd327"
+    },
+    {
+      "id": "pighub-768",
+      "title": "停猪位",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "侧躺睡觉的单猪",
+      "visionReason": "侧躺睡觉的单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-768.png",
+      "url": "https://pighub.top/images/%E5%81%9C%E7%8C%AA%E4%BD%8D.jpg",
+      "bytes": 32443,
+      "size": {
+        "width": 256,
+        "height": 200
+      },
+      "sha256": "4f7cd31246fa562d823c6945682e4fc895a52cdbc5747436cebd831295a8360d"
+    },
+    {
+      "id": "pighub-920",
+      "title": "猪昏迷",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "趴着睡的单猪，表情憨",
+      "visionReason": "趴着睡的单猪，表情憨",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-920.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%98%8F%E8%BF%B7.jpg",
+      "bytes": 48942,
+      "size": {
+        "width": 256,
+        "height": 152
+      },
+      "sha256": "ee0f8291b1b8744a77b1abf058c37acdaa8f4eeeb26498043fc6ee17775e3c26"
+    },
+    {
+      "id": "pighub-830",
+      "title": "猪名言(我好饿)",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-830.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%90%8D%E8%A8%80(%E6%88%91%E5%A5%BD%E9%A5%BF).png",
+      "bytes": 30149,
+      "size": {
+        "width": 197,
+        "height": 175
+      },
+      "sha256": "537579e69c5073fcf3c7ab131368ac3930b75ad1d50146db4f5bfc459519e325"
+    },
+    {
+      "id": "pighub-772",
+      "title": "猪歪倒(高清)",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "歪倒的单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "歪倒的单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-772.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%AD%AA%E5%80%92(%E9%AB%98%E6%B8%85).jpg",
+      "bytes": 31626,
+      "size": {
+        "width": 256,
+        "height": 200
+      },
+      "sha256": "3345db83288894ed9463bd83550a11b9109baf2777b199f6ea5503a5ebe257ef"
+    },
+    {
+      "id": "pighub-1124",
+      "title": "猪构成",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1124.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%9E%84%E6%88%90.png",
+      "bytes": 33194,
+      "size": {
+        "width": 256,
+        "height": 227
+      },
+      "sha256": "1c57d44e3fffc1cc772f33894d29391370467e0cda35128c89e2059e850fcf68"
+    },
+    {
+      "id": "pighub-1222",
+      "title": "猪拜年…",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "拜年姿势的单猪",
+      "visionReason": "拜年姿势的单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1222.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%8B%9C%E5%B9%B4%E2%80%A6.jpeg",
+      "bytes": 63577,
+      "size": {
+        "width": 256,
+        "height": 216
+      },
+      "sha256": "5698f15179efeddc21b779faea0e800b840ac85ef2ab7e02328a2a05396c4a76"
+    },
+    {
+      "id": "pighub-1226",
+      "title": "爱上一只小猪？",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "闭眼微笑的单猪",
+      "visionReason": "闭眼微笑的单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1226.png",
+      "url": "https://pighub.top/images/%E7%88%B1%E4%B8%8A%E4%B8%80%E5%8F%AA%E5%B0%8F%E7%8C%AA%EF%BC%9F.jpg",
+      "bytes": 39279,
+      "size": {
+        "width": 256,
+        "height": 228
+      },
+      "sha256": "9949d9ffafc4191a9b4edd0f20b141dadda2e40ca8980f4d7d0dfaa0f02640ec"
+    },
+    {
+      "id": "pighub-989",
+      "title": "流汗猪😅",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "单猪 + 一滴汗，卡通不是血",
+      "visionReason": "单猪 + 一滴汗，卡通不是血",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-989.png",
+      "url": "https://pighub.top/images/%E6%B5%81%E6%B1%97%E7%8C%AA%F0%9F%98%85.png",
+      "bytes": 30265,
+      "size": {
+        "width": 256,
+        "height": 227
+      },
+      "sha256": "7509cc9d180aad2698a06f4ce905299cd60abea4d31280be2e4f903d976398a1"
+    },
+    {
+      "id": "pighub-861",
+      "title": "名猪名言",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "戴墨镜的单猪",
+      "visionReason": "戴墨镜的单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-861.png",
+      "url": "https://pighub.top/images/%E5%90%8D%E7%8C%AA%E5%90%8D%E8%A8%80.png",
+      "bytes": 38825,
+      "size": {
+        "width": 256,
+        "height": 227
+      },
+      "sha256": "7783eebec142cc6125c002ad4f28ca631e6bdb4b2abb8e64e6a8940309dbf15b"
+    },
+    {
+      "id": "pighub-1139",
+      "title": "猪圆玉润",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1139.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%9C%86%E7%8E%89%E6%B6%A6.jpg",
+      "bytes": 38118,
+      "size": {
+        "width": 227,
+        "height": 256
+      },
+      "sha256": "5d74dac1900f00cec3c53ecf5f4df4e746500b3decd20fb1acdef4ae82c9dc0d"
+    },
+    {
+      "id": "pighub-300",
+      "title": "猪点赞",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "单猪（点赞手势）",
+      "visionReason": "单猪（点赞手势）",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-300.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%82%B9%E8%B5%9E.jpg",
+      "bytes": 50591,
+      "size": {
+        "width": 256,
+        "height": 219
+      },
+      "sha256": "0afff9add77cf66d5274c100c3f39571850b9b566802d923813ea692206bae5f"
+    },
+    {
+      "id": "pighub-865",
+      "title": "斗猪眼",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "斗鸡眼单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "斗鸡眼单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-865.png",
+      "url": "https://pighub.top/images/%E6%96%97%E7%8C%AA%E7%9C%BC.jpg",
+      "bytes": 55860,
+      "size": {
+        "width": 256,
+        "height": 245
+      },
+      "sha256": "3afba0f8fe9da4bc31f9754f154d41f4dff60f73dff6dad03b013d7261e264c7"
+    },
+    {
+      "id": "pighub-930",
+      "title": "猪难绷",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "眨眼的单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "眨眼的单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-930.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E9%9A%BE%E7%BB%B7.png",
+      "bytes": 53890,
+      "size": {
+        "width": 256,
+        "height": 224
+      },
+      "sha256": "547290c91c197b47f06ef51ce3c0ad84913c97f41962d235dce99f82127ca888"
+    },
+    {
+      "id": "pighub-1048",
+      "title": "猪揣手",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1048.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%8F%A3%E6%89%8B.png",
+      "bytes": 65809,
+      "size": {
+        "width": 256,
+        "height": 233
+      },
+      "sha256": "ba7d5ce0dd74779e71a89c6da0bf31d34f9b5d095079458d1ebd9bdca5698261"
+    },
+    {
+      "id": "pighub-479",
+      "title": "猪乐",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "闭眼笑的单猪",
+      "visionReason": "闭眼笑的单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-479.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E4%B9%90.jpg",
+      "bytes": 42689,
+      "size": {
+        "width": 256,
+        "height": 227
+      },
+      "sha256": "65db934cc7279cb79ca0b3ae53cae3c5a8df6a15554b5fdbffdcaabfa77827ae"
+    },
+    {
+      "id": "pighub-895",
+      "title": "猪蛋",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "蛋形单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "蛋形单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-895.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%9B%8B.png",
+      "bytes": 43515,
+      "size": {
+        "width": 206,
+        "height": 256
+      },
+      "sha256": "22e473cc91a93418d714e3bf9f72d62fd31c9ae8e33ebba70c154f10b38facaa"
+    },
+    {
+      "id": "pighub-188",
+      "title": "猪望月",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-188.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%9C%9B%E6%9C%88.jpg",
+      "bytes": 35049,
+      "size": {
+        "width": 256,
+        "height": 208
+      },
+      "sha256": "1a3e03cf25c9fa31a77654e319bf8a3db1653a444d04a168ee08eb0a7291dcec"
+    },
+    {
+      "id": "pighub-836",
+      "title": "猪名言(大肥猪)",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-836.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%90%8D%E8%A8%80(%E5%A4%A7%E8%82%A5%E7%8C%AA).png",
+      "bytes": 28730,
+      "size": {
+        "width": 256,
+        "height": 227
+      },
+      "sha256": "4cfc6f3cca84cadc0a60d7a90a54a15fb17369a7b22f307d3dbdc1ffa41aadbe"
+    },
+    {
+      "id": "pighub-243",
+      "title": "猪膜拜",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "倒过来的单猪",
+      "visionReason": "倒过来的单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-243.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%86%9C%E6%8B%9C.png",
+      "bytes": 29154,
+      "size": {
+        "width": 256,
+        "height": 203
+      },
+      "sha256": "9acf6996903c798a2b78a96f96bf9f4b50a8d53eb1f98f9e8398fae6f36cde93"
+    },
+    {
+      "id": "pighub-583",
+      "title": "有股味(有猪味)",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "吐气的单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "吐气的单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-583.png",
+      "url": "https://pighub.top/images/%E6%9C%89%E8%82%A1%E5%91%B3(%E6%9C%89%E7%8C%AA%E5%91%B3).jpg",
+      "bytes": 47710,
+      "size": {
+        "width": 256,
+        "height": 227
+      },
+      "sha256": "40a575a99720de678856ffd5fafb9cbfefdfe0c4fae3762190e559b9f0098d13"
+    },
+    {
+      "id": "pighub-1244",
+      "title": "猪反转",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "倒置的单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "倒置的单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1244.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%8F%8D%E8%BD%AC.jpg",
+      "bytes": 47675,
+      "size": {
+        "width": 256,
+        "height": 227
+      },
+      "sha256": "874ad2fcd031918bd4095953031fe8841d618d2f9bad4989de85323527ed5123"
+    },
+    {
+      "id": "pighub-266",
+      "title": "猪降临",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-266.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E9%99%8D%E4%B8%B4.jpg",
+      "bytes": 50502,
+      "size": {
+        "width": 256,
+        "height": 227
+      },
+      "sha256": "8c934b4d504809886686f631fd2967e59aa8af50e07cc668ca03bc375c517136"
+    },
+    {
+      "id": "pighub-255",
+      "title": "猪可爱",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "闭眼微笑的单猪",
+      "visionReason": "闭眼微笑的单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-255.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%8F%AF%E7%88%B1.jpg",
+      "bytes": 50527,
+      "size": {
+        "width": 233,
+        "height": 256
+      },
+      "sha256": "2f6102d032b89e93c21f019d3fc9b1ea3d02098fa81894372eab1033b06864b8"
+    },
+    {
+      "id": "pighub-776",
+      "title": "猪截图",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-776.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%88%AA%E5%9B%BE.jpg",
+      "bytes": 33624,
+      "size": {
+        "width": 256,
+        "height": 227
+      },
+      "sha256": "633de56e3b66f28207de37b5f092dc89f4c225d3273f5fd0044b609bd5c97c23"
+    },
+    {
+      "id": "pighub-1093",
+      "title": "猪错觉",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1093.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E9%94%99%E8%A7%89_1.png",
+      "bytes": 31773,
+      "size": {
+        "width": 256,
+        "height": 225
+      },
+      "sha256": "d42006e180c9a0ac326f9799aeaf969cdb1aca29e18318e3c0fbac7fbc4d1221"
+    },
+    {
+      "id": "pighub-804",
+      "title": "猪投降",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "举手投降姿势的单猪",
+      "visionReason": "举手投降姿势的单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-804.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%8A%95%E9%99%8D_1.jpg",
+      "bytes": 58185,
+      "size": {
+        "width": 256,
+        "height": 244
+      },
+      "sha256": "535b9268e365de2132cad1fa406fc9f0a05a89de50162a57b28cf018611dc54d"
+    },
+    {
+      "id": "pighub-866",
+      "title": "猪嫌弃",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "嫌弃脸的单猪，表情可爱",
+      "visionReason": "嫌弃脸的单猪，表情可爱",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-866.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%AB%8C%E5%BC%83.jpg",
+      "bytes": 50371,
+      "size": {
+        "width": 256,
+        "height": 229
+      },
+      "sha256": "e634fd44254ef441f7b98fba47eb38b7cbdbfc302a361682ad62c31b5a50d969"
+    },
+    {
+      "id": "pighub-1079",
+      "title": "猪发春",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "爱心眼的单猪",
+      "visionReason": "爱心眼的单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1079.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%8F%91%E6%98%A5.jpg",
+      "bytes": 70374,
+      "size": {
+        "width": 256,
+        "height": 231
+      },
+      "sha256": "615fdc51bcf5f2d34b5c3f8cb115667821e5f5e984910832a05e38657cc68ed1"
+    },
+    {
+      "id": "pighub-1130",
+      "title": "猪变化",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1130.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%8F%98%E5%8C%96.jpg",
+      "bytes": 41823,
+      "size": {
+        "width": 256,
+        "height": 226
+      },
+      "sha256": "be76a1a57802b1a6d8f2c89faba4f4a19ae3a2831adbac9a76f19c3e5a4e648f"
+    },
+    {
+      "id": "pighub-631",
+      "title": "猪鬼惹…(幽灵猪)",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "幽灵造型猪，白色憨态，不恐怖",
+      "visionReason": "幽灵造型猪，白色憨态，不恐怖",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-631.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E9%AC%BC%E6%83%B9%E2%80%A6(%E5%B9%BD%E7%81%B5%E7%8C%AA).png",
+      "bytes": 40041,
+      "size": {
+        "width": 256,
+        "height": 231
+      },
+      "sha256": "0d99dae8c478bbd49c3b8d3394c38629b99d2d957aa0c4fc50794854d5a31d59"
+    },
+    {
+      "id": "pighub-103",
+      "title": "猪装傻",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "头顶问号的单猪",
+      "visionReason": "头顶问号的单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-103.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%A3%85%E5%82%BB.png",
+      "bytes": 42301,
+      "size": {
+        "width": 256,
+        "height": 239
+      },
+      "sha256": "dc7278ca415d2eaef0c90ac0ff164107ab73d9ee12cac23fac23f91cacbd6587"
+    },
+    {
+      "id": "pighub-1060",
+      "title": "猪浴新",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "头顶小云朵的单猪",
+      "visionReason": "头顶小云朵的单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1060.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%B5%B4%E6%96%B0.png",
+      "bytes": 44427,
+      "size": {
+        "width": 256,
+        "height": 228
+      },
+      "sha256": "1855716b98ac19d7feb229c7248353863d3754c086493ad44cedc0ccad35094c"
+    },
+    {
+      "id": "pighub-379",
+      "title": "猪天使",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "床单幽灵造型猪，憨态",
+      "visionReason": "床单幽灵造型猪，憨态",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-379.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%A4%A9%E4%BD%BF.jpg",
+      "bytes": 58309,
+      "size": {
+        "width": 229,
+        "height": 256
+      },
+      "sha256": "0c8e67c5afb2a4ea281677066772b7519b5b433efdb38f6b5ec17935300ae2fc"
+    },
+    {
+      "id": "pighub-676",
+      "title": "猪望月（中秋版）",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-676.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%9C%9B%E6%9C%88%EF%BC%88%E4%B8%AD%E7%A7%8B%E7%89%88%EF%BC%89.jpg",
+      "bytes": 47053,
+      "size": {
+        "width": 256,
+        "height": 208
+      },
+      "sha256": "c1709d449863c774df60d61fd8fcc7f247461b8288ae64bc83fd8f62274bad13"
+    },
+    {
+      "id": "pighub-283",
+      "title": "猪流感",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "流鼻涕的单猪，不是血",
+      "visionReason": "流鼻涕的单猪，不是血",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-283.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%B5%81%E6%84%9F.png",
+      "bytes": 39089,
+      "size": {
+        "width": 256,
+        "height": 229
+      },
+      "sha256": "0d1dcad35b8de12337ccdb815cb7d2fe958de5232ff41c2857f4519bd8dd36bf"
+    },
+    {
+      "id": "pighub-192",
+      "title": "猪同意",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
+      "visionReason": "干净单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-192.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%90%8C%E6%84%8F.jpg",
+      "bytes": 52257,
+      "size": {
+        "width": 256,
+        "height": 219
+      },
+      "sha256": "e35dee2ecaa4db4433e4553fe203223ae2edc6c76e15278bd97824496358da8e"
+    },
+    {
+      "id": "pighub-1243",
+      "title": "猪的世界一直下雨",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "雨中落泪的单猪，卡通泪不是血",
+      "visionReason": "雨中落泪的单猪，卡通泪不是血",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1243.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%9A%84%E4%B8%96%E7%95%8C%E4%B8%80%E7%9B%B4%E4%B8%8B%E9%9B%A8.png",
+      "bytes": 44397,
+      "size": {
+        "width": 256,
+        "height": 199
+      },
+      "sha256": "5e85fe7e9cae136397374bd28b3b927db3d45bbe9b13b1e17c78dbcba4049737"
+    },
+    {
+      "id": "pighub-814",
+      "title": "猪水群-猪乐",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "闭眼笑的单猪",
+      "visionReason": "闭眼笑的单猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-814.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%B0%B4%E7%BE%A4-%E7%8C%AA%E4%B9%90.png",
+      "bytes": 43066,
+      "size": {
+        "width": 256,
+        "height": 225
+      },
+      "sha256": "d39ebe8a228f37490e79714e1fb7ee32cb3c1d08ab5c180c72c703b2c860a738"
+    },
+    {
+      "id": "pighub-273",
+      "title": "猪借口",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "皱眉的单猪，表情不吓人",
+      "visionReason": "皱眉的单猪，表情不吓人",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-273.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%80%9F%E5%8F%A3.jpg",
+      "bytes": 52068,
+      "size": {
+        "width": 256,
+        "height": 229
+      },
+      "sha256": "2f386677ed2b1b99a001ee5256e3b5217b75587d5b9c8e6e695a204edab5bd71"
+    },
+    {
+      "id": "pighub-409",
+      "title": "猪复读",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色耳朵与鼻头，闭口无害",
+      "visionReason": "单只侧面小猪，棕色描边、四肢与卷尾完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-409.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%A4%8D%E8%AF%BB.jpg",
+      "bytes": 79459,
+      "size": {
+        "width": 256,
+        "height": 206
+      },
+      "sha256": "6905faa37b71d3bb77be30338dd0ad35f51e55b7c301e0e82a9aa2bccc0fad78"
+    },
+    {
+      "id": "pighub-1112",
+      "title": "猪学习",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "趴卧姿态、粉色鼻子，造型圆润可爱",
+      "visionReason": "单只小猪趴在笔记本电脑前，猪为主体且无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1112.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%AD%A6%E4%B9%A0.jpeg",
+      "bytes": 37871,
+      "size": {
+        "width": 256,
+        "height": 153
+      },
+      "sha256": "4172708ff4fd6b5ab1cde27ab769cb0e9a2e49040450b40cb85fa90e15620e57"
+    },
+    {
+      "id": "pighub-927",
+      "title": "猪实习",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖头部、粉色腮线，表情温和可爱",
+      "visionReason": "单只猪的上半身特写，粉色鼻子与卷尾清晰，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-927.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%AE%9E%E4%B9%A0.png",
+      "bytes": 52119,
+      "size": {
+        "width": 256,
+        "height": 230
+      },
+      "sha256": "0433b80f2ab0a583c0d20908e240c04cf071ecc0d395c1b1fdf294fee36c2c9a"
+    },
+    {
+      "id": "pighub-975",
+      "title": "猪头像",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身形、粉鼻腮线，呆萌表情",
+      "visionReason": "单只猪的正面半身像，粉色鼻头与卷尾完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-975.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%A4%B4%E5%83%8F.png",
+      "bytes": 53089,
+      "size": {
+        "width": 256,
+        "height": 243
+      },
+      "sha256": "2af7b1880644a71159d6af860020c9d3c84c4b5a18d2d83acdaac58cd5366c10"
+    },
+    {
+      "id": "pighub-1095",
+      "title": "猪错觉",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身形、粉色鼻头与腮线，表情温和",
+      "visionReason": "单只侧身小猪，棕色描边、四足与卷尾完整，画面无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1095.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E9%94%99%E8%A7%89.png",
+      "bytes": 11169,
+      "size": {
+        "width": 190,
+        "height": 168
+      },
+      "sha256": "cb1ee6ec7a39446827cf17381d68b912e1b7da9be4294d34708551d912029ebf"
+    },
+    {
+      "id": "pighub-286",
+      "title": "猪离去",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "是「装死/躺平」的通用可爱梗，无血无武器无伤口",
+      "visionReason": "单只小猪四脚朝天躺倒，X 形眼、张嘴的瘫倒姿势，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-286.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%A6%BB%E5%8E%BB.jpg",
+      "bytes": 56299,
+      "size": {
+        "width": 256,
+        "height": 224
+      },
+      "sha256": "c78c1ce1f60d86e296a6eedb7ff8d225eee9866c47e4f60ac4fdf1fa6cfeb3be"
+    },
+    {
+      "id": "pighub-1005",
+      "title": "小猪快到碗里来",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆滚滚身体、粉鼻，表情是撒娇式皱眉",
+      "visionReason": "单只圆猪侧躺，紧皱的 >< 眼睛和粉色鼻子，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1005.png",
+      "url": "https://pighub.top/images/%E5%B0%8F%E7%8C%AA%E5%BF%AB%E5%88%B0%E7%A2%97%E9%87%8C%E6%9D%A5.jpg",
+      "bytes": 26436,
+      "size": {
+        "width": 220,
+        "height": 203
+      },
+      "sha256": "0c20dc41fd77c08dbba22b798231f7a1aef4d80338e0a3de0b6bcdc7894fba65"
+    },
+    {
+      "id": "pighub-925",
+      "title": "猪累了",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "疲惫耷眉的圆胖趴姿，表情无害",
+      "visionReason": "单只小猪趴伏，耷拉眼眉与一滴汗，四肢与卷尾完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-925.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%B4%AF%E4%BA%86.jpg",
+      "bytes": 35602,
+      "size": {
+        "width": 256,
+        "height": 171
+      },
+      "sha256": "98ee06ffb911a3206d68bbf79516127a66f1da39366c72e5ce84bcf0bf468386"
+    },
+    {
+      "id": "pighub-254",
+      "title": "猪进食",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "闭眼微笑、粉色鼻子与耳朵，构图干净可爱",
+      "visionReason": "单只圆胖小猪低头吃一片绿叶，闭眼微笑，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-254.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%BF%9B%E9%A3%9F.png",
+      "bytes": 42518,
+      "size": {
+        "width": 256,
+        "height": 191
+      },
+      "sha256": "45c30ee530a13126c32f0cf198ebe2532747f238e1c84c41740c3ff5d2c314d6"
+    },
+    {
+      "id": "pighub-1213",
+      "title": "这才是真正的猪乐！",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "闭眼陶醉的圆胖小猪配粉色耳机，纯道具无攻击性",
+      "visionReason": "单只小猪戴大耳机，周围是音符与抖动线，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1213.png",
+      "url": "https://pighub.top/images/%E8%BF%99%E6%89%8D%E6%98%AF%E7%9C%9F%E6%AD%A3%E7%9A%84%E7%8C%AA%E4%B9%90%EF%BC%81.png",
+      "bytes": 69416,
+      "size": {
+        "width": 256,
+        "height": 205
+      },
+      "sha256": "925ebdf8b727661ba62dfe86f78101f69155ff7b887868595553391573b89d1a"
+    },
+    {
+      "id": "pighub-97",
+      "title": "猪疑惑",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "呆滞小眼配粉色鼻子，疑惑表情呆萌",
+      "visionReason": "单只侧身小猪，头顶一个问号，神情茫然，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-97.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%96%91%E6%83%91.jpg",
+      "bytes": 66144,
+      "size": {
+        "width": 256,
+        "height": 240
+      },
+      "sha256": "37b728d2e7df3b36fb863f0d2bc5d086293bb501c1bb9a219418d0be14b8d4bf"
+    },
+    {
+      "id": "pighub-675",
+      "title": "魔法猪咪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "粉色腮红、星形魔杖，纯魔法小道具",
+      "visionReason": "单只小猪带猫须、握一根星星魔杖，四肢与卷尾完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-675.png",
+      "url": "https://pighub.top/images/%E9%AD%94%E6%B3%95%E7%8C%AA%E5%92%AA.jpg",
+      "bytes": 47362,
+      "size": {
+        "width": 256,
+        "height": 203
+      },
+      "sha256": "0b9a70d2a34f6862fe9774613aeb5e4081470a44d88c6d0e1c219a46558f4feb"
+    },
+    {
+      "id": "pighub-175",
+      "title": "猪害羞",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "弯眼笑配腮红，抱花姿势，纯无攻击性道具",
+      "visionReason": "单只小猪侧身站立，双眼弯笑、腮红明显，怀里抱一朵红玫瑰，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-175.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%AE%B3%E7%BE%9E.jpg",
+      "bytes": 64324,
+      "size": {
+        "width": 256,
+        "height": 225
+      },
+      "sha256": "9803c5c7f7be4c60d2db7129e5d21317ba8e41c5b89cbd5cdb14de442e6e78c8"
+    },
+    {
+      "id": "pighub-815",
+      "title": "猪桑拿",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "瘫倒吐舌的通用表情梗，无血无伤口无武器",
+      "visionReason": "单只小猪四脚朝天躺在（桑拿）支撑架上，X 形眼、吐舌，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-815.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%A1%91%E6%8B%BF.png",
+      "bytes": 45721,
+      "size": {
+        "width": 256,
+        "height": 199
+      },
+      "sha256": "18eb6b7e0458873cf0a7d1bfe33d1f40feb7689af1cd0b31f271e1bcf51a90b8"
+    },
+    {
+      "id": "pighub-197",
+      "title": "猪痛风",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "红肿关节是「痛风」健康梗，无獠牙血迹与武器",
+      "visionReason": "单只小猪站立，左上有海鲜碗与啤酒杯，猪蹄关节画成红肿，眼角垂泪，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-197.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%97%9B%E9%A3%8E.jpg",
+      "bytes": 64310,
+      "size": {
+        "width": 256,
+        "height": 236
+      },
+      "sha256": "268551c773350d4e8e85322f0df7d2ad2ad7827cade2b2f531122681fb15578e"
+    },
+    {
+      "id": "pighub-315",
+      "title": "猪水群",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "猪主体圆润可爱；配图为图标小道具，无血腥",
+      "visionReason": "单只圆胖小猪，脚边是一个 QQ 企鹅图标、一块键盘和一个垃圾桶，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-315.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%B0%B4%E7%BE%A4.jpg",
+      "bytes": 60378,
+      "size": {
+        "width": 256,
+        "height": 244
+      },
+      "sha256": "7bd58ee2e65b971976a699b06d00da874b650ff33b527364263e9cc1a64135dc"
+    },
+    {
+      "id": "pighub-556",
+      "title": "猪碧吧(碧蓝航线)",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "弯眼笑、圆胖身体；道具是手机与游戏立绘，无血腥",
+      "visionReason": "单只小猪抱着手机，手机屏幕上是一位粉发动漫少女，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-556.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%A2%A7%E5%90%A7(%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF).png",
+      "bytes": 65429,
+      "size": {
+        "width": 256,
+        "height": 215
+      },
+      "sha256": "e4a585aafa680747eda73cefe971dc38c7066afbc8728d4faa3e0d64e43d67fc"
+    },
+    {
+      "id": "pighub-683",
+      "title": "猪好调",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "弯眼笑、粉色鼻子，举牌姿势可爱无害",
+      "visionReason": "单只圆胖小猪弯眼笑，手里举一块蓝底白色鹦鹉图案的菱形牌，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-683.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%A5%BD%E8%B0%83.jpeg",
+      "bytes": 44193,
+      "size": {
+        "width": 256,
+        "height": 200
+      },
+      "sha256": "388e0853992fb9629811bc7d672abdadb6f77564a91d6043961593caea15fe5c"
+    },
+    {
+      "id": "pighub-1134",
+      "title": "猪头三",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖瘫躺姿势、粉鼻小嘴，憨态可爱",
+      "visionReason": "单只小猪侧躺，粉色鼻子与卷尾完整、嘴微张，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1134.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%A4%B4%E4%B8%89.png",
+      "bytes": 76454,
+      "size": {
+        "width": 256,
+        "height": 217
+      },
+      "sha256": "50d0081921cbc89488a453407107fb1087bbea6851f32f42de195a5b3533a2f0"
+    },
+    {
+      "id": "pighub-932",
+      "title": "猪撕卡",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "只是皱眉表情，无獠牙血迹与武器",
+      "visionReason": "单只圆胖小猪正面站立，倒八字怒眉，四肢与卷尾完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-932.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%92%95%E5%8D%A1.png",
+      "bytes": 57597,
+      "size": {
+        "width": 256,
+        "height": 227
+      },
+      "sha256": "91dbfe34b30d16d5cc7fa60d436b09a0c553a4a0782d757e3ca0612c8f1e0c3c"
+    },
+    {
+      "id": "pighub-563",
+      "title": "苹果猪（有尾巴版）",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身形、粉色鼻子，造型清甜",
+      "visionReason": "单只圆胖小猪，头顶一片叶形轮廓、卷尾完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-563.png",
+      "url": "https://pighub.top/images/%E8%8B%B9%E6%9E%9C%E7%8C%AA%EF%BC%88%E6%9C%89%E5%B0%BE%E5%B7%B4%E7%89%88%EF%BC%89.jpg",
+      "bytes": 27304,
+      "size": {
+        "width": 221,
+        "height": 174
+      },
+      "sha256": "5adc53d9b8d8c907a7c77cf0bde6e80768f7efa9ebdf5f6330c4c9d1f9ba8a5e"
+    },
+    {
+      "id": "pighub-682",
+      "title": "猪干劲",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "弯眉小眼、粉色鼻子，图标为纯道具",
+      "visionReason": "单只圆胖小猪，脚边一块蓝底白色手势图标，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-682.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%B9%B2%E5%8A%B2.jpeg",
+      "bytes": 45928,
+      "size": {
+        "width": 256,
+        "height": 201
+      },
+      "sha256": "499992d164c67242dcac4700053083ada7f251afad150de0df84e6593534813d"
+    },
+    {
+      "id": "pighub-267",
+      "title": "猪欢迎",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "弯眼笑配粉色鼻子，小彩件无攻击性",
+      "visionReason": "单只小猪闭眼微笑，身边两个彩色小物件（红、黄），无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-267.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%AC%A2%E8%BF%8E.png",
+      "bytes": 56339,
+      "size": {
+        "width": 256,
+        "height": 214
+      },
+      "sha256": "88b51e9e12f90ad2d91bfbfd1c2f140cb7bf89f282a47c8bf5b03b13012a2a99"
+    },
+    {
+      "id": "pighub-24",
+      "title": "猪摆烂",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖瘫躺姿势，场景道具温和无血",
+      "visionReason": "单只小猪横躺在米色沙发上，旁边有薯片袋、纸箱和饮料杯，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-24.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%91%86%E7%83%82.jpg",
+      "bytes": 37424,
+      "size": {
+        "width": 256,
+        "height": 173
+      },
+      "sha256": "f5dced80543afc19414ca8cd49b6c439f77b39d26add4852e4005124b8a6e439"
+    },
+    {
+      "id": "pighub-680",
+      "title": "猪集中",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，图标为纯道具",
+      "visionReason": "单只圆胖小猪，脚边一块蓝底白色折线图标，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-680.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E9%9B%86%E4%B8%AD.jpeg",
+      "bytes": 43122,
+      "size": {
+        "width": 256,
+        "height": 190
+      },
+      "sha256": "97ddafb1ec63b61d2e47c4eafba73cbd4bcc4bfab8f5150f5d7b04ede81e598e"
+    },
+    {
+      "id": "pighub-1069",
+      "title": "猪艾灸",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体与粉色鼻头；红色为艾灸痕迹，非血非伤口",
+      "visionReason": "单只小猪侧躺，背上放三个艾灸罐、罐底有红色火痕，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1069.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%89%BE%E7%81%B8.png",
+      "bytes": 52569,
+      "size": {
+        "width": 256,
+        "height": 226
+      },
+      "sha256": "f64089544d25300f213cbf6533eeb6d5117d9a8661b09871ef31b4848bbc2573"
+    },
+    {
+      "id": "pighub-219",
+      "title": "猪热死",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "通红是「热」的表现、蓝色为汗滴，无血无伤口",
+      "visionReason": "单只小猪站立，全身涨成通红、挂蓝色汗滴并吐舌，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-219.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%83%AD%E6%AD%BB.png",
+      "bytes": 65092,
+      "size": {
+        "width": 256,
+        "height": 223
+      },
+      "sha256": "ccfd8e93c2fa41d23ac976d6a0384449590f9605c5fdb3236c95d3ae6b16c939"
+    },
+    {
+      "id": "pighub-723",
+      "title": "猪趴云（云猪）",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子配蓝边云朵，柔和可爱",
+      "visionReason": "单只小猪站在一朵白云上，四肢与卷尾完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-723.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%B6%B4%E4%BA%91%EF%BC%88%E4%BA%91%E7%8C%AA%EF%BC%89.jpeg",
+      "bytes": 43205,
+      "size": {
+        "width": 256,
+        "height": 238
+      },
+      "sha256": "a3f29848cc6f322d5c46a38bd650aaefd9b5dea58f788eb3ea2b94f56141a20f"
+    },
+    {
+      "id": "pighub-27",
+      "title": "猪忘了",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "呆滞圆眼、粉色鼻子，眩晕表情憨态",
+      "visionReason": "单只小猪、头顶一圈彩色眩晕射线，淡彩造型无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-27.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%BF%98%E4%BA%86.jpg",
+      "bytes": 41781,
+      "size": {
+        "width": 239,
+        "height": 256
+      },
+      "sha256": "4d1b836bbee0acbbe7ca99dc2497b3a02aeb3e71807705f7a3951196768849b8"
+    },
+    {
+      "id": "pighub-276",
+      "title": "猪红温",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "火焰用于表现「红温」生气，无血无獠牙无武器",
+      "visionReason": "单只通红的小猪，耳朵旁燃着三簇火苗、眼神凶狠，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-276.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%BA%A2%E6%B8%A9.jpg",
+      "bytes": 62826,
+      "size": {
+        "width": 256,
+        "height": 226
+      },
+      "sha256": "37f943271595a0e53aabdc27c0995b23a25a06991bc62d473958ae11c2e2b960"
+    },
+    {
+      "id": "pighub-1140",
+      "title": "猪生根",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "闭眼安睡的圆胖身形；根须是「生根」梗，无伤口血迹",
+      "visionReason": "单只小猪趴睡在木床上，身体下长出细枝与根须伸进床垫，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1140.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%94%9F%E6%A0%B9.png",
+      "bytes": 86431,
+      "size": {
+        "width": 256,
+        "height": 204
+      },
+      "sha256": "3dfc1c2ef4da62569810629036f3b0a67c7f5187f51c6e6c2bbe85d26b79144c"
+    },
+    {
+      "id": "pighub-921",
+      "title": "猪觉醒落",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，眩晕星为通用表情符号",
+      "visionReason": "单只小猪伏地，头顶一颗黄星与几个十字星表示眩晕，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-921.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%A7%89%E9%86%92%E8%90%BD.jpeg",
+      "bytes": 43438,
+      "size": {
+        "width": 256,
+        "height": 170
+      },
+      "sha256": "401b5e0417995a28079c65a1d3f629edb5ce72b634d2b0554b073c21b03ed68b"
+    },
+    {
+      "id": "pighub-1080",
+      "title": "猪拔罐",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆润身体与粉色鼻子；拔罐为透明器具，无血无伤口",
+      "visionReason": "单只圆胖小猪，背上扣着三个透明拔罐，罐内可见粉色皮肤，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1080.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%8B%94%E7%BD%90.png",
+      "bytes": 60979,
+      "size": {
+        "width": 256,
+        "height": 247
+      },
+      "sha256": "1dd703fb25e7e963000085ec16846c64a93507a5c69028b8e9ad09ff7408142c"
+    },
+    {
+      "id": "pighub-1055",
+      "title": "猪闪退",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，抱手机姿势可爱",
+      "visionReason": "单只圆胖小猪，前蹄抱着手机、屏幕上是一个蓝色图标，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1055.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E9%97%AA%E9%80%80.png",
+      "bytes": 53486,
+      "size": {
+        "width": 256,
+        "height": 224
+      },
+      "sha256": "acbfd016cf6daaa8dd933bd53e99515e0be7322e66e1751865b451b1431296d7"
+    },
+    {
+      "id": "pighub-44",
+      "title": "猪爱泥",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子配红心，无血无武器",
+      "visionReason": "单只圆胖小猪，背上一块白色泥斑、头顶一颗红心，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-44.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%88%B1%E6%B3%A5.jpg",
+      "bytes": 54228,
+      "size": {
+        "width": 256,
+        "height": 235
+      },
+      "sha256": "2cd0bcfeba36b0bacad527b855deba18f7bc5354d28d0349b7a14d6d8f50f7ff"
+    },
+    {
+      "id": "pighub-590",
+      "title": "老猪历",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "白胡子老猪造型憨态，无獠牙血迹",
+      "visionReason": "单只小猪，嘴上挂一大把白色长胡须，四肢与卷尾完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-590.png",
+      "url": "https://pighub.top/images/%E8%80%81%E7%8C%AA%E5%8E%86.jpg",
+      "bytes": 44179,
+      "size": {
+        "width": 256,
+        "height": 219
+      },
+      "sha256": "35e10720e294ac7ff6b8496f32cb659073ea78f52a3124efc37037ab6814b6eb"
+    },
+    {
+      "id": "pighub-902",
+      "title": "摆脱枷锁的猪猪王",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖站立姿势配王冠；断链是「枷锁」道具，无血无武器",
+      "visionReason": "单只小猪直立、双臂张开，头顶金色王冠、脚下踩一圈断开的铁链，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-902.png",
+      "url": "https://pighub.top/images/%E6%91%86%E8%84%B1%E6%9E%B7%E9%94%81%E7%9A%84%E7%8C%AA%E7%8C%AA%E7%8E%8B.png",
+      "bytes": 55546,
+      "size": {
+        "width": 212,
+        "height": 256
+      },
+      "sha256": "0a3a8dde3557c814c44c213cd87f77ba227ac9d9b13405df40ed17ee9f9718e7"
+    },
+    {
+      "id": "pighub-372",
+      "title": "升猪拳",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "鼻梁到两耳缠一条暗红色带子（似头巾/彩带），无血滴、无伤口、无獠牙武器",
+      "visionReason": "单只小猪直立举拳（放大看：猪头、双耳、猪鼻完整，左臂上举），无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-372.png",
+      "url": "https://pighub.top/images/%E5%8D%87%E7%8C%AA%E6%8B%B3.jpg",
+      "bytes": 41712,
+      "size": {
+        "width": 148,
+        "height": 256
+      },
+      "sha256": "efb441be756576baddaeb4747f99a2221569290307b25ec0b86ff18438134ed5"
+    },
+    {
+      "id": "pighub-684",
+      "title": "猪好印象",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "弯眼笑、粉色鼻子，点赞图标为纯道具",
+      "visionReason": "单只圆胖小猪，身旁与背上共七个蓝色点赞图标，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-684.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%A5%BD%E5%8D%B0%E8%B1%A1.jpeg",
+      "bytes": 50253,
+      "size": {
+        "width": 256,
+        "height": 206
+      },
+      "sha256": "84d91d6a5c01f7c7b8ba738d55d09c606f8c5ebf39a7cbe675a047a17fd47f55"
+    },
+    {
+      "id": "pighub-2",
+      "title": "珍猪奶茶",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "闭眼享受的圆胖小猪，道具是奶茶与爱心",
+      "visionReason": "单只小猪抱着珍珠奶茶用吸管吸，头上一颗粉心，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-2.png",
+      "url": "https://pighub.top/images/%E7%8F%8D%E7%8C%AA%E5%A5%B6%E8%8C%B6.jpg",
+      "bytes": 56840,
+      "size": {
+        "width": 256,
+        "height": 219
+      },
+      "sha256": "7f251d96977075f3d76cffb87925c3794acffd1ea8f84f38bca47921bef5902c"
+    },
+    {
+      "id": "pighub-860",
+      "title": "猪大哥",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体配墨镜胡须，无血无武器",
+      "visionReason": "单只小猪戴像素墨镜、挂一大把白胡子，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-860.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%A4%A7%E5%93%A5.jpg",
+      "bytes": 51596,
+      "size": {
+        "width": 256,
+        "height": 221
+      },
+      "sha256": "2deadc2c7060db0f45c75dd99dca5020019c5bb7345ae05629fd08a217f24af1"
+    },
+    {
+      "id": "pighub-652",
+      "title": "猪渡劫",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "闪电是「渡劫」符号，无血无武器无獠牙",
+      "visionReason": "单只小猪，背后两道黄色闪电符号，皱眉眯眼，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-652.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%B8%A1%E5%8A%AB.jpg",
+      "bytes": 42218,
+      "size": {
+        "width": 217,
+        "height": 256
+      },
+      "sha256": "6c7af4921a92794b5bcc69814e57bccfee8974cccc2c4d08c6ca01b124795d22"
+    },
+    {
+      "id": "pighub-261",
+      "title": "猪嚼菜根",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "紧闭眼啃菜的憨态、粉鼻腮红，无血无武器",
+      "visionReason": "单只圆胖小猪低头啃一根带绿叶的萝卜，腮红明显，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-261.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%9A%BC%E8%8F%9C%E6%A0%B9.png",
+      "bytes": 72329,
+      "size": {
+        "width": 256,
+        "height": 224
+      },
+      "sha256": "e7aa1fdb6ec2b3d83ff7bf70040ebc228bae1824cdd4d751369b9a9443db8f24"
+    },
+    {
+      "id": "pighub-751",
+      "title": "猪送花(玫瑰猪)",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "弯眼笑配腮红与玫瑰，柔和无攻击性",
+      "visionReason": "单只小猪的头部特写，嘴前举一枝红玫瑰，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-751.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E9%80%81%E8%8A%B1(%E7%8E%AB%E7%91%B0%E7%8C%AA).png",
+      "bytes": 60899,
+      "size": {
+        "width": 256,
+        "height": 228
+      },
+      "sha256": "804846dfdd3a592338aaa401a5c6442fd07db8c087d4e80f5042eea45a6137dd"
+    },
+    {
+      "id": "pighub-164",
+      "title": "猪发蜂",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体配蜜蜂小道具，无血无武器",
+      "visionReason": "单只圆胖小猪，胸口停着一只黄黑蜜蜂、旁边一枝小玫瑰，眼圈泛红，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-164.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%8F%91%E8%9C%82.jpg",
+      "bytes": 55151,
+      "size": {
+        "width": 256,
+        "height": 232
+      },
+      "sha256": "cad53e06459fbd3552666d9f859043fc500aa85c63d94ba882334221a2e6f451"
+    },
+    {
+      "id": "pighub-544",
+      "title": "猪表演",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖站姿配话筒道具，无血腥",
+      "visionReason": "单只小猪对着一个银色话筒，四足与卷尾完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-544.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%A1%A8%E6%BC%94.jpg",
+      "bytes": 53750,
+      "size": {
+        "width": 236,
+        "height": 256
+      },
+      "sha256": "4eef96c15703c6d91b2e78fbde8c3c92b48c8175595eb18df57bc81d9e594da2"
+    },
+    {
+      "id": "pighub-148",
+      "title": "猪冲榜",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "X 眼是「喝趴」的通用表情，无血无武器",
+      "visionReason": "单只小猪躺着、双眼画成 X 形，嘴边一罐能量饮料、旁边两颗蓝星，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-148.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%86%B2%E6%A6%9C.png",
+      "bytes": 56520,
+      "size": {
+        "width": 256,
+        "height": 206
+      },
+      "sha256": "9daf4c31b9aca854214883843c04ac561539b4181e7d3b2ed2c49db3b25f508e"
+    },
+    {
+      "id": "pighub-151",
+      "title": "猪猝死",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "X 眼瘫倒的通用梗，无血无獠牙无武器",
+      "visionReason": "单只小猪趴在一台笔记本电脑上，双眼画成 X 形，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-151.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%8C%9D%E6%AD%BB.jpg",
+      "bytes": 30684,
+      "size": {
+        "width": 256,
+        "height": 148
+      },
+      "sha256": "28e04b9dfd40ae06901f34a0896fc16f9065e1db46bcdb170ec86bf13c8d1a98"
+    },
+    {
+      "id": "pighub-679",
+      "title": "猪强气",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "火焰用于表现「元气/上火」，无血无獠牙无武器",
+      "visionReason": "单只通红小猪，耳旁燃着三簇火苗，脚边一枚橙色火焰图标，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-679.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%BC%BA%E6%B0%94.png",
+      "bytes": 58579,
+      "size": {
+        "width": 256,
+        "height": 189
+      },
+      "sha256": "cb1e0c516836ffcc56d9041d81c6f398f9694df162c4b0aecf9ffaeaf8a76a50"
+    },
+    {
+      "id": "pighub-1000",
+      "title": "猪麋鹿",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "节日装扮的圆胖小猪，无血无武器",
+      "visionReason": "单只圆胖小猪戴红色圣诞帽与棕色鹿角、白头饰，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1000.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E9%BA%8B%E9%B9%BF.jpg",
+      "bytes": 76855,
+      "size": {
+        "width": 256,
+        "height": 251
+      },
+      "sha256": "28b4655716440b1919df980a201636fcc5e40dd1166d4967a6382def73b4f2bf"
+    },
+    {
+      "id": "pighub-252",
+      "title": "猪上钩",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "闭眼微笑的圆胖小猪；鼻环与钓线属道具，无血无獠牙",
+      "visionReason": "单只小猪侧身闭眼，鼻环上连一条细钓线向上伸出，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-252.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E4%B8%8A%E9%92%A9.jpg",
+      "bytes": 28814,
+      "size": {
+        "width": 144,
+        "height": 256
+      },
+      "sha256": "18e1deb8f9322b3d6c140eb41ab7696c65f3b94e4acf8dfdec4747466eba51f4"
+    },
+    {
+      "id": "pighub-1087",
+      "title": "猪听不懂",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "皱眉出汗的呆滞表情，破碎对话框无攻击性",
+      "visionReason": "单只小猪侧身，眼角一滴汗、脸旁一块深蓝破碎对话框，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1087.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%90%AC%E4%B8%8D%E6%87%82.jpg",
+      "bytes": 41215,
+      "size": {
+        "width": 212,
+        "height": 256
+      },
+      "sha256": "1c929163d9a5ba1f5d0984e154f0479cfffb6c8ab31bc57780a41bf7bd731adc"
+    },
+    {
+      "id": "pighub-1201",
+      "title": "绷不猪了",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "绷带是「绷不住」谐音梗，无血无伤口无武器",
+      "visionReason": "单只圆胖小猪，四肢与身体缠着白色绷带、嘴角一滴汗，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1201.png",
+      "url": "https://pighub.top/images/%E7%BB%B7%E4%B8%8D%E7%8C%AA%E4%BA%86.png",
+      "bytes": 63428,
+      "size": {
+        "width": 256,
+        "height": 215
+      },
+      "sha256": "0b87081ad165cde152d1ccbaab77a045ad0cce8ccdbb9524c8819c87a550b9be"
+    },
+    {
+      "id": "pighub-452",
+      "title": "猪王",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "笑脸配王冠，圆润无害",
+      "visionReason": "单只猪的正面半身像，头顶金色王冠、咧嘴笑，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-452.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%8E%8B.jpg",
+      "bytes": 55500,
+      "size": {
+        "width": 233,
+        "height": 256
+      },
+      "sha256": "ae9dc03a31120a924c017a2db6d5a639c5b85e2c3b998df3d7533fa024628c88"
+    },
+    {
+      "id": "pighub-655",
+      "title": "猪上架",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖站姿、粉色鼻子；钩挂属展示道具，无血",
+      "visionReason": "单只小猪直立，头顶被挂钩挂在一条横杆上（货架造型），无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-655.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E4%B8%8A%E6%9E%B6.jpg",
+      "bytes": 30091,
+      "size": {
+        "width": 235,
+        "height": 256
+      },
+      "sha256": "d7633c8aecc7d69aadf5b381e266b936c89dddaffbffc050164f0dd0779edebc"
+    },
+    {
+      "id": "pighub-948",
+      "title": "猪麋鹿（猪咪噜）🦌",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "节日装扮，无血无武器（与 pighub-1000 画面几乎相同）",
+      "visionReason": "单只圆胖小猪戴红色圣诞帽与棕色鹿角、白头饰，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-948.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E9%BA%8B%E9%B9%BF%EF%BC%88%E7%8C%AA%E5%92%AA%E5%99%9C%EF%BC%89%F0%9F%A6%8C.png",
+      "bytes": 73341,
+      "size": {
+        "width": 256,
+        "height": 251
+      },
+      "sha256": "325070d65822136a959e860435770da0725cb51a4073d6a7117bb46c256beee6"
+    },
+    {
+      "id": "pighub-880",
+      "title": "猪咪拿小猪气球",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，气球为道具",
+      "visionReason": "下方一只闭眼笑的猪，前蹄举着一根细杆、杆顶是一只猪形小气球，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-880.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%92%AA%E6%8B%BF%E5%B0%8F%E7%8C%AA%E6%B0%94%E7%90%83.png",
+      "bytes": 26339,
+      "size": {
+        "width": 132,
+        "height": 256
+      },
+      "sha256": "14b4b595d458427c6c0029ffb8465a0c5c10e75bd5ab75c3e303b979e5a3db82"
+    },
+    {
+      "id": "pighub-513",
+      "title": "猪如兔",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "兔耳装扮的圆胖小猪，造型清甜",
+      "visionReason": "单只圆胖小猪长着一对粉色长兔耳，四足与卷尾完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-513.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%A6%82%E5%85%94.jpg",
+      "bytes": 50896,
+      "size": {
+        "width": 227,
+        "height": 256
+      },
+      "sha256": "cd5adfb6a25b5afac9861c2c1d77c68d6a15f4d9c1a83e63d18d44abd9f171b7"
+    },
+    {
+      "id": "pighub-727",
+      "title": "猪烤棉花糖",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；篝火与烤杆是野外道具，无血",
+      "visionReason": "单只圆胖小猪，前蹄举一根长杆在篝火上烤棉花糖，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-727.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%83%A4%E6%A3%89%E8%8A%B1%E7%B3%96.png",
+      "bytes": 38454,
+      "size": {
+        "width": 256,
+        "height": 167
+      },
+      "sha256": "69e81e82c9b340cf4ab6012f22a992c7efe1381093cc6f29e28058a02f1160bf"
+    },
+    {
+      "id": "pighub-155",
+      "title": "猪队友",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体与粉色鼻子，手柄为纯道具",
+      "visionReason": "单只圆胖小猪坐着、怀里抱一只灰色游戏手柄，委屈撇嘴，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-155.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E9%98%9F%E5%8F%8B.png",
+      "bytes": 62896,
+      "size": {
+        "width": 246,
+        "height": 256
+      },
+      "sha256": "d9e51da606e218d0c84302120bca37e6bc5766c48c07e3f136784b4b5b114ec6"
+    },
+    {
+      "id": "pighub-650",
+      "title": "猪搬运",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖站姿配快递箱道具，无血腥",
+      "visionReason": "单只圆胖小猪背上驮着两个纸箱，四足与卷尾完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-650.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%90%AC%E8%BF%90.jpg",
+      "bytes": 58671,
+      "size": {
+        "width": 221,
+        "height": 256
+      },
+      "sha256": "2d31c7f11bae0fdf86aff41db475e588cd756cfdb36e2daf68f917753f12031e"
+    },
+    {
+      "id": "pighub-404",
+      "title": "猪画画",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，画板为道具",
+      "visionReason": "单只圆胖小猪身侧靠着一块深灰色板子（画板/平板），无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-404.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%94%BB%E7%94%BB.png",
+      "bytes": 40301,
+      "size": {
+        "width": 256,
+        "height": 223
+      },
+      "sha256": "f83067e34df77f01ed3a9c9e9c453abd3e1be85df355aa38127946c922cacd50"
+    },
+    {
+      "id": "pighub-61",
+      "title": "500吨小猪对地冲击",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "爆炸是落地冲击的卡通表现，无血无獠牙无武器",
+      "visionReason": "单只小猪从高处砸落，底部是一圈红橙色卡通冲击爆炸与黑色速度线，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-61.png",
+      "url": "https://pighub.top/images/500%E5%90%A8%E5%B0%8F%E7%8C%AA%E5%AF%B9%E5%9C%B0%E5%86%B2%E5%87%BB.jpg",
+      "bytes": 59428,
+      "size": {
+        "width": 256,
+        "height": 211
+      },
+      "sha256": "99b9c115ab7f421ad66bfa3a7ff099afe85c0b2a23b7291551f593afe6ea1e4b"
+    },
+    {
+      "id": "pighub-296",
+      "title": "猪如闪电般归来",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，闪电为速度符号",
+      "visionReason": "单只圆胖小猪站在一道黄色闪电上，四足与卷尾完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-296.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%A6%82%E9%97%AA%E7%94%B5%E8%88%AC%E5%BD%92%E6%9D%A5.png",
+      "bytes": 35940,
+      "size": {
+        "width": 256,
+        "height": 193
+      },
+      "sha256": "f3e92ad2b2220ce82ecaabe2f154636e3153f1e726ef14fecbf166b42f9e22a1"
+    },
+    {
+      "id": "pighub-695",
+      "title": "猪肚鸡",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖仰躺、粉色鼻子；小鸡为道具，无血无武器",
+      "visionReason": "单只粉猪仰躺，肚子上站着一只灰白小鸡，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-695.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%82%9A%E9%B8%A1.jpg",
+      "bytes": 46606,
+      "size": {
+        "width": 247,
+        "height": 256
+      },
+      "sha256": "4fb5e47bc4072b55162b32bc018aff733218524f3a3704b19f3d49d68ff06803"
+    },
+    {
+      "id": "pighub-439",
+      "title": "猪不想上课",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身形、粉色鼻子，书本闹钟为道具",
+      "visionReason": "单只圆胖小猪面前翻开一本书、旁边一只闹钟，张嘴皱眉，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-439.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E4%B8%8D%E6%83%B3%E4%B8%8A%E8%AF%BE.jpg",
+      "bytes": 79915,
+      "size": {
+        "width": 256,
+        "height": 238
+      },
+      "sha256": "11c7eb8cf9a880dedc73c52027385c06dd4c5930baf574bec08bb26e01cfe5d6"
+    },
+    {
+      "id": "pighub-138",
+      "title": "天猪地灭",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "裂缝光弧是冲击特效，无血无獠牙无武器",
+      "visionReason": "单只猪头朝下，周围是蓝色光弧、黄色弧线与黑色地面裂纹，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-138.png",
+      "url": "https://pighub.top/images/%E5%A4%A9%E7%8C%AA%E5%9C%B0%E7%81%AD.png",
+      "bytes": 43046,
+      "size": {
+        "width": 241,
+        "height": 256
+      },
+      "sha256": "b7e23ba1492fb996c1aaa4a9e509f27d3569d1e7c3f97f92a7a1e0e2cbe5088f"
+    },
+    {
+      "id": "pighub-1103",
+      "title": "猪子（竹子）",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子配嫩竹，清爽可爱",
+      "visionReason": "单只圆胖小猪站在一根绿色竹子上，四足完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1103.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%AD%90%EF%BC%88%E7%AB%B9%E5%AD%90%EF%BC%89.png",
+      "bytes": 61121,
+      "size": {
+        "width": 256,
+        "height": 240
+      },
+      "sha256": "65d6a10badda6b199703a0d44b296b32062e32bf11a00db5d684b454621aa152"
+    },
+    {
+      "id": "pighub-159",
+      "title": "猪钓鱼",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；鱼竿渔具属道具",
+      "visionReason": "单只圆胖小猪，前蹄握一根鱼竿、竿头挂一枚黄色鱼钩，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-159.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E9%92%93%E9%B1%BC.png",
+      "bytes": 42148,
+      "size": {
+        "width": 256,
+        "height": 151
+      },
+      "sha256": "3738740b39366873c57da66347ed685fb5209e91b4ad924fad3fc1e80805c76d"
+    },
+    {
+      "id": "pighub-1003",
+      "title": "反求猪己",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，圆形图案无攻击性",
+      "visionReason": "单只小猪倒躺着，身上压一个橙白条纹的圆形图案（带白色四角星），无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1003.png",
+      "url": "https://pighub.top/images/%E5%8F%8D%E6%B1%82%E7%8C%AA%E5%B7%B1.jpg",
+      "bytes": 68171,
+      "size": {
+        "width": 256,
+        "height": 245
+      },
+      "sha256": "8783124514c2043d011a0f7480fc352c5b5278f22c5844acd4be382f29178f68"
+    },
+    {
+      "id": "pighub-280",
+      "title": "猪练车",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；小车为道具，无血无武器",
+      "visionReason": "单只圆胖小猪站在一辆灰色小车上（车身两轮），四足与卷尾完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-280.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%BB%83%E8%BD%A6.png",
+      "bytes": 53291,
+      "size": {
+        "width": 256,
+        "height": 233
+      },
+      "sha256": "1dc9d31db5f96c21d87c9d73d269ab487b972a8370924926d1edf1e940a29e47"
+    },
+    {
+      "id": "pighub-199",
+      "title": "猪偷",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，面罩造型，无血无武器",
+      "visionReason": "单只圆胖小猪，头脸被一条深绿色圈带缠住（面罩状），无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-199.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%81%B7.jpg",
+      "bytes": 64510,
+      "size": {
+        "width": 256,
+        "height": 223
+      },
+      "sha256": "8eb286886b4849af49b4ff03197fb62bd5988a363fea7e3fb32ea989950b7530"
+    },
+    {
+      "id": "pighub-1031",
+      "title": "猪高赤",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "火焰用于表现「上头」，无血无獠牙无武器",
+      "visionReason": "单只通红小猪，耳旁燃着三簇火苗、怒眉，右侧一块深紫三角装饰，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1031.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E9%AB%98%E8%B5%A4.png",
+      "bytes": 70541,
+      "size": {
+        "width": 256,
+        "height": 242
+      },
+      "sha256": "97fa69aa4757d693a5ecd0219a10c5d16c196802188e0853e3954f42e248b17c"
+    },
+    {
+      "id": "pighub-512",
+      "title": "猪学法",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；书本为道具，无血腥",
+      "visionReason": "单只圆胖小猪，眼下挂一滴蓝泪，身前靠三本绿封面书（封面是很小的印刷字，不可读）",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-512.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%AD%A6%E6%B3%95.jpg",
+      "bytes": 74142,
+      "size": {
+        "width": 256,
+        "height": 225
+      },
+      "sha256": "f963c91260c0bb749197c278345fdd330602a0f2134f1136161dca9592cdf069"
+    },
+    {
+      "id": "pighub-774",
+      "title": "猪烤鱼",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；篝火烤鱼为野外道具",
+      "visionReason": "单只圆胖小猪，前蹄举长杆在篝火上烤一条蓝色鱼，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-774.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%83%A4%E9%B1%BC.jpg",
+      "bytes": 49563,
+      "size": {
+        "width": 256,
+        "height": 168
+      },
+      "sha256": "0db2100a7cf452754b53bd4d4b783875de41a018c3685d2460468e01cc171ce2"
+    },
+    {
+      "id": "pighub-1106",
+      "title": "猪认卡",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；电视为道具",
+      "visionReason": "单只圆胖小猪面对一台老电视，屏幕里是彩色卡通画面，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1106.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%AE%A4%E5%8D%A1.jpg",
+      "bytes": 63187,
+      "size": {
+        "width": 256,
+        "height": 223
+      },
+      "sha256": "e6140c2dee9b6b344664205c2d3214c92dd94bc51cec44bf575662b702c87401"
+    },
+    {
+      "id": "pighub-210",
+      "title": "猪羡慕",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身形、粉色鼻子配星星眼，造型清甜",
+      "visionReason": "单只圆胖小猪，星星眼、贴腮红，左侧深紫三角装饰，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-210.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%BE%A1%E6%85%95.jpg",
+      "bytes": 74786,
+      "size": {
+        "width": 256,
+        "height": 214
+      },
+      "sha256": "279083f013b89bcfe3bae212c38e38ece279dedbc2038ced46ce10593bc2ac16"
+    },
+    {
+      "id": "pighub-167",
+      "title": "猪读博",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身形配学位装束，无血无武器",
+      "visionReason": "单只小猪戴黑色学士帽、穿深蓝学士袍，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-167.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%AF%BB%E5%8D%9A_1.jpg",
+      "bytes": 65320,
+      "size": {
+        "width": 203,
+        "height": 256
+      },
+      "sha256": "2c73f43c50eac3c652535825e5e048f9c35868bc07e9b33186edb6b4cc3d699e"
+    },
+    {
+      "id": "pighub-337",
+      "title": "求猪不得",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，哭泣表情无害",
+      "visionReason": "单只圆胖小猪，两眼各挂一串蓝色泪珠，右侧深紫三角装饰，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-337.png",
+      "url": "https://pighub.top/images/%E6%B1%82%E7%8C%AA%E4%B8%8D%E5%BE%97.jpg",
+      "bytes": 59079,
+      "size": {
+        "width": 256,
+        "height": 230
+      },
+      "sha256": "f6ef6e038797be1af6b993e6b5402261ff44c9bcc777d50d2299b50e4ab0e36f"
+    },
+    {
+      "id": "pighub-201",
+      "title": "猪思考(脑袋空空)",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，空思考云为符号",
+      "visionReason": "单只圆胖小猪，头顶一个完全空白的气泡式思考云，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-201.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%80%9D%E8%80%83(%E8%84%91%E8%A2%8B%E7%A9%BA%E7%A9%BA).jpg",
+      "bytes": 58251,
+      "size": {
+        "width": 256,
+        "height": 209
+      },
+      "sha256": "f2893ae2696d3405ba0a7cf3c6a4c19c26e1fa6b63da745511fd7b3277453bc6"
+    },
+    {
+      "id": "pighub-209",
+      "title": "猪思考(胡萝卜)",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，胡萝卜为符号",
+      "visionReason": "单只圆胖小猪，头顶思考云里画一根胡萝卜，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-209.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%80%9D%E8%80%83(%E8%83%A1%E8%90%9D%E5%8D%9C).jpg",
+      "bytes": 61352,
+      "size": {
+        "width": 256,
+        "height": 209
+      },
+      "sha256": "98224e516552f081e4147ff5e542ec42de2ec4f186a595556ee2bc973e518342"
+    },
+    {
+      "id": "pighub-282",
+      "title": "猪克力",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "巧克力质感造型，无血无武器",
+      "visionReason": "单只完整的猪（四足、卷尾、猪鼻俱全），身体表面做成巧克力排块的方格",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-282.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%85%8B%E5%8A%9B.jpg",
+      "bytes": 92412,
+      "size": {
+        "width": 256,
+        "height": 225
+      },
+      "sha256": "4464a2522f6c08d3a16341897ebc5110b638241634452ef5f52a603cdb42b28a"
+    },
+    {
+      "id": "pighub-38",
+      "title": "猪思考",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，胡萝卜为符号",
+      "visionReason": "单只圆胖小猪，头顶思考云里一根胡萝卜，无文字（与 pighub-209 画面几乎相同）",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-38.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%80%9D%E8%80%83.jpg",
+      "bytes": 61991,
+      "size": {
+        "width": 256,
+        "height": 209
+      },
+      "sha256": "fc7d8710e370d0608e293753930f5013bbe4cb1e5f3a0fed6e07cc35ca37e5ca"
+    },
+    {
+      "id": "pighub-511",
+      "title": "猪学医",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；书本为道具，无血腥",
+      "visionReason": "单只圆胖小猪，眼下挂一滴蓝泪，身前立三本深蓝封面医学书（封面书名极小、此分辨率不可读）",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-511.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%AD%A6%E5%8C%BB.jpg",
+      "bytes": 64848,
+      "size": {
+        "width": 256,
+        "height": 218
+      },
+      "sha256": "f5b4c83ba97ad22bd14a28b17939afcd3f2951bc9adb3121a7e56e6be1d59ce9"
+    },
+    {
+      "id": "pighub-222",
+      "title": "猪融化",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "融化是软塌塌的甜点式梗，无血无伤口无武器",
+      "visionReason": "单只小猪头部与身体融成流体摊在一只木桶上，右侧一轮黄日，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-222.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%9E%8D%E5%8C%96.jpg",
+      "bytes": 65753,
+      "size": {
+        "width": 256,
+        "height": 210
+      },
+      "sha256": "4e0624bc69ee3afaffc68a7cedf90a036e384e37d22c715999c5fc004f666a54"
+    },
+    {
+      "id": "pighub-879",
+      "title": "小猪气球",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "猪脸圆润、粉色鼻子；画面大部分为杆，未见血腥",
+      "visionReason": "上端是一只猪形小气球，下面连着一条很长的细木杆与丝带，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-879.png",
+      "url": "https://pighub.top/images/%E5%B0%8F%E7%8C%AA%E6%B0%94%E7%90%83.png",
+      "bytes": 10784,
+      "size": {
+        "width": 77,
+        "height": 256
+      },
+      "sha256": "8aa2921fb0b0024af0845c89d0c6dfb854a11d7ccce9eee64b9ebb7eec960280"
+    },
+    {
+      "id": "pighub-294",
+      "title": "猪奖杯",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "笑脸配奖杯道具，无血无武器",
+      "visionReason": "单只圆胖小猪，背上驮一只金色奖杯，弯眼笑，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-294.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%A5%96%E6%9D%AF.jpg",
+      "bytes": 58942,
+      "size": {
+        "width": 191,
+        "height": 256
+      },
+      "sha256": "69f404d3d988b3a8fa7d382dc045812b271442d2487fb7a30c5c152a2a892ea8"
+    },
+    {
+      "id": "pighub-874",
+      "title": "猪玩机械动力",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；机械为游戏道具，无血无武器",
+      "visionReason": "单只圆胖小猪戴像素墨镜，背上驮一台像素风机械装置，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-874.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%8E%A9%E6%9C%BA%E6%A2%B0%E5%8A%A8%E5%8A%9B.jpg",
+      "bytes": 82183,
+      "size": {
+        "width": 244,
+        "height": 256
+      },
+      "sha256": "20cc3f02f9028ded3b88bed72a6d99846b4f94276a19c56e753c8ec269f5484b"
+    },
+    {
+      "id": "pighub-262",
+      "title": "猪咪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，呆萌表情",
+      "visionReason": "单只圆胖小猪带猫须，右侧深紫三角装饰，四足与卷尾完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-262.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%92%AA.png",
+      "bytes": 44950,
+      "size": {
+        "width": 256,
+        "height": 218
+      },
+      "sha256": "d75e3ebdc8ab7109705772b1af2b3e1131a9a5b3de38966a6158c17768c5024d"
+    },
+    {
+      "id": "pighub-102",
+      "title": "猪早八",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；书本闹钟为道具",
+      "visionReason": "单只圆胖小猪趴着握铅笔写字，背上压一只闹钟，眼泪两行，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-102.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%97%A9%E5%85%AB.jpg",
+      "bytes": 63215,
+      "size": {
+        "width": 225,
+        "height": 256
+      },
+      "sha256": "f8e82fb872dc592310f07c529f7ff0d2875aeeca37a86f293d92f89b00c8f750"
+    },
+    {
+      "id": "pighub-936",
+      "title": "猪玩旋转木马",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖笑脸、粉色鼻子；木马为游乐设施道具",
+      "visionReason": "单只小猪站在一台旋转木马的白色木马后（粉色圆台为底座），无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-936.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%8E%A9%E6%97%8B%E8%BD%AC%E6%9C%A8%E9%A9%AC.png",
+      "bytes": 85799,
+      "size": {
+        "width": 223,
+        "height": 256
+      },
+      "sha256": "79763af90fbe9be5d4022844d30d33f7a436210e0e0bef01600d1ece6e51aa3a"
+    },
+    {
+      "id": "pighub-104",
+      "title": "猪重八",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆润猪脸特写，表情平静，无血无武器",
+      "visionReason": "单只猪的头部特写，头顶一片深灰色毛发与一块浅色标牌，粉色鼻头与双耳完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-104.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E9%87%8D%E5%85%AB_1.jpg",
+      "bytes": 72941,
+      "size": {
+        "width": 203,
+        "height": 256
+      },
+      "sha256": "023cfebbe1a03f99af0b1daa039332eba8def3db0a6bf45410c237416100f264"
+    },
+    {
+      "id": "pighub-933",
+      "title": "猪猪王趴地球",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子配王冠，无血无武器",
+      "visionReason": "单只圆胖小猪头戴金色王冠，趴在一颗蓝绿地地球上，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-933.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%8C%AA%E7%8E%8B%E8%B6%B4%E5%9C%B0%E7%90%83.png",
+      "bytes": 47132,
+      "size": {
+        "width": 215,
+        "height": 256
+      },
+      "sha256": "9e53be8371c5a837af86a200a3c401f200065cfde7394ddf890fde8fb99b5307"
+    },
+    {
+      "id": "pighub-1038",
+      "title": "猪又撑",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，进食场景温和",
+      "visionReason": "单只圆胖小猪低头对着一只灰色饲料槽，槽里是颗粒饲料，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1038.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%8F%88%E6%92%91.png",
+      "bytes": 35854,
+      "size": {
+        "width": 256,
+        "height": 200
+      },
+      "sha256": "010e61c6692d102c7519e0bfee53e4aabd5c8eed60163c97c2d47a0caf386439"
+    },
+    {
+      "id": "pighub-873",
+      "title": "猪再见",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；手提箱为道具",
+      "visionReason": "单只圆胖小猪抬前蹄挥手，脚边一只棕色手提箱，眼里含泪，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-873.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%86%8D%E8%A7%81.jpg",
+      "bytes": 53955,
+      "size": {
+        "width": 256,
+        "height": 217
+      },
+      "sha256": "a8edd57f00479c74d931d8c23a1153204437efff38c1175c29ca01d838f25d0a"
+    },
+    {
+      "id": "pighub-994",
+      "title": "猪出差",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；行李箱为道具",
+      "visionReason": "单只圆胖小猪，身前一只蓝色行李箱与一只棕色公文包，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-994.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%87%BA%E5%B7%AE.jpg",
+      "bytes": 45760,
+      "size": {
+        "width": 256,
+        "height": 232
+      },
+      "sha256": "8a35fe01afc14950fc81d151133f1dc6d1fbfe5030c3cbb26b6db3ede6a71732"
+    },
+    {
+      "id": "pighub-105",
+      "title": "猪油捡",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，站桶姿势可爱",
+      "visionReason": "单只圆胖小猪站在一只蓝色塑料桶上，卷尾完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-105.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%B2%B9%E6%8D%A1.png",
+      "bytes": 51608,
+      "size": {
+        "width": 226,
+        "height": 256
+      },
+      "sha256": "ae3dcfcf726235e8095a5b96fa73bebf873f739c1aeef9c9c5967dd7aa9bed80"
+    },
+    {
+      "id": "pighub-950",
+      "title": "猪葛",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；胡子羽扇为装扮道具",
+      "visionReason": "单只圆胖小猪头戴乌纱帽、挂黑色长须、手举一把羽扇，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-950.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%91%9B.png",
+      "bytes": 100425,
+      "size": {
+        "width": 252,
+        "height": 256
+      },
+      "sha256": "97dd9bcd06706715f2f87dc8e1659b25421e8543fb208643d3e33c18edbf7587"
+    },
+    {
+      "id": "pighub-922",
+      "title": "猪电焊",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；焊接工具为道具",
+      "visionReason": "单只圆胖小猪，前蹄握一把电焊枪、地上是一块绿色电路板，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-922.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%94%B5%E7%84%8A.png",
+      "bytes": 52653,
+      "size": {
+        "width": 256,
+        "height": 216
+      },
+      "sha256": "dab49917fc6003be7b3cca85aff4c45ab97063c2eb209f7ce1c48acd9887493c"
+    },
+    {
+      "id": "pighub-791",
+      "title": "猪趴城堡(肚子好痛)",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；城堡为场景道具，无血",
+      "visionReason": "单只圆胖小猪头戴王冠，趴在一座紫色尖顶的玩具城堡顶上，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-791.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%B6%B4%E5%9F%8E%E5%A0%A1(%E8%82%9A%E5%AD%90%E5%A5%BD%E7%97%9B)_%E7%8C%AA%E7%8C%AA%E7%8E%8B.png",
+      "bytes": 89819,
+      "size": {
+        "width": 186,
+        "height": 256
+      },
+      "sha256": "f26e6c89f5525d6ff0c536e6cfd42dea560228f20d2b327f9244e396073e51bc"
+    },
+    {
+      "id": "pighub-101",
+      "title": "猪猪我呀",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，哭泣表情无害",
+      "visionReason": "单只圆胖小猪流泪两行，右侧深紫三角装饰，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-101.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%8C%AA%E6%88%91%E5%91%80.png",
+      "bytes": 58996,
+      "size": {
+        "width": 256,
+        "height": 228
+      },
+      "sha256": "d3618e0d6d3925951d1e7e8365b10e7b1f556f60a66dbcb24d0edf07534b5d0d"
+    },
+    {
+      "id": "pighub-1053",
+      "title": "猪无语",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，无语表情憨态",
+      "visionReason": "单只圆胖小猪，身上一滴蓝汗、头顶一排省略点，右侧深紫三角装饰，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1053.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%97%A0%E8%AF%AD.jpeg",
+      "bytes": 56577,
+      "size": {
+        "width": 256,
+        "height": 214
+      },
+      "sha256": "03c25dfc002f8da3f54094513ef8f745543db7a059565e7d121e1d955b8f1b06"
+    },
+    {
+      "id": "pighub-217",
+      "title": "猪无语",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，无语表情憨态",
+      "visionReason": "与 pighub-1053 文件完全相同（sha256 一致）：单只小猪配蓝汗与省略点",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-217.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%97%A0%E8%AF%AD.jpg",
+      "bytes": 56577,
+      "size": {
+        "width": 256,
+        "height": 214
+      },
+      "sha256": "03c25dfc002f8da3f54094513ef8f745543db7a059565e7d121e1d955b8f1b06"
+    },
+    {
+      "id": "pighub-1096",
+      "title": "猪名言（丘吉尔）",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；礼帽雪茄为装扮道具",
+      "visionReason": "单只圆胖小猪戴棕色圆顶礼帽，嘴里叼一支雪茄，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1096.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%90%8D%E8%A8%80%EF%BC%88%E4%B8%98%E5%90%89%E5%B0%94%EF%BC%89.png",
+      "bytes": 58164,
+      "size": {
+        "width": 256,
+        "height": 211
+      },
+      "sha256": "1e155b402bf21acc6d500b3a7697757ceb8bd543e763d49a644115aa4f244ed6"
+    },
+    {
+      "id": "pighub-481",
+      "title": "猪九族",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆润猪脸特写，表情平静，无血无武器",
+      "visionReason": "单只猪的头部特写，头顶深灰毛发与一块浅色标牌，粉色鼻头双耳完整，无文字（与 pighub-104 画面几乎相同）",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-481.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E4%B9%9D%E6%97%8F_1.png",
+      "bytes": 74481,
+      "size": {
+        "width": 203,
+        "height": 256
+      },
+      "sha256": "50306fd343b3d13b908e7120a06d26fcd4b3d4b3334be5e09ea122000c82e716"
+    },
+    {
+      "id": "pighub-275",
+      "title": "猪豹球",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆润身体、粉色鼻头，造型呆萌",
+      "visionReason": "一只圆胖的猪形生物：粉色猪鼻、双耳俱全，另带鳍状肢体与条纹尾巴，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-275.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%B1%B9%E7%90%83.png",
+      "bytes": 48743,
+      "size": {
+        "width": 256,
+        "height": 177
+      },
+      "sha256": "954773dbf8637a95dcfac78872bd87d02d20f5ba158b34a13a0fba1a2961e47e"
+    },
+    {
+      "id": "pighub-244",
+      "title": "猪上课",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "闭眼熟睡的圆胖小猪，桌面书本为道具",
+      "visionReason": "单只圆胖小猪趴在课桌上睡着、面前摊开一本书，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-244.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E4%B8%8A%E8%AF%BE_1.png",
+      "bytes": 61170,
+      "size": {
+        "width": 256,
+        "height": 199
+      },
+      "sha256": "ccc74a85f2f276e1ddd9dcf8561a5c391426dd01b9fc85da8be400c562127e36"
+    },
+    {
+      "id": "pighub-792",
+      "title": "猪趴城堡(有软垫版)",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；城堡软垫为道具",
+      "visionReason": "单只圆胖小猪头戴王冠、趴在紫色软垫上，软垫架在玩具城堡顶上，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-792.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%B6%B4%E5%9F%8E%E5%A0%A1(%E6%9C%89%E8%BD%AF%E5%9E%AB%E7%89%88)_%E7%8C%AA%E7%8C%AA%E7%8E%8B.png",
+      "bytes": 83949,
+      "size": {
+        "width": 174,
+        "height": 256
+      },
+      "sha256": "e461d5dd5f73d79ff7c5879b199bea97922bc6261db90305964962fe395f5052"
+    },
+    {
+      "id": "pighub-423",
+      "title": "猪学习",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；书本为道具",
+      "visionReason": "单只圆胖小猪低头翻一本深蓝封面的书，右侧深紫三角装饰，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-423.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%AD%A6%E4%B9%A0.jpg",
+      "bytes": 62839,
+      "size": {
+        "width": 256,
+        "height": 219
+      },
+      "sha256": "906651693f784628eeb29dc55c97e60f1c9dbab83953b511937189a73a058083"
+    },
+    {
+      "id": "pighub-794",
+      "title": "猪趴藤椒（藤椒猪）",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，藤椒枝条为道具",
+      "visionReason": "单只圆胖小猪站在一枝结满青色藤椒的枝条旁，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-794.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%B6%B4%E8%97%A4%E6%A4%92%EF%BC%88%E8%97%A4%E6%A4%92%E7%8C%AA%EF%BC%89.png",
+      "bytes": 51052,
+      "size": {
+        "width": 256,
+        "height": 171
+      },
+      "sha256": "7b82263a8de4a9dfc990b66edf70db76e1c928fbbf494feaacaaa96f7eaf4af9"
+    },
+    {
+      "id": "pighub-142",
+      "title": "猪不理人",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子配围裙装束，无血无武器",
+      "visionReason": "单只圆胖小猪穿白衬衫、打黑领结、系棕色围裙，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-142.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E4%B8%8D%E7%90%86%E4%BA%BA.jpg",
+      "bytes": 74213,
+      "size": {
+        "width": 187,
+        "height": 256
+      },
+      "sha256": "33e938cc89d3f9bc574748de30b1982b43763938f103ed22c6dd95a403583db5"
+    },
+    {
+      "id": "pighub-311",
+      "title": "猪理人",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子配围裙装束，无血无武器",
+      "visionReason": "单只圆胖小猪穿白衬衫、打黑领结、系棕色围裙，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-311.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%90%86%E4%BA%BA.jpg",
+      "bytes": 74068,
+      "size": {
+        "width": 188,
+        "height": 256
+      },
+      "sha256": "e806b39bfe31ba699dd358ee2542a86471ee27dfd4bb2dafbd00342c139c5546"
+    },
+    {
+      "id": "pighub-250",
+      "title": "猪摸鱼",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，踩鱼姿势滑稽无害",
+      "visionReason": "单只圆胖小猪站在一条蓝色小鱼身上，四足与卷尾完整，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-250.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%91%B8%E9%B1%BC_1.png",
+      "bytes": 53581,
+      "size": {
+        "width": 256,
+        "height": 232
+      },
+      "sha256": "fd61e0cf41b7eebe38d40432c7c36f93e8dc9206b8d6a291748f2c2d41923827"
+    },
+    {
+      "id": "pighub-955",
+      "title": "肥葡萄猪（透明底）",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，葡萄为道具",
+      "visionReason": "单只圆胖小猪趴在一串紫葡萄与绿叶上，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-955.png",
+      "url": "https://pighub.top/images/%E8%82%A5%E8%91%A1%E8%90%84%E7%8C%AA%EF%BC%88%E9%80%8F%E6%98%8E%E5%BA%95%EF%BC%89.png",
+      "bytes": 64018,
+      "size": {
+        "width": 256,
+        "height": 253
+      },
+      "sha256": "2f0ed50e0ed53a19dd3141c888878b41352f0472485d3a2165b5c60af408bd7e"
+    },
+    {
+      "id": "pighub-1318",
+      "title": "小猪思维",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，紧张表情憨态",
+      "visionReason": "单只圆胖小猪，身侧挂两滴蓝色汗珠、头顶一排点，右侧深紫三角装饰，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1318.png",
+      "url": "https://pighub.top/images/%E5%B0%8F%E7%8C%AA%E6%80%9D%E7%BB%B4.jpg",
+      "bytes": 62492,
+      "size": {
+        "width": 256,
+        "height": 214
+      },
+      "sha256": "f7e2802fb928f273fdb3e6d1bb598c477836f84015f71c08788051da1c19ed2d"
+    },
+    {
+      "id": "pighub-134",
+      "title": "猪不在乎",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，天使造型柔和",
+      "visionReason": "单只闭眼小猪，头顶一圈蓝色光环、背上一只白色小翅膀，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-134.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E4%B8%8D%E5%9C%A8%E4%B9%8E.png",
+      "bytes": 57554,
+      "size": {
+        "width": 256,
+        "height": 205
+      },
+      "sha256": "cfecde2559618525b4604a2b7d45120ff71717916ee5d29b309f8630e8f9b368"
+    },
+    {
+      "id": "pighub-293",
+      "title": "猪疯四",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；汉堡为道具",
+      "visionReason": "单只圆胖小猪张嘴对着一只汉堡，弯眼笑，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-293.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%96%AF%E5%9B%9B.jpg",
+      "bytes": 65411,
+      "size": {
+        "width": 256,
+        "height": 210
+      },
+      "sha256": "846e5224e256b12c9106655247918acf8e0a4ebad891c5efcf220ecdb822ab71"
+    },
+    {
+      "id": "pighub-242",
+      "title": "猪上床",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，卧床姿势温和",
+      "visionReason": "单只圆胖小猪盖着蓝色被子躺在木床上，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-242.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E4%B8%8A%E5%BA%8A.jpg",
+      "bytes": 52672,
+      "size": {
+        "width": 256,
+        "height": 224
+      },
+      "sha256": "0c657315be4257eef852a7c76071e50fbce0a713b8c90f5700e5a14e1d1a24c7"
+    },
+    {
+      "id": "pighub-685",
+      "title": "猪弱气",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，像素块为纯装饰",
+      "visionReason": "单只圆胖小猪，背上散着一堆深灰像素块与几片青色像素，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-685.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%BC%B1%E6%B0%94.jpeg",
+      "bytes": 50095,
+      "size": {
+        "width": 256,
+        "height": 195
+      },
+      "sha256": "03cf4358fd5a48ac24a89457c0d246ed1cfd6298ee191cacb889e24a09dbfa79"
+    },
+    {
+      "id": "pighub-258",
+      "title": "猪拒绝",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，嫌弃表情憨态",
+      "visionReason": "单只圆胖小猪，眼睛挤成 >< 形、粉鼻与卷尾完整，右侧深紫三角装饰，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-258.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%8B%92%E7%BB%9D.jpg",
+      "bytes": 64149,
+      "size": {
+        "width": 256,
+        "height": 239
+      },
+      "sha256": "be46924e88b1453870ef4e4b5bf0f1745a5e46572ff01c28657e3a9650aae22e"
+    },
+    {
+      "id": "pighub-271",
+      "title": "猪后葱",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，大葱为道具",
+      "visionReason": "单只圆胖小猪，背上一根带绿叶的大葱，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-271.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%90%8E%E8%91%B1.png",
+      "bytes": 56251,
+      "size": {
+        "width": 256,
+        "height": 241
+      },
+      "sha256": "42d69b2c8fb07302c3b55321344cb380bb7d0041588eec271f32ee0164e74ccb"
+    },
+    {
+      "id": "pighub-497",
+      "title": "猪虾头",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；魔法棒与虾为道具，无血无利刃",
+      "visionReason": "下方一只圆胖小猪握着带蓝星的魔法棒，头顶趴着一只巨大的粉白色虾，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-497.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E8%99%BE%E5%A4%B4.jpg",
+      "bytes": 84556,
+      "size": {
+        "width": 256,
+        "height": 251
+      },
+      "sha256": "dc67071996965b27fb407477677d61ea939c59526b50c59ab3c111dab5b9fef7"
+    },
+    {
+      "id": "pighub-1015",
+      "title": "猪bee",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，蜜蜂装扮无攻击性",
+      "visionReason": "单只圆胖小猪，背上长一对蓝色蜂翅、后半身是黄黑蜂纹，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1015.png",
+      "url": "https://pighub.top/images/%E7%8C%AAbee.png",
+      "bytes": 54618,
+      "size": {
+        "width": 223,
+        "height": 256
+      },
+      "sha256": "d80c2f7fb712bd7598fb184bed2b93f768fb59c722320d03216817582ada30a8"
+    },
+    {
+      "id": "pighub-376",
+      "title": "你也很为猪着迷吧",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，送花表情可爱",
+      "visionReason": "单只圆胖小猪，前蹄举一枝红玫瑰、眯一只眼，右侧深紫三角装饰，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-376.png",
+      "url": "https://pighub.top/images/%E4%BD%A0%E4%B9%9F%E5%BE%88%E4%B8%BA%E7%8C%AA%E7%9D%80%E8%BF%B7%E5%90%A7.png",
+      "bytes": 47997,
+      "size": {
+        "width": 256,
+        "height": 210
+      },
+      "sha256": "b1d35fb7eb9230ba4aa5cf73285092cb4450dc657f3fde4efd352664b480647b"
+    },
+    {
+      "id": "pighub-40",
+      "title": "为猪着迷",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子，送花表情可爱",
+      "visionReason": "与 pighub-376 文件完全相同（sha256 一致）：举玫瑰的小猪",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-40.png",
+      "url": "https://pighub.top/images/%E4%B8%BA%E7%8C%AA%E7%9D%80%E8%BF%B7.png",
+      "bytes": 47997,
+      "size": {
+        "width": 256,
+        "height": 210
+      },
+      "sha256": "b1d35fb7eb9230ba4aa5cf73285092cb4450dc657f3fde4efd352664b480647b"
+    },
+    {
+      "id": "pighub-272",
+      "title": "猪加班",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖身体、粉色鼻子；电脑为道具",
+      "visionReason": "单只圆胖小猪趴在一台笔记本电脑前，左侧深紫三角装饰，无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-272.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%8A%A0%E7%8F%AD.png",
+      "bytes": 49021,
+      "size": {
+        "width": 256,
+        "height": 233
+      },
+      "sha256": "7e663dce86d06667b149ab9fe72c695b912546313c645f663f2519ceb9a4d54b"
+    },
+    {
+      "id": "pighub-686",
+      "title": "猪不安",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "晶体与红色图标是状态特效/道具，无獠牙无血无武器",
+      "visionReason": "单只猪（眼睛画成受惊的白眼珠），背上一丛蓝色晶体特效，左下角一枚红色小方块图标，透明底无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-686.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E4%B8%8D%E5%AE%89.jpeg",
+      "bytes": 55781,
+      "size": {
+        "width": 256,
+        "height": 197
+      },
+      "sha256": "6f43a3f70430fe5d5902287c325dfe9506122c1dec9a2db6a4ea7521b6ab8e25"
+    },
+    {
+      "id": "pighub-705",
+      "title": "猪爆炸",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "爆炸是冲击特效（口径第 5 条），无獠牙无血无武器",
+      "visionReason": "单只猪被一圈紫红放射状爆炸特效包住，耳、眼、猪鼻与四足仍可辨，透明底无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-705.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E7%88%86%E7%82%B8.jpg",
+      "bytes": 94280,
+      "size": {
+        "width": 256,
+        "height": 230
+      },
+      "sha256": "9c2d7465424c296f426df4f9917ac2850fcc50bc1d7dffc71b384d3e07190869"
+    },
+    {
+      "id": "pighub-813",
+      "title": "猪溜达",
+      "kind": "live",
+      "vector": false,
+      "animated": true,
+      "mood": "cute",
+      "moodReason": "普通可爱造型，无獠牙无血无武器",
+      "visionReason": "GIF 动图的一帧：一只浅粉猪四足站立、双耳下垂、猪鼻与卷尾完整，白底（左上角有一行极淡的「豆包AI生成」水印）",
+      "note": "角色卡样例集产出（动画 GIF：已去白底、裁到动画全程的内容框），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-813.gif",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%BA%9C%E8%BE%BE.gif",
+      "bytes": 326455
+    },
+    {
+      "id": "pighub-1198",
+      "title": "澄闪猪咪(明日方舟)",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "普通可爱造型，无獠牙无血无武器",
+      "visionReason": "单只猪配一顶粉色动漫刘海假发、头箍与蝴蝶结，旁边一个闪电符号，透明底无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1198.png",
+      "url": "https://pighub.top/images/%E6%BE%84%E9%97%AA%E7%8C%AA%E5%92%AA(%E6%98%8E%E6%97%A5%E6%96%B9%E8%88%9F).jpg",
+      "bytes": 78556,
+      "size": {
+        "width": 256,
+        "height": 212
+      },
+      "sha256": "1ec3ee413232d32127d683d385de08bf83afe2521ca62dc83b5212f771897803"
+    },
+    {
+      "id": "pighub-854",
+      "title": "猪上吊(猪荡秋千)",
+      "kind": "live",
+      "vector": false,
+      "animated": true,
+      "mood": "cute",
+      "moodReason": "按 pighub-878 的判法——绳绕躯干、猪眼睛正常、标题为荡秋千——不算勒颈",
+      "visionReason": "GIF 的一帧：一根吊绳从画面顶端垂到猪身、绕在躯干与前腿处（不是套在脖子上），猪四足下垂、眼睛正常",
+      "note": "角色卡样例集产出（动画 GIF：已去白底、裁到动画全程的内容框），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-854.gif",
+      "url": "https://pighub.top/images/%E7%8C%AA%E4%B8%8A%E5%90%8A(%E7%8C%AA%E8%8D%A1%E7%A7%8B%E5%8D%83).gif",
+      "bytes": 1991382
+    },
+    {
+      "id": "pighub-473",
+      "title": "猪凹分",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "火苗是情绪/状态特效（口径第 5 条），无獠牙无血无武器",
+      "visionReason": "单只猪趴在笔记本电脑前打字，头顶一个黄色光圈与一簇火苗图标，透明底无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-473.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E5%87%B9%E5%88%86.png",
+      "bytes": 65829,
+      "size": {
+        "width": 256,
+        "height": 233
+      },
+      "sha256": "003ac0938c8fd98f2f696531cad8c4ba6942291b71093d481ac9edecb3aa9c0c"
+    },
+    {
+      "id": "pighub-1232",
+      "title": "猪想下班",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "普通可爱造型，无獠牙无血无武器",
+      "visionReason": "单只猪趴在办公桌前打瞌睡（笔记本、椅子、时钟、笔筒、纸张为道具），无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-1232.png",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%83%B3%E4%B8%8B%E7%8F%AD.jpg",
+      "bytes": 43625,
+      "size": {
+        "width": 256,
+        "height": 104
+      },
+      "sha256": "d0b6f1af323202a7871f84c69da4b531f4ca228fb9b2d6ba1aeda1757cb3a023"
+    },
+    {
+      "id": "pighub-812",
+      "title": "猪溜达(倒车)",
+      "kind": "live",
+      "vector": false,
+      "animated": true,
+      "mood": "cute",
+      "moodReason": "普通可爱造型，无獠牙无血无武器",
+      "visionReason": "GIF 的一帧：一只浅粉猪四足站立、双耳下垂、猪鼻与卷尾完整，浅灰底无文字",
+      "note": "角色卡样例集产出（动画 GIF：已去白底、裁到动画全程的内容框），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-812.gif",
+      "url": "https://pighub.top/images/%E7%8C%AA%E6%BA%9C%E8%BE%BE(%E5%80%92%E8%BD%A6).gif",
+      "bytes": 941981
+    },
+    {
+      "id": "pighub-469",
+      "title": "打call猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "圆胖粉猪闭眼眯笑、叼荧光棒打 call，无獠牙无血无武器",
+      "visionReason": "单只粉猪侧身站立，耳朵、嘴鼻、卷尾与四条腿齐全，嘴里叼着两根黄色荧光棒，透明底无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-469.png",
+      "url": "https://pighub.top/images/%E6%89%93call%E7%8C%AA.jpg",
+      "bytes": 37602,
+      "size": {
+        "width": 256,
+        "height": 187
+      },
+      "sha256": "3dae005d26d5361f9d2cbde751d0202610dcf7021b5bb20e70d7e33bfe2d9dd7"
+    },
+    {
+      "id": "pighub-953",
+      "title": "哭哭眼镜猪叼面包",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "戴圆眼镜的圆胖小猪捧着黄油吐司，两道蓝线是泪水不是伤口（§E.5），无獠牙无血无武器",
+      "visionReason": "单只粉猪侧身，戴圆框眼镜、前爪捧着一片抹黄油的吐司，耳朵、卷尾与四条腿齐全，透明底无文字",
+      "note": "角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。",
+      "sourceFile": "assets/cards/img/pighub-953.png",
+      "url": "https://pighub.top/images/%E5%93%AD%E5%93%AD%E7%9C%BC%E9%95%9C%E7%8C%AA%E5%8F%BC%E9%9D%A2%E5%8C%85.png",
+      "bytes": 64321,
+      "size": {
+        "width": 256,
+        "height": 228
+      },
+      "sha256": "8ab087e90fa05bcffb5217b658cb70169adb03754592695b69e94e52756ceb4c"
+    },
+    {
+      "id": "pighub-737",
+      "title": "恐怖猪",
+      "kind": "live",
+      "vector": false,
+      "mood": "reject",
+      "moodReason": "露齿獠牙 + 嘴角红色血痕、怒眉：典型血腥恐怖造型，按新约束不进包。",
+      "note": "目检与技术校验都通过，但违反「可爱、不血腥怪异」约束。",
+      "sourceFile": "assets/cards/img/pighub-737.png",
+      "bytes": 50763,
+      "size": {
+        "width": 256,
+        "height": 228
+      },
+      "sha256": "1be772fce60876b029f3303a3c719855101e6a3b3cf33290dbad0e6889c72fbf"
+    },
+    {
+      "id": "pighub-96",
+      "title": "双面幽灵猪",
+      "kind": "live",
+      "vector": false,
+      "mood": "reject",
+      "moodReason": "一具身体上叠了三张脸（三个鼻头、多只眼）：身体恐怖式的「怪异」，不进包。",
+      "note": "目检与技术校验都通过，但违反「可爱、不血腥怪异」约束。",
+      "sourceFile": "assets/cards/img/pighub-96.png",
+      "bytes": 59704,
+      "size": {
+        "width": 239,
+        "height": 256
+      },
+      "sha256": "14a4697a21081b74a4dce00ef36c80aaefcce7f29466437fa767d6d50754d580"
+    }
+  ]
+}

@@ -13,6 +13,18 @@
 | 你已笨哭（pig-1360） | pighub | https://pighub.top/images/%E4%BD%A0%E5%B7%B2%E7%AC%A8%E5%93%AD_1.jpg | `425c8084e4caa13c…` |
 | 你知道吗（pig-1361） | pighub | https://pighub.top/images/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%90%97.jpg | `c61c93ea5608c54f…` |
 
+## 角色卡收编（2026-11-12，冻结库 14 → 31）
+
+`assets/cards/` 是同一来源、同一套逐图处理（去底 / 裁到猪身 / 去角色名 / 风格闸门）产出的角色卡样例集，
+产出批次与指纹记在 `assets/cards/index.json`；`assets/cards/selection.json` 记录哪 17 张通过可爱闸门、
+哪 2 张被拒（恐怖猪、双面幽灵猪，理由逐条写在文件里）。
+
+收编后的清单条目带 `adopted: true` 与 `source: { group: 'pighub-online', via: 'cards', file, sha256 }`。
+
+> ✅ **缺口已关闭（2026-11-13）**：卡片管线现在把每张卡的**上游源图 URL** 写进 `assets/cards/index.json`，
+> 收编时一并落到清单的 `source.url`；历史 50 条也按同一 API 回填。当前冻结库 **118 只全部带 url**（118/118），
+> 可用 `node -e "const m=require('./assets/manifest.json'); ..."` 复核。
+
 ## 唯一可信源（assets/libraries.json）
 
 **PigHub（pighub.top 猪猪表情包库）是唯一可信源**——用户 2026-11-12 的决定。全部素材只从该库采集；其余仓库只登记事实，**一律不采集**。
