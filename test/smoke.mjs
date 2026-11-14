@@ -9,7 +9,7 @@
  * 任何一条不成立就非零退出——坏包发不出去。
  */
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { mkdtempSync, rmSync } from 'node:fs';
@@ -200,9 +200,12 @@ check('注册了 pighub_about / pig-say 工具、状态路由与每张素材的�
 });
 check('每个注册都包在 ctx.effect 里（可回收）', () => {
   const manifestCount = JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8')).pigs.length;
-  // 两个工具 + 状态路由 + 每张素材 + 猪圈布景图（PEN_ART）+ 原生桌面桌宠的生命周期 effect
-  assert.equal(disposers.length, manifestCount + PEN_ART.length + 4,
-    '两个工具 + 状态路由 + 每张素材 + 每张布景 + 桌面桌宠各一个 disposer');
+  // 两个工具 + 状态路由 + 每张素材 + 猪圈布景图（PEN_ART）+ 原生桌面桌宠 + 静默自动更新的定时器
+  // 主题包的图片也是逐张注册的（classic 目录里有几张就几条），这里一起算进去
+  const themeImageCount = readdirSync(new URL('../assets/themes/classic', here)).filter((f) => /\.(png|jpg|jpeg|webp|svg)$/i.test(f)).length;
+  // PEN_ART 会被注册两次：一次是 /pighub/pen（布景），一次是 /pighub/theme/classic（主题包里的同一张图）
+  assert.equal(disposers.length, manifestCount + PEN_ART.length * 2 + 6 + themeImageCount,
+    '两个工具 + 状态路由 + 每张素材 + 每张布景 + 桌面桌宠 + 自动更新定时器 + 主题导入路由 + 每张主题图，各一个 disposer');
   for (const dispose of disposers) assert.equal(typeof dispose, 'function');
 });
 check('pighub_about 的参数 schema 封闭、描述非空', () => {

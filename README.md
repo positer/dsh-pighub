@@ -285,6 +285,15 @@ sha256 `30b82f48…` 与用户给的文件逐字节相同），整幅由 `GET /p
 - **草地**：只铺在给定红框里（`8.37% / 91.47% × 18.26% / 96.65%`），红框外**不铺草**；猪圈自己 `background:transparent`、
   没有描边、没有铺满全圈的叠层，所以草地与围栏之外的区域 alpha=0，直接露宿主页面底色（亮/暗两种底色都实测过）。
 - 猪圈里其余的东西（仓库小屋、踩踏土、草簇）保持原样，只是被红框裁住。逐项读数与三次真机截图见 `archive/pen-fence-art.md`。
+## 猪圈主题包
+
+猪圈的草地与围栏（远侧/近侧两层）可以整体换掉，默认外观是内置主题 `classic`。
+
+主题放 `~/.PigHub/themes/<name>/`，一个目录一个主题：`theme.json`（`geometry{grass,inner,box}` 百分比 + `fence{image,split,back,front}`，缺项逐字段回落 classic）+ 可选的 `fence-back.png` / `fence-front.png` / `grass.png` / `house.png`。
+
+三种换法：设置里选（立即生效）、把目录丢进 `~/.PigHub/themes/` 后重载、或用设置里的 **「更换主题包（.zip）…」** 选一个 zip 导入（校验失败会给出可读原因且不动现有主题）。
+
+格式细节见 `archive/pen-themes.md`。
 ## 与其他桌宠插件共存
 
 插件市场上的桌宠（例如 [dsh-pet](https://www.npmjs.com/package/dsh-pet)）都是页面级浮层，所以按同一套既有约定来：容器 `pointer-events: none`、自有 z-index 层、样式标签与类名全带 `dsh-pighub` / `.pighub-` 前缀、尊重 `prefers-reduced-motion`。

@@ -210,12 +210,13 @@ check('运动开关：显式布尔可写、null 回到素材默认、落在 stat
 });
 
 check('prefs：排序与星级显示各自独立，非法值退回默认', () => {
-  assert.deepEqual(mod.writePrefs(root, { sort: 'stars' }), { sort: 'stars', starDisplay: 'hover' });
+  // prefs 现在固定包含 theme（主题包，用户口径 2026-11-14），缺省 classic
+  assert.deepEqual(mod.writePrefs(root, { sort: 'stars' }), { sort: 'stars', starDisplay: 'hover', theme: 'classic' });
   assert.equal(mod.readPrefs(root).sort, 'stars');
   assert.equal(mod.writePrefs(root, { sort: 'nonsense' }).sort, 'time');
   // 只改星级显示，不能把排序重置掉（反之亦然）
-  assert.deepEqual(mod.writePrefs(root, { starDisplay: 'always' }), { sort: 'time', starDisplay: 'always' });
-  assert.deepEqual(mod.writePrefs(root, { sort: 'rarity' }), { sort: 'rarity', starDisplay: 'always' });
+  assert.deepEqual(mod.writePrefs(root, { starDisplay: 'always' }), { sort: 'time', starDisplay: 'always', theme: 'classic' });
+  assert.deepEqual(mod.writePrefs(root, { sort: 'rarity' }), { sort: 'rarity', starDisplay: 'always', theme: 'classic' });
   assert.equal(mod.writePrefs(root, { starDisplay: 'nope' }).starDisplay, 'hover');
 });
 

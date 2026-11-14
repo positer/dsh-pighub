@@ -1,0 +1,30 @@
+{
+  "name": "classic",
+  "title": "classic（默认）",
+  "author": "dsh-pighub",
+  "version": "1.0.0",
+  "geometry": {
+    "grass": [
+      8.37,
+      18.26,
+      91.47,
+      96.65
+    ],
+    "inner": [
+      13.4,
+      19.7,
+      86.6,
+      81.74
+    ],
+    "box": [
+      24.04,
+      29.16,
+      75.96,
+      72.28
+    ]
+  },
+  "fence": {
+    "image": "pen-fence.png",
+    "split": 0.5068
+  }
+}

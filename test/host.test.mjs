@@ -64,7 +64,10 @@ await acheck('GET 快照：素材库随包、今日未抽、偏好默认值', as
   assert.equal(json.assets.version, manifest.assetVersion);
   assert.ok(json.assets.bytes > 0, '素材体积应可统计');
   assert.equal(json.catalog, undefined, '运行时不再有上游目录');
-  assert.deepEqual(json.prefs, { sort: 'time', starDisplay: 'hover' });
+  // prefs 现在多一个 theme（主题包，用户口径 2026-11-14）；未设置时必须是 classic
+  assert.deepEqual(json.prefs, { sort: 'time', starDisplay: 'hover', theme: 'classic' });
+  assert.ok(Array.isArray(json.themes) && json.themes.length >= 1, '快照要带主题列表');
+  assert.equal(json.themes[0].name, 'classic', '内置 classic 永远排第一');
   assert.equal(json.today.drawn, false);
   // 新用户开局就带一只普通猪（标准猪）
   assert.deepEqual(json.pigs.map((pig) => pig.id), ['standard-pig']);
