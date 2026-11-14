@@ -31,5 +31,30 @@ check('normaliseTheme 对坏 geometry 逐字段回落 classic', () => {
   assert.deepEqual(t2.geometry.inner, [1, 2, 3, 4]);
 });
 
+// ---- 目录版准入（用户口径 2026-11-14：非法主题不进列表）----
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join as pjoin } from 'node:path';
+import { validateThemeDir } from '../lib/themes.js';
+
+check('坏 JSON 的主题目录 → 判为非法（不进列表）', () => {
+  const dir = mkdtempSync(pjoin(tmpdir(), 'pgtheme-'));
+  writeFileSync(pjoin(dir, 'theme.json'), '{ not json');
+  const r = validateThemeDir(dir, 'x');
+  rmSync(dir, { recursive: true, force: true });
+  assert.equal(r.ok, false);
+  assert.equal(r.reason, 'theme_json_invalid');
+});
+
+check('合法主题目录 → 通过', () => {
+  const dir = mkdtempSync(pjoin(tmpdir(), 'pgtheme-'));
+  writeFileSync(pjoin(dir, 'theme.json'), JSON.stringify({ name: 'ok', geometry: { grass: [10, 20, 90, 95] } }));
+  writeFileSync(pjoin(dir, 'fence.png'), Buffer.from([137, 80, 78, 71]));
+  const r = validateThemeDir(dir, 'ok');
+  rmSync(dir, { recursive: true, force: true });
+  assert.equal(r.ok, true);
+  assert.equal(r.name, 'ok');
+});
+
 console.log('\n' + pass + ' PASS / ' + fail + ' FAIL  —  themes');
 process.exit(fail === 0 ? 0 : 1);
