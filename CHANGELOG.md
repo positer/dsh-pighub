@@ -102,6 +102,32 @@ T2 对 10 s 取模 271/301 ms —— 渲染与停止窗口都解释不了这种�
 - 连点两次 disable 无异常；enable 4 次都能拉回桌宠；自愈实测通过；
 - 新增 `test/lifecycle.test.mjs`（4 条）→ 全量 **107 PASS / 0 FAIL**。
 
+## [0.9.66] — 2026-11-14
+
+### Fixed — zip 主题包导入
+
+- 导入改走**状态路由上的 action**（`{action:'theme-import', zipBase64}`）：宿主的 exact 路由按前缀先命中，
+  单独注册的 `/pighub/theme-import` 会被状态路由抢走当 JSON 解析（实测 `Unexpected token 'P'`，P 就是 zip 魔数）；
+- 状态路由 body 上限 64 KB → **24 MB**（base64 后的 zip 约 1 MB，原来会被判 `body_too_large`）；
+- 真机往返实测：738 KB zip → 解压到 `~/.PigHub/themes/zipdemo/` → 出现在主题列表 → 自动切换 → 几何生效。
+
+## [0.9.64] — 2026-11-14
+
+### Added — 猪圈主题包
+
+- 主题放 `~/.PigHub/themes/<name>/`：`theme.json` 声明 `geometry{grass,inner,box}`（百分比，逐字段回落 classic）
+  与 `fence{image,split,back,front}`，可选 `grassImage` / `house`；当前外观成为内置默认主题 **classic**；
+- 宿主：`/pighub/theme/<name>/<file>` 逐张 exact 路由、快照带 `themes[]` / `activeTheme` / `prefs.theme`、action `{action:'theme',name}`；
+- 客户端：按主题注入几何与围栏图，**三层兜底**（宿主逐字段回落 → 客户端 `themeRect()` 再校验 → 图片缺失回落包内 `pen-fence.png`），不许白屏；
+- 设置面板：主题选择器（立即生效）+ **「更换主题包（.zip）…」**（隐藏 `input[type=file]` 唤起系统文件选择器）；
+- zip 导入：最小 ZIP 读取器（STORED/DEFLATE，`zlib.inflateRawSync`），四道上限（500 条 / 单文件 8 MB / 解压 40 MB / 报文 24 MB），
+  先写临时目录再原子 rename；失败不动现有主题。
+
+### Added — 启动静默自动更新
+
+- 插件 enable 后延迟 15s、每次启动只跑一次；GET registry 的 latest，**语义化版本比较**，仅远端严格更大才后台安装；
+- **不通知用户、不提供开关**；失败只写 `~/.PigHub/logs/auto-update.log`；不自动重启宿主；网络错误只记一条。
+
 ## [0.9.57] — 2026-11-14
 
 > 说明：0.9.48–0.9.56 的条目缺失（CHANGELOG 一度落后于 package.json），本轮从 0.9.57 起恢复记录。
