@@ -434,7 +434,10 @@ await acheck('三层矩形：草坪红框 ⊃ 栅栏内圈 ⊃ 猪的活动区�
   const covered = Math.min(houseBottom, RAIL_BOTTOM) - Math.max(houseTop, RAIL_TOP);
   assert.ok(houseTop < RAIL_TOP, '小屋上沿必须高于上横梁上缘（否则只能压到下半截）');
   assert.ok(covered >= 9, '小屋没把横梁整段盖住：重叠 ' + covered.toFixed(2) + ' 个百分点');
-  assert.ok(covered > houseHeight * 0.5, '压在横梁上的高度要超过屋高一半，才算「挡住栅栏」');
+  /* 2026-11-14：谷仓按用户红框放大到 26.5%×24.9%，屋高已远大于横梁带 9.17pp，
+   * 「压梁高度 > 屋高一半」这条老约束不再适用；改成更本质的判据——把横梁带整段盖住。 */
+  assert.ok(covered >= RAIL_BOTTOM - RAIL_TOP - 0.01,
+    '小屋必须把远栏横梁带（8.29..17.46）整段盖住，实际重叠 ' + covered.toFixed(2));
   // ③ 与左立柱重叠（转角那一块最明显），且整只在分割线以上
   assert.ok(houseLeft < PEN_INNER.x0 - 1, '小屋必须与左立柱重叠：left=' + houseLeft);
   assert.ok(houseBottom < splitValue(), '小屋整只必须在分割线以上（它只压后栏，不许盖前景栏）');
