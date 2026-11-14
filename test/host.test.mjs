@@ -399,7 +399,10 @@ await acheck('桌面桌宠：编译计划按源码哈希缓存；没有桌宠时
   assert.ok(args.some((a) => a.startsWith('/out:')), '必须显式指定输出');
   assert.equal(args[args.length - 1], plan.source, '源文件放最后');
   const empty = await petModule.startDesktopPet([], {});
-  assert.equal(empty.ok, true);
+  // 桌宠是 Windows 原生窗口：只有 win32 上「没有桌宠」才算成功空操作；
+  // 其他平台（CI 的 ubuntu-latest）必须如实报 false，而不是假装拉起来了。
+  if (process.platform === 'win32') assert.equal(empty.ok, true);
+  else assert.equal(empty.ok, false, '非 Windows 上不应声称拉起了原生窗口');
   assert.equal(petModule.desktopPetState().running, false);
 });
 
