@@ -867,11 +867,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-1087.png",
-      "bytes": 35672,
-      "sha256": "9476c6d32c1134800358f3a6aa4d04ae3a73f3cb78b73e1c101028f48c1b4df2",
+      "bytes": 213713,
+      "sha256": "1d44c739e54666cf8211756bf6f94a43f328fbfaa0fc5c40cde83e10c210a138",
       "size": {
-        "width": 233,
-        "height": 270
+        "width": 506,
+        "height": 512
       },
       "source": {
         "group": "pighub-online",
@@ -886,10 +886,15 @@
       "sizeRatio": 83.45,
       "completenessNote": "同上：有完整身体与腿，仅臀部右缘被裁。",
       "completion": {
-        "mode": "contour-closure",
-        "at": "2026-11-13",
-        "by": "scripts/complete-shape.py",
-        "note": "顶边（背）与右边（臀）被画布切断，且切口有一段穿过深蓝布景：端帽只补「猪身真的碰到切口」的那一段（restrict_to_body），布景段不动。"
+        "mode": "original-as-is",
+        "at": "2026-11-14",
+        "note": "按用户口径改为直接使用上游原图（零改动），仅去纯白底；旧补全曾重绘/删改原图内容。"
+      },
+      "background": {
+        "key": "near-white",
+        "threshold": 252,
+        "all": false,
+        "removed": 494924
       }
     },
     {
@@ -1554,11 +1559,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-12.png",
-      "bytes": 33269,
-      "sha256": "9809a7e7ace546e7e075e572b4fa6f3b3feda0223449e5a085058c3035fd3f64",
+      "bytes": 89373,
+      "sha256": "8387f8920556c79782d08864b4710add16a2e61fc24a53632eeee3082bbf180c",
       "size": {
-        "width": 189,
-        "height": 164
+        "width": 370,
+        "height": 360
       },
       "source": {
         "group": "pighub-online",
@@ -1570,7 +1575,18 @@
       "mood": "cute",
       "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 119.45
+      "sizeRatio": 119.45,
+      "background": {
+        "key": "near-white",
+        "threshold": 252,
+        "all": false,
+        "removed": 67971
+      },
+      "completion": {
+        "mode": "original-as-is",
+        "at": "2026-11-14",
+        "note": "按用户口径改为直接使用上游原图（零改动），仅去纯白底；旧补全曾重绘/删改原图内容。"
+      }
     },
     {
       "id": "pighub-1201",
@@ -2467,11 +2483,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-209.png",
-      "bytes": 40034,
-      "sha256": "c4af6b725066740179d26c02ceb9fe82f3c13c47dca1f8c0deca88c8dcd22890",
+      "bytes": 186877,
+      "sha256": "8f0c37cd19a2cb481ddfcb5cd1770cdf0735c5fad75c4753fc8bcd6da12b1d6c",
       "size": {
-        "width": 213,
-        "height": 179
+        "width": 512,
+        "height": 512
       },
       "source": {
         "group": "pighub-online",
@@ -2483,7 +2499,18 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，胡萝卜为符号",
       "adopted": true,
-      "sizeRatio": 134.72
+      "sizeRatio": 134.72,
+      "background": {
+        "key": "near-white",
+        "threshold": 252,
+        "all": false,
+        "removed": 549950
+      },
+      "completion": {
+        "mode": "original-as-is",
+        "at": "2026-11-14",
+        "note": "按用户口径改为直接使用上游原图（零改动），仅去纯白底；旧补全曾重绘/删改原图内容。"
+      }
     },
     {
       "id": "pighub-210",
@@ -2968,11 +2995,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-27.png",
-      "bytes": 37188,
-      "sha256": "f2c3239735b03793602de9322003b39c056de1bf2e837b8bcc10629dce68eaf0",
+      "bytes": 201100,
+      "sha256": "081a479c8576d826d15d07f29b6463593851c24321cafc4e3d537d86f46aee3b",
       "size": {
-        "width": 254,
-        "height": 268
+        "width": 512,
+        "height": 512
       },
       "source": {
         "group": "pighub-online",
@@ -2987,10 +3014,15 @@
       "sizeRatio": 85.08,
       "completenessNote": "实测有完整身体（四条腿腿端圆底未切），仅边缘被裁；属画面裁切不属于结构残缺。",
       "completion": {
-        "mode": "contour-closure",
-        "at": "2026-11-13",
-        "by": "scripts/complete-shape.py",
-        "note": "顶边（背）与右边（臀）被画布切断：两条椭圆端帽 + 共用顶点补四分之一圆磨圆转角。"
+        "mode": "original-as-is",
+        "at": "2026-11-14",
+        "note": "按用户口径改为直接使用上游原图（零改动），仅去纯白底；旧补全曾重绘/删改原图内容。"
+      },
+      "background": {
+        "key": "near-white",
+        "threshold": 252,
+        "all": false,
+        "removed": 449453
       }
     },
     {
@@ -3001,11 +3033,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-271.png",
-      "bytes": 40652,
-      "sha256": "85e4069b7a0ad4bc0963eb757329d634c1f9cbf06389cd0f4a9c15f274246dc6",
+      "bytes": 192359,
+      "sha256": "1499ff3144570319dfba8a248a72f1516a6171ca832bd4e0c27bb52cc2b0d80a",
       "size": {
-        "width": 225,
-        "height": 212
+        "width": 501,
+        "height": 512
       },
       "source": {
         "group": "pighub-online",
@@ -3017,7 +3049,18 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，大葱为道具",
       "adopted": true,
-      "sizeRatio": 143.26
+      "sizeRatio": 143.26,
+      "background": {
+        "key": "near-white",
+        "threshold": 252,
+        "all": false,
+        "removed": 306670
+      },
+      "completion": {
+        "mode": "original-as-is",
+        "at": "2026-11-14",
+        "note": "按用户口径改为直接使用上游原图（零改动），仅去纯白底；旧补全曾重绘/删改原图内容。"
+      }
     },
     {
       "id": "pighub-272",
@@ -3498,11 +3541,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-341.png",
-      "bytes": 38977,
-      "sha256": "ebc4be588d8c1ce6834c8851f4a8eb29c67e382b192f70f132c619980767e6bf",
+      "bytes": 153442,
+      "sha256": "bded8211be44038663c13606d2d0bb7a8650317ce97df8fc8d1aae0544ce2d87",
       "size": {
-        "width": 281,
-        "height": 220
+        "width": 472,
+        "height": 512
       },
       "source": {
         "group": "pighub-online",
@@ -3516,10 +3559,15 @@
       "adopted": true,
       "sizeRatio": 102.95,
       "completion": {
-        "mode": "contour-closure",
-        "at": "2026-11-13",
-        "by": "scripts/complete-shape.py",
-        "note": "右侧（臀部）被画布切断：椭圆端帽闭合后重描轮廓，接缝台阶 0.0。"
+        "mode": "original-as-is",
+        "at": "2026-11-14",
+        "note": "按用户口径改为直接使用上游原图（零改动），仅去纯白底；旧补全曾重绘/删改原图内容。"
+      },
+      "background": {
+        "key": "near-white",
+        "threshold": 252,
+        "all": false,
+        "removed": 125962
       }
     },
     {
@@ -3901,11 +3949,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-417.png",
-      "bytes": 68342,
-      "sha256": "9ba97a9a27378ecc2ef2e9e2eefc985dea78bbbf866100ac5081bc26c9a318c8",
+      "bytes": 442171,
+      "sha256": "2ff03c142758f58820adce3669209a587992667cf245b5eba0700db08c811cc0",
       "size": {
-        "width": 255,
-        "height": 215
+        "width": 512,
+        "height": 510
       },
       "source": {
         "group": "pighub-online",
@@ -3917,7 +3965,18 @@
       "mood": "cute",
       "moodReason": "单猪 + 苹果，造型甜",
       "adopted": true,
-      "sizeRatio": 144.5
+      "sizeRatio": 144.5,
+      "background": {
+        "key": "near-white",
+        "threshold": 252,
+        "all": false,
+        "removed": 28557
+      },
+      "completion": {
+        "mode": "original-as-is",
+        "at": "2026-11-14",
+        "note": "按用户口径改为直接使用上游原图（零改动），仅去纯白底；旧补全曾重绘/删改原图内容。"
+      }
     },
     {
       "id": "pighub-423",
@@ -4170,11 +4229,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-473.png",
-      "bytes": 51301,
-      "sha256": "f06886413f73b885af957c80cb8116d51733c4384121639e5d3f9274d12fb996",
+      "bytes": 248469,
+      "sha256": "2e6f0ee6f718705f7c7f0788c03b2a24e5b08fc2124b906c906746072cff4cec",
       "size": {
-        "width": 229,
-        "height": 219
+        "width": 512,
+        "height": 496
       },
       "source": {
         "group": "pighub-online",
@@ -4186,7 +4245,18 @@
       "mood": "cute",
       "moodReason": "火苗是情绪/状态特效（口径第 5 条），无獠牙无血无武器",
       "adopted": true,
-      "sizeRatio": 123.78
+      "sizeRatio": 123.78,
+      "background": {
+        "key": "near-white",
+        "threshold": 252,
+        "all": false,
+        "removed": 143406
+      },
+      "completion": {
+        "mode": "original-as-is",
+        "at": "2026-11-14",
+        "note": "按用户口径改为直接使用上游原图（零改动），仅去纯白底；旧补全曾重绘/删改原图内容。"
+      }
     },
     {
       "id": "pighub-479",
@@ -5663,11 +5733,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-751.png",
-      "bytes": 117332,
-      "sha256": "5457dedc6eba536c4116ec87d84378f256333b90dc63099bd6fb95143218af7b",
+      "bytes": 137805,
+      "sha256": "58dd2b5fea19c8b701e71251951134d2b02e3b30b7987bc212afdbb4df6c870b",
       "size": {
-        "width": 482,
-        "height": 433
+        "width": 512,
+        "height": 498
       },
       "source": {
         "group": "pighub-online",
@@ -5681,10 +5751,9 @@
       "adopted": true,
       "sizeRatio": 97.74,
       "completion": {
-        "mode": "head-swap",
-        "at": "2026-11-13",
-        "reference": "standard-pig",
-        "note": "切掉原图黑边后贴到标准猪身体上；接缝逐列中位亮度剖面最大台阶 1.0，3 倍目检不见线。"
+        "mode": "original-as-is",
+        "at": "2026-11-14",
+        "note": "按用户口径改为直接使用上游原图（零改动），仅去纯白底；旧补全曾重绘/删改原图内容。"
       },
       "cut": {
         "trim": [
@@ -5693,6 +5762,12 @@
           0.979253,
           0.974596
         ]
+      },
+      "background": {
+        "key": "near-white",
+        "threshold": 252,
+        "all": false,
+        "removed": 118016
       }
     },
     {
@@ -6322,11 +6397,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-873.png",
-      "bytes": 36226,
-      "sha256": "557d626266324da1dcc68f846463d3926433abfbb9cf255a0ed4f095bcf45f3d",
+      "bytes": 178266,
+      "sha256": "c0b993f3bc75ada9d4804d8c443543da9941726fc01a4d8ff1f808fb2ed5f3a3",
       "size": {
-        "width": 199,
-        "height": 162
+        "width": 512,
+        "height": 512
       },
       "source": {
         "group": "pighub-online",
@@ -6338,7 +6413,18 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；手提箱为道具",
       "adopted": true,
-      "sizeRatio": 130.51
+      "sizeRatio": 130.51,
+      "background": {
+        "key": "near-white",
+        "threshold": 252,
+        "all": false,
+        "removed": 128197
+      },
+      "completion": {
+        "mode": "original-as-is",
+        "at": "2026-11-14",
+        "note": "按用户口径改为直接使用上游原图（零改动），仅去纯白底；旧补全曾重绘/删改原图内容。"
+      }
     },
     {
       "id": "pighub-874",
