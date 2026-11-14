@@ -263,7 +263,13 @@ const overlay = registrations.find((r) => r.options.name === 'shell.overlay').co
 
 check('侧边栏图标：原色彩色、标准小猪轮廓、镜像朝右、尺寸跟随 props.size', () => {
   resetRender();
-  const icon = sidebar({ size: 18 });
+  const rendered = sidebar({ size: 18 });
+  /* 2026-11-14 起入口外面包了一层 .pighub-iconwrap（用来挂「今日未抽」红点），
+   * 所以先取包裹层，再取里面的 svg。 */
+  assert.equal(rendered.type, 'span');
+  assert.equal(rendered.props.className, 'pighub-iconwrap');
+  const icon = collect(rendered).find((x) => x && x.type === 'svg');
+  assert.ok(icon, '入口里应有 svg 图标');
   assert.equal(icon.type, 'svg');
   assert.equal(icon.props.width, 18);
   assert.equal(icon.props.height, 18);
