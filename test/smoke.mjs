@@ -24,6 +24,8 @@ const root = mkdtempSync(join(tmpdir(), 'pighub-smoke-'));
 globalThis.fetch = async () => ({ ok: true, status: 200, json: async () => ({ code: 0, data: [] }) });
 
 const plugin = await import(new URL('../lib/index.js', here).href);
+// 猪圈布景图有几张（PEN_ART）——下面数 disposer 时按它算，不把数字抄两遍。
+const { PEN_ART } = await import(new URL('../lib/assets.js', here).href);
 
 let passed = 0;
 const check = (label, fn) => { fn(); passed += 1; console.log('PASS  ' + label); };
@@ -186,8 +188,8 @@ const ctx = {
 };
 plugin.apply(ctx, { root });
 
-check('注册了 pighub_about 工具、状态路由与每张素材的静态路由', () => {
-  assert.deepEqual([...tools.keys()], ['pighub_about']);
+check('注册了 pighub_about / pig-say 工具、状态路由与每张素材的静态路由', () => {
+  assert.deepEqual([...tools.keys()], ['pighub_about', 'pig-say']);
   const paths = [...routes.keys()];
   assert.ok(paths.indexOf('/pighub') >= 0, '缺少状态路由');
   const assetRoutes = paths.filter((path) => path.startsWith('/pighub/asset/'));
@@ -198,8 +200,9 @@ check('注册了 pighub_about 工具、状态路由与每张素材的静态路�
 });
 check('每个注册都包在 ctx.effect 里（可回收）', () => {
   const manifestCount = JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8')).pigs.length;
-  // 工具 + 状态路由 + 每张素材 + 原生桌面桌宠的生命周期 effect
-  assert.equal(disposers.length, manifestCount + 3, '工具 + 状态路由 + 每张素材 + 桌面桌宠各一个 disposer');
+  // 两个工具 + 状态路由 + 每张素材 + 猪圈布景图（PEN_ART）+ 原生桌面桌宠的生命周期 effect
+  assert.equal(disposers.length, manifestCount + PEN_ART.length + 4,
+    '两个工具 + 状态路由 + 每张素材 + 每张布景 + 桌面桌宠各一个 disposer');
   for (const dispose of disposers) assert.equal(typeof dispose, 'function');
 });
 check('pighub_about 的参数 schema 封闭、描述非空', () => {
@@ -222,6 +225,18 @@ check('pighub_about 声明了 output（宿主强制要求，缺了整行不激�
 check('工具描述与数据目录策略一致（声明不内嵌上游素材）', () => {
   const tool = tools.get('pighub_about');
   assert.equal(typeof tool.execute, 'function');
+});
+check('pig-say 的参数 schema：text 必填、封闭、描述非空', () => {
+  const tool = tools.get('pig-say');
+  assert.ok(tool, '没有注册 pig-say');
+  assert.equal(tool.parameters.type, 'object');
+  assert.deepEqual(tool.parameters.required, ['text'], 'text 必须必填');
+  assert.equal(tool.parameters.properties.text.type, 'string');
+  assert.equal(tool.parameters.additionalProperties, false);
+  assert.ok(tool.description.length > 40);
+  assert.ok(tool.description.indexOf('no_desktop_pet') > 0, '描述里要写明"没有桌宠"的拒绝码');
+  assert.equal(tool.output.schema.type, 'object');
+  assert.equal(typeof tool.output.render, 'function');
 });
 
 /* ---- 3. 工具能真跑 ---- */

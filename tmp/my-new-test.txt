@@ -1,0 +1,63 @@
+/* 「松手落地在哪，就更新游走位置起点在哪」（用户口径 2026-11-14，原话）：
+ * 落地即为新的**游走起点**，**不许有任何回头/回溯的位移**。
+ *
+ * 这条测试盯的是「落点有没有被旧快照抢回去」，不是"跳变"：
+ *   - 松手那一拍 pan 的 effect 会重跑（签名里带 drag 标志），旧实现把快照里的 pos
+ *     当成「宿主改过位置」，于是把 actor **平滑搬回拖动前的位置**（实测反向 132px / 1.6 s）；
+ *   - 下一张快照回传落点时，又按同一分支**平滑搬回落点**（第二段位移）。
+ * 两个不变量：①落点不被旧值抢回；②宿主回传的落点（我们自己写下去的那一版）不产生任何位移；
+ * 同时**不许把「外部真的改了位置」一起废掉**（第三个断言就是这条护栏）。 */
+await acheck('松手落点就是新的游走起点：旧快照不许把它抢回去，宿主回传落点也不许再滑一段', async () => {
+  const pen = { left: 200, top: 200, width: 400, height: 400 };
+  plugin.__test.setPenRect(pen);
+  const pig = snapshot.pigs[0];               // id '3'：会动的那只
+  const backup = pig.pos;
+  // 拖动前它站在 20%/20%（这份 pos 会在松手后继续作为**旧快照**存在，正是元凶）
+  pig.pos = { x: 20, y: 20 };
+  await plugin.__test.place(pig.id, 'pen');
+  await render(main);
+  let tree = await render(main);
+  let actor = findByClass(tree, 'pighub-actor')[0];
+  assert.deepEqual([actor.props.style.left, actor.props.style.top], ['20%', '20%'], '基线：拖动前应站在旧快照的位置上');
+
+  // 拖到 (400,400) → 落点 = (400-200)/400 = 50%/50%
+  const capture = { setPointerCapture() {}, releasePointerCapture() {} };
+  const img = collect(actor).find((x) => typeof x === 'object' && x.type === 'img');
+  img.props.onPointerDown({ button: 0, pointerId: 1, clientX: 300, clientY: 300, currentTarget: capture });
+  img.props.onPointerMove({ clientX: 400, clientY: 400 });
+  img.props.onPointerUp({ clientX: 400, clientY: 400 });
+  await new Promise((r) => setTimeout(r, 20));
+
+  // ① 松手后（effect 至少跑过一轮）actor 必须停在落点上，不能回到 20%/20%
+  await render(main);
+  tree = await render(main);
+  actor = findByClass(tree, 'pighub-actor')[0];
+  assert.deepEqual([actor.props.style.left, actor.props.style.top], ['50%', '50%'],
+    '松手后 actor 必须停在落点（50%/50%），实际 ' + JSON.stringify([actor.props.style.left, actor.props.style.top]));
+  assert.equal(String(actor.props.style.transitionDuration), '0ms',
+    '落地这一拍不许带在飞的过渡（否则会滑一段），实际 ' + actor.props.style.transitionDuration);
+
+  // ② 宿主回传落点（我们自己写下去的那一版）→ 不许再产生第二段位移
+  pig.pos = { x: 50, y: 50 };
+  await plugin.__test.place(pig.id, 'pen');
+  await render(main);
+  tree = await render(main);
+  actor = findByClass(tree, 'pighub-actor')[0];
+  assert.deepEqual([actor.props.style.left, actor.props.style.top], ['50%', '50%'],
+    '宿主回传的落点就是我们站着的点，不许再滑一段，实际 ' + JSON.stringify([actor.props.style.left, actor.props.style.top]));
+
+  // ③ 护栏：外部**真的**改了位置（既不是我们写下去的、也不是上次见到的）仍然要被采纳并平滑走
+  pig.pos = { x: 70, y: 60 };
+  await plugin.__test.place(pig.id, 'pen');
+  await render(main);
+  tree = await render(main);
+  actor = findByClass(tree, 'pighub-actor')[0];
+  assert.deepEqual([actor.props.style.left, actor.props.style.top], ['70%', '60%'],
+    '外部改的位置仍要采纳（否则另一个窗口/桌宠回圈就废了），实际 ' + JSON.stringify([actor.props.style.left, actor.props.style.top]));
+  assert.ok(Number(String(actor.props.style.transitionDuration).replace('ms', '')) > 0,
+    '外部改的位置要平滑走过去（不是瞬移），实际 ' + actor.props.style.transitionDuration);
+
+  pig.pos = backup;
+  await plugin.__test.place(pig.id, 'pen');
+  await new Promise((r) => setTimeout(r, 10));
+});

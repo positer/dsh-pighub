@@ -14,6 +14,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
@@ -88,6 +89,35 @@ internal sealed class PetForm : Form {
     /// <summary>本窗口所在显示器的缩放（物理像素 / CSS px）。尺寸换算由原生侧负责，宿主只管 CSS px。</summary>
     private float dpiScale = 1f;
 
+    /* ---- 气泡（pig-say 工具）----
+     * 状态由宿主经 **commands.jsonl** 下发：一行 {"type":"say","id":"<猪>","text":"…","until":<Unix 毫秒>}。
+     * 这是既有的命令通道（本来就是"一个目录几份文件"，不新开文件）；
+     * 本进程只**追加**用户交互命令，所以读 side 每次按 mtime 全量重读、取**最后一条** say 行——
+     * 不需要维护偏移量，也不会被宿主的追加打乱。until 用 Unix 毫秒，与宿主 Date.now() 同一坐标系。
+     * 为什么不做成第二个 Form（NewMate 的 DesktopBubble 是独立窗口）：气泡必须**跟着猪走**，
+     * 而猪的位置只活在这个进程里；同一个分层窗口逐帧重绘是唯一不用跨进程再同步一次坐标的做法。 */
+    /// <summary>在说话的那只猪（空 = 没有气泡）。</summary>
+    private string sayPetId = "";
+    private string sayText = "";
+    /// <summary>Unix 毫秒；到点自动不再绘制（不依赖宿主再发一条"隐藏"）。</summary>
+    private long sayUntil = 0L;
+    /// <summary>只用来量字；随窗口创建，随窗口结束释放。</summary>
+    private Graphics bubbleGraphics;
+    private Font bubbleFont;
+    private float bubbleFontScale = -1f;
+    /// <summary>单字宽度缓存：200 字 × 30fps 若每帧都 MeasureString，会白烧 CPU。</summary>
+    private readonly Dictionary<char, float> charWidths = new Dictionary<char, float>();
+    private string wrapKey = "";
+    private List<string> wrapLines = new List<string>();
+    /// <summary>本帧的气泡布局（**屏幕**坐标；Render 里再减 Bounds 换算成客户区）。</summary>
+    private bool bubbleVisible = false;
+    private Rectangle bubbleBox;
+    private int bubbleTailX, bubbleTailSize, bubblePadX, bubblePadY, bubbleRadius, bubbleLineHeight;
+    private bool bubbleTailUp;
+    /// <summary>commands.jsonl 的 mtime：变了才重读（每帧重读整份文件是浪费）。</summary>
+    private long sayStamp;
+    private static readonly long EpochShiftMs = 62135596800000L; // 0001-01-01 → 1970-01-01
+
     public PetForm(string dir) {
         this.directory = dir;
         Text = "PigHub";
@@ -134,10 +164,12 @@ internal sealed class PetForm : Form {
             if (!File.Exists(PetsFile)) return;
             long stamp = File.GetLastWriteTimeUtc(PetsFile).Ticks;
             if (stamp == petsStamp) return;
-            petsStamp = stamp;
+            // stamp **解析成功之后**才记：文件正被宿主改写时可能读到半截 JSON，
+            // 提前记下 stamp 就等于再也不重读这一版（气泡永远不出现的那种静默故障）。
             object raw = json.DeserializeObject(File.ReadAllText(PetsFile));
             Dictionary<string, object> root = raw as Dictionary<string, object>;
             if (root == null) return;
+            petsStamp = stamp;
             object starModeValue;
             if (root.TryGetValue("starMode", out starModeValue) && starModeValue != null) starMode = Convert.ToString(starModeValue);
             object pen;
@@ -194,9 +226,11 @@ internal sealed class PetForm : Form {
     }
 
     private void Frame() {
-        if (File.Exists(StopFile)) { timer.Stop(); Close(); return; }
+        if (File.Exists(StopFile)) { timer.Stop(); ReleaseBubbleTools(); Close(); return; }
         LoadPets();
+        LoadSay();
         long now = DateTime.UtcNow.Ticks / 10000;
+        long nowMs = UtcMs();
         float minX = float.MaxValue, minY = float.MaxValue, maxX = float.MinValue, maxY = float.MinValue;
         foreach (Pet pet in pets.Values) {
             float height = pet.Sprite == null ? pet.Size : pet.Size * (pet.Sprite.Height / (float)pet.Sprite.Width);
@@ -207,6 +241,15 @@ internal sealed class PetForm : Form {
             if (pet.Y + height > maxY) maxY = pet.Y + height;
         }
         if (pets.Count == 0) { if (now - lastReport > 400) Report(now); return; }
+        // 气泡先排版，再参与窗口 bounds：窗口只有"猪的包围盒 + margin"，气泡比 margin 高，
+        // 不算进去就会被直接裁掉（NewMate 用独立窗口避开了这件事，我们同一个窗口就得自己算）。
+        LayoutBubble(nowMs);
+        if (bubbleVisible) {
+            if (bubbleBox.Left < minX) minX = bubbleBox.Left;
+            if (bubbleBox.Top < minY) minY = bubbleBox.Top;
+            if (bubbleBox.Right > maxX) maxX = bubbleBox.Right;
+            if (bubbleBox.Bottom > maxY) maxY = bubbleBox.Bottom;
+        }
         const int margin = 80;
         Rectangle bounds = Rectangle.FromLTRB(
             (int)Math.Floor(minX) - margin, (int)Math.Floor(minY) - margin,
@@ -259,6 +302,9 @@ internal sealed class PetForm : Form {
             g.Clear(Color.Transparent);
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            // 气泡先画：它按构造落在猪头顶之外，但"先画猪"会让任何一次几何失误直接盖住猪脸，
+            // 而"不遮脸"是这条功能的硬要求 —— 让结构上做不到，而不是靠算术凑对。
+            DrawBubble(g);
             foreach (Pet pet in pets.Values) {
                 if (pet.Sprite == null) continue;
                 int w = pet.Size;
@@ -293,6 +339,262 @@ internal sealed class PetForm : Form {
                 DrawBadge(g, pet, x, y, w, h);
             }
         }
+    }
+
+    /* ------------------------------- 气泡（pig-say） -------------------------------
+     * 样式对齐 NewMate 的 DesktopBubble（newmark2dsh computeruse/lib/desktop-pet.cs:352-395）：
+     * 同字体（Microsoft YaHei UI / 13px×DPI）、圆角 14×DPI、尾巴 10×DPI、浅底 (252,249,250,252)、
+     * 细边 (65,80,90,110)、文字 (35,38,43)；宽度上限同为 292×DPI。
+     * 三处**故意不同**，都写在 docs/DESKTOP-PET-NATIVE.md：
+     *   ① 宽度按内容收窄（NewMate 固定 292），否则「猪猪来了」四个字也占一屏；
+     *   ② 高度不封顶到 130×DPI（NewMate 会把长句裁掉，而我们承诺 200 字必须显示完）；
+     *   ③ 加一层柔和投影（NewMate 只有细边）—— 任务要求「阴影」。
+     */
+
+    /// <summary>
+    /// 读 commands.jsonl，取**最后一条** say 命令。整份重读（按 mtime 缓存），这样
+    /// 宿主追加的行与本进程追加的行混在同一个文件里也不会错位；坏行直接跳过。
+    /// </summary>
+    private void LoadSay() {
+        try {
+            if (!File.Exists(CommandsFile)) return;
+            long stamp = File.GetLastWriteTimeUtc(CommandsFile).Ticks;
+            if (stamp == sayStamp) return;
+            sayStamp = stamp;
+            string[] lines = File.ReadAllLines(CommandsFile);
+            string target = "";
+            string body = "";
+            long until = 0L;
+            bool found = false;
+            for (int i = 0; i < lines.Length; i++) {
+                string line = lines[i];
+                if (line.Length == 0 || line.IndexOf("\"say\"", StringComparison.Ordinal) < 0) continue;
+                try {
+                    Dictionary<string, object> row = json.DeserializeObject(line) as Dictionary<string, object>;
+                    if (row == null) continue;
+                    object type;
+                    if (!row.TryGetValue("type", out type) || type == null || Convert.ToString(type) != "say") continue;
+                    object text;
+                    if (!row.TryGetValue("text", out text) || text == null) continue;
+                    object id;
+                    object untilValue;
+                    target = row.TryGetValue("id", out id) && id != null ? Convert.ToString(id) : "";
+                    body = Convert.ToString(text);
+                    until = row.TryGetValue("until", out untilValue) && untilValue != null ? Convert.ToInt64(untilValue) : 0L;
+                    found = true;
+                } catch (Exception) { /* 半截行：等下一次追加再读 */ }
+            }
+            if (!found) return;
+            sayPetId = target;
+            sayText = body;
+            sayUntil = until;
+        } catch (Exception) { /* 文件正在被替写：下一帧再读 */ }
+    }
+
+    private static long UtcMs() { return DateTime.UtcNow.Ticks / 10000L - EpochShiftMs; }
+
+    private static bool IsWordChar(char c) {
+        return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')
+            || c == '_' || c == '-' || c == '/' || c == '.' || c == ':' || c == '%' || c == '&' || c == '=' || c == '\'';
+    }
+
+    private void EnsureBubbleTools() {
+        float scale = dpiScale > 0f ? dpiScale : 1f;
+        if (bubbleGraphics == null) bubbleGraphics = CreateGraphics();
+        if (bubbleFont == null || bubbleFontScale != scale) {
+            if (bubbleFont != null) bubbleFont.Dispose();
+            bubbleFont = new Font("Microsoft YaHei UI", 13f * scale, FontStyle.Regular, GraphicsUnit.Pixel);
+            bubbleFontScale = scale;
+            charWidths.Clear();
+            wrapKey = "";
+        }
+    }
+
+    private void ReleaseBubbleTools() {
+        if (bubbleFont != null) { bubbleFont.Dispose(); bubbleFont = null; }
+        if (bubbleGraphics != null) { bubbleGraphics.Dispose(); bubbleGraphics = null; }
+        charWidths.Clear();
+        wrapKey = "";
+    }
+
+    /// <summary>单字宽度（缓存）。中文按字宽折行就靠它：一次测量 200 次调用，之后每帧只查表。</summary>
+    private float CharWidth(char c) {
+        float width;
+        if (charWidths.TryGetValue(c, out width)) return width;
+        if (bubbleGraphics == null || bubbleFont == null) return 0f;
+        width = bubbleGraphics.MeasureString(c.ToString(), bubbleFont, new PointF(0f, 0f), StringFormat.GenericTypographic).Width;
+        if (width <= 0f) width = bubbleFont.Size * 0.5f;
+        charWidths[c] = width;
+        return width;
+    }
+
+    private float MeasureLine(string text) {
+        float width = 0f;
+        for (int i = 0; i < text.Length; i++) width += CharWidth(text[i]);
+        return width;
+    }
+
+    /// <summary>取下一个不可再分的排版单位：西文连成一词，中日韩一字一词。</summary>
+    private static string NextToken(string text, ref int index) {
+        char c = text[index];
+        if (IsWordChar(c)) {
+            int start = index;
+            while (index < text.Length && IsWordChar(text[index])) index++;
+            return text.Substring(start, index - start);
+        }
+        index++;
+        return c.ToString();
+    }
+
+    /// <summary>按字宽折行。结果按「文本 + 字号」缓存，猪走动时不重排。</summary>
+    private List<string> WrapText(string text, float maxWidth) {
+        string key = bubbleFontScale.ToString() + "|" + text;
+        if (key == wrapKey && wrapLines.Count > 0) return wrapLines;
+        List<string> lines = new List<string>();
+        StringBuilder line = new StringBuilder();
+        float width = 0f;
+        int index = 0;
+        while (index < text.Length) {
+            char c = text[index];
+            if (c == '\r') { index++; continue; }
+            if (c == '\n') { lines.Add(line.ToString().TrimEnd()); line.Length = 0; width = 0f; index++; continue; }
+            string token = NextToken(text, ref index);
+            float tokenWidth = MeasureLine(token);
+            if (line.Length > 0 && width + tokenWidth > maxWidth) {
+                lines.Add(line.ToString().TrimEnd());
+                line.Length = 0;
+                width = 0f;
+                if (token.Trim().Length == 0) continue;      // 行首不留空格
+                if (token.Length > 1) {
+                    // 整个词放不下就拆字塞（URL / 长单词不该撑出一行）
+                    for (int i = 0; i < token.Length; i++) {
+                        float cw = CharWidth(token[i]);
+                        if (line.Length > 0 && width + cw > maxWidth) { lines.Add(line.ToString()); line.Length = 0; width = 0f; }
+                        line.Append(token[i]);
+                        width += cw;
+                    }
+                    continue;
+                }
+            }
+            line.Append(token);
+            width += tokenWidth;
+        }
+        lines.Add(line.ToString().TrimEnd());
+        if (lines.Count == 0) lines.Add("");
+        // 防御：200 字实测最多 10 行；多出来的直接丢，不许撑出屏幕。
+        if (lines.Count > 16) lines.RemoveRange(16, lines.Count - 16);
+        wrapKey = key;
+        wrapLines = lines;
+        return lines;
+    }
+
+    /// <summary>
+    /// 算这一帧气泡落在哪儿（**屏幕坐标**）。锚点是猪头顶中央：气泡底边在头顶上方 gap + 尾巴高处，
+    /// 尾巴尖指向头顶。头顶上方放不下（贴着屏幕上沿）就翻到脚下方、尾巴朝上——任何情况下都不压脸。
+    /// </summary>
+    private void LayoutBubble(long nowMs) {
+        bubbleVisible = false;
+        if (sayPetId.Length == 0 || sayText.Length == 0 || nowMs >= sayUntil) return;
+        Pet pet;
+        if (!pets.TryGetValue(sayPetId, out pet)) return;
+        if (pet == null || pet.Sprite == null) return;
+        EnsureBubbleTools();
+        if (bubbleGraphics == null || bubbleFont == null) return;
+        float scale = dpiScale > 0f ? dpiScale : 1f;
+        bubblePadX = (int)Math.Round(16 * scale);
+        bubblePadY = (int)Math.Round(12 * scale);
+        bubbleRadius = (int)Math.Round(14 * scale);
+        bubbleTailSize = Math.Max(6, (int)Math.Round(10 * scale));
+        int gap = (int)Math.Round(6 * scale);
+        int maxWidth = (int)Math.Round(292 * scale);
+        int minWidth = (int)Math.Round(140 * scale);
+        int edge = (int)Math.Round(6 * scale);
+        List<string> lines = WrapText(sayText, maxWidth - bubblePadX * 2);
+        bubbleLineHeight = Math.Max(1, (int)Math.Round(bubbleFont.GetHeight(bubbleGraphics)));
+        float widest = 0f;
+        for (int i = 0; i < lines.Count; i++) {
+            float w = MeasureLine(lines[i]);
+            if (w > widest) widest = w;
+        }
+        int width = Math.Min(maxWidth, Math.Max(minWidth, (int)Math.Ceiling(widest) + bubblePadX * 2));
+        int height = lines.Count * bubbleLineHeight + bubblePadY * 2;
+        int petH = (int)Math.Round(pet.Size * (pet.Sprite.Height / (float)pet.Sprite.Width));
+        int cx = (int)Math.Round(pet.X + pet.Size / 2f);
+        int headTop = (int)Math.Round(pet.Y);
+        int footBottom = (int)Math.Round(pet.Y) + petH;
+        Rectangle area = Screen.FromPoint(new System.Drawing.Point((int)pet.X, (int)pet.Y)).WorkingArea;
+        int x = cx - width / 2;
+        if (x + width > area.Right - edge) x = area.Right - edge - width;
+        if (x < area.Left + edge) x = area.Left + edge;
+        int above = headTop - gap - bubbleTailSize - height;
+        bool tailUp = above < area.Top + edge;
+        int y = tailUp ? footBottom + gap + bubbleTailSize : above;
+        if (y < area.Top + edge) y = area.Top + edge;
+        if (y + height + bubbleTailSize > area.Bottom - edge) y = area.Bottom - edge - height - bubbleTailSize;
+        bubbleTailX = Math.Max(bubbleRadius + bubbleTailSize, Math.Min(width - bubbleRadius - bubbleTailSize, cx - x));
+        bubbleTailUp = tailUp;
+        bubbleBox = new Rectangle(x, y, width, height);
+        bubbleVisible = true;
+    }
+
+    /// <summary>圆角矩形 + 尾巴三角，一笔画成（两段分开画会露出接缝）。</summary>
+    private static GraphicsPath BubblePath(Rectangle box, int tailX, int tail, int radius, bool tailUp) {
+        float d = radius * 2f;
+        float l = 1f;
+        float t = 1f;
+        float r = box.Width - 2f;
+        float b = box.Height - 2f;
+        GraphicsPath path = new GraphicsPath();
+        // 先在「尾巴朝下、左上角为原点」的局部坐标里画
+        path.AddArc(l, t, d, d, 180, 90);
+        path.AddArc(r - d, t, d, d, 270, 90);
+        path.AddArc(r - d, b - d, d, d, 0, 90);
+        path.AddLine(r - radius, b, tailX + tail, b);
+        path.AddLine(tailX + tail, b, tailX, b + tail - 1f);
+        path.AddLine(tailX, b + tail - 1f, tailX - tail, b);
+        path.AddArc(l, b - d, d, d, 90, 90);
+        path.CloseFigure();
+        Matrix transform = new Matrix();
+        if (tailUp) {
+            // 以盒子水平中线为轴翻转：局部 (x,y) → (box.X+x, box.Y+box.Height-y)
+            transform.Translate(box.X, 0f, MatrixOrder.Append);
+            transform.Scale(1f, -1f, MatrixOrder.Append);
+            transform.Translate(0f, box.Y + box.Height, MatrixOrder.Append);
+        } else {
+            transform.Translate(box.X, box.Y, MatrixOrder.Append);
+        }
+        path.Transform(transform);
+        transform.Dispose();
+        return path;
+    }
+
+    private void DrawBubble(Graphics g) {
+        if (!bubbleVisible || wrapLines.Count == 0) return;
+        float scale = dpiScale > 0f ? dpiScale : 1f;
+        Rectangle box = new Rectangle(bubbleBox.Left - Bounds.Left, bubbleBox.Top - Bounds.Top, bubbleBox.Width, bubbleBox.Height);
+        g.SmoothingMode = SmoothingMode.AntiAlias;
+        using (GraphicsPath path = BubblePath(box, bubbleTailX, bubbleTailSize, bubbleRadius, bubbleTailUp)) {
+            // 投影：同一条 path 连叠三次（不引 GDI+ blur，糊不到字上）
+            for (int i = 1; i <= 3; i++) {
+                using (GraphicsPath shadow = (GraphicsPath)path.Clone()) {
+                    using (Matrix shift = new Matrix()) {
+                        shift.Translate(0f, i * 1.5f * scale);
+                        shadow.Transform(shift);
+                    }
+                    using (SolidBrush shade = new SolidBrush(Color.FromArgb(12, 20, 24, 32))) g.FillPath(shade, shadow);
+                }
+            }
+            using (SolidBrush fill = new SolidBrush(Color.FromArgb(252, 249, 250, 252))) g.FillPath(fill, path);
+            using (Pen pen = new Pen(Color.FromArgb(65, 80, 90, 110), Math.Max(1f, scale * 0.75f))) g.DrawPath(pen, path);
+        }
+        using (SolidBrush ink = new SolidBrush(Color.FromArgb(35, 38, 43))) {
+            for (int i = 0; i < wrapLines.Count; i++) {
+                g.DrawString(wrapLines[i], bubbleFont, ink,
+                    new PointF(box.X + bubblePadX, box.Y + bubblePadY + i * bubbleLineHeight),
+                    StringFormat.GenericTypographic);
+            }
+        }
+        g.SmoothingMode = SmoothingMode.None;
     }
 
     /// <summary>星级胶囊：与面板共用 starMode（off / hover / always）。悬停判定用当前光标位置。</summary>
@@ -348,6 +650,12 @@ internal sealed class PetForm : Form {
         if (canvas == null) return pets.Count > 0 ? FirstPet() : null;
         int x = clientX, y = clientY;
         if (x < 0 || y < 0 || x >= canvas.Width || y >= canvas.Height) return null;
+        // 气泡不吃鼠标：点在气泡上等于点在桌面上（否则它 6 秒内会悄悄吞掉那块区域的点击）。
+        if (bubbleVisible) {
+            Rectangle box = new Rectangle(bubbleBox.Left - Bounds.Left, bubbleBox.Top - Bounds.Top, bubbleBox.Width, bubbleBox.Height);
+            if (bubbleTailUp) box.Y -= bubbleTailSize; else box.Height += bubbleTailSize;
+            if (box.Contains(x, y)) return null;
+        }
         Color pixel = canvas.GetPixel(x, y);
         if (pixel.A < 24) return null;
         foreach (Pet pet in pets.Values) {

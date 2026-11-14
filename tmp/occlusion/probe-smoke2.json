@@ -1,0 +1,448 @@
+{
+  "probe": "occlusion",
+  "when": "2026-11-14T08:43:27.901Z",
+  "bundle": "lib\\client.js",
+  "bundleBytes": 123113,
+  "ships": {
+    "pighub-650": {
+      "sizeRatio": 86.32,
+      "aspect": 1.158
+    },
+    "pighub-1114": {
+      "sizeRatio": 95.32,
+      "aspect": 0.895
+    },
+    "standard-pig": {
+      "sizeRatio": 98.86,
+      "aspect": 0.898
+    }
+  },
+  "edge": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+  "rounds": 1,
+  "gapMs": 200,
+  "scenes": [
+    {
+      "scene": "a",
+      "checks": [
+        {
+          "round": 1,
+          "at": "2026-11-14T08:43:28.916Z",
+          "pen": {
+            "left": 18,
+            "top": 18,
+            "width": 421.796875,
+            "height": 421.796875
+          },
+          "clip": {
+            "x": 18,
+            "y": 18,
+            "width": 422,
+            "height": 422,
+            "scale": 1
+          },
+          "overlaps": [
+            {
+              "a": "pighub-650",
+              "b": "pighub-1114",
+              "rect": {
+                "left": 167.734375,
+                "top": 218.875,
+                "width": 86.3125,
+                "height": 50.4375
+              },
+              "point": {
+                "x": 210.890625,
+                "y": 244.09375
+              },
+              "hit": "pighub-1114"
+            }
+          ],
+          "actors": [
+            {
+              "id": "pighub-650",
+              "zInline": 3,
+              "zComputed": 3,
+              "topPct": 51.999,
+              "imgHeightPx": 103.7,
+              "footPxMeasured": 271.18,
+              "footPxFromFormula": 271.18,
+              "note": "measured 与 fromFormula 的差 = 0 时，「脚底 = 中心 + 渲染高/2」在真实布局里成立"
+            },
+            {
+              "id": "pighub-1114",
+              "zInline": 4,
+              "zComputed": 4,
+              "topPct": 61.997,
+              "imgHeightPx": 88.43,
+              "footPxMeasured": 305.72,
+              "footPxFromFormula": 305.72,
+              "note": "measured 与 fromFormula 的差 = 0 时，「脚底 = 中心 + 渲染高/2」在真实布局里成立"
+            }
+          ],
+          "frontToBack": [
+            "pighub-1114",
+            "pighub-650"
+          ],
+          "hits": [
+            {
+              "pair": [
+                "pighub-650",
+                "pighub-1114"
+              ],
+              "point": {
+                "x": 210.890625,
+                "y": 244.09375
+              },
+              "hit": "pighub-1114",
+              "expectLowerFoot": "pighub-1114",
+              "ok": true
+            }
+          ],
+          "pixels": [
+            {
+              "pair": [
+                "pighub-650",
+                "pighub-1114"
+              ],
+              "rect": {
+                "left": 167.734375,
+                "top": 218.875,
+                "width": 86.3125,
+                "height": 50.4375
+              },
+              "front": "pighub-1114",
+              "back": "pighub-650",
+              "visibleFront": 2364,
+              "visibleBack": 370,
+              "both": 182,
+              "neither": 1384
+            }
+          ],
+          "zOrderFrontToBack": [
+            "pighub-1114",
+            "pighub-650"
+          ],
+          "orderMatchesFoot": true,
+          "zMonotone": true
+        }
+      ]
+    },
+    {
+      "scene": "b",
+      "checks": [
+        {
+          "round": 1,
+          "at": "2026-11-14T08:43:31.034Z",
+          "pen": {
+            "left": 18,
+            "top": 18,
+            "width": 421.796875,
+            "height": 421.796875
+          },
+          "clip": {
+            "x": 18,
+            "y": 18,
+            "width": 422,
+            "height": 422,
+            "scale": 1
+          },
+          "overlaps": [
+            {
+              "a": "pighub-650",
+              "b": "pighub-1114",
+              "rect": {
+                "left": 167.734375,
+                "top": 211.515625,
+                "width": 86.3125,
+                "height": 50.4375
+              },
+              "point": {
+                "x": 210.890625,
+                "y": 236.734375
+              },
+              "hit": "pighub-650"
+            }
+          ],
+          "actors": [
+            {
+              "id": "pighub-650",
+              "zInline": 4,
+              "zComputed": 4,
+              "topPct": 61.997,
+              "imgHeightPx": 103.74,
+              "footPxMeasured": 313.37,
+              "footPxFromFormula": 313.37,
+              "note": "measured 与 fromFormula 的差 = 0 时，「脚底 = 中心 + 渲染高/2」在真实布局里成立"
+            },
+            {
+              "id": "pighub-1114",
+              "zInline": 3,
+              "zComputed": 3,
+              "topPct": 51.999,
+              "imgHeightPx": 88.47,
+              "footPxMeasured": 263.56,
+              "footPxFromFormula": 263.56,
+              "note": "measured 与 fromFormula 的差 = 0 时，「脚底 = 中心 + 渲染高/2」在真实布局里成立"
+            }
+          ],
+          "frontToBack": [
+            "pighub-650",
+            "pighub-1114"
+          ],
+          "hits": [
+            {
+              "pair": [
+                "pighub-650",
+                "pighub-1114"
+              ],
+              "point": {
+                "x": 210.890625,
+                "y": 236.734375
+              },
+              "hit": "pighub-650",
+              "expectLowerFoot": "pighub-650",
+              "ok": true
+            }
+          ],
+          "pixels": [
+            {
+              "pair": [
+                "pighub-650",
+                "pighub-1114"
+              ],
+              "rect": {
+                "left": 167.734375,
+                "top": 211.515625,
+                "width": 86.3125,
+                "height": 50.4375
+              },
+              "front": "pighub-650",
+              "back": "pighub-1114",
+              "visibleFront": 2721,
+              "visibleBack": 701,
+              "both": 23,
+              "neither": 855
+            }
+          ],
+          "zOrderFrontToBack": [
+            "pighub-650",
+            "pighub-1114"
+          ],
+          "orderMatchesFoot": true,
+          "zMonotone": true
+        }
+      ]
+    },
+    {
+      "scene": "c",
+      "checks": [
+        {
+          "round": 1,
+          "at": "2026-11-14T08:43:33.032Z",
+          "pen": {
+            "left": 18,
+            "top": 18,
+            "width": 421.796875,
+            "height": 421.796875
+          },
+          "clip": {
+            "x": 18,
+            "y": 18,
+            "width": 422,
+            "height": 422,
+            "scale": 1
+          },
+          "overlaps": [
+            {
+              "a": "pighub-650",
+              "b": "pighub-1114",
+              "rect": {
+                "left": 167.734375,
+                "top": 202.015625,
+                "width": 86.3125,
+                "height": 50.421875
+              },
+              "point": {
+                "x": 210.890625,
+                "y": 227.2265625
+              },
+              "hit": "pighub-1114"
+            },
+            {
+              "a": "pighub-650",
+              "b": "standard-pig",
+              "rect": {
+                "left": 167.734375,
+                "top": 242.4140625,
+                "width": 86.3125,
+                "height": 10.0234375
+              },
+              "point": {
+                "x": 210.890625,
+                "y": 247.42578125
+              },
+              "hit": "standard-pig"
+            },
+            {
+              "a": "pighub-1114",
+              "b": "standard-pig",
+              "rect": {
+                "left": 163.234375,
+                "top": 242.4140625,
+                "width": 95.3125,
+                "height": 44.8515625
+              },
+              "point": {
+                "x": 210.890625,
+                "y": 264.83984375
+              },
+              "hit": "standard-pig"
+            }
+          ],
+          "actors": [
+            {
+              "id": "pighub-650",
+              "zInline": 3,
+              "zComputed": 3,
+              "topPct": 47.998,
+              "imgHeightPx": 103.7,
+              "footPxMeasured": 254.3,
+              "footPxFromFormula": 254.3,
+              "note": "measured 与 fromFormula 的差 = 0 时，「脚底 = 中心 + 渲染高/2」在真实布局里成立"
+            },
+            {
+              "id": "pighub-1114",
+              "zInline": 4,
+              "zComputed": 4,
+              "topPct": 58,
+              "imgHeightPx": 88.43,
+              "footPxMeasured": 288.86,
+              "footPxFromFormula": 288.86,
+              "note": "measured 与 fromFormula 的差 = 0 时，「脚底 = 中心 + 渲染高/2」在真实布局里成立"
+            },
+            {
+              "id": "standard-pig",
+              "zInline": 5,
+              "zComputed": 5,
+              "topPct": 67.998,
+              "imgHeightPx": 92.11,
+              "footPxMeasured": 332.87,
+              "footPxFromFormula": 332.87,
+              "note": "measured 与 fromFormula 的差 = 0 时，「脚底 = 中心 + 渲染高/2」在真实布局里成立"
+            }
+          ],
+          "frontToBack": [
+            "standard-pig",
+            "pighub-1114",
+            "pighub-650"
+          ],
+          "hits": [
+            {
+              "pair": [
+                "pighub-650",
+                "pighub-1114"
+              ],
+              "point": {
+                "x": 210.890625,
+                "y": 227.2265625
+              },
+              "hit": "pighub-1114",
+              "expectLowerFoot": "pighub-1114",
+              "ok": true
+            },
+            {
+              "pair": [
+                "pighub-650",
+                "standard-pig"
+              ],
+              "point": {
+                "x": 210.890625,
+                "y": 247.42578125
+              },
+              "hit": "standard-pig",
+              "expectLowerFoot": "standard-pig",
+              "ok": true
+            },
+            {
+              "pair": [
+                "pighub-1114",
+                "standard-pig"
+              ],
+              "point": {
+                "x": 210.890625,
+                "y": 264.83984375
+              },
+              "hit": "standard-pig",
+              "expectLowerFoot": "standard-pig",
+              "ok": true
+            }
+          ],
+          "pixels": [
+            {
+              "pair": [
+                "pighub-650",
+                "pighub-1114"
+              ],
+              "rect": {
+                "left": 167.734375,
+                "top": 202.015625,
+                "width": 86.3125,
+                "height": 50.421875
+              },
+              "front": "pighub-1114",
+              "back": "pighub-650",
+              "visibleFront": 2022,
+              "visibleBack": 371,
+              "both": 170,
+              "neither": 1737
+            },
+            {
+              "pair": [
+                "pighub-650",
+                "standard-pig"
+              ],
+              "rect": {
+                "left": 167.734375,
+                "top": 242.4140625,
+                "width": 86.3125,
+                "height": 10.0234375
+              },
+              "front": "standard-pig",
+              "back": "pighub-650",
+              "visibleFront": 54,
+              "visibleBack": 12,
+              "both": 0,
+              "neither": 794
+            },
+            {
+              "pair": [
+                "pighub-1114",
+                "standard-pig"
+              ],
+              "rect": {
+                "left": 163.234375,
+                "top": 242.4140625,
+                "width": 95.3125,
+                "height": 44.8515625
+              },
+              "front": "standard-pig",
+              "back": "pighub-1114",
+              "visibleFront": 2091,
+              "visibleBack": 315,
+              "both": 106,
+              "neither": 1808
+            }
+          ],
+          "zOrderFrontToBack": [
+            "standard-pig",
+            "pighub-1114",
+            "pighub-650"
+          ],
+          "orderMatchesFoot": true,
+          "zMonotone": true
+        }
+      ]
+    }
+  ],
+  "shots": "tmp\\occlusion\\shots2"
+}

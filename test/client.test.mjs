@@ -23,6 +23,15 @@ const documentStub = {
   querySelector(selector) {
     return styles.some((el) => 'style[data-plugin-css="' + el.dataset.pluginCss + '"]' === selector) ? styles[0] : null;
   },
+  /* document 级监听（抽卡演出的「点任意处跳过」挂在这里）。
+   * 记账而不是真的派发：断言「演出期间确实挂了监听」，再由测试直接调用它模拟一次点击。 */
+  listeners: {},
+  addEventListener(type, fn) { (documentStub.listeners[type] = documentStub.listeners[type] || []).push(fn); },
+  removeEventListener(type, fn) {
+    const list = documentStub.listeners[type] || [];
+    const index = list.indexOf(fn);
+    if (index >= 0) list.splice(index, 1);
+  },
   baseURI: 'http://127.0.0.1:1234/',
 };
 globalThis.document = documentStub;
@@ -49,13 +58,14 @@ const snapshot = {
   root: 'C:\\Users\\test\\.PigHub',
   today: { date: '2026-11-12', drawn: true, pigId: '3' },
   pigs: [
-    { id: '3', title: '丙猪', assetUrl: '/pighub/asset/pig-c.png', kind: 'live', place: 'pen', rarity: 'common', rarityLabel: '普通', stars: 2, firstObtainedAt: '2026-11-12T01:00:00.000Z', lastUpgradedAt: '2026-11-12T02:00:00.000Z' },
+    // note = manifest 里那条的逐图判定理由（Host 半 2026-11-14 起一并下发）。抽卡演出的卡片就是拿它当描述。
+    { id: '3', title: '丙猪', note: '圆胖全身、闭眼微笑，判定为活猪。', assetUrl: '/pighub/asset/pig-c.png', kind: 'live', place: 'pen', rarity: 'common', rarityLabel: '普通', stars: 2, firstObtainedAt: '2026-11-12T01:00:00.000Z', lastUpgradedAt: '2026-11-12T02:00:00.000Z' },
     { id: '1', title: '甲猪', assetUrl: '/pighub/asset/pig-a.png', kind: 'dead', place: 'pen', rarity: 'common', rarityLabel: '普通', stars: 1, firstObtainedAt: '2026-11-11T01:00:00.000Z', lastUpgradedAt: '2026-11-11T01:00:00.000Z' },
   ],
   pets: [],
   // 图鉴用：池子里全部猪猪（含未获取）
   pool: [
-    { id: '3', title: '丙猪', url: '/pighub/asset/pig-c.png' },
+    { id: '3', title: '丙猪', url: '/pighub/asset/pig-c.png', note: '圆胖全身、闭眼微笑，判定为活猪。' },
     { id: '1', title: '甲猪', url: '/pighub/asset/pig-a.png' },
     { id: '9', title: '未获得猪', url: '/pighub/asset/pig-z.png' },
   ],
@@ -67,9 +77,24 @@ const snapshot = {
 
 const requests = [];
 globalThis.__requests = requests;
+/* rev 令牌（2026-11-14）：桌宠在场时浏览器半每 250 ms 只问一句令牌，令牌变了才拉整张快照。
+ * 这里给一个可写的令牌，测试据此断言「问了几次、拉了几次」。 */
+let revToken = '';
+if (!globalThis.__rev) globalThis.__rev = { set: (value) => { revToken = value; } };
 globalThis.fetch = async (url, options) => {
   const body = options && options.body ? JSON.parse(options.body) : {};
   requests.push({ url, body });
+  if (body.action === 'rev') {
+    // revToken = null 表示「老宿主没有这个动作」：回 400 unknown_action（真宿主就是这么回的）
+    if (revToken === null) {
+      return { ok: false, status: 400, text: async () => JSON.stringify({ ok: false, error: 'unknown_action' }) };
+    }
+    // revToken = 'boom' 模拟插件重载瞬间的失败：这种错误**不许**把客户端永久降级
+    if (revToken === 'boom') {
+      return { ok: false, status: 500, text: async () => JSON.stringify({ ok: false, error: 'internal_error' }) };
+    }
+    return { ok: true, status: 200, text: async () => JSON.stringify({ ok: true, rev: revToken }) };
+  }
   if (body.action === 'place') {
     const pets = body.to === 'pet' ? [body.pigId] : [];
     const store = body.to === 'store' ? [body.pigId] : [];
@@ -267,22 +292,152 @@ await acheck('面板首帧：猪圈（空）、像素标题、「今日猪猪」
   assert.ok(text.indexOf('今日猪猪') >= 0 || text.indexOf('今日已获取') >= 0, '缺少今日按钮');
   assert.ok(text.indexOf('按获取时间') >= 0 && text.indexOf('按星级') >= 0 && text.indexOf('按稀有度') >= 0, '缺少排序按钮');
   assert.ok(findByClass(tree, 'pighub-pen').length === 1, '缺少猪圈');
-  // 围栏换成**灌木丛**：一张铺满猪圈的 SVG，四条边靠四个 <g transform> 摆位（几何只有一处）。
-  // 断的是「结构能不能对上账」，不是像素：两张绿层数量一一对应、四角各一丛更大的、每丛脚下都有影。
-  const hedge = findByClass(tree, 'pighub-hedge');
-  assert.equal(hedge.length, 1, '应有一张灌木丛 SVG，实际 ' + hedge.length);
-  const blobs = findByClass(tree, 'pighub-hedge-blob');
-  assert.equal(blobs.length, 48, '前层丛数不对（每条边 11 丛 + 四角各 1 丛），实际 ' + blobs.length);
-  assert.equal(findByClass(tree, 'pighub-hedge-back').length, blobs.length, '后层丛数要和前层一一对应');
-  assert.equal(findByClass(tree, 'pighub-hedge-corner').length, 4, '四个角要各有一丛更大的');
-  assert.equal(findByClass(tree, 'pighub-hedge-cast').length, 44, '每丛脚下都要有接触影（角丛除外）');
-  assert.equal(findByClass(tree, 'pighub-hedge-band').length, 4, '四条边各要有一条贴地暗带');
-  assert.ok(findByClass(tree, 'pighub-hedge-leaf').length <= 8, '叶点不要超过 8 处（多了会变成花纹布）');
-  assert.equal(findByClass(tree, 'pighub-house').length, 1, '缺少仓库小屋');
+  // 围栏是**用户给的一张图**（assets/img/pen-fence.png，逐字节原样入库）按同一条水平线切成两层：
+  // 远层画在猪后面、近层画在猪前面。这里断的是「结构对得上账」与「三层几何的包含关系」，
+  // 像素级证据（叠回 diff = 0、真机遮挡截图）在 archive/pen-fence-art.md。
+  // 注意：函数组件每展开一次就生成一组新元素，所以整块只用**一次** collect 的结果做身份比较。
+  const flat = collect(tree);
+  const byClass = (cls) => flat.filter((x) => typeof x === 'object' && x.props
+    && String(x.props.className || '').split(/\s+/).indexOf(cls) >= 0);
+  const fences = byClass('pighub-fence');
+  assert.equal(fences.length, 2, '栅栏应该是两层（远/近），实际 ' + fences.length);
+  const backFence = fences.filter((fence) => String(fence.props.className).indexOf('is-back') >= 0);
+  const frontFence = fences.filter((fence) => String(fence.props.className).indexOf('is-front') >= 0);
+  assert.equal(backFence.length, 1, '缺少远侧栅栏（顶横梁那一半）');
+  assert.equal(frontFence.length, 1, '缺少近侧栅栏（底横梁那一半）');
+  // 两层都用**同一张** 1254 见方的图：每层盒里只有一个 shot，指向包内路由；没有第二张素材。
+  const shots = byClass('pighub-fence-shot');
+  assert.equal(shots.length, 2, '两层各应有一张 shot，实际 ' + shots.length);
+  for (const shot of shots) {
+    const bg = String(shot.props.style.backgroundImage || '');
+    assert.equal(bg, 'url("/pighub/pen/pen-fence.png")', '两层必须指向同一张图：' + bg);
+  }
+  // 分割线是同一个数：远层 height = 近层 top = PEN_FENCE_SPLIT（同一条水平线，不是两条）
+  const split = plugin.__test.PEN_FENCE_SPLIT;
+  assert.equal(String(backFence[0].props.style.height), split + '%', '远层高度必须是分割线');
+  assert.equal(String(frontFence[0].props.style.top), split + '%', '近层起点必须是同一条分割线');
+  assert.equal(String(frontFence[0].props.style.bottom), '0', '近层要一直铺到猪圈底');
+  assert.ok(split > 40 && split < 60, '分割线要落在内圈竖直中点附近，实际 ' + split);
+  // 顺序：远层先画、近层最后画（z 序在下面另有一条断言）
+  assert.ok(flat.indexOf(frontFence[0]) > flat.indexOf(backFence[0]), '近侧栅栏必须在远侧之后绘制');
+  const penNode = byClass('pighub-pen')[0];
+  assert.ok(penNode, '缺少猪圈');
+  const penKids = penNode.children.filter((child) => child !== null && child !== undefined && child !== false);
+  const lastKid = penKids[penKids.length - 1];
+  assert.equal(lastKid.props && lastKid.props.front, true, '近侧栅栏必须是猪圈里最后画的那一个（它要压住所有猪）');
+  // 草地按用户红框内缩：clip 盒的四条边就是 PEN_GRASS，草簇被它裁住（overflow:hidden 在 CSS 里）
+  const grassClip = byClass('pighub-grass-clip');
+  assert.equal(grassClip.length, 1, '草地应有一个裁剪盒，实际 ' + grassClip.length);
+  const G = plugin.__test.PEN_GRASS;
+  const gs = grassClip[0].props.style;
+  assert.equal(gs.left, G.x0 + '%');
+  assert.equal(gs.top, G.y0 + '%');
+  assert.equal(gs.right, Math.round((100 - G.x1) * 100) / 100 + '%');
+  assert.equal(gs.bottom, Math.round((100 - G.y1) * 100) / 100 + '%');
+  const grassSvg = byClass('pighub-grass');
+  assert.equal(grassSvg.length, 1, '裁剪盒里应恰好一张草地 SVG');
+  assert.ok(parseFloat(grassSvg[0].props.style.left) < 0 && parseFloat(grassSvg[0].props.style.width) > 100,
+    '草地 SVG 仍按「猪圈 0..100」的坐标铺回原位（负偏移 + 放大），靠裁剪盒收进红框');
+  assert.equal(byClass('pighub-house').length, 1, '缺少仓库小屋');
   const title = collect(tree).filter((x) => typeof x === 'object' && x.props && x.props['aria-label'] === 'PigHub');
   assert.equal(title.length, 1, '缺少像素标题');
   const rects = collect(title[0]).filter((x) => typeof x === 'object' && x.type === 'rect');
   assert.ok(rects.length > 60, '像素标题方块太少：' + rects.length);
+});
+
+/* --------------------------------------------- 围栏的 z 序与三层几何（§Q 的代码手段） */
+/** 从注入的那份 CSS 里抠出一条规则（选择器 → 花括号里的内容）。 */
+function splitValue() { return plugin.__test.PEN_FENCE_SPLIT; }
+
+function cssRule(selector) {
+  const text = styles[0].textContent;
+  const at = text.indexOf(selector + '{');
+  if (at < 0) throw new Error('CSS 里找不到规则：' + selector);
+  return text.slice(at + selector.length + 1, text.indexOf('}', at));
+}
+
+await acheck('z 序：远栏 < 小屋 < 猪（脚底排序档）< 近栏（小屋压后栏、猪压小屋、近栏压猪）', async () => {
+  const zOf = (selector) => {
+    const m = cssRule(selector).match(/z-index:\s*(-?\d+)/);
+    assert.ok(m, selector + ' 没有写 z-index（auto 的话会被 / 不会盖住别人）');
+    return Number(m[1]);
+  };
+  const Z = plugin.__test;
+  // 档位常量（另一条线 2026-11-14 抽出来的：猪之间按脚底排序，所以猪是一整档而不是一个数）
+  assert.equal(zOf('.pighub-fence.is-back'), Z.Z_FENCE_BACK, '远侧栅栏必须画在猪身后');
+  assert.equal(zOf('.pighub-house'), Z.Z_HOUSE, '小屋要压住后面的栅栏（所以高于远栏）');
+  assert.equal(zOf('.pighub-actor'), Z.Z_ACTOR_MIN, '猪那一档的默认值（一帧零只猪时的 z）');
+  assert.equal(zOf('.pighub-fence.is-front'), Z.Z_FENCE_FRONT, '近侧栅栏必须画在猪身前');
+  // 真正要守的是**顺序**，不是四个具体数字：小屋压后栏、猪压小屋、近栏压猪
+  assert.ok(Z.Z_FENCE_BACK < Z.Z_HOUSE, '小屋必须高于远栏');
+  assert.ok(Z.Z_HOUSE < Z.Z_ACTOR_MIN, '猪必须高于小屋（走到小屋前面时猪在小屋之上）');
+  assert.ok(Z.Z_ACTOR_MAX < Z.Z_FENCE_FRONT, '整档猪都必须低于近栏（走到底边的猪被挡一截）');
+  assert.ok(Z.Z_FENCE_FRONT < Z.Z_SETTINGS && Z.Z_SETTINGS < Z.Z_GALLERY, '设置/图鉴要压在近栏之上');
+});
+
+await acheck('猪圈自己不画像素：没有底色、没有描边、没有铺满全圈的装饰', async () => {
+  // 用户口径（2026-11-14）：草地与围栏本体之外的区域 alpha 必须为 0，直接露宿主页面底色。
+  // 「给猪圈画一块底色」在视觉上就是「猪圈是一个深色/绿色方块」——所以这条断言盯的就是它。
+  const pen = cssRule('.pighub-pen');
+  assert.ok(/background:\s*transparent/.test(pen), '猪圈不能有底色：' + pen);
+  assert.ok(pen.indexOf('box-shadow') < 0, '猪圈不能有描边（那不是内容，是在透明区画了一圈线）');
+  assert.ok(pen.indexOf('gradient') < 0, '不许用渐变铺底');
+  // 铺满全圈的装饰层：任何 inset:0 且带 background 的猪圈子层都会被这条抓出来
+  for (const selector of ['.pighub-grass', '.pighub-fence-shot', '.pighub-fence']) {
+    const rule = cssRule(selector);
+    assert.ok(rule.indexOf('background-color') < 0, selector + ' 不许有底色');
+  }
+  // 草地裁剪盒四边都在红框上（不是 inset:0）——它自己是唯一铺草的层
+  assert.ok(cssRule('.pighub-grass-clip').indexOf('overflow:hidden') >= 0, '草地必须被裁剪盒裁住，不能溢出红框');
+});
+
+await acheck('三层矩形：草坪红框 ⊃ 栅栏内圈 ⊃ 猪的活动区（各收半个猪身）', async () => {
+  const { PEN_INNER, PEN_GRASS, PEN_BOX } = plugin.__test;
+  // 1) 草坪红框包住栅栏内圈：草要铺到木头底下，否则栏下会露出一条「没有草」的亮带。
+  assert.ok(PEN_GRASS.x0 <= PEN_INNER.x0 && PEN_GRASS.x1 >= PEN_INNER.x1
+    && PEN_GRASS.y0 <= PEN_INNER.y0 && PEN_GRASS.y1 >= PEN_INNER.y1,
+    '草坪红框没包住内圈：' + JSON.stringify({ PEN_GRASS, PEN_INNER }));
+  // 2) 猪的活动区 = 内圈各收半个猪身（参考猪 96px 宽、256 只实测中位高宽比 0.888、451px 猪圈）。
+  const halfW = (96 / 2 / 451) * 100;
+  const halfH = ((96 * 0.888) / 2 / 451) * 100;
+  assert.ok(PEN_BOX.x0 - halfW >= PEN_INNER.x0 - 0.02, '猪身左缘会越出栅栏内圈');
+  assert.ok(PEN_BOX.x1 + halfW <= PEN_INNER.x1 + 0.02, '猪身右缘会越出栅栏内圈');
+  assert.ok(PEN_BOX.y0 - halfH >= PEN_INNER.y0 - 0.02, '猪身上缘会越出栅栏内圈');
+  assert.ok(PEN_BOX.y1 + halfH <= PEN_INNER.y1 + 0.02, '猪身下缘会越出栅栏内圈');
+  // 3) 仓库小屋（left/top/width/aspect 从 CSS 里读，抄常量就是自证）。用户口径 2026-11-14：
+  //    小屋站在草坪远端、**挡住后面的栅栏**。判据不是「看着像」，是三条能对账的几何关系：
+  //    ① 屋底落在草坪里（立在草坪上，不是浮空）；② 屋身把远栏两道横梁整段盖住（重叠高度给数）；
+  //    ③ 整只都在分割线以上（只压后栏，不盖前景栏）。
+  const house = cssRule('.pighub-house');
+  const num = (key) => Number((house.match(new RegExp(key + ':\\s*(-?[\\d.]+)%')) || [])[1]);
+  const houseLeft = num('left');
+  const houseTop = num('top');
+  const houseWidth = num('width');
+  const aspect = house.match(/aspect-ratio:\s*([\d.]+)\/([\d.]+)/);
+  assert.ok(houseLeft > 0 && houseTop > 0 && houseWidth > 0 && aspect, '小屋的 CSS 读数不完整：' + house);
+  const houseHeight = (houseWidth * Number(aspect[2])) / Number(aspect[1]);
+  // SVG 里真正画到的范围（overflow:visible）：x 1.4..36.6 / 40，y 2.2..30.2 / 34
+  const drawn = {
+    x0: houseLeft - houseWidth * (1.4 / 40),
+    x1: houseLeft + houseWidth * (36.6 / 40),
+    y0: houseTop - houseHeight * (2.2 / 34),
+    y1: houseTop + houseHeight * (30.2 / 34),
+  };
+  const houseBottom = houseTop + houseHeight;
+  // ① 屋底（含 SVG 画到的投影 30.2/34）落在草坪里：小屋是「立在草坪远端」，不是浮空
+  assert.ok(drawn.y1 <= PEN_GRASS.y1 && drawn.y1 > PEN_GRASS.y0 + 1,
+    '小屋投影不在草坪里：' + JSON.stringify({ drawn, PEN_GRASS }));
+  assert.ok(houseBottom > PEN_GRASS.y0, '屋底必须压进草坪（红框上沿 ' + PEN_GRASS.y0 + '%），实际 ' + houseBottom.toFixed(2) + '%');
+  // ② 与远栏两道横梁的重叠高度（横梁 y 带由 1254 原图实测：上 8.29..12.28、下 14.11..17.46）
+  const RAIL_TOP = 8.29;
+  const RAIL_BOTTOM = 17.46;
+  const covered = Math.min(houseBottom, RAIL_BOTTOM) - Math.max(houseTop, RAIL_TOP);
+  assert.ok(houseTop < RAIL_TOP, '小屋上沿必须高于上横梁上缘（否则只能压到下半截）');
+  assert.ok(covered >= 9, '小屋没把横梁整段盖住：重叠 ' + covered.toFixed(2) + ' 个百分点');
+  assert.ok(covered > houseHeight * 0.5, '压在横梁上的高度要超过屋高一半，才算「挡住栅栏」');
+  // ③ 与左立柱重叠（转角那一块最明显），且整只在分割线以上
+  assert.ok(houseLeft < PEN_INNER.x0 - 1, '小屋必须与左立柱重叠：left=' + houseLeft);
+  assert.ok(houseBottom < splitValue(), '小屋整只必须在分割线以上（它只压后栏，不许盖前景栏）');
 });
 
 await acheck('数据到位后重渲染：今日已获取、清单两条、星级与两种时间都在', async () => {
@@ -525,7 +680,9 @@ check('松手后原地站稳：SETTLE_MS 存在且 > 一个 tick', () => {
   assert.ok(SETTLE_MS >= 1700, '站稳时长至少覆盖一个 tick（1.7s），否则松手就被下一拍带走，实际 ' + SETTLE_MS);
 });
 
-check('拖动落点在猪圈内 = 换位置（不是取消）', async () => {
+/* 这条原来是 check(...) + async body：断言落在没人 await 的将来，后来的用例一并发请求就会串账
+ * （本轮加「松手落点 = 新起点」那条时立刻撞上：before 记 1、实际 filter 到 3）。改成 await 的 acheck。 */
+await acheck('拖动落点在猪圈内 = 换位置（不是取消）', async () => {
   // 猪圈矩形由面板实测后报给 store；注入一个固定矩形，让落点换算可断言。
   plugin.__test.setPenRect({ left: 200, top: 200, width: 400, height: 400 });
   const tree = await render(main);
@@ -541,6 +698,78 @@ check('拖动落点在猪圈内 = 换位置（不是取消）', async () => {
   // 落点换算：(400-200)/400 = 50%
   assert.ok(Math.abs(saved[saved.length - 1].body.x - 50) < 1, '落点 x 应按矩形换算成百分比，实际 ' + saved[saved.length - 1].body.x);
   assert.ok(Math.abs(saved[saved.length - 1].body.y - 50) < 1, '落点 y 应按矩形换算成百分比，实际 ' + saved[saved.length - 1].body.y);
+  // 落地后的「站稳」只许有一个计时器（holdUntil = SETTLE_MS）。再叠 fresh 会额外推后一个
+  // DECISION_MS，实测体感就是「拖动落地后猪僵住」（用户 2026-11-14 追加反馈）。
+  const source = readFileSync(new URL('../lib/client.js', import.meta.url), 'utf8');
+  const handler = source.slice(source.indexOf('moveActorHandler = (pigId, x, y) => {'));
+  const body = handler.slice(0, handler.indexOf('};'));
+  assert.ok(body.indexOf('holdUntil: Date.now() + SETTLE_MS') >= 0, '落地要有一个 SETTLE_MS 的站稳计时');
+  assert.ok(body.indexOf('fresh: false') >= 0, '落地不许再叠 fresh（那会再多等一个 DECISION_MS）');
+});
+
+
+/* 「松手落地在哪，就更新游走位置起点在哪」（用户口径 2026-11-14，原话）：
+ * 落地即为新的**游走起点**，**不许有任何回头/回溯的位移**。
+ *
+ * 这条测试盯的是「落点有没有被旧快照抢回去」，不是"跳变"：
+ *   - 松手那一拍 pan 的 effect 会重跑（签名里带 drag 标志），旧实现把快照里的 pos
+ *     当成「宿主改过位置」，于是把 actor **平滑搬回拖动前的位置**（实测反向 132px / 1.6 s）；
+ *   - 下一张快照回传落点时，又按同一分支**平滑搬回落点**（第二段位移）。
+ * 两个不变量：①落点不被旧值抢回；②宿主回传的落点（我们自己写下去的那一版）不产生任何位移；
+ * 同时**不许把「外部真的改了位置」一起废掉**（第三个断言就是这条护栏）。 */
+await acheck('松手落点就是新的游走起点：旧快照不许把它抢回去，宿主回传落点也不许再滑一段', async () => {
+  const pen = { left: 200, top: 200, width: 400, height: 400 };
+  plugin.__test.setPenRect(pen);
+  const pig = snapshot.pigs[0];               // id '3'：会动的那只
+  const backup = pig.pos;
+  // 拖动前它站在 20%/20%（这份 pos 会在松手后继续作为**旧快照**存在，正是元凶）
+  pig.pos = { x: 20, y: 20 };
+  await plugin.__test.place(pig.id, 'pen');
+  await render(main);
+  let tree = await render(main);
+  let actor = findByClass(tree, 'pighub-actor')[0];
+  assert.deepEqual([actor.props.style.left, actor.props.style.top], ['20%', '20%'], '基线：拖动前应站在旧快照的位置上');
+
+  // 拖到 (400,400) → 落点 = (400-200)/400 = 50%/50%
+  const capture = { setPointerCapture() {}, releasePointerCapture() {} };
+  const img = collect(actor).find((x) => typeof x === 'object' && x.type === 'img');
+  img.props.onPointerDown({ button: 0, pointerId: 1, clientX: 300, clientY: 300, currentTarget: capture });
+  img.props.onPointerMove({ clientX: 400, clientY: 400 });
+  img.props.onPointerUp({ clientX: 400, clientY: 400 });
+  await new Promise((r) => setTimeout(r, 20));
+
+  // ① 松手后（effect 至少跑过一轮）actor 必须停在落点上，不能回到 20%/20%
+  await render(main);
+  tree = await render(main);
+  actor = findByClass(tree, 'pighub-actor')[0];
+  assert.deepEqual([actor.props.style.left, actor.props.style.top], ['50%', '50%'],
+    '松手后 actor 必须停在落点（50%/50%），实际 ' + JSON.stringify([actor.props.style.left, actor.props.style.top]));
+  assert.equal(String(actor.props.style.transitionDuration), '0ms',
+    '落地这一拍不许带在飞的过渡（否则会滑一段），实际 ' + actor.props.style.transitionDuration);
+
+  // ② 宿主回传落点（我们自己写下去的那一版）→ 不许再产生第二段位移
+  pig.pos = { x: 50, y: 50 };
+  await plugin.__test.place(pig.id, 'pen');
+  await render(main);
+  tree = await render(main);
+  actor = findByClass(tree, 'pighub-actor')[0];
+  assert.deepEqual([actor.props.style.left, actor.props.style.top], ['50%', '50%'],
+    '宿主回传的落点就是我们站着的点，不许再滑一段，实际 ' + JSON.stringify([actor.props.style.left, actor.props.style.top]));
+
+  // ③ 护栏：外部**真的**改了位置（既不是我们写下去的、也不是上次见到的）仍然要被采纳并平滑走
+  pig.pos = { x: 70, y: 60 };
+  await plugin.__test.place(pig.id, 'pen');
+  await render(main);
+  tree = await render(main);
+  actor = findByClass(tree, 'pighub-actor')[0];
+  assert.deepEqual([actor.props.style.left, actor.props.style.top], ['70%', '60%'],
+    '外部改的位置仍要采纳（否则另一个窗口/桌宠回圈就废了），实际 ' + JSON.stringify([actor.props.style.left, actor.props.style.top]));
+  assert.ok(Number(String(actor.props.style.transitionDuration).replace('ms', '')) > 0,
+    '外部改的位置要平滑走过去（不是瞬移），实际 ' + actor.props.style.transitionDuration);
+
+  pig.pos = backup;
+  await plugin.__test.place(pig.id, 'pen');
+  await new Promise((r) => setTimeout(r, 10));
 });
 
 check('拖动中的猪隐藏本体（不许"拖起来原地还有一个"）', async () => {
@@ -742,4 +971,297 @@ await acheck('清单不再标活死、标出静止态与位置，抽到的猪带
   const requests = globalThis.__requests || [];
   assert.equal(requests.some((r) => String(r.url).indexOf('/pighub/image') >= 0), false, '不应再走图片代理');
 });
+
+/* ------------------------------------------------------- 抽卡演出（2026-11-14） */
+check('演出时间轴：中心放大 1.8 倍、停留 2.5 秒、描述截断 60 字', () => {
+  const M = plugin.__test;
+  const t = M.revealTimeline();
+  assert.equal(t.centerScale, 1.8, '飞到中心要放大 1.8 倍');
+  assert.equal(t.holdMs, 2500, '中心停留应为 2500ms');
+  assert.ok(t.holdMs >= 2400, '停留时长不得短于 2.4s，实测 ' + t.holdMs);
+  assert.equal(t.holdEnd - t.holdStart, t.holdMs, '停留窗口必须正好是 holdMs');
+  assert.ok(t.holdStart > t.popMs, '停留必须在弹出与飞入之后');
+  assert.ok(t.doneAt > t.holdEnd + t.flyMs, '撤层必须在「飞回」那一段之后');
+  assert.equal(t.descMax, 60, '描述截到 60 字');
+  const css = styles[0].textContent;
+  assert.ok(css.indexOf('.pighub-reveal-card{') >= 0, '缺少演出卡片样式');
+  assert.ok(css.indexOf('rgba(22,20,18,.78)') >= 0, '卡片底色应是深色半透明');
+  assert.ok(css.indexOf('border-radius:14px') >= 0, '卡片要圆角');
+  assert.ok(css.indexOf('.pighub-reveal-name{') >= 0 && css.indexOf('font-weight:700') >= 0, '名字必须粗体');
+  assert.ok(css.indexOf('.pighub-reveal-desc{') >= 0 && css.indexOf('font-size:12px') >= 0, '描述必须是小字');
+  // 演出层不拦交互：pointer-events:none + 跳过靠 document 监听（不盖一层吃点击的遮罩）
+  assert.ok(css.indexOf('.pighub-reveal{position:fixed;left:0;top:0;z-index:60;pointer-events:none') >= 0,
+    '演出层不得拦截指针事件');
+});
+
+check('描述取 note：超长截到 60 字 + 省略号，没有就留空（不编造）', () => {
+  const M = plugin.__test;
+  assert.equal(M.describePig({ note: '  圆胖全身、闭眼微笑  ' }), '圆胖全身、闭眼微笑', '应去掉首尾空白');
+  assert.equal(M.describePig({}), '', '没有 note 时不得编造描述');
+  assert.equal(M.describePig(null), '');
+  const cut = M.describePig({ note: '猪'.repeat(80) });
+  assert.equal(cut.length, 61, '截断后应是 60 字 + 省略号，实际 ' + cut.length);
+  assert.equal(cut.charAt(60), '\u2026');
+});
+
+await acheck('抽卡演出：飞到窗口中心 1.8 倍 → 停留显示名字+描述 → 飞回猪圈后撤层', async () => {
+  const M = plugin.__test;
+  const t = M.revealTimeline();
+  const landOffset = 66;                 // REVEAL_SIZE / 2
+  const cx = window.innerWidth / 2;      // 1280 / 2 = 640（窗口中心，不是猪圈中心）
+  const cy = window.innerHeight / 2;     // 800 / 2 = 400
+  const pen = { x: 200 + 400 / 2, y: 200 + 400 / 2 };   // 前面注入的猪圈矩形，中心 (400,400)
+  assert.notEqual(cx, pen.x, '窗口中心必须与猪圈中心不同，否则这条断言没有区分力');
+
+  const draw = findByClass(await render(main), 'pighub-draw')[0];
+  assert.ok(draw, '缺少「今日猪猪」按钮——演出就是从这里起飞的');
+  const started = Date.now();
+  const waitUntil = async (ms) => {
+    const left = ms - (Date.now() - started);
+    if (left > 0) await new Promise((r) => setTimeout(r, left));
+  };
+  await draw.props.onClick();
+
+  // ① 飞行中：已经在去窗口中心的路上（1.8 倍），卡片还没出现
+  await waitUntil(t.popMs + 180);
+  const flying = await render(main);
+  const flight = findByClass(flying, 'pighub-reveal');
+  assert.equal(flight.length, 1, '起飞后应有演出元素，实际 ' + flight.length);
+  const flightTransform = String(flight[0].props.style.transform);
+  assert.ok(flightTransform.indexOf('translate3d(' + (cx - landOffset) + 'px,' + (cy - landOffset) + 'px,0)') >= 0,
+    '飞行目标应是窗口中心，实际 ' + flightTransform);
+  assert.ok(flightTransform.indexOf('scale(1.8)') >= 0, '飞到中心要放大到 1.8 倍，实际 ' + flightTransform);
+  assert.equal(findByClass(flying, 'pighub-reveal-card').length, 0, '飞行中不该有卡片');
+
+  // ② 停留中：卡片亮着，名字 + 描述都在，位置压在猪头顶上方（不遮挡猪）
+  await waitUntil(t.holdStart + 150);
+  const holding = await render(main);
+  const card = findByClass(holding, 'pighub-reveal-card');
+  assert.equal(card.length, 1, '停留期必须出现卡片');
+  assert.ok(String(card[0].props.className).indexOf('is-hold') >= 0, '停留期卡片应带 is-hold（淡入态）');
+  const cardText = textOf(card[0]);
+  assert.ok(cardText.indexOf('丙猪') >= 0, '卡片要有名字，实际 ' + cardText);
+  assert.ok(cardText.indexOf('圆胖全身、闭眼微笑') >= 0, '卡片要有描述（manifest 的 note），实际 ' + cardText);
+  const pigHalf = (132 * 1.8) / 2;
+  const cardTop = parseFloat(card[0].props.style.top);
+  assert.ok(Number.isFinite(cardTop), '卡片 top 应是数值像素，实际 ' + card[0].props.style.top);
+  assert.ok(cardTop <= cy - pigHalf - 11.9, '卡片必须压在猪头顶上方，不遮挡猪：top=' + cardTop + ' / 猪顶=' + (cy - pigHalf));
+  const still = String(findByClass(holding, 'pighub-reveal')[0].props.style.transform);
+  assert.ok(still.indexOf('scale(1.8)') >= 0, '停留期保持 1.8 倍，实际 ' + still);
+
+  // ③ 停留结束 → 飞回猪圈落位：目标换成猪圈中心、缩放回 0.56，卡片撤掉 is-hold（开始淡出）
+  await waitUntil(t.holdEnd + 150);
+  const back = await render(main);
+  const backTransform = String(findByClass(back, 'pighub-reveal')[0].props.style.transform);
+  assert.ok(backTransform.indexOf('translate3d(' + (pen.x - landOffset) + 'px,' + (pen.y - landOffset) + 'px,0)') >= 0,
+    '回归落点应是猪圈，实际 ' + backTransform);
+  assert.ok(backTransform.indexOf('scale(0.56)') >= 0, '落到猪圈要缩回 0.56 倍，实际 ' + backTransform);
+  const fading = findByClass(back, 'pighub-reveal-card');
+  assert.equal(fading.length, 1, '回归途中卡片还在（淡出，而不是瞬间消失）');
+  assert.ok(String(fading[0].props.className).indexOf('is-hold') < 0, '回归时卡片应撤掉 is-hold 开始淡出');
+
+  // ④ 落定后撤层：演出元素与卡片都不再渲染
+  await waitUntil(t.doneAt + 220);
+  const done = await render(main);
+  assert.equal(findByClass(done, 'pighub-reveal').length, 0, '演出结束后不该还有演出元素');
+  assert.equal(findByClass(done, 'pighub-reveal-card').length, 0, '演出结束后不该还有卡片');
+});
+
+await acheck('演出可点击跳过：document 上的 pointerdown 立刻收场（不拦其它交互）', async () => {
+  const M = plugin.__test;
+  const draw = findByClass(await render(main), 'pighub-draw')[0];
+  await draw.props.onClick();
+  await new Promise((r) => setTimeout(r, 120));
+  assert.equal(findByClass(await render(main), 'pighub-reveal').length, 1, '应正在演出');
+  const listeners = documentStub.listeners.pointerdown || [];
+  assert.ok(listeners.length > 0, '演出期间应在 document 上挂一个「点任意处跳过」的监听');
+  // 模拟「点任意处」：只调这一个回调，和浏览器的捕获阶段一致（不 preventDefault、不阻断）
+  listeners[listeners.length - 1]({ type: 'pointerdown' });
+  const after = await render(main);
+  assert.equal(findByClass(after, 'pighub-reveal').length, 0, '点一下应立刻收场');
+  assert.equal(findByClass(after, 'pighub-reveal-card').length, 0, '收场时卡片也一起撤掉');
+});
+
+await acheck('减少动画偏好：不飞，直接显示卡片停 2.5 秒，猪圈里那只不隐藏', async () => {
+  const M = plugin.__test;
+  const original = window.matchMedia;
+  window.matchMedia = () => ({ matches: true });
+  try {
+    assert.equal(M.prefersReducedMotion(), true, '现问一次偏好，而不是吃模块加载时的那次快照');
+    const draw = findByClass(await render(main), 'pighub-draw')[0];
+    await draw.props.onClick();
+    await new Promise((r) => setTimeout(r, 120));
+    const shown = await render(main);
+    const card = findByClass(shown, 'pighub-reveal-card');
+    assert.equal(card.length, 1, '减少动画时应直接显示卡片');
+    assert.ok(String(card[0].props.className).indexOf('is-hold') >= 0, '卡片应直接是亮着的状态');
+    assert.equal(findByClass(shown, 'pighub-reveal').length, 0, '减少动画时不做飞行：不该有飞行元素');
+    assert.ok(textOf(card[0]).indexOf('丙猪') >= 0, '卡片仍要有名字');
+    assert.ok(textOf(card[0]).indexOf('圆胖全身、闭眼微笑') >= 0, '卡片仍要有描述');
+    const hidden = findByClass(shown, 'pighub-actor').filter((w) => String(w.props.className).indexOf('is-hidden') >= 0);
+    assert.equal(hidden.length, 0, '减少动画时猪圈里那只不该被藏起来');
+    await new Promise((r) => setTimeout(r, M.revealTimeline().holdMs + 250));
+    const gone = await render(main);
+    assert.equal(findByClass(gone, 'pighub-reveal-card').length, 0, '停留 2.5 秒后卡片应自己消失');
+  } finally {
+    window.matchMedia = original;
+  }
+});
+
+/*
+ * 「桌宠回猪圈」那 8 秒空窗的回归线（2026-11-14）。
+ * 机制：原生桌宠是宿主/另一个进程在改 place，浏览器半只能靠轮询知道；原来只有 10 s 一轮整张快照，
+ * 实测空窗 0.16–8.36 s、两次相隔 1.1 s 的动作隔 10.03 s 才落地
+ *（archive/20261114-135230-pet-return-continuity）。现在桌宠在场时 250 ms 问一次令牌。
+ */
+check('对账节奏：桌宠在场 250 ms 令牌、空闲 1 s 令牌，整张快照 10 s 兜底', () => {
+  const M = plugin.__test;
+  assert.equal(M.WATCH_MS, 250, '桌宠在场时的对账间隔（实测桌宠消失 205±4 ms，取略大于它）');
+  assert.equal(M.IDLE_WATCH_MS, 1000, '空闲时的令牌间隔：再慢就发现不了"有猪出门"，而那时才切到 250 ms');
+  assert.equal(M.FULL_POLL_MS, 10000, '整张快照的兜底间隔（位置不进令牌，只能靠它对账）');
+  const source = readFileSync(new URL('../lib/client.js', import.meta.url), 'utf8');
+  assert.ok(/setInterval\(async \(\) => \{/.test(source), '没找到桌宠层的对账 tick');
+  assert.ok(source.indexOf('data.desktopPet && data.desktopPet.running') >= 0, 'tick 必须看原生桌宠在不在');
+  assert.ok(source.indexOf('await STORE.syncRev();') >= 0, 'tick 必须走令牌对账');
+  assert.ok(/if \(now - lastFullPollRef\.current >= FULL_POLL_MS\)/.test(source),
+    '整张快照必须有一条无条件的 10 s 兜底：位置不进令牌，老宿主也没有 rev 动作');
+  // 原来那行「每 10 s 无条件拉整张快照」必须已经不在（它就是这个 bug 的来源）
+  assert.ok(source.indexOf('STORE.load().catch(() => {}); }, 10000)') < 0, '10 s 无条件整张快照的写法应已移除');
+});
+
+await acheck('令牌对账：没变只问一句，变了立刻拉整张快照并 apply', async () => {
+  const syncRev = plugin.__test.syncRev;
+  assert.equal(typeof syncRev, 'function', '__test 要暴露 syncRev（定时器在结构测试里是空实现）');
+  const start = requests.length;
+  globalThis.__rev.set('rev-A');
+  await syncRev();
+  assert.deepEqual(requests.slice(start).map((r) => r.body.action), ['rev', 'state'],
+    '第一次看到新令牌 → 先问令牌，再拉一次快照');
+  assert.deepEqual(Object.keys(requests[start].body), ['action'], '令牌请求不许带负载（只花几十字节）');
+  const state = plugin.__test.storeState();
+  assert.ok(state && state.data && Array.isArray(state.data.pigs), '快照要真的 apply 进 store（data.pigs 就位）');
+
+  const same = requests.length;
+  await syncRev();
+  assert.deepEqual(requests.slice(same).map((r) => r.body.action), ['rev'],
+    '令牌没变 → 一次快照都不许拉（否则等于又回到 10 s 一变 4 次的整张快照）');
+
+  globalThis.__rev.set('rev-B');
+  await syncRev();
+  assert.deepEqual(requests.slice(same).map((r) => r.body.action), ['rev', 'rev', 'state'],
+    '令牌变了 → 立刻拉快照（这一条就是「双击回圈后猪圈里空着」的修复）');
+});
+
+await acheck('插件重载瞬间的失败不能让客户端永久降级（否则空窗又变回几秒）', async () => {
+  const syncRev = plugin.__test.syncRev;
+  globalThis.__rev.set('boom');
+  const start = requests.length;
+  assert.equal(await syncRev(), true, '一次 500 只该当作"这一拍不算数"，不该回 false');
+  globalThis.__rev.set('rev-C');
+  await syncRev();
+  assert.deepEqual(requests.slice(start).map((r) => r.body.action), ['rev', 'rev', 'state'],
+    '恢复之后必须还能正常对账并拉快照（没被锁死）');
+});
+
+await acheck('老宿主没有 rev 动作：对账回 false（让 tick 退回 10 s 整张快照），且不再反复问', async () => {
+  const syncRev = plugin.__test.syncRev;
+  globalThis.__rev.set(null);
+  const start = requests.length;
+  assert.equal(await syncRev(), false, '宿主不支持 rev 时必须回 false，否则 tick 会一直停在令牌分支、一次快照都不拉');
+  assert.deepEqual(requests.slice(start).map((r) => r.body.action), ['rev'], '这一拍只问一次，不改拉快照');
+  assert.equal(await syncRev(), false, '降级标记是粘性的');
+  assert.deepEqual(requests.slice(start).map((r) => r.body.action), ['rev'], '降级之后连 rev 都不再问（不刷 250 ms 的错误）');
+});
+
+/* ------------------------------------- 猪之间的遮挡：按脚底排序（2026-11-14 用户口径「下遮挡上」） */
+await acheck('脚底 = 中心 y + 渲染高度/2（高度按 sizeRatio × aspect 算，不拿 top 当脚底）', async () => {
+  const M = plugin.__test;
+  const penW = M.penWidthPx();   // 当前的猪圈宽度（penRect 量到过就用实测值，否则 451 兜底）
+  const proto = { sizeRatio: 96, aspect: 1 };
+  // 猪圈是 1:1，所以「宽占百分之几」就是「高占百分之几」：96 / 猪圈宽 × 100，一半 = 脚底相对中心的下沉量。
+  const heightPct = (96 / penW) * 100;
+  assert.ok(Math.abs(M.penActorHeightPct(proto) - heightPct) < 1e-9,
+    '渲染高度百分比错了：' + M.penActorHeightPct(proto));
+  assert.ok(Math.abs(M.penFootPct({ y: 50 }, proto) - (50 + heightPct / 2)) < 1e-9,
+    '脚底必须是「中心 + 半个渲染高度」，不是中心本身：' + M.penFootPct({ y: 50 }, proto));
+  // aspect 必须真的参与：同宽、更扁（更高）的贴图，脚底更低 —— 这就是「贴图底部即脚底」的意思
+  const taller = { sizeRatio: 96, aspect: 1.3 };
+  assert.ok(M.penActorHeightPct(taller) > M.penActorHeightPct(proto), 'aspect 没参与高度计算');
+  assert.ok(M.penFootPct({ y: 50 }, taller) > M.penFootPct({ y: 50 }, proto),
+    '更扁的贴图渲染得更高，脚底必须更低：' + M.penFootPct({ y: 50 }, taller) + ' vs ' + M.penFootPct({ y: 50 }, proto));
+  // 同一 foot 的两只、不同 sizeRatio 时，中心 y 不同 —— 说明是**脚底**在排序，不是 top 在排序
+  const big = { sizeRatio: 140, aspect: 1 };
+  assert.ok(M.penFootPct({ y: 40 }, big) > M.penFootPct({ y: 45 }, proto),
+    '大猪中心更高但脚底更低时，必须按脚底算（否则拖拽大猪会插到小猪后面）');
+  assert.ok(Number.isFinite(M.penFootPct({ y: 30 }, {})), '缺 sizeRatio/aspect 也要给出有限值，不许 NaN');
+});
+
+await acheck('z 名次：脚底越低 z 越大、整档夹在小屋与近栏之间、同脚底按 id 稳定、拖动在最上', async () => {
+  const M = plugin.__test;
+  const pigs = [{ id: 'pighub-30' }, { id: 'pighub-10' }, { id: 'pighub-20' }, { id: 'pighub-40' }];
+  // 高度一致（缺 sizeRatio/aspect → 回落到 PIG_PX / 1），所以顺序只看 y：
+  // 脚底从上到下 = 30(20%) < 10(40%) < 20(60%) < 40(80%)
+  const actors = { 'pighub-30': { y: 20 }, 'pighub-10': { y: 40 }, 'pighub-20': { y: 60 }, 'pighub-40': { y: 80 } };
+  const z = M.penZIndexMap(pigs, actors, null);
+  const seq = ['pighub-30', 'pighub-10', 'pighub-20', 'pighub-40'].map((id) => z[id]);
+  for (let i = 1; i < seq.length; i += 1) {
+    assert.ok(seq[i - 1] < seq[i], '脚底越低 z 必须越大（严格单调）：' + JSON.stringify(z));
+  }
+  for (const id of Object.keys(z)) {
+    assert.ok(z[id] >= M.Z_ACTOR_MIN && z[id] <= M.Z_ACTOR_MAX, 'z 跑出档位了：' + id + '=' + z[id]);
+    assert.ok(z[id] > M.Z_HOUSE, '猪必须压在小屋之上：' + id + '=' + z[id]);
+    assert.ok(z[id] < M.Z_FENCE_FRONT, '猪不许压过近栏：' + id + '=' + z[id]);
+  }
+  // 同脚底 → 由 id 决定（与这一帧的渲染次序无关，所以不会两帧之间抢层、闪烁）
+  const tie = M.penZIndexMap([{ id: 'pighub-9' }, { id: 'pighub-1' }],
+    { 'pighub-9': { y: 50 }, 'pighub-1': { y: 50 } }, null);
+  assert.ok(tie['pighub-1'] < tie['pighub-9'], '同脚底必须按 id 稳定排序：' + JSON.stringify(tie));
+  // 拖动中的猪取这一档最上：拖起来不能被别的猪挡住
+  const drag = M.penZIndexMap(pigs, actors, 'pighub-30');
+  assert.ok(drag['pighub-30'] > drag['pighub-40'], '拖动中的猪必须在最上：' + JSON.stringify(drag));
+  assert.ok(drag['pighub-30'] <= M.Z_ACTOR_MAX && drag['pighub-30'] < M.Z_FENCE_FRONT,
+    '拖动中的猪也不许压过近栏：' + JSON.stringify(drag));
+  assert.ok(drag['pighub-10'] < drag['pighub-20'] && drag['pighub-20'] < drag['pighub-40'],
+    '把拖动那只拎到最上之后，其余三只的相对顺序不许变：' + JSON.stringify(drag));
+  // 满圈（12 只，猪圈容量）也不越界，且 12 只拿到 12 个不同 z（没有两个对子分不出前后）
+  const full = [];
+  const fullActors = {};
+  for (let i = 0; i < 12; i += 1) {
+    full.push({ id: 'pighub-' + (100 + i) });
+    fullActors['pighub-' + (100 + i)] = { y: 10 + i * 6 };
+  }
+  const zFull = M.penZIndexMap(full, fullActors, null);
+  const values = Object.keys(zFull).map((key) => zFull[key]);
+  assert.equal(new Set(values).size, 12, '12 只猪必须拿到 12 个不同的 z：' + JSON.stringify(zFull));
+  assert.ok(Math.max.apply(null, values) <= M.Z_ACTOR_MAX, '满圈也不许越过档位上限：' + Math.max.apply(null, values));
+});
+
+await acheck('渲染：z 写在内联 style 上、落在档内、绘制顺序等于脚底顺序', async () => {
+  // 先把两只猪摆回猪圈（前面的用例可能把它们中的一只拖成了桌宠）
+  await plugin.__test.place('3', 'pen');
+  await plugin.__test.place('1', 'pen');
+  const tree = await render(main);
+  const nodes = findByClass(tree, 'pighub-actor');
+  assert.equal(nodes.length, 2, '这一帧猪圈里应有两只猪，实际 ' + nodes.length);
+  const rows = nodes.map((node) => {
+    const id = node.props['data-pig'];
+    const pig = snapshot.pigs.find((item) => item.id === id) || {};
+    const y = parseFloat(node.props.style.top);
+    return { id, z: node.props.style.zIndex, foot: plugin.__test.penFootPct({ y }, pig) };
+  });
+  for (const row of rows) {
+    assert.equal(typeof row.z, 'number', 'z 必须是内联写的数字（CSS 里那个只是没有内联值时的默认）：' + row.id);
+    assert.ok(row.z >= plugin.__test.Z_ACTOR_MIN && row.z <= plugin.__test.Z_ACTOR_MAX,
+      '渲染出来的 z 跑出档位了：' + row.id + '=' + row.z);
+  }
+  const order = rows.slice().sort((a, b) => (a.foot - b.foot) || (a.id < b.id ? -1 : 1));
+  for (let i = 1; i < order.length; i += 1) {
+    assert.ok(order[i - 1].z < order[i].z, '这一帧的绘制顺序必须等于脚底顺序：' + JSON.stringify(rows) + ' → ' + JSON.stringify(order));
+  }
+  // 名次表读的是**当前这一帧的 actor 状态**，不是挂载时算一次（结构断言：它写在面板组件体里、吃 actors）
+  const source = readFileSync(new URL('../lib/client.js', import.meta.url), 'utf8');
+  assert.ok(/const zById = penZIndexMap\(penPigs, actors, /.test(source),
+    'z 名次表必须每帧由 penPigs + actors 现算（否则游走/拖动/落地后层级不跟着动）');
+});
+
 console.log('\n' + passed + ' PASS / 0 FAIL  —  client bundle structure');

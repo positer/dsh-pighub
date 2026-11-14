@@ -1,0 +1,2855 @@
+{
+ "pig-1358": {
+  "size": [
+   272,
+   384
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 65527,
+    "bbox": [
+     5,
+     5,
+     266,
+     378
+    ]
+   }
+  ],
+  "pig_area": 65527
+ },
+ "pighub-1000": {
+  "size": [
+   256,
+   251
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 44268,
+    "bbox": [
+     1,
+     1,
+     254,
+     249
+    ]
+   }
+  ],
+  "pig_area": 44268
+ },
+ "pighub-1005": {
+  "size": [
+   220,
+   203
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 29373,
+    "bbox": [
+     3,
+     3,
+     216,
+     199
+    ]
+   }
+  ],
+  "pig_area": 29373
+ },
+ "pighub-1012": {
+  "size": [
+   256,
+   247
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39599,
+    "bbox": [
+     2,
+     2,
+     253,
+     244
+    ]
+   }
+  ],
+  "pig_area": 39599
+ },
+ "pighub-1018": {
+  "size": [
+   512,
+   438
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 157239,
+    "bbox": [
+     1,
+     0,
+     510,
+     437
+    ]
+   }
+  ],
+  "pig_area": 157239
+ },
+ "pighub-1020": {
+  "size": [
+   229,
+   208
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 33640,
+    "bbox": [
+     3,
+     3,
+     225,
+     204
+    ]
+   }
+  ],
+  "pig_area": 33640
+ },
+ "pighub-1031": {
+  "size": [
+   256,
+   242
+  ],
+  "banner_px": 7087,
+  "banner_bbox": [
+   163,
+   1,
+   254,
+   190
+  ],
+  "banner_frac": 0.1144,
+  "banner_share_of_opaque": 0.1713,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 41367,
+    "bbox": [
+     1,
+     1,
+     254,
+     239
+    ]
+   }
+  ],
+  "pig_area": 41367
+ },
+ "pighub-104": {
+  "size": [
+   217,
+   382
+  ],
+  "banner_px": 4,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 52675,
+    "bbox": [
+     2,
+     1,
+     216,
+     380
+    ]
+   }
+  ],
+  "pig_area": 52675
+ },
+ "pighub-105": {
+  "size": [
+   226,
+   256
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 35839,
+    "bbox": [
+     2,
+     2,
+     223,
+     253
+    ]
+   }
+  ],
+  "pig_area": 35839
+ },
+ "pighub-1055": {
+  "size": [
+   256,
+   224
+  ],
+  "banner_px": 3005,
+  "banner_bbox": [
+   11,
+   138,
+   84,
+   219
+  ],
+  "banner_frac": 0.0524,
+  "banner_share_of_opaque": 0.0669,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 44916,
+    "bbox": [
+     2,
+     2,
+     253,
+     221
+    ]
+   }
+  ],
+  "pig_area": 44916
+ },
+ "pighub-1063": {
+  "size": [
+   256,
+   220
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 38700,
+    "bbox": [
+     2,
+     2,
+     253,
+     217
+    ]
+   }
+  ],
+  "pig_area": 38700
+ },
+ "pighub-1079": {
+  "size": [
+   256,
+   231
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 41382,
+    "bbox": [
+     1,
+     1,
+     254,
+     229
+    ]
+   }
+  ],
+  "pig_area": 41382
+ },
+ "pighub-1087": {
+  "size": [
+   233,
+   270
+  ],
+  "banner_px": 6127,
+  "banner_bbox": [
+   63,
+   9,
+   211,
+   105
+  ],
+  "banner_frac": 0.0974,
+  "banner_share_of_opaque": 0.1412,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 43399,
+    "bbox": [
+     1,
+     0,
+     232,
+     267
+    ]
+   }
+  ],
+  "pig_area": 43399
+ },
+ "pighub-1095": {
+  "size": [
+   190,
+   168
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 23260,
+    "bbox": [
+     3,
+     3,
+     186,
+     164
+    ]
+   }
+  ],
+  "pig_area": 23260
+ },
+ "pighub-1099": {
+  "size": [
+   512,
+   550
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 222949,
+    "bbox": [
+     1,
+     2,
+     510,
+     549
+    ]
+   }
+  ],
+  "pig_area": 222949
+ },
+ "pighub-1106": {
+  "size": [
+   256,
+   223
+  ],
+  "banner_px": 6546,
+  "banner_bbox": [
+   161,
+   1,
+   254,
+   177
+  ],
+  "banner_frac": 0.1147,
+  "banner_share_of_opaque": 0.1807,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 36222,
+    "bbox": [
+     1,
+     1,
+     254,
+     220
+    ]
+   }
+  ],
+  "pig_area": 36222
+ },
+ "pighub-1114": {
+  "size": [
+   256,
+   229
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39943,
+    "bbox": [
+     2,
+     2,
+     253,
+     226
+    ]
+   }
+  ],
+  "pig_area": 39943
+ },
+ "pighub-1130": {
+  "size": [
+   256,
+   226
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 45298,
+    "bbox": [
+     2,
+     2,
+     253,
+     223
+    ]
+   }
+  ],
+  "pig_area": 45298
+ },
+ "pighub-1135": {
+  "size": [
+   256,
+   228
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39396,
+    "bbox": [
+     2,
+     2,
+     253,
+     225
+    ]
+   }
+  ],
+  "pig_area": 39396
+ },
+ "pighub-1140": {
+  "size": [
+   256,
+   204
+  ],
+  "banner_px": 2,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 34098,
+    "bbox": [
+     1,
+     1,
+     254,
+     202
+    ]
+   }
+  ],
+  "pig_area": 34098
+ },
+ "pighub-1162": {
+  "size": [
+   480,
+   425
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 144261,
+    "bbox": [
+     1,
+     1,
+     478,
+     423
+    ]
+   }
+  ],
+  "pig_area": 144261
+ },
+ "pighub-1181": {
+  "size": [
+   143,
+   127
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 12624,
+    "bbox": [
+     3,
+     3,
+     141,
+     123
+    ]
+   }
+  ],
+  "pig_area": 12624
+ },
+ "pighub-1183": {
+  "size": [
+   161,
+   145
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 16352,
+    "bbox": [
+     3,
+     3,
+     159,
+     141
+    ]
+   }
+  ],
+  "pig_area": 16352
+ },
+ "pighub-1198": {
+  "size": [
+   256,
+   212
+  ],
+  "banner_px": 55,
+  "ncomp": 2,
+  "comps": [
+   {
+    "area": 31482,
+    "bbox": [
+     1,
+     1,
+     254,
+     209
+    ]
+   },
+   {
+    "area": 1,
+    "bbox": [
+     255,
+     181,
+     255,
+     181
+    ]
+   }
+  ],
+  "pig_area": 31482
+ },
+ "pighub-12": {
+  "size": [
+   256,
+   226
+  ],
+  "banner_px": 7774,
+  "banner_bbox": [
+   160,
+   3,
+   252,
+   194
+  ],
+  "banner_frac": 0.1344,
+  "banner_share_of_opaque": 0.2331,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 33353,
+    "bbox": [
+     3,
+     1,
+     254,
+     220
+    ]
+   }
+  ],
+  "pig_area": 33353
+ },
+ "pighub-1208": {
+  "size": [
+   256,
+   215
+  ],
+  "banner_px": 909,
+  "banner_bbox": [
+   36,
+   109,
+   254,
+   190
+  ],
+  "banner_frac": 0.0165,
+  "banner_share_of_opaque": 0.0264,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 34494,
+    "bbox": [
+     1,
+     1,
+     254,
+     213
+    ]
+   }
+  ],
+  "pig_area": 34494
+ },
+ "pighub-1222": {
+  "size": [
+   256,
+   216
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 38328,
+    "bbox": [
+     1,
+     1,
+     254,
+     214
+    ]
+   }
+  ],
+  "pig_area": 38328
+ },
+ "pighub-1232": {
+  "size": [
+   256,
+   104
+  ],
+  "banner_px": 49,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 17976,
+    "bbox": [
+     1,
+     1,
+     254,
+     102
+    ]
+   }
+  ],
+  "pig_area": 17976
+ },
+ "pighub-1243": {
+  "size": [
+   256,
+   199
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 35169,
+    "bbox": [
+     2,
+     2,
+     253,
+     196
+    ]
+   }
+  ],
+  "pig_area": 35169
+ },
+ "pighub-1252": {
+  "size": [
+   209,
+   211
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 27529,
+    "bbox": [
+     3,
+     3,
+     205,
+     207
+    ]
+   }
+  ],
+  "pig_area": 27529
+ },
+ "pighub-1279": {
+  "size": [
+   256,
+   193
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 35840,
+    "bbox": [
+     2,
+     2,
+     253,
+     190
+    ]
+   }
+  ],
+  "pig_area": 35840
+ },
+ "pighub-1305": {
+  "size": [
+   256,
+   227
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39634,
+    "bbox": [
+     1,
+     1,
+     254,
+     225
+    ]
+   }
+  ],
+  "pig_area": 39634
+ },
+ "pighub-1320": {
+  "size": [
+   256,
+   227
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39620,
+    "bbox": [
+     1,
+     1,
+     254,
+     225
+    ]
+   }
+  ],
+  "pig_area": 39620
+ },
+ "pighub-138": {
+  "size": [
+   241,
+   256
+  ],
+  "banner_px": 1,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 24511,
+    "bbox": [
+     1,
+     1,
+     239,
+     254
+    ]
+   }
+  ],
+  "pig_area": 24511
+ },
+ "pighub-148": {
+  "size": [
+   256,
+   206
+  ],
+  "banner_px": 42,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 34341,
+    "bbox": [
+     2,
+     2,
+     253,
+     203
+    ]
+   }
+  ],
+  "pig_area": 34341
+ },
+ "pighub-155": {
+  "size": [
+   246,
+   256
+  ],
+  "banner_px": 3155,
+  "banner_bbox": [
+   36,
+   145,
+   149,
+   213
+  ],
+  "banner_frac": 0.0501,
+  "banner_share_of_opaque": 0.066,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 47826,
+    "bbox": [
+     3,
+     3,
+     242,
+     252
+    ]
+   }
+  ],
+  "pig_area": 47826
+ },
+ "pighub-164": {
+  "size": [
+   256,
+   232
+  ],
+  "banner_px": 2,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39752,
+    "bbox": [
+     2,
+     1,
+     253,
+     230
+    ]
+   }
+  ],
+  "pig_area": 39752
+ },
+ "pighub-175": {
+  "size": [
+   256,
+   225
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39387,
+    "bbox": [
+     2,
+     2,
+     253,
+     222
+    ]
+   }
+  ],
+  "pig_area": 39387
+ },
+ "pighub-188": {
+  "size": [
+   256,
+   208
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 37148,
+    "bbox": [
+     2,
+     2,
+     253,
+     205
+    ]
+   }
+  ],
+  "pig_area": 37148
+ },
+ "pighub-197": {
+  "size": [
+   256,
+   236
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39260,
+    "bbox": [
+     0,
+     1,
+     253,
+     234
+    ]
+   }
+  ],
+  "pig_area": 39260
+ },
+ "pighub-2": {
+  "size": [
+   256,
+   219
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 32700,
+    "bbox": [
+     2,
+     2,
+     253,
+     216
+    ]
+   }
+  ],
+  "pig_area": 32700
+ },
+ "pighub-209": {
+  "size": [
+   256,
+   209
+  ],
+  "banner_px": 5186,
+  "banner_bbox": [
+   158,
+   1,
+   254,
+   195
+  ],
+  "banner_frac": 0.0969,
+  "banner_share_of_opaque": 0.1584,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 32747,
+    "bbox": [
+     1,
+     1,
+     254,
+     206
+    ]
+   }
+  ],
+  "pig_area": 32747
+ },
+ "pighub-217": {
+  "size": [
+   256,
+   214
+  ],
+  "banner_px": 7239,
+  "banner_bbox": [
+   94,
+   2,
+   253,
+   185
+  ],
+  "banner_frac": 0.1321,
+  "banner_share_of_opaque": 0.2331,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 31052,
+    "bbox": [
+     2,
+     1,
+     254,
+     210
+    ]
+   }
+  ],
+  "pig_area": 31052
+ },
+ "pighub-222": {
+  "size": [
+   256,
+   210
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 38970,
+    "bbox": [
+     1,
+     1,
+     254,
+     208
+    ]
+   }
+  ],
+  "pig_area": 38970
+ },
+ "pighub-242": {
+  "size": [
+   256,
+   224
+  ],
+  "banner_px": 5763,
+  "banner_bbox": [
+   1,
+   1,
+   250,
+   187
+  ],
+  "banner_frac": 0.1005,
+  "banner_share_of_opaque": 0.1575,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 36582,
+    "bbox": [
+     1,
+     1,
+     253,
+     221
+    ]
+   }
+  ],
+  "pig_area": 36582
+ },
+ "pighub-244": {
+  "size": [
+   256,
+   199
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 30757,
+    "bbox": [
+     2,
+     2,
+     253,
+     196
+    ]
+   }
+  ],
+  "pig_area": 30757
+ },
+ "pighub-250": {
+  "size": [
+   256,
+   232
+  ],
+  "banner_px": 7130,
+  "banner_bbox": [
+   53,
+   1,
+   254,
+   198
+  ],
+  "banner_frac": 0.12,
+  "banner_share_of_opaque": 0.2189,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 32579,
+    "bbox": [
+     1,
+     1,
+     254,
+     229
+    ]
+   }
+  ],
+  "pig_area": 32579
+ },
+ "pighub-254": {
+  "size": [
+   256,
+   191
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 35464,
+    "bbox": [
+     3,
+     2,
+     252,
+     188
+    ]
+   }
+  ],
+  "pig_area": 35464
+ },
+ "pighub-258": {
+  "size": [
+   256,
+   239
+  ],
+  "banner_px": 10672,
+  "banner_bbox": [
+   144,
+   1,
+   254,
+   229
+  ],
+  "banner_frac": 0.1744,
+  "banner_share_of_opaque": 0.3132,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 34069,
+    "bbox": [
+     2,
+     1,
+     254,
+     236
+    ]
+   }
+  ],
+  "pig_area": 34069
+ },
+ "pighub-262": {
+  "size": [
+   256,
+   218
+  ],
+  "banner_px": 6825,
+  "banner_bbox": [
+   166,
+   2,
+   253,
+   180
+  ],
+  "banner_frac": 0.1223,
+  "banner_share_of_opaque": 0.2235,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 30535,
+    "bbox": [
+     3,
+     1,
+     254,
+     213
+    ]
+   }
+  ],
+  "pig_area": 30535
+ },
+ "pighub-267": {
+  "size": [
+   256,
+   214
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 36196,
+    "bbox": [
+     2,
+     2,
+     253,
+     211
+    ]
+   }
+  ],
+  "pig_area": 36196
+ },
+ "pighub-271": {
+  "size": [
+   256,
+   241
+  ],
+  "banner_px": 7476,
+  "banner_bbox": [
+   79,
+   1,
+   254,
+   187
+  ],
+  "banner_frac": 0.1212,
+  "banner_share_of_opaque": 0.2368,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 31574,
+    "bbox": [
+     1,
+     1,
+     254,
+     238
+    ]
+   }
+  ],
+  "pig_area": 31574
+ },
+ "pighub-273": {
+  "size": [
+   256,
+   229
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39687,
+    "bbox": [
+     3,
+     3,
+     252,
+     226
+    ]
+   }
+  ],
+  "pig_area": 39687
+ },
+ "pighub-276": {
+  "size": [
+   256,
+   226
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39687,
+    "bbox": [
+     2,
+     2,
+     253,
+     223
+    ]
+   }
+  ],
+  "pig_area": 39687
+ },
+ "pighub-282": {
+  "size": [
+   256,
+   225
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39313,
+    "bbox": [
+     2,
+     2,
+     253,
+     222
+    ]
+   }
+  ],
+  "pig_area": 39313
+ },
+ "pighub-286": {
+  "size": [
+   256,
+   224
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39824,
+    "bbox": [
+     2,
+     2,
+     253,
+     221
+    ]
+   }
+  ],
+  "pig_area": 39824
+ },
+ "pighub-293": {
+  "size": [
+   256,
+   210
+  ],
+  "banner_px": 6442,
+  "banner_bbox": [
+   172,
+   1,
+   254,
+   174
+  ],
+  "banner_frac": 0.1198,
+  "banner_share_of_opaque": 0.2187,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 29461,
+    "bbox": [
+     1,
+     1,
+     254,
+     207
+    ]
+   }
+  ],
+  "pig_area": 29461
+ },
+ "pighub-296": {
+  "size": [
+   256,
+   193
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 21950,
+    "bbox": [
+     2,
+     2,
+     253,
+     190
+    ]
+   }
+  ],
+  "pig_area": 21950
+ },
+ "pighub-311": {
+  "size": [
+   188,
+   256
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 38103,
+    "bbox": [
+     2,
+     2,
+     185,
+     254
+    ]
+   }
+  ],
+  "pig_area": 38103
+ },
+ "pighub-328": {
+  "size": [
+   256,
+   228
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39559,
+    "bbox": [
+     2,
+     2,
+     253,
+     225
+    ]
+   }
+  ],
+  "pig_area": 39559
+ },
+ "pighub-337": {
+  "size": [
+   256,
+   230
+  ],
+  "banner_px": 8522,
+  "banner_bbox": [
+   26,
+   1,
+   254,
+   201
+  ],
+  "banner_frac": 0.1447,
+  "banner_share_of_opaque": 0.2588,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 32923,
+    "bbox": [
+     1,
+     1,
+     254,
+     227
+    ]
+   }
+  ],
+  "pig_area": 32923
+ },
+ "pighub-351": {
+  "size": [
+   243,
+   256
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 41334,
+    "bbox": [
+     2,
+     2,
+     240,
+     253
+    ]
+   }
+  ],
+  "pig_area": 41334
+ },
+ "pighub-366": {
+  "size": [
+   512,
+   504
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 196097,
+    "bbox": [
+     1,
+     1,
+     510,
+     502
+    ]
+   }
+  ],
+  "pig_area": 196097
+ },
+ "pighub-372": {
+  "size": [
+   148,
+   256
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 21867,
+    "bbox": [
+     3,
+     3,
+     144,
+     252
+    ]
+   }
+  ],
+  "pig_area": 21867
+ },
+ "pighub-379": {
+  "size": [
+   229,
+   287
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 54135,
+    "bbox": [
+     2,
+     2,
+     226,
+     286
+    ]
+   }
+  ],
+  "pig_area": 54135
+ },
+ "pighub-40": {
+  "size": [
+   256,
+   210
+  ],
+  "banner_px": 6901,
+  "banner_bbox": [
+   168,
+   1,
+   254,
+   180
+  ],
+  "banner_frac": 0.1284,
+  "banner_share_of_opaque": 0.2695,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 25611,
+    "bbox": [
+     1,
+     1,
+     254,
+     207
+    ]
+   }
+  ],
+  "pig_area": 25611
+ },
+ "pighub-408": {
+  "size": [
+   256,
+   201
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 32290,
+    "bbox": [
+     1,
+     1,
+     254,
+     199
+    ]
+   }
+  ],
+  "pig_area": 32290
+ },
+ "pighub-417": {
+  "size": [
+   256,
+   216
+  ],
+  "banner_px": 6517,
+  "banner_bbox": [
+   167,
+   1,
+   254,
+   182
+  ],
+  "banner_frac": 0.1179,
+  "banner_share_of_opaque": 0.1752,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 37196,
+    "bbox": [
+     1,
+     1,
+     254,
+     213
+    ]
+   }
+  ],
+  "pig_area": 37196
+ },
+ "pighub-439": {
+  "size": [
+   256,
+   238
+  ],
+  "banner_px": 109,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39897,
+    "bbox": [
+     2,
+     2,
+     253,
+     235
+    ]
+   }
+  ],
+  "pig_area": 39897
+ },
+ "pighub-452": {
+  "size": [
+   233,
+   392
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 64269,
+    "bbox": [
+     2,
+     2,
+     230,
+     390
+    ]
+   }
+  ],
+  "pig_area": 64269
+ },
+ "pighub-462": {
+  "size": [
+   256,
+   241
+  ],
+  "banner_px": 7,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 40589,
+    "bbox": [
+     1,
+     1,
+     254,
+     239
+    ]
+   }
+  ],
+  "pig_area": 40589
+ },
+ "pighub-468": {
+  "size": [
+   256,
+   235
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 46511,
+    "bbox": [
+     2,
+     2,
+     253,
+     233
+    ]
+   }
+  ],
+  "pig_area": 46511
+ },
+ "pighub-473": {
+  "size": [
+   256,
+   233
+  ],
+  "banner_px": 7899,
+  "banner_bbox": [
+   2,
+   2,
+   88,
+   190
+  ],
+  "banner_frac": 0.1324,
+  "banner_share_of_opaque": 0.1926,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 41003,
+    "bbox": [
+     1,
+     1,
+     252,
+     229
+    ]
+   }
+  ],
+  "pig_area": 41003
+ },
+ "pighub-481": {
+  "size": [
+   218,
+   382
+  ],
+  "banner_px": 120,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 52860,
+    "bbox": [
+     2,
+     1,
+     216,
+     380
+    ]
+   }
+  ],
+  "pig_area": 52860
+ },
+ "pighub-511": {
+  "size": [
+   256,
+   218
+  ],
+  "banner_px": 99,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 37343,
+    "bbox": [
+     1,
+     1,
+     254,
+     216
+    ]
+   }
+  ],
+  "pig_area": 37343
+ },
+ "pighub-513": {
+  "size": [
+   227,
+   256
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 35882,
+    "bbox": [
+     1,
+     1,
+     225,
+     254
+    ]
+   }
+  ],
+  "pig_area": 35882
+ },
+ "pighub-55": {
+  "size": [
+   512,
+   455
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 161819,
+    "bbox": [
+     1,
+     1,
+     510,
+     453
+    ]
+   }
+  ],
+  "pig_area": 161819
+ },
+ "pighub-560": {
+  "size": [
+   221,
+   256
+  ],
+  "banner_px": 6582,
+  "banner_bbox": [
+   135,
+   1,
+   219,
+   174
+  ],
+  "banner_frac": 0.1163,
+  "banner_share_of_opaque": 0.2096,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 31396,
+    "bbox": [
+     1,
+     1,
+     219,
+     253
+    ]
+   }
+  ],
+  "pig_area": 31396
+ },
+ "pighub-583": {
+  "size": [
+   256,
+   227
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 40502,
+    "bbox": [
+     2,
+     2,
+     253,
+     224
+    ]
+   }
+  ],
+  "pig_area": 40502
+ },
+ "pighub-590": {
+  "size": [
+   256,
+   219
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 38778,
+    "bbox": [
+     1,
+     1,
+     254,
+     217
+    ]
+   }
+  ],
+  "pig_area": 38778
+ },
+ "pighub-599": {
+  "size": [
+   256,
+   245
+  ],
+  "banner_px": 3,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 33325,
+    "bbox": [
+     1,
+     1,
+     254,
+     243
+    ]
+   }
+  ],
+  "pig_area": 33325
+ },
+ "pighub-604": {
+  "size": [
+   256,
+   157
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 28648,
+    "bbox": [
+     1,
+     1,
+     254,
+     155
+    ]
+   }
+  ],
+  "pig_area": 28648
+ },
+ "pighub-607": {
+  "size": [
+   256,
+   218
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 38443,
+    "bbox": [
+     1,
+     1,
+     254,
+     216
+    ]
+   }
+  ],
+  "pig_area": 38443
+ },
+ "pighub-609": {
+  "size": [
+   256,
+   255
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 35025,
+    "bbox": [
+     1,
+     1,
+     254,
+     253
+    ]
+   }
+  ],
+  "pig_area": 35025
+ },
+ "pighub-610": {
+  "size": [
+   256,
+   194
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 27749,
+    "bbox": [
+     1,
+     1,
+     254,
+     192
+    ]
+   }
+  ],
+  "pig_area": 27749
+ },
+ "pighub-631": {
+  "size": [
+   256,
+   231
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 42587,
+    "bbox": [
+     1,
+     1,
+     254,
+     229
+    ]
+   }
+  ],
+  "pig_area": 42587
+ },
+ "pighub-65": {
+  "size": [
+   349,
+   497
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 149949,
+    "bbox": [
+     1,
+     1,
+     347,
+     495
+    ]
+   }
+  ],
+  "pig_area": 149949
+ },
+ "pighub-652": {
+  "size": [
+   217,
+   256
+  ],
+  "banner_px": 1,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 23956,
+    "bbox": [
+     2,
+     2,
+     214,
+     253
+    ]
+   }
+  ],
+  "pig_area": 23956
+ },
+ "pighub-658": {
+  "size": [
+   256,
+   246
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 47179,
+    "bbox": [
+     1,
+     1,
+     254,
+     244
+    ]
+   }
+  ],
+  "pig_area": 47179
+ },
+ "pighub-66": {
+  "size": [
+   512,
+   452
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 159227,
+    "bbox": [
+     4,
+     5,
+     507,
+     446
+    ]
+   }
+  ],
+  "pig_area": 159227
+ },
+ "pighub-664": {
+  "size": [
+   216,
+   256
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 38428,
+    "bbox": [
+     1,
+     1,
+     214,
+     254
+    ]
+   }
+  ],
+  "pig_area": 38428
+ },
+ "pighub-675": {
+  "size": [
+   256,
+   203
+  ],
+  "banner_px": 1,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 33754,
+    "bbox": [
+     1,
+     1,
+     254,
+     201
+    ]
+   }
+  ],
+  "pig_area": 33754
+ },
+ "pighub-679": {
+  "size": [
+   256,
+   189
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 31004,
+    "bbox": [
+     1,
+     1,
+     254,
+     187
+    ]
+   }
+  ],
+  "pig_area": 31004
+ },
+ "pighub-682": {
+  "size": [
+   256,
+   201
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 34000,
+    "bbox": [
+     1,
+     1,
+     254,
+     199
+    ]
+   }
+  ],
+  "pig_area": 34000
+ },
+ "pighub-684": {
+  "size": [
+   256,
+   206
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 34410,
+    "bbox": [
+     1,
+     1,
+     254,
+     204
+    ]
+   }
+  ],
+  "pig_area": 34410
+ },
+ "pighub-686": {
+  "size": [
+   256,
+   197
+  ],
+  "banner_px": 6414,
+  "banner_bbox": [
+   125,
+   1,
+   254,
+   175
+  ],
+  "banner_frac": 0.1272,
+  "banner_share_of_opaque": 0.2201,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 29147,
+    "bbox": [
+     1,
+     1,
+     254,
+     194
+    ]
+   }
+  ],
+  "pig_area": 29147
+ },
+ "pighub-701": {
+  "size": [
+   256,
+   224
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39304,
+    "bbox": [
+     2,
+     2,
+     253,
+     221
+    ]
+   }
+  ],
+  "pig_area": 39304
+ },
+ "pighub-710": {
+  "size": [
+   256,
+   194
+  ],
+  "banner_px": 80,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 34675,
+    "bbox": [
+     1,
+     1,
+     254,
+     192
+    ]
+   }
+  ],
+  "pig_area": 34675
+ },
+ "pighub-727": {
+  "size": [
+   256,
+   167
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 23121,
+    "bbox": [
+     1,
+     1,
+     254,
+     165
+    ]
+   }
+  ],
+  "pig_area": 23121
+ },
+ "pighub-751": {
+  "size": [
+   482,
+   433
+  ],
+  "banner_px": 0,
+  "ncomp": 6,
+  "comps": [
+   {
+    "area": 134671,
+    "bbox": [
+     10,
+     7,
+     470,
+     421
+    ]
+   },
+   {
+    "area": 26,
+    "bbox": [
+     429,
+     233,
+     432,
+     245
+    ]
+   },
+   {
+    "area": 4,
+    "bbox": [
+     424,
+     257,
+     424,
+     260
+    ]
+   },
+   {
+    "area": 2,
+    "bbox": [
+     425,
+     254,
+     425,
+     255
+    ]
+   },
+   {
+    "area": 1,
+    "bbox": [
+     428,
+     246,
+     428,
+     246
+    ]
+   },
+   {
+    "area": 1,
+    "bbox": [
+     232,
+     354,
+     232,
+     354
+    ]
+   }
+  ],
+  "pig_area": 134671
+ },
+ "pighub-772": {
+  "size": [
+   256,
+   200
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 34567,
+    "bbox": [
+     2,
+     2,
+     253,
+     197
+    ]
+   }
+  ],
+  "pig_area": 34567
+ },
+ "pighub-776": {
+  "size": [
+   256,
+   227
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39418,
+    "bbox": [
+     1,
+     1,
+     254,
+     225
+    ]
+   }
+  ],
+  "pig_area": 39418
+ },
+ "pighub-791": {
+  "size": [
+   186,
+   256
+  ],
+  "banner_px": 647,
+  "banner_bbox": [
+   4,
+   105,
+   180,
+   246
+  ],
+  "banner_frac": 0.0136,
+  "banner_share_of_opaque": 0.0214,
+  "ncomp": 2,
+  "comps": [
+   {
+    "area": 30195,
+    "bbox": [
+     1,
+     2,
+     183,
+     253
+    ]
+   },
+   {
+    "area": 5,
+    "bbox": [
+     40,
+     17,
+     41,
+     19
+    ]
+   }
+  ],
+  "pig_area": 30195
+ },
+ "pighub-794": {
+  "size": [
+   256,
+   171
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 23572,
+    "bbox": [
+     1,
+     1,
+     253,
+     169
+    ]
+   }
+  ],
+  "pig_area": 23572
+ },
+ "pighub-814": {
+  "size": [
+   256,
+   225
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 38994,
+    "bbox": [
+     3,
+     3,
+     252,
+     221
+    ]
+   }
+  ],
+  "pig_area": 38994
+ },
+ "pighub-829": {
+  "size": [
+   256,
+   227
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39676,
+    "bbox": [
+     1,
+     1,
+     254,
+     225
+    ]
+   }
+  ],
+  "pig_area": 39676
+ },
+ "pighub-836": {
+  "size": [
+   256,
+   227
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39209,
+    "bbox": [
+     3,
+     3,
+     252,
+     223
+    ]
+   }
+  ],
+  "pig_area": 39209
+ },
+ "pighub-860": {
+  "size": [
+   256,
+   221
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39720,
+    "bbox": [
+     1,
+     1,
+     254,
+     219
+    ]
+   }
+  ],
+  "pig_area": 39720
+ },
+ "pighub-865": {
+  "size": [
+   277,
+   257
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 58738,
+    "bbox": [
+     2,
+     2,
+     276,
+     256
+    ]
+   }
+  ],
+  "pig_area": 58738
+ },
+ "pighub-868": {
+  "size": [
+   256,
+   273
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 51616,
+    "bbox": [
+     1,
+     1,
+     254,
+     272
+    ]
+   }
+  ],
+  "pig_area": 51616
+ },
+ "pighub-873": {
+  "size": [
+   256,
+   217
+  ],
+  "banner_px": 6673,
+  "banner_bbox": [
+   49,
+   2,
+   253,
+   175
+  ],
+  "banner_frac": 0.1201,
+  "banner_share_of_opaque": 0.2264,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 29473,
+    "bbox": [
+     2,
+     1,
+     254,
+     213
+    ]
+   }
+  ],
+  "pig_area": 29473
+ },
+ "pighub-88": {
+  "size": [
+   161,
+   256
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 20589,
+    "bbox": [
+     2,
+     2,
+     158,
+     253
+    ]
+   }
+  ],
+  "pig_area": 20589
+ },
+ "pighub-895": {
+  "size": [
+   206,
+   256
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 40628,
+    "bbox": [
+     1,
+     1,
+     204,
+     254
+    ]
+   }
+  ],
+  "pig_area": 40628
+ },
+ "pighub-906": {
+  "size": [
+   256,
+   238
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 40505,
+    "bbox": [
+     2,
+     2,
+     253,
+     235
+    ]
+   }
+  ],
+  "pig_area": 40505
+ },
+ "pighub-920": {
+  "size": [
+   256,
+   152
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 29493,
+    "bbox": [
+     1,
+     1,
+     254,
+     150
+    ]
+   }
+  ],
+  "pig_area": 29493
+ },
+ "pighub-922": {
+  "size": [
+   256,
+   216
+  ],
+  "banner_px": 7403,
+  "banner_bbox": [
+   166,
+   1,
+   254,
+   180
+  ],
+  "banner_frac": 0.1339,
+  "banner_share_of_opaque": 0.2355,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 31433,
+    "bbox": [
+     1,
+     1,
+     254,
+     213
+    ]
+   }
+  ],
+  "pig_area": 31433
+ },
+ "pighub-927": {
+  "size": [
+   256,
+   230
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 42301,
+    "bbox": [
+     3,
+     3,
+     252,
+     226
+    ]
+   }
+  ],
+  "pig_area": 42301
+ },
+ "pighub-932": {
+  "size": [
+   256,
+   227
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39465,
+    "bbox": [
+     3,
+     3,
+     252,
+     223
+    ]
+   }
+  ],
+  "pig_area": 39465
+ },
+ "pighub-936": {
+  "size": [
+   223,
+   256
+  ],
+  "banner_px": 363,
+  "banner_bbox": [
+   89,
+   203,
+   130,
+   213
+  ],
+  "banner_frac": 0.0064,
+  "banner_share_of_opaque": 0.0092,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39452,
+    "bbox": [
+     1,
+     1,
+     221,
+     254
+    ]
+   }
+  ],
+  "pig_area": 39452
+ },
+ "pighub-950": {
+  "size": [
+   252,
+   256
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 44497,
+    "bbox": [
+     2,
+     2,
+     249,
+     253
+    ]
+   }
+  ],
+  "pig_area": 44497
+ },
+ "pighub-955": {
+  "size": [
+   256,
+   253
+  ],
+  "banner_px": 0,
+  "ncomp": 8,
+  "comps": [
+   {
+    "area": 45615,
+    "bbox": [
+     1,
+     2,
+     254,
+     251
+    ]
+   },
+   {
+    "area": 1,
+    "bbox": [
+     187,
+     14,
+     187,
+     14
+    ]
+   },
+   {
+    "area": 1,
+    "bbox": [
+     63,
+     19,
+     63,
+     19
+    ]
+   },
+   {
+    "area": 1,
+    "bbox": [
+     61,
+     21,
+     61,
+     21
+    ]
+   },
+   {
+    "area": 1,
+    "bbox": [
+     44,
+     23,
+     44,
+     23
+    ]
+   },
+   {
+    "area": 1,
+    "bbox": [
+     231,
+     122,
+     231,
+     122
+    ]
+   }
+  ],
+  "pig_area": 45615
+ },
+ "pighub-974": {
+  "size": [
+   482,
+   433
+  ],
+  "banner_px": 0,
+  "ncomp": 6,
+  "comps": [
+   {
+    "area": 133599,
+    "bbox": [
+     9,
+     11,
+     470,
+     421
+    ]
+   },
+   {
+    "area": 26,
+    "bbox": [
+     429,
+     233,
+     432,
+     245
+    ]
+   },
+   {
+    "area": 4,
+    "bbox": [
+     424,
+     257,
+     424,
+     260
+    ]
+   },
+   {
+    "area": 2,
+    "bbox": [
+     425,
+     254,
+     425,
+     255
+    ]
+   },
+   {
+    "area": 1,
+    "bbox": [
+     428,
+     246,
+     428,
+     246
+    ]
+   },
+   {
+    "area": 1,
+    "bbox": [
+     232,
+     354,
+     232,
+     354
+    ]
+   }
+  ],
+  "pig_area": 133599
+ },
+ "pighub-981": {
+  "size": [
+   171,
+   153
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 17950,
+    "bbox": [
+     3,
+     3,
+     167,
+     149
+    ]
+   }
+  ],
+  "pig_area": 17950
+ },
+ "pighub-989": {
+  "size": [
+   256,
+   227
+  ],
+  "banner_px": 0,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 39249,
+    "bbox": [
+     1,
+     0,
+     254,
+     225
+    ]
+   }
+  ],
+  "pig_area": 39249
+ },
+ "pighub-994": {
+  "size": [
+   256,
+   232
+  ],
+  "banner_px": 22,
+  "ncomp": 1,
+  "comps": [
+   {
+    "area": 41092,
+    "bbox": [
+     2,
+     2,
+     253,
+     230
+    ]
+   }
+  ],
+  "pig_area": 41092
+ }
+}

@@ -1,0 +1,70 @@
+[
+ {
+  "id": "pighub-258",
+  "before": {
+   "size": [
+    256,
+    239
+   ],
+   "opaque": 35251
+  },
+  "after": {
+   "size": [
+    246,
+    177
+   ],
+   "opaque": 21231
+  },
+  "hull_bbox": [
+   143,
+   1,
+   254,
+   229
+  ],
+  "hull_vertices": 9,
+  "removed_px": 14020,
+  "crop_origin": [
+   1,
+   32
+  ],
+  "holes": [
+   33
+  ],
+  "residual_navy_px": 0,
+  "pig_pixels_touched": 0
+ },
+ {
+  "id": "pighub-1031",
+  "before": {
+   "size": [
+    256,
+    242
+   ],
+   "opaque": 42538
+  },
+  "after": {
+   "size": [
+    248,
+    241
+   ],
+   "opaque": 33653
+  },
+  "hull_bbox": [
+   184,
+   1,
+   254,
+   190
+  ],
+  "hull_vertices": 8,
+  "removed_px": 8885,
+  "crop_origin": [
+   0,
+   0
+  ],
+  "holes": [
+   52
+  ],
+  "residual_navy_px": 18,
+  "pig_pixels_touched": 0
+ }
+]

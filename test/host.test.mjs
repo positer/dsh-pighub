@@ -49,6 +49,9 @@ check('注册了工具、状态路由与每张素材的静态路由', () => {
   assert.ok(routes.has('/pighub'));
   const assetRoutes = [...routes.keys()].filter((path) => path.startsWith('/pighub/asset/'));
   assert.equal(assetRoutes.length, manifest.pigs.length, '每张素材应有一条路由，实际 ' + assetRoutes.length);
+  // 猪圈布景（木栅栏）走单独一条前缀：它不是素材库的一部分，不能混进上面那条「每只猪一条路由」。
+  const penRoutes = [...routes.keys()].filter((path) => path.startsWith('/pighub/pen/'));
+  assert.deepEqual(penRoutes, ['/pighub/pen/pen-fence.png'], '木栅栏应有且只有一条静态路由，实际 ' + JSON.stringify(penRoutes));
   assert.deepEqual(plugin.inject, ['tools'], '只注入 tools：webServer 缺失时不能让整个 profile 启动失败');
 });
 
@@ -71,6 +74,13 @@ await acheck('GET 快照：素材库随包、今日未抽、偏好默认值', as
   assert.equal(json.pool.length, manifest.pigs.length);
   const untagged = json.pool.filter((item) => !/\?v=[0-9a-f]{8}$/.test(item.url));
   assert.equal(untagged.length, 0, '图鉴 URL 缺 cache-buster：' + JSON.stringify(untagged.slice(0, 3)));
+  // 描述（manifest 的 note，逐图判定理由）必须下发：抽卡演出要在卡片上显示「名字 + 描述」。
+  // 2026-11-14 之前 pigs[] / pool[] / today.pig 三处都没有这个字段，客户端拿不到这串字。
+  assert.equal(json.pool.filter((item) => typeof item.note !== 'string').length, 0, '图鉴条目缺 note 字段');
+  const noted = json.pool.filter((item) => item.note.length >= 6);
+  assert.equal(noted.length, manifest.pigs.filter((pig) => String(pig.note || '').length >= 6).length,
+    'pool 的 note 应与 manifest 逐条一致（不是空串糊过去）');
+  assert.equal(json.pigs.filter((pig) => typeof pig.note !== 'string').length, 0, '已拥有的猪缺 note 字段');
 });
 
 let drawn = null;
@@ -85,6 +95,10 @@ await acheck('draw：从冻结库抽一只，带本地贴图地址与活/死判�
   // （store.js 的 ASSET_TAG；换版本整库失效）。两者都必须**幂等**——见下一条断言。
   assert.ok(/^\/pighub\/asset\/[a-zA-Z0-9._-]+(\?v=[0-9a-f]{8})?(&v=\d{4})?$/.test(drawn.assetUrl), '贴图应是包内路由：' + drawn.assetUrl);
   assert.equal(drawn.cut, undefined, '切分参数只属于构建期，不应进入运行时数据');
+  // 抽到的那只（pigs[] 里的记录）也要带描述：演出卡片是从 pigs[] 取名字与描述的。
+  const asset = manifest.pigs.find((pig) => pig.id === drawn.id);
+  assert.equal(typeof drawn.note, 'string', '抽到的猪缺 note，演出的描述会是空的');
+  assert.equal(drawn.note, String((asset && asset.note) || ''), 'pigs[] 的 note 必须就是 manifest 那一条');
   const state = JSON.parse(readFileSync(join(root, 'state.json'), 'utf8'));
   assert.equal(state.todayPigId, drawn.id);
 });
@@ -144,6 +158,43 @@ await acheck('sort / prefs / pet / state 各自生效', async () => {
   assert.equal((await call('POST', { action: 'state' })).json.pigs.length, 2, '开局普通猪 + 抽到的 1 只');
 });
 
+/*
+ * rev 令牌（2026-11-14）：桌宠在桌面上时浏览器半每 250 ms 问一次，所以它必须
+ * ①小（不回快照）、②只在渲染相关状态真的变了时才变（否则 250 ms 就把整张快照拉一遍）、
+ * ③place/pos 一变就必须变（否则「双击回圈后猪圈里空着」那 8 秒会原样复活）。
+ */
+await acheck('rev 令牌：小、空闲不变、place/pos 一变就变', async () => {
+  const first = await call('POST', { action: 'rev' });
+  assert.equal(first.status, 200);
+  assert.equal(typeof first.json.rev, 'string');
+  assert.ok(first.json.rev.length > 0, '令牌不能是空串');
+  assert.ok(first.json.rev.length < 200, '令牌必须小（实测 ' + first.json.rev.length + ' 字符），否则 250 ms 轮询毫无意义');
+  // 只回令牌：不许夹带快照（图鉴 256 条就是 38 KB）
+  assert.deepEqual(Object.keys(first.json).sort(), ['ok', 'rev']);
+
+  const idle = await call('POST', { action: 'rev' });
+  assert.equal(idle.json.rev, first.json.rev, '没人动状态时令牌必须稳定（否则每 250 ms 拉一次整张快照）');
+
+  // 位置**故意不进令牌**：猪圈里每只猪每 ~1.7 s 写一次 pos，进令牌就等于每 1.7 s 拉一张 38 KB 的快照。
+  // 位置由客户端自己写、并由 10 s 的整张快照兜底（与改动前一致）。
+  const position = await call('POST', { action: 'position', pigId: drawn.id, x: 33, y: 44 });
+  assert.equal(position.json.ok, true);
+  const afterPos = await call('POST', { action: 'rev' });
+  assert.equal(afterPos.json.rev, first.json.rev, '只改位置不该让令牌变（否则整张快照会被位置写回拖着跑）');
+  const motion = await call('POST', { action: 'motion', pigId: drawn.id, motion: false });
+  assert.equal(motion.json.ok, true);
+  const afterMotion = await call('POST', { action: 'rev' });
+  assert.notEqual(afterMotion.json.rev, afterPos.json.rev, '运动开关必须让令牌变（右键切运动是宿主侧改的）');
+
+  const placed = await call('POST', { action: 'place', pigId: drawn.id, to: 'pet' });
+  assert.deepEqual(placed.json.pets, [drawn.id]);
+  const afterPlace = await call('POST', { action: 'rev' });
+  assert.notEqual(afterPlace.json.rev, afterPos.json.rev, 'place 必须让令牌变：这就是「回圈后猪圈空着」的通道');
+  // place 回来的那一半：同一个动作反向再走一次，令牌还要再变一次（不是只认"变过一次"）
+  await call('POST', { action: 'place', pigId: drawn.id, to: 'pen' });
+  assert.notEqual((await call('POST', { action: 'rev' })).json.rev, afterPlace.json.rev);
+});
+
 await acheck('错误路径：未知动作 400、方法 405、坏请求体 500', async () => {
   assert.equal((await call('POST', { action: 'nope' })).status, 400);
   assert.equal((await call('PUT')).status, 405);
@@ -167,6 +218,29 @@ await acheck('素材路由：能取到字节、类型正确、且拒绝非 GET',
   assert.equal(bad.status, 405);
 });
 
+await acheck('木栅栏路由：客户端写死的那条路径必须真有路由，且字节与包内文件逐字节相同', async () => {
+  // 客户端把围栏路径写成常量（PEN_FENCE_URL），宿主按 PEN_ART 注册。两边对不上就是一张空白猪圈，
+  // 所以这里从**客户端的源码**里抠出那条路径来查路由——而不是把字符串抄一遍。
+  const clientSrc = readFileSync(new URL('../lib/client.js', import.meta.url), 'utf8');
+  const m = clientSrc.match(/const PEN_FENCE_URL = '([^']+)'/);
+  assert.ok(m, 'client.js 里找不到 PEN_FENCE_URL');
+  const url = m[1];
+  const route = routes.get(url);
+  assert.ok(route, '客户端引用的 ' + url + ' 没有对应的路由');
+  const res = makeRes();
+  await route.handler({ method: 'GET' }, res);
+  assert.equal(res.status, 200);
+  assert.equal(res.headers['content-type'], 'image/png', '围栏必须是 PNG：' + res.headers['content-type']);
+  assert.equal(res.headers['cache-control'], 'private, no-cache, must-revalidate', '围栏图也要回源校验');
+  const onDisk = readFileSync(new URL('../assets/img/pen-fence.png', import.meta.url));
+  assert.equal(Buffer.byteLength(res.body), onDisk.length, '路由返回的字节数与包内文件不同');
+  assert.ok(onDisk.equals(Buffer.from(res.body)), '路由返回的字节与包内文件不同（围栏被改写过了？）');
+  // 非 GET 一律 405，和素材路由同一套规矩
+  const bad = makeRes();
+  await route.handler({ method: 'POST' }, bad);
+  assert.equal(bad.status, 405);
+});
+
 await acheck('工具 pighub_about：报告版本、素材摘要与本地贴图清单', async () => {
   const answer = await tools.get('pighub_about').execute({}, {});
   assert.equal(answer.plugin, 'dsh-pighub');
@@ -178,11 +252,99 @@ await acheck('工具 pighub_about：报告版本、素材摘要与本地贴图�
   assert.equal(answer.owned, 2, '开局普通猪 + 抽到的 1 只');
 });
 
+/* ---- pig-say：桌宠气泡（离线：不编译、不拉起原生窗口） ---- */
+await acheck('pig-say：已注册，text 必填、schema 封闭、声明 output', async () => {
+  const tool = tools.get('pig-say');
+  assert.ok(tool, '没有注册 pig-say');
+  assert.equal(tool.parameters.type, 'object');
+  assert.deepEqual(tool.parameters.required, ['text']);
+  assert.equal(tool.parameters.properties.text.type, 'string');
+  assert.equal(tool.parameters.additionalProperties, false);
+  assert.ok(tool.description.length > 40);
+  assert.ok(tool.description.indexOf('no_desktop_pet') > 0, '禁止把"没有桌宠"写成异常而不写进描述');
+  assert.equal(tool.output.schema.type, 'object');
+  assert.equal(typeof tool.output.render, 'function');
+  const blocks = tool.output.render({}, { ok: false, error: 'no_desktop_pet' });
+  assert.ok(Array.isArray(blocks) && blocks[0].type === 'text');
+});
+
+check('clampSayText：200 字上限、按码点截断、非字符串当空', () => {
+  const cut = plugin.clampSayText('猪'.repeat(250));
+  assert.equal(cut.truncated, true);
+  assert.equal(Array.from(cut.text).length, 200);
+  assert.equal(cut.length, 250);
+  assert.deepEqual(plugin.clampSayText('猪猪来了'), { text: '猪猪来了', truncated: false, length: 4 });
+  // 代理对不许切一半：201 个 emoji 截成 200 个**完整**的
+  const emoji = plugin.clampSayText('🐷'.repeat(201));
+  assert.equal(emoji.truncated, true);
+  assert.equal(emoji.text, '🐷'.repeat(200));
+  assert.equal(plugin.clampSayText(undefined).text, '');
+  assert.equal(plugin.clampSayText(42).text, '');
+  assert.equal(plugin.clampSayText('   ').text, '');
+});
+
+check('pickSayPet：只从给的那批里挑；多只时随机且不越界', () => {
+  assert.equal(plugin.pickSayPet([]), '');
+  assert.equal(plugin.pickSayPet(null), '');
+  assert.equal(plugin.pickSayPet(['a']), 'a');
+  assert.equal(plugin.pickSayPet(['a', 'b'], () => 0), 'a');
+  assert.equal(plugin.pickSayPet(['a', 'b'], () => 0.999), 'b');
+  assert.equal(plugin.pickSayPet(['a', 'b'], () => 1), 'b', '随机数取 1 也不许越界');
+});
+
+await acheck('pig-say：没有桌宠时返回 no_desktop_pet（拒绝，不是异常）', async () => {
+  const empty = await import(new URL('../lib/index.js', import.meta.url).href + '?say-nopet=1');
+  const emptyTools = new Map();
+  const emptyRoot = mkdtempSync(join(tmpdir(), 'pighub-say-empty-'));
+  empty.apply({
+    effect: (fn) => fn(),
+    tools: { register(def) { emptyTools.set(def.name, def); return () => {}; } },
+    logger: { warn() {} },
+  }, { root: emptyRoot, desktopPet: false });
+  const answer = await emptyTools.get('pig-say').execute({ text: '在吗' });
+  assert.deepEqual(answer, { ok: false, error: 'no_desktop_pet', message: '当前没有桌宠猪猪，先把猪猪放到桌宠' });
+  // 空文本比"有没有猪"更早被拒：连桌宠都不问
+  assert.equal((await emptyTools.get('pig-say').execute({ text: '   ' })).error, 'empty_text');
+  rmSync(emptyRoot, { recursive: true, force: true });
+});
+
+await acheck('pig-say：有桌宠但原生窗口没起来 → desktop_pet_unavailable（不谎报成功）', async () => {
+  // 本测试的 ctx 用 desktopPet:false，所以永远没有原生窗口；验的是"不起来说不起来"。
+  await call('POST', { action: 'place', pigId: 'standard-pig', to: 'pet' });
+  const answer = await tools.get('pig-say').execute({ text: '在吗' });
+  assert.equal(answer.ok, false);
+  assert.equal(answer.error, 'desktop_pet_unavailable');
+  assert.ok(answer.message.indexOf('桌面桌宠') >= 0, answer.message);
+  await call('POST', { action: 'place', pigId: 'standard-pig', to: 'pen' });
+});
+
+await acheck('commands.jsonl：say 行的格式即契约（原生 LoadSay 按它解析）', async () => {
+  const petModule = await import(new URL('../lib/desktop-pet.js', import.meta.url).href);
+  const dir = mkdtempSync(join(tmpdir(), 'pighub-say-cmd-'));
+  const until = 1794586086391;
+  const line = petModule.sayCommandLine('pighub-604', '猪猪来了', until);
+  assert.equal(line.endsWith('\n'), true, 'jsonl：每行以换行收尾');
+  assert.deepEqual(JSON.parse(line), { type: 'say', id: 'pighub-604', text: '猪猪来了', until });
+  assert.equal(petModule.writeSayCommand(dir, 'pighub-604', '第一句', until).ok, true);
+  petModule.writeSayCommand(dir, 'pighub-604', '第二句', until + 6000);
+  const rows = readFileSync(join(dir, 'commands.jsonl'), 'utf8').split('\n').filter(Boolean).map((row) => JSON.parse(row));
+  assert.equal(rows.length, 2, '两条 say 各占一行');
+  assert.equal(rows[1].text, '第二句');
+  assert.equal(rows.every((row) => row.type === 'say' && typeof row.until === 'number' && typeof row.id === 'string'), true);
+  assert.equal(petModule.writeSayCommand('', 'x', 'y', 1).code, 'no_directory');
+  rmSync(dir, { recursive: true, force: true });
+});
+
+await acheck('sayOnDesktop：没有在跑的原生窗口 → not_running（拒绝，不抛）', async () => {
+  const petModule = await import(new URL('../lib/desktop-pet.js', import.meta.url).href);
+  assert.deepEqual(petModule.sayOnDesktop('standard-pig', '在吗'), { ok: false, code: 'not_running' });
+});
+
 await acheck('没有 webServer 的宿主：只注册工具，不抛错', async () => {
   const headlessTools = new Map();
   const headless = await import(new URL('../lib/index.js', import.meta.url).href + '?headless=1');
   headless.apply({ effect: (fn) => fn(), tools: { register(def) { headlessTools.set(def.name, def); return () => {}; } }, logger: { warn() {} } }, { root: mkdtempSync(join(tmpdir(), 'pighub-headless-')) });
-  assert.deepEqual([...headlessTools.keys()], ['pighub_about']);
+  assert.deepEqual([...headlessTools.keys()], ['pighub_about', 'pig-say']);
 });
 
 /* ---- 原生桌面桌宠的契约（纯函数；不真的编译/拉起） ---- */

@@ -343,8 +343,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-101.png",
-      "bytes": 58996,
-      "sha256": "d3618e0d6d3925951d1e7e8365b10e7b1f556f60a66dbcb24d0edf07534b5d0d",
+      "bytes": 48549,
+      "sha256": "d599899d050daae7e8cc0d22b70280bff18f156f43a6101b8b9ff327586c2dd4",
       "size": {
         "width": 256,
         "height": 228
@@ -359,7 +359,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，哭泣表情无害",
       "adopted": true,
-      "sizeRatio": 104.25
+      "sizeRatio": 161.88
     },
     {
       "id": "pighub-1012",
@@ -549,11 +549,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-1031.png",
-      "bytes": 70541,
-      "sha256": "97fa69aa4757d693a5ecd0219a10c5d16c196802188e0853e3954f42e248b17c",
+      "bytes": 47976,
+      "sha256": "336aee72d77ea06bac0cc11edff2ce5992f0530d9d242ca03181d156879fd9f0",
       "size": {
-        "width": 256,
-        "height": 242
+        "width": 197,
+        "height": 241
       },
       "source": {
         "group": "pighub-online",
@@ -565,7 +565,7 @@
       "mood": "cute",
       "moodReason": "火焰用于表现「上头」，无血无獠牙无武器",
       "adopted": true,
-      "sizeRatio": 93.33
+      "sizeRatio": 104.05
     },
     {
       "id": "pighub-1038",
@@ -575,8 +575,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-1038.png",
-      "bytes": 35854,
-      "sha256": "010e61c6692d102c7519e0bfee53e4aabd5c8eed60163c97c2d47a0caf386439",
+      "bytes": 36030,
+      "sha256": "64213574eba1909399d7939af2512ba1bd4f4421c00fce715801d3184fb4654a",
       "size": {
         "width": 256,
         "height": 200
@@ -591,7 +591,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，进食场景温和",
       "adopted": true,
-      "sizeRatio": 113.06
+      "sizeRatio": 168.36
     },
     {
       "id": "pighub-104",
@@ -685,8 +685,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-1053.png",
-      "bytes": 56577,
-      "sha256": "03c25dfc002f8da3f54094513ef8f745543db7a059565e7d121e1d955b8f1b06",
+      "bytes": 47042,
+      "sha256": "7c4c307f61136f4328e6911e14800970f57a0c7091f3383738a81cec6d73be12",
       "size": {
         "width": 256,
         "height": 214
@@ -701,7 +701,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，无语表情憨态",
       "adopted": true,
-      "sizeRatio": 107.48
+      "sizeRatio": 165.53
     },
     {
       "id": "pighub-1055",
@@ -952,8 +952,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-1096.png",
-      "bytes": 58164,
-      "sha256": "1e155b402bf21acc6d500b3a7697757ceb8bd543e763d49a644115aa4f244ed6",
+      "bytes": 49903,
+      "sha256": "3bcc68b6c57b334fb463f311919c09849062d3d046e6183384cc728f3de7be2a",
       "size": {
         "width": 256,
         "height": 211
@@ -968,7 +968,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；礼帽雪茄为装扮道具",
       "adopted": true,
-      "sizeRatio": 106.1
+      "sizeRatio": 162.45
     },
     {
       "id": "pighub-1099",
@@ -1061,11 +1061,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-1106.png",
-      "bytes": 63187,
-      "sha256": "e6140c2dee9b6b344664205c2d3214c92dd94bc51cec44bf575662b702c87401",
+      "bytes": 42349,
+      "sha256": "56681e6f6ab62e77b6dbba298ef2567ad064dfb30919144b6a3d5b032e77ed38",
       "size": {
         "width": 256,
-        "height": 223
+        "height": 209
       },
       "source": {
         "group": "pighub-online",
@@ -1077,7 +1077,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；电视为道具",
       "adopted": true,
-      "sizeRatio": 99.54
+      "sizeRatio": 146.99
     },
     {
       "id": "pighub-1112",
@@ -1295,8 +1295,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-115.png",
-      "bytes": 67740,
-      "sha256": "9ba0e101d517f4f121fdc530a095c44966b44170aa582ea29d081e54d76f4897",
+      "bytes": 58007,
+      "sha256": "cb9c0f7e63db1c8b7fd5ad3b816f4295794d120b0c8d2652a1e949230d32e74e",
       "size": {
         "width": 256,
         "height": 232
@@ -1311,7 +1311,7 @@
       "mood": "cute",
       "moodReason": "蜗牛壳造型猪，可爱",
       "adopted": true,
-      "sizeRatio": 101.16
+      "sizeRatio": 159.98
     },
     {
       "id": "pighub-1162",
@@ -1554,11 +1554,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-12.png",
-      "bytes": 58023,
-      "sha256": "e46df7bfd67bb7ad2dcb48bf6feaae0d9fe8b2e7f9eb7c153f628dce541fb802",
+      "bytes": 33269,
+      "sha256": "9809a7e7ace546e7e075e572b4fa6f3b3feda0223449e5a085058c3035fd3f64",
       "size": {
-        "width": 256,
-        "height": 226
+        "width": 189,
+        "height": 164
       },
       "source": {
         "group": "pighub-online",
@@ -1570,7 +1570,7 @@
       "mood": "cute",
       "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 103.77
+      "sizeRatio": 119.45
     },
     {
       "id": "pighub-1201",
@@ -1971,8 +1971,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-1318.png",
-      "bytes": 62492,
-      "sha256": "f7e2802fb928f273fdb3e6d1bb598c477836f84015f71c08788051da1c19ed2d",
+      "bytes": 51139,
+      "sha256": "9cf03c0d07f0d27ced477d9b9e8717f7623a9f6eed7ea48afc4e65b07a9fd4dc",
       "size": {
         "width": 256,
         "height": 214
@@ -1987,7 +1987,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，紧张表情憨态",
       "adopted": true,
-      "sizeRatio": 107.19
+      "sizeRatio": 165.27
     },
     {
       "id": "pighub-1320",
@@ -2023,8 +2023,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-134.png",
-      "bytes": 57554,
-      "sha256": "cfecde2559618525b4604a2b7d45120ff71717916ee5d29b309f8630e8f9b368",
+      "bytes": 48638,
+      "sha256": "df429b8d6be5b59fdd256884e8321dc165c7a066a5a8e79139be33414ed17fa5",
       "size": {
         "width": 256,
         "height": 205
@@ -2039,7 +2039,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，天使造型柔和",
       "adopted": true,
-      "sizeRatio": 106.25
+      "sizeRatio": 166.03
     },
     {
       "id": "pighub-138",
@@ -2441,8 +2441,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-201.png",
-      "bytes": 58251,
-      "sha256": "f2893ae2696d3405ba0a7cf3c6a4c19c26e1fa6b63da745511fd7b3277453bc6",
+      "bytes": 49948,
+      "sha256": "81dfb3ef1ded5f30f4bfc4cd49f2f72e9290c418571c9a5907c1b73bca7601cc",
       "size": {
         "width": 256,
         "height": 209
@@ -2457,7 +2457,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，空思考云为符号",
       "adopted": true,
-      "sizeRatio": 104.82
+      "sizeRatio": 151.67
     },
     {
       "id": "pighub-209",
@@ -2467,11 +2467,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-209.png",
-      "bytes": 61352,
-      "sha256": "98224e516552f081e4147ff5e542ec42de2ec4f186a595556ee2bc973e518342",
+      "bytes": 40034,
+      "sha256": "c4af6b725066740179d26c02ceb9fe82f3c13c47dca1f8c0deca88c8dcd22890",
       "size": {
-        "width": 256,
-        "height": 209
+        "width": 213,
+        "height": 179
       },
       "source": {
         "group": "pighub-online",
@@ -2483,7 +2483,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，胡萝卜为符号",
       "adopted": true,
-      "sizeRatio": 104.82
+      "sizeRatio": 134.72
     },
     {
       "id": "pighub-210",
@@ -2493,8 +2493,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-210.png",
-      "bytes": 74786,
-      "sha256": "279083f013b89bcfe3bae212c38e38ece279dedbc2038ced46ce10593bc2ac16",
+      "bytes": 60604,
+      "sha256": "d98b1cc40f44271a1d94793738efbaf82bf9c22ec14ce669f4dc8237ed682ea6",
       "size": {
         "width": 256,
         "height": 214
@@ -2509,7 +2509,7 @@
       "mood": "cute",
       "moodReason": "圆胖身形、粉色鼻子配星星眼，造型清甜",
       "adopted": true,
-      "sizeRatio": 106.76
+      "sizeRatio": 161.3
     },
     {
       "id": "pighub-217",
@@ -2519,11 +2519,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-217.png",
-      "bytes": 56577,
-      "sha256": "03c25dfc002f8da3f54094513ef8f745543db7a059565e7d121e1d955b8f1b06",
+      "bytes": 35683,
+      "sha256": "638dc860564c894a1b19919102100325bd678cf35e38e6070122500368a6f505",
       "size": {
-        "width": 256,
-        "height": 214
+        "width": 253,
+        "height": 191
       },
       "source": {
         "group": "pighub-online",
@@ -2535,7 +2535,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，无语表情憨态",
       "adopted": true,
-      "sizeRatio": 107.48
+      "sizeRatio": 163.92
     },
     {
       "id": "pighub-219",
@@ -2623,11 +2623,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-242.png",
-      "bytes": 52672,
-      "sha256": "0c657315be4257eef852a7c76071e50fbce0a713b8c90f5700e5a14e1d1a24c7",
+      "bytes": 36804,
+      "sha256": "186bca7ca17e88683176643efd0b905ecec8cddcc9a1e092144888f9a6b2dec4",
       "size": {
-        "width": 256,
-        "height": 224
+        "width": 234,
+        "height": 184
       },
       "source": {
         "group": "pighub-online",
@@ -2639,7 +2639,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，卧床姿势温和",
       "adopted": true,
-      "sizeRatio": 99.28,
+      "sizeRatio": 130.19,
       "completenessNote": "现场核过：切的是布景（横幅/床架），猪身轮廓闭合，不残缺。"
     },
     {
@@ -2728,11 +2728,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-250.png",
-      "bytes": 53581,
-      "sha256": "fd61e0cf41b7eebe38d40432c7c36f93e8dc9206b8d6a291748f2c2d41923827",
+      "bytes": 34245,
+      "sha256": "1db28a74218c8a7366158f1573ef80ec028b29d54f938ae434b89eab37f01b5f",
       "size": {
-        "width": 256,
-        "height": 232
+        "width": 188,
+        "height": 184
       },
       "source": {
         "group": "pighub-online",
@@ -2744,7 +2744,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，踩鱼姿势滑稽无害",
       "adopted": true,
-      "sizeRatio": 104.95
+      "sizeRatio": 116.08
     },
     {
       "id": "pighub-252",
@@ -2838,11 +2838,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-258.png",
-      "bytes": 64149,
-      "sha256": "be46924e88b1453870ef4e4b5bf0f1745a5e46572ff01c28657e3a9650aae22e",
+      "bytes": 36844,
+      "sha256": "630e058ced0aa95d94660b10b30dd7916231d13942092d2a0bc0e9c5508a7776",
       "size": {
-        "width": 256,
-        "height": 239
+        "width": 246,
+        "height": 177
       },
       "source": {
         "group": "pighub-online",
@@ -2854,7 +2854,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，嫌弃表情憨态",
       "adopted": true,
-      "sizeRatio": 102.53
+      "sizeRatio": 164.02
     },
     {
       "id": "pighub-261",
@@ -2890,11 +2890,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-262.png",
-      "bytes": 44950,
-      "sha256": "d75e3ebdc8ab7109705772b1af2b3e1131a9a5b3de38966a6158c17768c5024d",
+      "bytes": 28597,
+      "sha256": "e85662bedb39cd94c420e2af9ad6061a82e4a5b0a283ed0e00449d7e7913916f",
       "size": {
-        "width": 256,
-        "height": 218
+        "width": 251,
+        "height": 194
       },
       "source": {
         "group": "pighub-online",
@@ -2906,7 +2906,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，呆萌表情",
       "adopted": true,
-      "sizeRatio": 108.41
+      "sizeRatio": 163.35
     },
     {
       "id": "pighub-266",
@@ -3001,11 +3001,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-271.png",
-      "bytes": 56251,
-      "sha256": "42d69b2c8fb07302c3b55321344cb380bb7d0041588eec271f32ee0164e74ccb",
+      "bytes": 40652,
+      "sha256": "85e4069b7a0ad4bc0963eb757329d634c1f9cbf06389cd0f4a9c15f274246dc6",
       "size": {
-        "width": 256,
-        "height": 241
+        "width": 225,
+        "height": 212
       },
       "source": {
         "group": "pighub-online",
@@ -3017,7 +3017,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，大葱为道具",
       "adopted": true,
-      "sizeRatio": 106.14
+      "sizeRatio": 143.26
     },
     {
       "id": "pighub-272",
@@ -3027,8 +3027,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-272.png",
-      "bytes": 49021,
-      "sha256": "7e663dce86d06667b149ab9fe72c695b912546313c645f663f2519ceb9a4d54b",
+      "bytes": 44670,
+      "sha256": "753713ffcdf3fe0bc0d31e8e50a82ad78d2234e14565be3cd9c11a099e0f9172",
       "size": {
         "width": 256,
         "height": 233
@@ -3043,7 +3043,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；电脑为道具",
       "adopted": true,
-      "sizeRatio": 97.86
+      "sizeRatio": 146.13
     },
     {
       "id": "pighub-273",
@@ -3264,11 +3264,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-293.png",
-      "bytes": 65411,
-      "sha256": "846e5224e256b12c9106655247918acf8e0a4ebad891c5efcf220ecdb822ab71",
+      "bytes": 43299,
+      "sha256": "e42adb161307c32884ae23f5fb523e16db180f3bc574991e3c2d46020a9d2599",
       "size": {
-        "width": 256,
-        "height": 210
+        "width": 251,
+        "height": 188
       },
       "source": {
         "group": "pighub-online",
@@ -3280,7 +3280,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；汉堡为道具",
       "adopted": true,
-      "sizeRatio": 110.24
+      "sizeRatio": 162.71
     },
     {
       "id": "pighub-294",
@@ -3472,11 +3472,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-337.png",
-      "bytes": 59079,
-      "sha256": "f6ef6e038797be1af6b993e6b5402261ff44c9bcc777d50d2299b50e4ab0e36f",
+      "bytes": 38195,
+      "sha256": "6b73a5388943147e1e50b7bac27525be48e8f98d465c33722fa10013312e3236",
       "size": {
-        "width": 256,
-        "height": 230
+        "width": 251,
+        "height": 206
       },
       "source": {
         "group": "pighub-online",
@@ -3488,7 +3488,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，哭泣表情无害",
       "adopted": true,
-      "sizeRatio": 104.3
+      "sizeRatio": 158.45
     },
     {
       "id": "pighub-341",
@@ -3711,8 +3711,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-376.png",
-      "bytes": 47997,
-      "sha256": "b1d35fb7eb9230ba4aa5cf73285092cb4450dc657f3fde4efd352664b480647b",
+      "bytes": 47923,
+      "sha256": "66dc30cd464309fbb0fae4b040bdd43d9646046805ed6802bbdb14f004e4937f",
       "size": {
         "width": 256,
         "height": 210
@@ -3727,7 +3727,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，送花表情可爱",
       "adopted": true,
-      "sizeRatio": 117.89,
+      "sizeRatio": 185.49,
       "completenessNote": "现场核过：切的是布景（横幅/床架），猪身轮廓闭合，不残缺。"
     },
     {
@@ -3770,8 +3770,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-38.png",
-      "bytes": 61991,
-      "sha256": "fc7d8710e370d0608e293753930f5013bbe4cb1e5f3a0fed6e07cc35ca37e5ca",
+      "bytes": 52366,
+      "sha256": "0969fd6954b846308b7f2bb35ab953ead50b7295ac3bfb3fc84e76645d21525d",
       "size": {
         "width": 256,
         "height": 209
@@ -3786,7 +3786,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，胡萝卜为符号",
       "adopted": true,
-      "sizeRatio": 104.79
+      "sizeRatio": 151.62
     },
     {
       "id": "pighub-40",
@@ -3796,11 +3796,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-40.png",
-      "bytes": 47997,
-      "sha256": "b1d35fb7eb9230ba4aa5cf73285092cb4450dc657f3fde4efd352664b480647b",
+      "bytes": 33688,
+      "sha256": "7ab99756ea828c4d93d34ee0c1114fa6d4789941d76ca90b358489c1b4ddc983",
       "size": {
-        "width": 256,
-        "height": 210
+        "width": 228,
+        "height": 137
       },
       "source": {
         "group": "pighub-online",
@@ -3812,7 +3812,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，送花表情可爱",
       "adopted": true,
-      "sizeRatio": 117.89,
+      "sizeRatio": 165.21,
       "completenessNote": "现场核过：切的是布景（横幅/床架），猪身轮廓闭合，不残缺。"
     },
     {
@@ -3901,11 +3901,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-417.png",
-      "bytes": 102257,
-      "sha256": "b639982eae635ce55fd875e75b9765171ce93bfcc75ffebad7019be9365e721f",
+      "bytes": 68342,
+      "sha256": "9ba97a9a27378ecc2ef2e9e2eefc985dea78bbbf866100ac5081bc26c9a318c8",
       "size": {
-        "width": 256,
-        "height": 216
+        "width": 255,
+        "height": 215
       },
       "source": {
         "group": "pighub-online",
@@ -3917,7 +3917,7 @@
       "mood": "cute",
       "moodReason": "单猪 + 苹果，造型甜",
       "adopted": true,
-      "sizeRatio": 98.17
+      "sizeRatio": 144.5
     },
     {
       "id": "pighub-423",
@@ -3927,8 +3927,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-423.png",
-      "bytes": 62839,
-      "sha256": "906651693f784628eeb29dc55c97e60f1c9dbab83953b511937189a73a058083",
+      "bytes": 56158,
+      "sha256": "142dc532f004e795045218e59dc8920dc7e63d58d9994bb5b39aeaa1da83c76b",
       "size": {
         "width": 256,
         "height": 219
@@ -3943,7 +3943,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；书本为道具",
       "adopted": true,
-      "sizeRatio": 104.46
+      "sizeRatio": 159.77
     },
     {
       "id": "pighub-439",
@@ -4170,11 +4170,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-473.png",
-      "bytes": 65829,
-      "sha256": "003ac0938c8fd98f2f696531cad8c4ba6942291b71093d481ac9edecb3aa9c0c",
+      "bytes": 51301,
+      "sha256": "f06886413f73b885af957c80cb8116d51733c4384121639e5d3f9274d12fb996",
       "size": {
-        "width": 256,
-        "height": 233
+        "width": 229,
+        "height": 219
       },
       "source": {
         "group": "pighub-online",
@@ -4186,7 +4186,7 @@
       "mood": "cute",
       "moodReason": "火苗是情绪/状态特效（口径第 5 条），无獠牙无血无武器",
       "adopted": true,
-      "sizeRatio": 93.66
+      "sizeRatio": 123.78
     },
     {
       "id": "pighub-479",
@@ -4461,11 +4461,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-560.png",
-      "bytes": 47681,
-      "sha256": "0e8443aa4862200da120f35044f40a1c93217d124c756ce3d07391c45303c78f",
+      "bytes": 32654,
+      "sha256": "f8f1d102f2e22fe1316104b894647048d4f53419ca6532aeaaa03d615652a472",
       "size": {
-        "width": 221,
-        "height": 256
+        "width": 220,
+        "height": 230
       },
       "source": {
         "group": "pighub-online",
@@ -4477,7 +4477,7 @@
       "mood": "cute",
       "moodReason": "带小翅膀的单猪，可爱",
       "adopted": true,
-      "sizeRatio": 92.3
+      "sizeRatio": 137.4
     },
     {
       "id": "pighub-563",
@@ -5325,8 +5325,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-680.png",
-      "bytes": 43122,
-      "sha256": "97ddafb1ec63b61d2e47c4eafba73cbd4bcc4bfab8f5150f5d7b04ede81e598e",
+      "bytes": 37731,
+      "sha256": "4c4aec6cef2548f1ba46f6b435dcc4fa66be12b53791ad1762a715660bde4b4c",
       "size": {
         "width": 256,
         "height": 190
@@ -5341,7 +5341,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，图标为纯道具",
       "adopted": true,
-      "sizeRatio": 107.83
+      "sizeRatio": 145.68
     },
     {
       "id": "pighub-682",
@@ -5377,8 +5377,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-683.png",
-      "bytes": 44193,
-      "sha256": "388e0853992fb9629811bc7d672abdadb6f77564a91d6043961593caea15fe5c",
+      "bytes": 38911,
+      "sha256": "c66f12cf6cdeb34a2ac0be5c1f4c6b7997040f24596cc9330bcead862152594c",
       "size": {
         "width": 256,
         "height": 200
@@ -5393,7 +5393,7 @@
       "mood": "cute",
       "moodReason": "弯眼笑、粉色鼻子，举牌姿势可爱无害",
       "adopted": true,
-      "sizeRatio": 103.53
+      "sizeRatio": 139.05
     },
     {
       "id": "pighub-684",
@@ -5429,8 +5429,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-685.png",
-      "bytes": 50095,
-      "sha256": "03cf4358fd5a48ac24a89457c0d246ed1cfd6298ee191cacb889e24a09dbfa79",
+      "bytes": 43284,
+      "sha256": "e8d78468c685fc5abfb139d5cfe8cd7b99dda0a7146654441cbde948cda2b22d",
       "size": {
         "width": 256,
         "height": 195
@@ -5445,7 +5445,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，像素块为纯装饰",
       "adopted": true,
-      "sizeRatio": 111.52
+      "sizeRatio": 173.0
     },
     {
       "id": "pighub-686",
@@ -5455,11 +5455,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-686.png",
-      "bytes": 55781,
-      "sha256": "6f43a3f70430fe5d5902287c325dfe9506122c1dec9a2db6a4ea7521b6ab8e25",
+      "bytes": 37057,
+      "sha256": "0d79483d736640046381d41720eca3a700a7f441ebee98f3671382df40f0a4a6",
       "size": {
-        "width": 256,
-        "height": 197
+        "width": 201,
+        "height": 177
       },
       "source": {
         "group": "pighub-online",
@@ -5471,7 +5471,7 @@
       "mood": "cute",
       "moodReason": "晶体与红色图标是状态特效/道具，无獠牙无血无武器",
       "adopted": true,
-      "sizeRatio": 110.89
+      "sizeRatio": 133.27
     },
     {
       "id": "pighub-695",
@@ -5663,8 +5663,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-751.png",
-      "bytes": 116039,
-      "sha256": "9fed212143439b0f1e4c52a70a7d11168befad3db3e8273ca2a7418f19f9670c",
+      "bytes": 117332,
+      "sha256": "5457dedc6eba536c4116ec87d84378f256333b90dc63099bd6fb95143218af7b",
       "size": {
         "width": 482,
         "height": 433
@@ -5679,7 +5679,7 @@
       "mood": "cute",
       "moodReason": "弯眼笑配腮红与玫瑰，柔和无攻击性",
       "adopted": true,
-      "sizeRatio": 97.73,
+      "sizeRatio": 97.74,
       "completion": {
         "mode": "head-swap",
         "at": "2026-11-13",
@@ -6322,11 +6322,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-873.png",
-      "bytes": 53955,
-      "sha256": "a8edd57f00479c74d931d8c23a1153204437efff38c1175c29ca01d838f25d0a",
+      "bytes": 36226,
+      "sha256": "557d626266324da1dcc68f846463d3926433abfbb9cf255a0ed4f095bcf45f3d",
       "size": {
-        "width": 256,
-        "height": 217
+        "width": 199,
+        "height": 162
       },
       "source": {
         "group": "pighub-online",
@@ -6338,7 +6338,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；手提箱为道具",
       "adopted": true,
-      "sizeRatio": 110.29
+      "sizeRatio": 130.51
     },
     {
       "id": "pighub-874",
@@ -6641,11 +6641,11 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-922.png",
-      "bytes": 52653,
-      "sha256": "dab49917fc6003be7b3cca85aff4c45ab97063c2eb209f7ce1c48acd9887493c",
+      "bytes": 35560,
+      "sha256": "9bb5c59ef5ce277566cbd907e30e3b0af41dcc85c2fff2cf53c3bad1f29b9056",
       "size": {
-        "width": 256,
-        "height": 216
+        "width": 246,
+        "height": 188
       },
       "source": {
         "group": "pighub-online",
@@ -6657,7 +6657,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；焊接工具为道具",
       "adopted": true,
-      "sizeRatio": 106.73
+      "sizeRatio": 156.59
     },
     {
       "id": "pighub-925",
@@ -6953,8 +6953,8 @@
       "note": "白底素材，但「白」有两种：背景 57,958px（四边连通）+ **眼白 11,462px**（两只 98×98 / 99×99，斗鸡眼的全部特征）。所以 background.all 必须 false，否则一次删光眼睛。阈值 236 两侧余量 1/5（猪身最亮 min 235、背景 p1 241）。",
       "vector": false,
       "file": "assets/img/pighub-974.png",
-      "bytes": 100033,
-      "sha256": "cf53ada3663dc2dd606818779f6e526aef10729fa8969bca785bff6499479d82",
+      "bytes": 101297,
+      "sha256": "1028ad4ca6b4fccb40bc33316c0f2da90345b19758c172efea18f8846e2df9e8",
       "size": {
         "width": 482,
         "height": 433
@@ -7115,8 +7115,8 @@
       "vector": false,
       "animated": false,
       "file": "assets/img/pighub-993.png",
-      "bytes": 32060,
-      "sha256": "350daa47b9856661ee2016ea9be18c987b41b5c35f7a2a7e7a963ceb267332aa",
+      "bytes": 34051,
+      "sha256": "71f1cb02576ecb5302d21a9c069ff0021433b2b7328ccfb0b50f76b53085eab1",
       "size": {
         "width": 256,
         "height": 239
@@ -7131,7 +7131,7 @@
       "mood": "cute",
       "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 100.77
+      "sizeRatio": 151.69
     },
     {
       "id": "pighub-994",
@@ -7164,11 +7164,11 @@
       "title": "普通猪",
       "kind": "live",
       "standard": true,
-      "note": "PigHub 的**标准猪**：侧边栏图标就是它（client.js 里的 PIG_ICON_PATHS 由 220px 源图矢量化而来）。这张 PNG 是把图标的矢量路径在本机重新光栅化（512 超采样 → 抗锯齿），朝左、眼睛已改成黑色，与其它素材同一方向基准。用途：① 每个用户的初始猪；② 补全残缺素材时的身体参考。",
+      "note": "PigHub 的**标准猪**：侧边栏图标就是它（client.js 里的 PIG_ICON_PATHS 由 220px 源图矢量化而来）。这张 PNG 是把图标的矢量路径在本机重新光栅化（512 超采样 → 抗锯齿），朝左、眼睛已改成黑色，与其它素材同一方向基准。用途：① 每个用户的初始猪；② 补全残缺素材时的身体参考。  **尾巴（2026-11-14 重画）**：权威原图是 `archive/reference-standard-pig-tail.jpg`（863×764），里面的尾巴是一条约 1.1 圈的卷尾；旧 PNG 的尾巴是「一根直条 + 端头」，是当年从侧栏图标矢量化时丢掉的细节（4 倍放大对比见 `archive/standard-pig-tail.md` §1）。重画参数：螺旋中心 (438,49)、r0=46px、r_loop=23px、带宽 20px→11.6px（收窄）、1.10 圈、描边 2.6px、颜色 (252,124,132)（本素材自身描边色实测值）；臀部背线按参考图重接 x∈[380,428] 那段。改动 5691px，全落在 x∈[360,476]；其余像素逐字节未动。",
       "vector": false,
       "file": "assets/img/standard-pig.png",
-      "bytes": 75281,
-      "sha256": "4127a8263038026795596e1bc13c342ee93a4314819c1222bf07a22d5ba4b7d5",
+      "bytes": 76303,
+      "sha256": "210af09de9cfba463a7d08047e9b0078646ba56c2bbefe44da47df530e4ec796",
       "size": {
         "width": 482,
         "height": 433

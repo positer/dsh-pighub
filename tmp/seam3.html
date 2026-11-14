@@ -1,0 +1,24 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+  html,body{margin:0;padding:0;background:#fff}
+  #row{display:flex;gap:10px;padding:10px;background:#fff}
+  .pen{position:relative;width:452px;height:452px;border-radius:14px;overflow:hidden;background:#7aa64a}
+  .layer{position:absolute;inset:0;pointer-events:none;background-repeat:no-repeat;background-size:100% 100%}
+  .half{position:absolute;left:0;right:0;overflow:hidden;pointer-events:none}
+  .top{top:0;height:50.68%}
+  .bot{top:50.68%;bottom:0}
+  .shot{position:absolute;left:0;width:100%;aspect-ratio:1/1;background-repeat:no-repeat;background-size:100% 100%}
+  .top .shot{top:0}
+  .bot .shot{bottom:0}
+  /* I: 两个 shot 都用 top:0（下半靠盒子偏移裁剪），让两层的绘制原点一致 */
+  .half2{position:absolute;left:0;right:0;overflow:hidden;pointer-events:none}
+  .half2.bt{top:0;height:50.68%}
+  .half2.bb{top:0;height:100%;clip-path:inset(50.68% 0 0 0)}
+</style></head><body><div id="row">
+  <div class="pen"><div class="layer" style="background-image:url('file:///C:/Users/12252/Desktop/Files/Code/PigHub/dsh-pighub/assets/img/pen-fence.png')"></div></div>
+  <div class="pen"><div class="layer" style="background-image:url('file:///C:/Users/12252/Desktop/Files/Code/PigHub/dsh-pighub/assets/img/pen-fence.png')"></div></div>
+  <div class="pen"><div class="layer" style="background-image:url('file:///C:/Users/12252/Desktop/Files/Code/PigHub/dsh-pighub/assets/img/pen-fence.png')"></div></div>
+  <div class="pen">
+    <div class="half top"><div class="shot" style="background-image:url('file:///C:/Users/12252/Desktop/Files/Code/PigHub/dsh-pighub/assets/img/pen-fence.png')"></div></div>
+    <div class="half bot"><div class="shot" style="background-image:url('file:///C:/Users/12252/Desktop/Files/Code/PigHub/dsh-pighub/assets/img/pen-fence.png')"></div></div>
+  </div>
+</div></body></html>

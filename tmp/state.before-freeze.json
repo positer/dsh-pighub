@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "lastDrawDate": "2026-11-14",
+  "todayPigId": "pighub-650",
+  "draws": 3,
+  "pigs": {
+    "standard-pig": {
+      "id": "standard-pig",
+      "title": "普通猪",
+      "filename": "standard-pig.png",
+      "imageUrl": "/pighub/asset/standard-pig.png",
+      "rarity": "common",
+      "kind": "live",
+      "motion": true,
+      "pos": {
+        "x": 75.93,
+        "y": 72.28
+      },
+      "desktopPos": {
+        "x": 1486,
+        "y": 1124
+      },
+      "vector": false,
+      "assetUrl": "/pighub/asset/standard-pig.png?v=0959",
+      "stars": 1,
+      "firstObtainedAt": "2026-11-13T08:34:35.196Z",
+      "lastUpgradedAt": "2026-11-13T08:34:35.196Z",
+      "drawDates": [
+        "2026-11-13"
+      ],
+      "posAt": 1794644159738
+    },
+    "pighub-974": {
+      "id": "pighub-974",
+      "title": "斗鸡眼猪",
+      "filename": "pighub-974.png",
+      "imageUrl": "/pighub/asset/pighub-974.png",
+      "rarity": "common",
+      "kind": "live",
+      "motion": true,
+      "pos": {
+        "x": 24.04,
+        "y": 72.28
+      },
+      "desktopPos": {
+        "x": 2114,
+        "y": 758
+      },
+      "vector": false,
+      "assetUrl": "/pighub/asset/pighub-974.png?v=0959",
+      "stars": 1,
+      "firstObtainedAt": "2026-11-12T13:49:02.641Z",
+      "lastUpgradedAt": "2026-11-12T13:49:02.641Z",
+      "drawDates": [
+        "2026-11-12"
+      ]
+    },
+    "pighub-604": {
+      "id": "pighub-604",
+      "title": "双子猪",
+      "filename": "pighub-604.png",
+      "imageUrl": "/pighub/asset/pighub-604.png",
+      "rarity": "common",
+      "kind": "live",
+      "motion": true,
+      "pos": {
+        "x": 24.04,
+        "y": 29.16
+      },
+      "desktopPos": {
+        "x": 1229,
+        "y": 697
+      },
+      "vector": false,
+      "assetUrl": "/pighub/asset/pighub-604.png?v=0959",
+      "stars": 1,
+      "firstObtainedAt": "2026-11-12T16:47:38.514Z",
+      "lastUpgradedAt": "2026-11-12T16:47:38.514Z",
+      "drawDates": [
+        "2026-11-13"
+      ]
+    },
+    "pighub-650": {
+      "id": "pighub-650",
+      "title": "猪搬运",
+      "filename": "pighub-650.png",
+      "imageUrl": "/pighub/asset/pighub-650.png?v=2d31c7f1",
+      "rarity": "common",
+      "kind": "live",
+      "motion": true,
+      "pos": {
+        "x": 30.15,
+        "y": 61.23
+      },
+      "desktopPos": {
+        "x": 2250,
+        "y": 670
+      },
+      "vector": false,
+      "assetUrl": "/pighub/asset/pighub-650.png?v=2d31c7f1&v=0959",
+      "stars": 1,
+      "firstObtainedAt": "2026-11-13T16:00:12.231Z",
+      "lastUpgradedAt": "2026-11-13T16:00:12.231Z",
+      "drawDates": [
+        "2026-11-14"
+      ]
+    }
+  },
+  "pets": [],
+  "store": [],
+  "createdAt": "2026-11-12T13:49:02.640Z",
+  "updatedAt": "2026-11-14T08:15:59.740Z"
+}

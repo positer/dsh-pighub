@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+  html,body{margin:0;padding:0;background:#fff}
+  #row{display:flex;gap:10px;padding:10px;background:#fff}
+  .pen{position:relative;width:452px;height:452px;border-radius:14px;overflow:hidden;background:#7aa64a}
+  .layer{position:absolute;inset:0;pointer-events:none;background-repeat:no-repeat;background-size:100% 100%}
+  /* E: 溢出裁剪（硬边）+ 方块 shot 分别贴顶/贴底对齐 */
+  .half{position:absolute;left:0;right:0;overflow:hidden;pointer-events:none}
+  .half.top{top:0;height:50.72%}
+  .half.bot{top:50.72%;bottom:0}
+  .shot{position:absolute;left:0;width:100%;aspect-ratio:1/1;background-repeat:no-repeat;background-size:100% 100%}
+  .half.top .shot{top:0}
+  .half.bot .shot{bottom:0}
+  /* G: 与 E 相同，但分割线取 50%（整数像素靠近时的对照） */
+  .half.top50{height:50%}
+  .half.bot50{top:50%}
+</style></head><body><div id="row">
+  <div class="pen"><div class="layer" style="background-image:url('file:///C:/Users/12252/Desktop/Files/Code/PigHub/dsh-pighub/assets/img/pen-fence.png')"></div></div>
+  <div class="pen">
+    <div class="half top"><div class="shot" style="background-image:url('file:///C:/Users/12252/Desktop/Files/Code/PigHub/dsh-pighub/assets/img/pen-fence.png')"></div></div>
+    <div class="half bot"><div class="shot" style="background-image:url('file:///C:/Users/12252/Desktop/Files/Code/PigHub/dsh-pighub/assets/img/pen-fence.png')"></div></div>
+  </div>
+  <div class="pen">
+    <div class="half top top50"><div class="shot" style="background-image:url('file:///C:/Users/12252/Desktop/Files/Code/PigHub/dsh-pighub/assets/img/pen-fence.png')"></div></div>
+    <div class="half bot bot50"><div class="shot" style="background-image:url('file:///C:/Users/12252/Desktop/Files/Code/PigHub/dsh-pighub/assets/img/pen-fence.png')"></div></div>
+  </div>
+  <div class="pen">
+    <div class="half top" style="height:50.72%"><div class="shot" style="background-image:url('file:///C:/Users/12252/Desktop/Files/Code/PigHub/dsh-pighub/assets/img/pen-fence.png')"></div></div>
+    <div class="half" style="top:50.72%;bottom:0;overflow:visible"><div class="shot" style="background-image:url('file:///C:/Users/12252/Desktop/Files/Code/PigHub/dsh-pighub/assets/img/pen-fence.png');bottom:0"></div></div>
+  </div>
+</div></body></html>

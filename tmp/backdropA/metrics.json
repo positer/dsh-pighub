@@ -1,0 +1,704 @@
+[
+ {
+  "id": "pighub-258",
+  "before": {
+   "size": [
+    256,
+    239
+   ],
+   "opaque": 35251
+  },
+  "after": {
+   "size": [
+    255,
+    237
+   ],
+   "opaque": 23583
+  },
+  "banner_bbox": [
+   143,
+   1,
+   254,
+   229
+  ],
+  "removed_px": 11668,
+  "removed_opaque": 11668,
+  "holes": [
+   11668
+  ],
+  "residual_navy_px": 36,
+  "empty_margin_trim": [
+   1,
+   0,
+   0,
+   2
+  ]
+ },
+ {
+  "id": "pighub-1031",
+  "before": {
+   "size": [
+    256,
+    242
+   ],
+   "opaque": 42538
+  },
+  "after": {
+   "size": [
+    256,
+    241
+   ],
+   "opaque": 35248
+  },
+  "banner_bbox": [
+   184,
+   1,
+   254,
+   190
+  ],
+  "removed_px": 7290,
+  "removed_opaque": 7290,
+  "holes": [
+   7290
+  ],
+  "residual_navy_px": 238,
+  "empty_margin_trim": [
+   0,
+   0,
+   0,
+   1
+  ]
+ },
+ {
+  "id": "pighub-1087",
+  "before": {
+   "size": [
+    233,
+    270
+   ],
+   "opaque": 44058
+  },
+  "after": {
+   "size": [
+    233,
+    269
+   ],
+   "opaque": 37810
+  },
+  "banner_bbox": [
+   63,
+   9,
+   208,
+   105
+  ],
+  "removed_px": 6248,
+  "removed_opaque": 6248,
+  "holes": [],
+  "residual_navy_px": 112,
+  "empty_margin_trim": [
+   0,
+   0,
+   0,
+   1
+  ]
+ },
+ {
+  "id": "pighub-1106",
+  "before": {
+   "size": [
+    256,
+    223
+   ],
+   "opaque": 37429
+  },
+  "after": {
+   "size": [
+    256,
+    222
+   ],
+   "opaque": 29917
+  },
+  "banner_bbox": [
+   168,
+   1,
+   254,
+   179
+  ],
+  "removed_px": 7512,
+  "removed_opaque": 7512,
+  "holes": [
+   7512
+  ],
+  "residual_navy_px": 2,
+  "empty_margin_trim": [
+   0,
+   0,
+   0,
+   1
+  ]
+ },
+ {
+  "id": "pighub-12",
+  "before": {
+   "size": [
+    256,
+    226
+   ],
+   "opaque": 34428
+  },
+  "after": {
+   "size": [
+    254,
+    222
+   ],
+   "opaque": 26069
+  },
+  "banner_bbox": [
+   160,
+   3,
+   252,
+   194
+  ],
+  "removed_px": 8359,
+  "removed_opaque": 8359,
+  "holes": [
+   8359
+  ],
+  "residual_navy_px": 0,
+  "empty_margin_trim": [
+   2,
+   0,
+   0,
+   4
+  ]
+ },
+ {
+  "id": "pighub-209",
+  "before": {
+   "size": [
+    256,
+    209
+   ],
+   "opaque": 33741
+  },
+  "after": {
+   "size": [
+    256,
+    208
+   ],
+   "opaque": 28215
+  },
+  "banner_bbox": [
+   160,
+   1,
+   254,
+   196
+  ],
+  "removed_px": 5526,
+  "removed_opaque": 5526,
+  "holes": [
+   5525
+  ],
+  "residual_navy_px": 26,
+  "empty_margin_trim": [
+   0,
+   0,
+   0,
+   1
+  ]
+ },
+ {
+  "id": "pighub-217",
+  "before": {
+   "size": [
+    256,
+    214
+   ],
+   "opaque": 32101
+  },
+  "after": {
+   "size": [
+    255,
+    212
+   ],
+   "opaque": 24351
+  },
+  "banner_bbox": [
+   165,
+   2,
+   253,
+   185
+  ],
+  "removed_px": 7750,
+  "removed_opaque": 7750,
+  "holes": [
+   7750
+  ],
+  "residual_navy_px": 7,
+  "empty_margin_trim": [
+   1,
+   0,
+   0,
+   2
+  ]
+ },
+ {
+  "id": "pighub-242",
+  "before": {
+   "size": [
+    256,
+    224
+   ],
+   "opaque": 37652
+  },
+  "after": {
+   "size": [
+    254,
+    222
+   ],
+   "opaque": 30952
+  },
+  "banner_bbox": [
+   1,
+   1,
+   79,
+   185
+  ],
+  "removed_px": 6700,
+  "removed_opaque": 6700,
+  "holes": [
+   6700
+  ],
+  "residual_navy_px": 2,
+  "empty_margin_trim": [
+   0,
+   0,
+   2,
+   2
+  ]
+ },
+ {
+  "id": "pighub-250",
+  "before": {
+   "size": [
+    256,
+    232
+   ],
+   "opaque": 33666
+  },
+  "after": {
+   "size": [
+    256,
+    231
+   ],
+   "opaque": 25984
+  },
+  "banner_bbox": [
+   167,
+   1,
+   254,
+   182
+  ],
+  "removed_px": 7682,
+  "removed_opaque": 7682,
+  "holes": [
+   7677
+  ],
+  "residual_navy_px": 8,
+  "empty_margin_trim": [
+   0,
+   0,
+   0,
+   1
+  ]
+ },
+ {
+  "id": "pighub-262",
+  "before": {
+   "size": [
+    256,
+    218
+   ],
+   "opaque": 31566
+  },
+  "after": {
+   "size": [
+    254,
+    215
+   ],
+   "opaque": 24123
+  },
+  "banner_bbox": [
+   166,
+   2,
+   253,
+   181
+  ],
+  "removed_px": 7443,
+  "removed_opaque": 7443,
+  "holes": [
+   7443
+  ],
+  "residual_navy_px": 0,
+  "empty_margin_trim": [
+   2,
+   0,
+   0,
+   3
+  ]
+ },
+ {
+  "id": "pighub-271",
+  "before": {
+   "size": [
+    256,
+    241
+   ],
+   "opaque": 32907
+  },
+  "after": {
+   "size": [
+    255,
+    240
+   ],
+   "opaque": 24865
+  },
+  "banner_bbox": [
+   165,
+   1,
+   254,
+   187
+  ],
+  "removed_px": 8042,
+  "removed_opaque": 8042,
+  "holes": [
+   8042
+  ],
+  "residual_navy_px": 4,
+  "empty_margin_trim": [
+   1,
+   0,
+   0,
+   1
+  ]
+ },
+ {
+  "id": "pighub-293",
+  "before": {
+   "size": [
+    256,
+    210
+   ],
+   "opaque": 30505
+  },
+  "after": {
+   "size": [
+    256,
+    209
+   ],
+   "opaque": 23662
+  },
+  "banner_bbox": [
+   172,
+   1,
+   254,
+   174
+  ],
+  "removed_px": 6843,
+  "removed_opaque": 6843,
+  "holes": [
+   6843
+  ],
+  "residual_navy_px": 0,
+  "empty_margin_trim": [
+   0,
+   0,
+   0,
+   1
+  ]
+ },
+ {
+  "id": "pighub-337",
+  "before": {
+   "size": [
+    256,
+    230
+   ],
+   "opaque": 34070
+  },
+  "after": {
+   "size": [
+    256,
+    229
+   ],
+   "opaque": 25114
+  },
+  "banner_bbox": [
+   159,
+   1,
+   254,
+   201
+  ],
+  "removed_px": 8956,
+  "removed_opaque": 8956,
+  "holes": [
+   8956,
+   29
+  ],
+  "residual_navy_px": 1,
+  "empty_margin_trim": [
+   0,
+   0,
+   0,
+   1
+  ]
+ },
+ {
+  "id": "pighub-40",
+  "before": {
+   "size": [
+    256,
+    210
+   ],
+   "opaque": 26686
+  },
+  "after": {
+   "size": [
+    255,
+    209
+   ],
+   "opaque": 19290
+  },
+  "banner_bbox": [
+   168,
+   1,
+   254,
+   180
+  ],
+  "removed_px": 7396,
+  "removed_opaque": 7396,
+  "holes": [
+   7395
+  ],
+  "residual_navy_px": 0,
+  "empty_margin_trim": [
+   1,
+   0,
+   0,
+   1
+  ]
+ },
+ {
+  "id": "pighub-417",
+  "before": {
+   "size": [
+    256,
+    216
+   ],
+   "opaque": 38470
+  },
+  "after": {
+   "size": [
+    255,
+    215
+   ],
+   "opaque": 31115
+  },
+  "banner_bbox": [
+   167,
+   1,
+   254,
+   182
+  ],
+  "removed_px": 7355,
+  "removed_opaque": 7355,
+  "holes": [
+   7354
+  ],
+  "residual_navy_px": 47,
+  "empty_margin_trim": [
+   1,
+   0,
+   0,
+   1
+  ]
+ },
+ {
+  "id": "pighub-473",
+  "before": {
+   "size": [
+    256,
+    233
+   ],
+   "opaque": 42259
+  },
+  "after": {
+   "size": [
+    254,
+    231
+   ],
+   "opaque": 33556
+  },
+  "banner_bbox": [
+   2,
+   2,
+   88,
+   190
+  ],
+  "removed_px": 8703,
+  "removed_opaque": 8703,
+  "holes": [
+   8702
+  ],
+  "residual_navy_px": 5,
+  "empty_margin_trim": [
+   0,
+   0,
+   2,
+   2
+  ]
+ },
+ {
+  "id": "pighub-560",
+  "before": {
+   "size": [
+    221,
+    256
+   ],
+   "opaque": 32442
+  },
+  "after": {
+   "size": [
+    221,
+    255
+   ],
+   "opaque": 25306
+  },
+  "banner_bbox": [
+   135,
+   1,
+   219,
+   174
+  ],
+  "removed_px": 7136,
+  "removed_opaque": 7136,
+  "holes": [
+   7135
+  ],
+  "residual_navy_px": 0,
+  "empty_margin_trim": [
+   0,
+   0,
+   0,
+   1
+  ]
+ },
+ {
+  "id": "pighub-686",
+  "before": {
+   "size": [
+    256,
+    197
+   ],
+   "opaque": 30153
+  },
+  "after": {
+   "size": [
+    256,
+    196
+   ],
+   "opaque": 23164
+  },
+  "banner_bbox": [
+   170,
+   1,
+   254,
+   176
+  ],
+  "removed_px": 6989,
+  "removed_opaque": 6989,
+  "holes": [
+   6989
+  ],
+  "residual_navy_px": 160,
+  "empty_margin_trim": [
+   0,
+   0,
+   0,
+   1
+  ]
+ },
+ {
+  "id": "pighub-873",
+  "before": {
+   "size": [
+    256,
+    217
+   ],
+   "opaque": 30487
+  },
+  "after": {
+   "size": [
+    255,
+    215
+   ],
+   "opaque": 23418
+  },
+  "banner_bbox": [
+   170,
+   2,
+   253,
+   175
+  ],
+  "removed_px": 7069,
+  "removed_opaque": 7069,
+  "holes": [
+   7069
+  ],
+  "residual_navy_px": 2,
+  "empty_margin_trim": [
+   1,
+   0,
+   0,
+   2
+  ]
+ },
+ {
+  "id": "pighub-922",
+  "before": {
+   "size": [
+    256,
+    216
+   ],
+   "opaque": 32541
+  },
+  "after": {
+   "size": [
+    256,
+    215
+   ],
+   "opaque": 24649
+  },
+  "banner_bbox": [
+   166,
+   1,
+   254,
+   181
+  ],
+  "removed_px": 7892,
+  "removed_opaque": 7892,
+  "holes": [
+   7892,
+   25
+  ],
+  "residual_navy_px": 0,
+  "empty_margin_trim": [
+   0,
+   0,
+   0,
+   1
+  ]
+ },
+ null,
+ null
+]
