@@ -51,7 +51,9 @@ check('注册了工具、状态路由与每张素材的静态路由', () => {
   assert.equal(assetRoutes.length, manifest.pigs.length, '每张素材应有一条路由，实际 ' + assetRoutes.length);
   // 猪圈布景（木栅栏）走单独一条前缀：它不是素材库的一部分，不能混进上面那条「每只猪一条路由」。
   const penRoutes = [...routes.keys()].filter((path) => path.startsWith('/pighub/pen/'));
-  assert.deepEqual(penRoutes, ['/pighub/pen/pen-fence.png'], '木栅栏应有且只有一条静态路由，实际 ' + JSON.stringify(penRoutes));
+  /* 猪圈布景现在有两张：围栏 + 谷仓小屋（0.9.73 起）。断言条数与内容都跟 PEN_ART 对齐。 */
+  assert.deepEqual(penRoutes, ['/pighub/pen/pen-fence.png', '/pighub/pen/house-barn.png'],
+    '猪圈布景应有 2 条静态路由（围栏 + 谷仓），实际 ' + JSON.stringify(penRoutes));
   assert.deepEqual(plugin.inject, ['tools'], '只注入 tools：webServer 缺失时不能让整个 profile 启动失败');
 });
 
