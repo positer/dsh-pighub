@@ -55,6 +55,56 @@ internal static class Native {
     }
 }
 
+/// <summary>
+/// 画布几何的裁定规则。**纯函数**：不碰窗口、不碰位图，所以它能被单独跑（test/native-canvas.test.mjs）。
+///
+/// 为什么需要它 —— 这一条有实测数字（2026-11-15，3 只猪铺满一屏 ≈1900×1100 画布，30fps 进程内渲染）：
+///   窗口矩形 6.7 次/秒在变；窗口一变，**静止猪**所在区域的像素有 90.7% 的采样跟着变，
+///   窗口没变时只有 12.6%。用户看到的就是"别的猪一起颤动"。
+/// 成因是帧循环把画布贴死在"所有猪的包围盒 + margin"上：猪每走 1px，包围盒就换一格，
+/// 窗口就搬一次；而搬家分两步走（先搬窗口、里面还是上一帧的位图 → 整窗内容整体位移；
+/// 再贴新位图）。画布越大，这两步之间的空档越长，位移就越容易被合成到屏幕上。
+/// 所以这条规则只干一件事：**装得下就别动**。画布比猪大一圈是免费的 —— 透明处本来就穿透鼠标。
+/// </summary>
+internal static class CanvasFit {
+    /// <summary>猪到画布边的余量。沿用旧值：气泡与跳动都落在这个余量里。</summary>
+    internal const int Margin = 80;
+    /// <summary>取整网格：重定画布时向外对齐到它，让"又搬了一次"只发生在 64px 的整数倍上。</summary>
+    internal const int Grid = 64;
+    /// <summary>额外留的空：猪要走出这么远，才值得再搬一次窗口。</summary>
+    internal const int Headroom = 64;
+    /// <summary>画布比理想画布大出这么多（任一轴）才收一次；不留这个死区就会来回抖。</summary>
+    internal const int Slack = 320;
+
+    /// <summary>
+    /// 决定这一帧用哪个画布矩形。
+    /// need 已经含了 Margin；screen 是虚拟屏幕（多显示器取并集）。
+    /// 装得下就原样返回 current —— 绝大多数帧走这一条，窗口一动不动。
+    /// </summary>
+    internal static Rectangle Fit(Rectangle current, Rectangle need, Rectangle screen) {
+        // 至少要装下这些像素（need 被屏幕裁过之后剩下的部分）
+        Rectangle keep = Rectangle.Intersect(need, screen);
+        Rectangle target = Rectangle.Intersect(InGrid(Rectangle.Intersect(Rectangle.Inflate(need, Headroom, Headroom), screen)), screen);
+        bool valid = current.Width >= 64 && current.Height >= 64;
+        if (valid) {
+            bool contains = current.Left <= keep.Left && current.Top <= keep.Top
+                && current.Right >= keep.Right && current.Bottom >= keep.Bottom;
+            bool bloated = current.Width > target.Width + Slack || current.Height > target.Height + Slack;
+            if (contains && !bloated) return current;
+        }
+        return target;
+    }
+
+    /// <summary>向外取整到 Grid 的整数倍（负数也向外：-100 → -128，多留总比少留安全）。</summary>
+    internal static Rectangle InGrid(Rectangle rect) {
+        int left = (int)Math.Floor(rect.Left / (double)Grid) * Grid;
+        int top = (int)Math.Floor(rect.Top / (double)Grid) * Grid;
+        int right = (int)Math.Ceiling(rect.Right / (double)Grid) * Grid;
+        int bottom = (int)Math.Ceiling(rect.Bottom / (double)Grid) * Grid;
+        return Rectangle.FromLTRB(left, top, right, bottom);
+    }
+}
+
 internal sealed class Pet {
     public string Id;
     public string Path;
@@ -76,6 +126,8 @@ internal sealed class PetForm : Form {
     private readonly JavaScriptSerializer json = new JavaScriptSerializer();
     private readonly Dictionary<string, Pet> pets = new Dictionary<string, Pet>();
     private Bitmap canvas;
+    /// <summary>当前画布对应的**屏幕矩形**：它同时就是窗口矩形（位置与尺寸只经 UpdateLayeredWindow 生效）。</summary>
+    private Rectangle canvasRect;
     private long petsStamp;
     private Pet dragging;
     private float dragDX, dragDY;
@@ -109,7 +161,7 @@ internal sealed class PetForm : Form {
     private readonly Dictionary<char, float> charWidths = new Dictionary<char, float>();
     private string wrapKey = "";
     private List<string> wrapLines = new List<string>();
-    /// <summary>本帧的气泡布局（**屏幕**坐标；Render 里再减 Bounds 换算成客户区）。</summary>
+    /// <summary>本帧的气泡布局（**屏幕**坐标；Render 里再减 canvasRect 换算成客户区）。</summary>
     private bool bubbleVisible = false;
     private Rectangle bubbleBox;
     private int bubbleTailX, bubbleTailSize, bubblePadX, bubblePadY, bubbleRadius, bubbleLineHeight;
@@ -250,20 +302,22 @@ internal sealed class PetForm : Form {
             if (bubbleBox.Right > maxX) maxX = bubbleBox.Right;
             if (bubbleBox.Bottom > maxY) maxY = bubbleBox.Bottom;
         }
-        const int margin = 80;
-        Rectangle bounds = Rectangle.FromLTRB(
+        const int margin = CanvasFit.Margin;
+        Rectangle need = Rectangle.FromLTRB(
             (int)Math.Floor(minX) - margin, (int)Math.Floor(minY) - margin,
             (int)Math.Ceiling(maxX) + margin, (int)Math.Ceiling(maxY) + margin);
-        Rectangle screen = SystemInformation.VirtualScreen;
-        bounds = Rectangle.Intersect(bounds, screen);
-        if (bounds.Width < 64 || bounds.Height < 64) return;
-        if (Bounds != bounds) {
-            Bounds = bounds;
+        if (need.Width < 64 || need.Height < 64) return;
+        Rectangle fitted = CanvasFit.Fit(canvasRect, need, SystemInformation.VirtualScreen);
+        if (fitted.Width < 64 || fitted.Height < 64) return;
+        if (canvas == null || fitted != canvasRect) {
+            canvasRect = fitted;
             if (canvas != null) canvas.Dispose();
-            canvas = new Bitmap(bounds.Width, bounds.Height, PixelFormat.Format32bppArgb);
+            canvas = new Bitmap(fitted.Width, fitted.Height, PixelFormat.Format32bppArgb);
         }
         Render();
-        Native.Present(Handle, canvas, new Native.Point(bounds.Left, bounds.Top));
+        // 搬家与贴图**一次提交**：位置、尺寸、位图都交给 UpdateLayeredWindow。
+        // 这里绝不能先写 Bounds 再 Present —— 那一帧窗口是新的、内容是旧的，整窗猪一起位移。
+        Native.Present(Handle, canvas, new Native.Point(canvasRect.Left, canvasRect.Top));
         if (now - lastReport > 400) Report(now);
     }
 
@@ -313,8 +367,8 @@ internal sealed class PetForm : Form {
                 // hopUnit = 0 触地、1 最高点。位移弧与下面的 squash & stretch 共用这一个相位，天然同相。
                 float hopUnit = (float)Math.Abs(Math.Sin(Environment.TickCount % 100000 / 90.0));
                 float hop = pet.Walking ? hopUnit * pet.Size * 0.12f : 0f;
-                int x = (int)Math.Round(pet.X - Bounds.Left);
-                int y = (int)Math.Round(pet.Y - Bounds.Top - hop);
+                int x = (int)Math.Round(pet.X - canvasRect.Left);
+                int y = (int)Math.Round(pet.Y - canvasRect.Top - hop);
                 // squash & stretch：与猪圈 .pighub-actor.is-walk 的 pighub-hop 同一套口径（纵向 .94 ↔ 1.06）。
                 // 触地压扁（矮而宽）、最高点拉长（高而窄），横向取纵向的倒数 —— 面积守恒。
                 // **锚点是脚底中点，不是盒子中心**：围绕中心缩会让脚在触地时往上收、起跳时往下探，
@@ -571,7 +625,7 @@ internal sealed class PetForm : Form {
     private void DrawBubble(Graphics g) {
         if (!bubbleVisible || wrapLines.Count == 0) return;
         float scale = dpiScale > 0f ? dpiScale : 1f;
-        Rectangle box = new Rectangle(bubbleBox.Left - Bounds.Left, bubbleBox.Top - Bounds.Top, bubbleBox.Width, bubbleBox.Height);
+        Rectangle box = new Rectangle(bubbleBox.Left - canvasRect.Left, bubbleBox.Top - canvasRect.Top, bubbleBox.Width, bubbleBox.Height);
         g.SmoothingMode = SmoothingMode.AntiAlias;
         using (GraphicsPath path = BubblePath(box, bubbleTailX, bubbleTailSize, bubbleRadius, bubbleTailUp)) {
             // 投影：同一条 path 连叠三次（不引 GDI+ blur，糊不到字上）
@@ -652,7 +706,7 @@ internal sealed class PetForm : Form {
         if (x < 0 || y < 0 || x >= canvas.Width || y >= canvas.Height) return null;
         // 气泡不吃鼠标：点在气泡上等于点在桌面上（否则它 6 秒内会悄悄吞掉那块区域的点击）。
         if (bubbleVisible) {
-            Rectangle box = new Rectangle(bubbleBox.Left - Bounds.Left, bubbleBox.Top - Bounds.Top, bubbleBox.Width, bubbleBox.Height);
+            Rectangle box = new Rectangle(bubbleBox.Left - canvasRect.Left, bubbleBox.Top - canvasRect.Top, bubbleBox.Width, bubbleBox.Height);
             if (bubbleTailUp) box.Y -= bubbleTailSize; else box.Height += bubbleTailSize;
             if (box.Contains(x, y)) return null;
         }
@@ -662,8 +716,8 @@ internal sealed class PetForm : Form {
             if (pet.Sprite == null) continue;
             int w = pet.Size;
             int h = (int)Math.Round(pet.Size * (pet.Sprite.Height / (float)pet.Sprite.Width));
-            int px = (int)Math.Round(pet.X - Bounds.Left);
-            int py = (int)Math.Round(pet.Y - Bounds.Top);
+            int px = (int)Math.Round(pet.X - canvasRect.Left);
+            int py = (int)Math.Round(pet.Y - canvasRect.Top);
             if (x >= px && x <= px + w && y >= py && y <= py + h) return pet;
         }
         return null;
@@ -698,8 +752,8 @@ internal sealed class PetForm : Form {
             Pet hit = HitTest(client.X, client.Y);
             if (hit != null) {
                 dragging = hit;
-                dragDX = hit.X - (client.X + Bounds.Left);
-                dragDY = hit.Y - (client.Y + Bounds.Top);
+                dragDX = hit.X - (client.X + canvasRect.Left);
+                dragDY = hit.Y - (client.Y + canvasRect.Top);
                 hit.Walking = false;
                 // 抓取期间要把鼠标事件留在本窗口（NOACTIVATE 窗口默认不会自动捕获），
                 // 否则指针一离开这个小窗口，WM_MOUSEMOVE 就收不到了。
@@ -708,8 +762,8 @@ internal sealed class PetForm : Form {
             return;
         }
         if (m.Msg == WM_MOUSEMOVE && dragging != null) {
-            dragging.X = client.X + Bounds.Left + dragDX;
-            dragging.Y = client.Y + Bounds.Top + dragDY;
+            dragging.X = client.X + canvasRect.Left + dragDX;
+            dragging.Y = client.Y + canvasRect.Top + dragDY;
             dragging.Walking = false;
             return;
         }
