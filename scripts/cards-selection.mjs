@@ -38,6 +38,12 @@ const DROPPED = {
   'pighub-766': '与库里 pighub-772 同一底图（128×128 灰度均值差 4.73，次近 17.79），同一套只留一张',
 };
 
+/* ⚠ 已知缺口（2026-11-15 实测，未修）：本脚本从 index.json **全量重算** selection.json，
+ * 而 index.json 里还是重映射**之前**的旧 id（lib/migrations.js 的 PIG_ID_REMAP）。真跑一次的结果是：
+ *   - 24 个旧 id 被洗回来（pighub-1124 → pighub-1114 等，与已有新 id 重复）；
+ *   - pighub-27-1 / pighub-27-2 被丢掉（它们在 index.json 里不存在，只活在重映射之后）。
+ * 所以**新增单张卡不要跑本脚本**，用 scripts/_append-user-cards.mjs 只增追加；
+ * 要恢复这条链，先让 index.json 也走一遍 remap（或在这里 import remapPigId 并去重）。 */
 const idx = JSON.parse(readFileSync('assets/cards/index.json', 'utf8'));
 const path = 'assets/cards/selection.json';
 const previous = existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')) : { cards: [] };
@@ -58,9 +64,12 @@ const cards = cute.map((c) => {
     // 两轴判定的第一轴也要跟着走：manifest 的新条目要能对账「为什么判它是猪」，
     // 只留 moodReason 会把 visionReason 丢在 index.json 里（2026-11-13 补 254→256 时补上的缺口）。
     ...(c.visionReason ? { visionReason: c.visionReason } : {}),
-    note: animated
+    note: c.note || (animated
       ? '角色卡样例集产出（动画 GIF：已去白底、裁到动画全程的内容框），首次进包按活猪处理。'
-      : '角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。',
+      : '角色卡样例集产出（已去底/裁到猪身/去角色名），首次进包按活猪处理。'),
+    // 来源组照抄 index.json 的判定：卡片管线默认是上游 pighub-online，
+    // 用户在对话里直接给的卡登记为 user-provided（不冒用上游来源，见 index.json 的 sourceGroup）。
+    ...(c.sourceGroup ? { sourceGroup: c.sourceGroup } : {}),
     sourceFile: c.file,
     url: c.url,
     // 动画卡的 index 条目没有 sha256 / size（make-cards 只给静态卡算），这里不编造：

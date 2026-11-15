@@ -137,7 +137,9 @@ for (const card of cards) {
     sha256: sha256Of(bytes),
     size: dimensions,
     source: {
-      group: 'pighub-online',
+      // 来源组由 selection 决定：卡片管线默认上游 pighub-online；用户对话内直接给的卡是 user-provided。
+      // 两组都必须先在 assets/libraries.json 里登记过（smoke 会按那里的 verdict 校验「能不能进包」）。
+      group: card.sourceGroup || 'pighub-online',
       via: 'cards',
       file: card.sourceFile,
       sha256: sha256Of(bytes),
@@ -187,7 +189,16 @@ const next = {
     decidedAt: '2026-11-12',
     appliedAt: dryRun ? null : new Date().toISOString(),
   },
-  moodRejected: rejectedCards,
+  // 拒收留档是**历史**：selection.json 里可能只剩 cute（旧的 reject 条目被清理过），
+  // 而清单里那两条拒收记录（恐怖猪 / 双面幽灵猪）是可爱闸门被真实触发过的证据，
+  // 直接写成 rejectedCards 会把它们抹掉 —— smoke 1.55「至少一条真实拒收」当场红（2026-11-15 实测）。
+  // 所以按 id 合并：老的保留，本次新拒的覆盖同名 id。
+  moodRejected: (() => {
+    const merged = new Map();
+    for (const item of manifest.moodRejected || []) merged.set(item.id, item);
+    for (const item of rejectedCards) merged.set(item.id, item);
+    return [...merged.values()];
+  })(),
   counts: {
     total: pigs.length,
     live: pigs.filter((pig) => pig.kind === 'live').length,

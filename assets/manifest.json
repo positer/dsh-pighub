@@ -1,6 +1,6 @@
 {
   "assetVersion": "2026.11.12-card",
-  "frozenAt": "2026-11-13T13:08:12.202Z",
+  "frozenAt": "2026-11-15T07:34:12.259Z",
   "policy": "素材在构建期处理完并随包分发；运行时只读本地文件，不链接、不请求素材库。",
   "attribution": "素材来自 PigHub 社区图库及其开源镜像，版权归原权利人；本项目仅做逐图判定与裁切，署名见 assets/ATTRIBUTION.md。",
   "rejected": [],
@@ -44,13 +44,143 @@
     }
   ],
   "counts": {
-    "total": 235,
-    "live": 234,
+    "total": 240,
+    "live": 239,
     "dead": 1,
     "vector": 1,
-    "adopted": 218
+    "adopted": 223
   },
   "pigs": [
+    {
+      "id": "card-boshizhu",
+      "title": "博士猪",
+      "kind": "live",
+      "note": "用户 2026-11-15 对话内提供的角色卡；原图自带透明底，逐字节入库（未裁切/未改色/未重编码）",
+      "vector": false,
+      "animated": false,
+      "file": "assets/img/card-boshizhu.png",
+      "bytes": 56536,
+      "sha256": "55e78014d8baf8c279c326fc93286aac5dd02b24befb6ecffed7ef099ffafed9",
+      "size": {
+        "width": 240,
+        "height": 240
+      },
+      "source": {
+        "group": "user-provided",
+        "via": "cards",
+        "file": "assets/cards/img/card-boshizhu.png",
+        "sha256": "55e78014d8baf8c279c326fc93286aac5dd02b24befb6ecffed7ef099ffafed9"
+      },
+      "mood": "cute",
+      "moodReason": "学位帽 + 圆眼镜 + 领结的博士造型，表情憨厚，无血无伤口，可爱",
+      "visionReason": "单只粉猪戴黑色学位帽、圆框眼镜与红领结；四足完整，画面无文字无场景",
+      "adopted": true,
+      "sizeRatio": 101.07
+    },
+    {
+      "id": "card-dongfangmingzhu",
+      "title": "东方明猪",
+      "kind": "live",
+      "note": "用户 2026-11-15 对话内提供的角色卡；原图自带透明底，逐字节入库。蓝色波浪与塔身斜撑在画布左右各贴边 8/9 px（源图本身如此，未裁切）",
+      "vector": false,
+      "animated": false,
+      "file": "assets/img/card-dongfangmingzhu.png",
+      "bytes": 32708,
+      "sha256": "bc7c08aae405a9dfb7ef4058da889ae02b8da359791e139aedef1c4dd3c5b3c7",
+      "size": {
+        "width": 240,
+        "height": 240
+      },
+      "source": {
+        "group": "user-provided",
+        "via": "cards",
+        "file": "assets/cards/img/card-dongfangmingzhu.png",
+        "sha256": "bc7c08aae405a9dfb7ef4058da889ae02b8da359791e139aedef1c4dd3c5b3c7"
+      },
+      "mood": "cute",
+      "moodReason": "把地标换成两张猪脸的谐音梗，构图干净、无血无武器，可爱",
+      "visionReason": "东方明珠塔的双球造型各是一张猪脸，塔身/斜撑/天线完整，塔底一条蓝色波浪；无文字",
+      "adopted": true,
+      "sizeRatio": 194.86
+    },
+    {
+      "id": "card-tingzhu",
+      "title": "停猪",
+      "kind": "live",
+      "note": "用户 2026-11-15 对话内提供的角色卡；原图自带透明底，逐字节入库。路面贴画布左边缘 1 px（源图本身如此，未裁切）",
+      "vector": false,
+      "animated": false,
+      "file": "assets/img/card-tingzhu.png",
+      "bytes": 25708,
+      "sha256": "e6973aad9af08a98a8a2c789fabba18b18a9baea77be65d2b7e4c511f2857e7e",
+      "size": {
+        "width": 240,
+        "height": 240
+      },
+      "source": {
+        "group": "user-provided",
+        "via": "cards",
+        "file": "assets/cards/img/card-tingzhu.png",
+        "sha256": "e6973aad9af08a98a8a2c789fabba18b18a9baea77be65d2b7e4c511f2857e7e"
+      },
+      "mood": "cute",
+      "moodReason": "停在车位上的小猪，表情淡定、造型干净，无血无武器，可爱",
+      "visionReason": "单只粉猪站在一块沥青路面上（白色车道线与车位标线）；四足、卷尾、耳朵完整，画面无文字",
+      "adopted": true,
+      "sizeRatio": 149.1
+    },
+    {
+      "id": "card-zhufan",
+      "title": "猪饭",
+      "kind": "live",
+      "note": "用户 2026-11-15 对话内提供的角色卡；原图自带透明底，逐字节入库（未裁切/未改色/未重编码）",
+      "vector": false,
+      "animated": false,
+      "file": "assets/img/card-zhufan.png",
+      "bytes": 57301,
+      "sha256": "a1fb034a87be8598babc91fe668a1f0f70a5043ccad7a826941a7825edc0316a",
+      "size": {
+        "width": 240,
+        "height": 240
+      },
+      "source": {
+        "group": "user-provided",
+        "via": "cards",
+        "file": "assets/cards/img/card-zhufan.png",
+        "sha256": "a1fb034a87be8598babc91fe668a1f0f70a5043ccad7a826941a7825edc0316a"
+      },
+      "mood": "cute",
+      "moodReason": "一碗圆滚小猪配米饭，五官与卷尾完整，无血无伤口无武器，可爱",
+      "visionReason": "一只白瓷碗，碗里和碗身都是小猪；单张角色卡，画面里除碗与小猪外没有别的主体，无文字",
+      "adopted": true,
+      "sizeRatio": 104.96
+    },
+    {
+      "id": "card-zhumaimai",
+      "title": "猪麦麦",
+      "kind": "live",
+      "note": "用户 2026-11-15 对话内提供的角色卡；原图自带透明底，逐字节入库。袋身红底黄「M」为用户设计元素，按用户口径收录并在此点名",
+      "vector": false,
+      "animated": false,
+      "file": "assets/img/card-zhumaimai.png",
+      "bytes": 35203,
+      "sha256": "612601a7b7e7a43b37ceba053921bf680a815f6ffcec947cb6db8aaf1c4034f8",
+      "size": {
+        "width": 240,
+        "height": 240
+      },
+      "source": {
+        "group": "user-provided",
+        "via": "cards",
+        "file": "assets/cards/img/card-zhumaimai.png",
+        "sha256": "612601a7b7e7a43b37ceba053921bf680a815f6ffcec947cb6db8aaf1c4034f8"
+      },
+      "mood": "cute",
+      "moodReason": "背着一袋汉堡薯条的馋猪，造型谐趣、无血无武器，可爱；红底黄 M 是用户设计的一部分（角色名即「麦麦」），不是残留的角色名文字",
+      "visionReason": "单只粉猪趴在速食纸袋后，袋口露出汉堡与薯条；袋身有红底黄色「M」标记，除该标记外无文字",
+      "adopted": true,
+      "sizeRatio": 114.07
+    },
     {
       "id": "pig-1131",
       "title": "像素猪",
@@ -102,7 +232,7 @@
       },
       "mood": "cute",
       "moodReason": "像素风小猪：方头方身、圆鼻，GIF 里只有呼吸与眨眼，无攻击性元素。",
-      "sizeRatio": 125.46,
+      "sizeRatio": 124.75,
       "sizeOpaque": 57400
     },
     {
@@ -154,7 +284,7 @@
       },
       "mood": "cute",
       "moodReason": "圆润单猪、闭眼微笑状：名字叫「怪猪」，但像素上就是一只普通可爱猪（判定只看像素，不看名字）。",
-      "sizeRatio": 90.42,
+      "sizeRatio": 89.91,
       "rasterBytes": 69244,
       "rasterSha": "2904089c196bdf8a092e30fbee4b632250b540a833d560ad3d8ec327ee446e0d"
     },
@@ -207,7 +337,7 @@
       },
       "mood": "cute",
       "moodReason": "猪形萝卜：圆脸、圆眼、无獠牙无血，造型好笑但不怪。",
-      "sizeRatio": 79.85,
+      "sizeRatio": 79.39,
       "objectPig": true,
       "objectPigReason": "冰淇淋造型：身体是甜筒，头是上面的球（目检：蛋筒尖朝下、筒身有斜纹）。",
       "rasterBytes": 61427,
@@ -261,7 +391,7 @@
       },
       "mood": "cute",
       "moodReason": "「你知道吗」造型猪：问号形状但不狰狞，无血无獠牙。",
-      "sizeRatio": 82.48
+      "sizeRatio": 82.01
     },
     {
       "id": "pighub-1000",
@@ -288,7 +418,7 @@
       "mood": "cute",
       "moodReason": "节日装扮的圆胖小猪，无血无武器",
       "adopted": true,
-      "sizeRatio": 90.45,
+      "sizeRatio": 89.93,
       "rasterBytes": 76855,
       "rasterSha": "28b4655716440b1919df980a201636fcc5e40dd1166d4967a6382def73b4f2bf"
     },
@@ -317,7 +447,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，圆形图案无攻击性",
       "adopted": true,
-      "sizeRatio": 92.54,
+      "sizeRatio": 92.38,
       "rasterBytes": 60644,
       "rasterSha": "9fc8e329885dec538b6e6d33159cecc412eb5781a660a2ad817fd94887c966a7"
     },
@@ -346,7 +476,7 @@
       "mood": "cute",
       "moodReason": "圆滚滚身体、粉鼻，表情是撒娇式皱眉",
       "adopted": true,
-      "sizeRatio": 96.46,
+      "sizeRatio": 95.91,
       "rasterBytes": 26436,
       "rasterSha": "0c20dc41fd77c08dbba22b798231f7a1aef4d80338e0a3de0b6bcdc7894fba65"
     },
@@ -375,7 +505,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，哭泣表情无害",
       "adopted": true,
-      "sizeRatio": 161.88,
+      "sizeRatio": 124.91,
       "rasterBytes": 49833,
       "rasterSha": "007e9df8e7fdea2c54f3bd348e8c39e5bcc819522cc78ec5dd79c259992fd4ab"
     },
@@ -404,7 +534,7 @@
       "mood": "cute",
       "moodReason": "金翅单猪，可爱",
       "adopted": true,
-      "sizeRatio": 95.61,
+      "sizeRatio": 95.06,
       "rasterBytes": 54348,
       "rasterSha": "ea2f6798b032c9e83b3f3fbba9340eb5dd69d950282f71ad6bf1ab7e420d5760"
     },
@@ -433,7 +563,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，蜜蜂装扮无攻击性",
       "adopted": true,
-      "sizeRatio": 90.93,
+      "sizeRatio": 90.41,
       "rasterBytes": 54618,
       "rasterSha": "d80c2f7fb712bd7598fb184bed2b93f768fb59c722320d03216817582ada30a8"
     },
@@ -486,7 +616,7 @@
       },
       "mood": "cute",
       "moodReason": "矮脚圆猪：短腿大脸，最典型的可爱造型。",
-      "sizeRatio": 96.57,
+      "sizeRatio": 96.02,
       "rasterBytes": 130589,
       "rasterSha": "5ceca73223c289f9d25b3708e4082a05c813e880cf8e14844469b1990808e895"
     },
@@ -515,7 +645,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；书本闹钟为道具",
       "adopted": true,
-      "sizeRatio": 103.05,
+      "sizeRatio": 103.11,
       "rasterBytes": 61938,
       "rasterSha": "676bf77057c8e5ce61f5ceb4a3701523cd7c9e7cec485e7a4e641a4eb33cff52"
     },
@@ -544,7 +674,7 @@
       "mood": "cute",
       "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 93.83,
+      "sizeRatio": 93.29,
       "rasterBytes": 39508,
       "rasterSha": "928da908cf7c4587a1269f9a76ba85e1f9ca4e021c336b4d41f54e37776eca33"
     },
@@ -573,7 +703,7 @@
       "mood": "cute",
       "moodReason": "头顶问号的单猪",
       "adopted": true,
-      "sizeRatio": 94.6,
+      "sizeRatio": 94.21,
       "rasterBytes": 43927,
       "rasterSha": "32289494cddf5ff58a1a9f1691fe5b0f1d2828164533801c9bfb6893c7bce5b9"
     },
@@ -602,7 +732,7 @@
       "mood": "cute",
       "moodReason": "火焰用于表现「上头」，无血无獠牙无武器",
       "adopted": true,
-      "sizeRatio": 104.05,
+      "sizeRatio": 80.42,
       "rasterBytes": 47976,
       "rasterSha": "336aee72d77ea06bac0cc11edff2ce5992f0530d9d242ca03181d156879fd9f0"
     },
@@ -631,7 +761,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，进食场景温和",
       "adopted": true,
-      "sizeRatio": 168.36,
+      "sizeRatio": 129.88,
       "rasterBytes": 36559,
       "rasterSha": "8e538725106b51848bd3f240990d5043dc7b3dbb676a7efa5a9ceda3c7184cbf"
     },
@@ -660,7 +790,7 @@
       "mood": "cute",
       "moodReason": "圆润猪脸特写，表情平静，无血无武器",
       "adopted": true,
-      "sizeRatio": 70.52,
+      "sizeRatio": 70.12,
       "completion": {
         "mode": "body-graft",
         "at": "2026-11-13",
@@ -695,7 +825,7 @@
       "mood": "cute",
       "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 89.9,
+      "sizeRatio": 89.38,
       "rasterBytes": 65809,
       "rasterSha": "ba7d5ce0dd74779e71a89c6da0bf31d34f9b5d095079458d1ebd9bdca5698261"
     },
@@ -724,7 +854,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，站桶姿势可爱",
       "adopted": true,
-      "sizeRatio": 88.83,
+      "sizeRatio": 88.41,
       "rasterBytes": 50045,
       "rasterSha": "aedd2df7c15addbeeec496a7f05564f8053bc1d2436d9b099517953a705aea6c"
     },
@@ -753,7 +883,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，无语表情憨态",
       "adopted": true,
-      "sizeRatio": 165.53,
+      "sizeRatio": 127.85,
       "rasterBytes": 48419,
       "rasterSha": "e129dc58ff4e5b90e3cc11cb94d48ca60ede0f5db65b4ce692372661b154537c"
     },
@@ -782,7 +912,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，抱手机姿势可爱",
       "adopted": true,
-      "sizeRatio": 89.97,
+      "sizeRatio": 89.53,
       "rasterBytes": 47681,
       "rasterSha": "81f415bcc859d8d37d101ccfa0bd5cf4ef87df5fe7553a6237902d9032231094"
     },
@@ -811,7 +941,7 @@
       "mood": "cute",
       "moodReason": "头顶小云朵的单猪",
       "adopted": true,
-      "sizeRatio": 94.64,
+      "sizeRatio": 94.09,
       "rasterBytes": 44427,
       "rasterSha": "1855716b98ac19d7feb229c7248353863d3754c086493ad44cedc0ccad35094c"
     },
@@ -840,7 +970,7 @@
       "mood": "cute",
       "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 96.91,
+      "sizeRatio": 96.36,
       "rasterBytes": 50960,
       "rasterSha": "095d69479d7eea91470a2bdc9f39932db0ffcc9a1c12bd145a72eaedd5b304fb"
     },
@@ -869,7 +999,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体与粉色鼻头；红色为艾灸痕迹，非血非伤口",
       "adopted": true,
-      "sizeRatio": 93.6,
+      "sizeRatio": 93.06,
       "rasterBytes": 52569,
       "rasterSha": "f64089544d25300f213cbf6533eeb6d5117d9a8661b09871ef31b4848bbc2573"
     },
@@ -898,7 +1028,7 @@
       "mood": "cute",
       "moodReason": "爱心眼的单猪",
       "adopted": true,
-      "sizeRatio": 93.62,
+      "sizeRatio": 93.09,
       "rasterBytes": 70374,
       "rasterSha": "615fdc51bcf5f2d34b5c3f8cb115667821e5f5e984910832a05e38657cc68ed1"
     },
@@ -927,7 +1057,7 @@
       "mood": "cute",
       "moodReason": "圆润身体与粉色鼻子；拔罐为透明器具，无血无伤口",
       "adopted": true,
-      "sizeRatio": 91.37,
+      "sizeRatio": 90.86,
       "rasterBytes": 53655,
       "rasterSha": "7cded34407961b4b563e8b728f29bfd5dd10c240c89cf12aa23bfe07a8111468"
     },
@@ -956,7 +1086,7 @@
       "mood": "cute",
       "moodReason": "皱眉出汗的呆滞表情，破碎对话框无攻击性",
       "adopted": true,
-      "sizeRatio": 83.45,
+      "sizeRatio": 134.8,
       "completenessNote": "同上：有完整身体与腿，仅臀部右缘被裁。",
       "completion": {
         "mode": "original-as-is",
@@ -997,7 +1127,7 @@
       "mood": "cute",
       "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 92.62,
+      "sizeRatio": 92.09,
       "rasterBytes": 31773,
       "rasterSha": "d42006e180c9a0ac326f9799aeaf969cdb1aca29e18318e3c0fbac7fbc4d1221"
     },
@@ -1026,7 +1156,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；礼帽雪茄为装扮道具",
       "adopted": true,
-      "sizeRatio": 162.45,
+      "sizeRatio": 125.34,
       "rasterBytes": 51277,
       "rasterSha": "38092cf1cbda37969cfea2ef22f0535da567ea2339980bc68b9482c322f2bf60"
     },
@@ -1080,7 +1210,7 @@
       },
       "mood": "cute",
       "moodReason": "俯视猪：从上方看的圆猪，被源图裁在画布边，但形体与表情正常。",
-      "sizeRatio": 81.28,
+      "sizeRatio": 80.82,
       "completion": {
         "mode": "contour-closure",
         "at": "2026-11-13",
@@ -1115,7 +1245,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子配嫩竹，清爽可爱",
       "adopted": true,
-      "sizeRatio": 101.96,
+      "sizeRatio": 101.38,
       "rasterBytes": 61121,
       "rasterSha": "65d6a10badda6b199703a0d44b296b32062e32bf11a00db5d684b454621aa152"
     },
@@ -1144,7 +1274,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；电视为道具",
       "adopted": true,
-      "sizeRatio": 146.99,
+      "sizeRatio": 113.71,
       "rasterBytes": 42314,
       "rasterSha": "bf8a912e940f10717e711f1af515513fd9a8ff05c3877ef1c35811a4f272c6e7"
     },
@@ -1173,7 +1303,7 @@
       "mood": "cute",
       "moodReason": "趴卧姿态、粉色鼻子，造型圆润可爱",
       "adopted": true,
-      "sizeRatio": 136.72,
+      "sizeRatio": 135.94,
       "rasterBytes": 37871,
       "rasterSha": "4172708ff4fd6b5ab1cde27ab769cb0e9a2e49040450b40cb85fa90e15620e57"
     },
@@ -1202,7 +1332,7 @@
       "mood": "cute",
       "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 95.32,
+      "sizeRatio": 94.78,
       "rasterBytes": 46685,
       "rasterSha": "9f775920ff532e11c2973f1fd1fd6578949a78342ecf393cd7c1c6596781d37e"
     },
@@ -1231,7 +1361,7 @@
       "mood": "cute",
       "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 89.72,
+      "sizeRatio": 89.21,
       "rasterBytes": 41823,
       "rasterSha": "be76a1a57802b1a6d8f2c89faba4f4a19ae3a2831adbac9a76f19c3e5a4e648f"
     },
@@ -1260,7 +1390,7 @@
       "mood": "cute",
       "moodReason": "圆胖瘫躺姿势、粉鼻小嘴，憨态可爱",
       "adopted": true,
-      "sizeRatio": 97.62,
+      "sizeRatio": 97.06,
       "rasterBytes": 76454,
       "rasterSha": "50d0081921cbc89488a453407107fb1087bbea6851f32f42de195a5b3533a2f0"
     },
@@ -1289,7 +1419,7 @@
       "mood": "cute",
       "moodReason": "干净的单只粉猪，无道具无文字",
       "adopted": true,
-      "sizeRatio": 95.95,
+      "sizeRatio": 95.4,
       "rasterBytes": 42253,
       "rasterSha": "6515011980f9b427a80911ee9dbc392f3117605042c00cf7b1429aca69ef61dd"
     },
@@ -1318,7 +1448,7 @@
       "mood": "cute",
       "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 81.27,
+      "sizeRatio": 80.81,
       "rasterBytes": 38118,
       "rasterSha": "5d74dac1900f00cec3c53ecf5f4df4e746500b3decd20fb1acdef4ae82c9dc0d"
     },
@@ -1347,7 +1477,7 @@
       "mood": "cute",
       "moodReason": "闭眼安睡的圆胖身形；根须是「生根」梗，无伤口血迹",
       "adopted": true,
-      "sizeRatio": 103.01,
+      "sizeRatio": 102.42,
       "rasterBytes": 86431,
       "rasterSha": "3dfc1c2ef4da62569810629036f3b0a67c7f5187f51c6e6c2bbe85d26b79144c"
     },
@@ -1376,7 +1506,7 @@
       "mood": "cute",
       "moodReason": "蜗牛壳造型猪，可爱",
       "adopted": true,
-      "sizeRatio": 159.98,
+      "sizeRatio": 123.14,
       "rasterBytes": 58762,
       "rasterSha": "360308e45670be552532883b03c1da04ec48d45eb4fad088f90518e91125ed0a"
     },
@@ -1430,7 +1560,7 @@
       },
       "mood": "cute",
       "moodReason": "墨镜猪：戴墨镜的圆猪，酷但不可怕。",
-      "sizeRatio": 94.96,
+      "sizeRatio": 94.42,
       "rasterBytes": 73389,
       "rasterSha": "df05266bbd7f5b422bc4aab80ecf684e47378c7456c719468fae3ba62c982d0c"
     },
@@ -1459,7 +1589,7 @@
       "mood": "cute",
       "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 95.16,
+      "sizeRatio": 94.62,
       "rasterBytes": 21836,
       "rasterSha": "23d4da1b1d53ec11c497856e2988f0fd93c19e4cbeadf8c3911b6bfa079fcc8c"
     },
@@ -1488,7 +1618,7 @@
       "mood": "cute",
       "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 94.24,
+      "sizeRatio": 93.7,
       "rasterBytes": 49077,
       "rasterSha": "4ef948e41dade0c24ab9ae4c7103b7b146ca3252564d3a87949d4aee813729e9"
     },
@@ -1517,7 +1647,7 @@
       "mood": "cute",
       "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 78.63,
+      "sizeRatio": 78.18,
       "rasterBytes": 42989,
       "rasterSha": "3ea237a599de36fc349278584d9a81b25921cae48f412a7012e416d9e235e306"
     },
@@ -1546,7 +1676,7 @@
       "mood": "cute",
       "moodReason": "普通可爱造型，无獠牙无血无武器",
       "adopted": true,
-      "sizeRatio": 106.57,
+      "sizeRatio": 119.25,
       "rasterBytes": 62636,
       "rasterSha": "acf9023973e6510751f4cf62b2b47c1ae84d907555ae91cda9d0d3651714cfac"
     },
@@ -1575,7 +1705,7 @@
       "mood": "cute",
       "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 119.45,
+      "sizeRatio": 164.79,
       "background": {
         "key": "near-white",
         "threshold": 252,
@@ -1615,7 +1745,7 @@
       "mood": "cute",
       "moodReason": "绷带是「绷不住」谐音梗，无血无伤口无武器",
       "adopted": true,
-      "sizeRatio": 100.99,
+      "sizeRatio": 103.49,
       "rasterBytes": 60994,
       "rasterSha": "ed4c079c425c846dee3568084765e3089a02b3ed60cf88db57567b95c14e90b5"
     },
@@ -1644,7 +1774,7 @@
       "mood": "cute",
       "moodReason": "戴眼镜敲笔记本的单猪，可爱",
       "adopted": true,
-      "sizeRatio": 102.35,
+      "sizeRatio": 101.79,
       "rasterBytes": 70042,
       "rasterSha": "0291885cecef3f641305636d49223c6101470117a091a905ef20b964e2a344a4"
     },
@@ -1673,7 +1803,7 @@
       "mood": "cute",
       "moodReason": "闭眼陶醉的圆胖小猪配粉色耳机，纯道具无攻击性",
       "adopted": true,
-      "sizeRatio": 99.73,
+      "sizeRatio": 99.88,
       "rasterBytes": 65610,
       "rasterSha": "9fd8e81e88453c2f271f6366b4214e602893934ca2a3bfaa2161cbeb9c7192ca"
     },
@@ -1702,7 +1832,7 @@
       "mood": "cute",
       "moodReason": "拜年姿势的单猪",
       "adopted": true,
-      "sizeRatio": 97.29,
+      "sizeRatio": 96.74,
       "rasterBytes": 63577,
       "rasterSha": "5698f15179efeddc21b779faea0e800b840ac85ef2ab7e02328a2a05396c4a76"
     },
@@ -1731,7 +1861,7 @@
       "mood": "cute",
       "moodReason": "闭眼微笑的单猪",
       "adopted": true,
-      "sizeRatio": 95.64,
+      "sizeRatio": 95.09,
       "rasterBytes": 39279,
       "rasterSha": "9949d9ffafc4191a9b4edd0f20b141dadda2e40ca8980f4d7d0dfaa0f02640ec"
     },
@@ -1760,7 +1890,7 @@
       "mood": "cute",
       "moodReason": "普通可爱造型，无獠牙无血无武器",
       "adopted": true,
-      "sizeRatio": 141.3,
+      "sizeRatio": 140.71,
       "rasterBytes": 37328,
       "rasterSha": "8c8b0b46f33b5bce8836e52a2d1bc4283c43883509edc582f2027e1f3a93be36"
     },
@@ -1789,7 +1919,7 @@
       "mood": "cute",
       "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 94.89,
+      "sizeRatio": 94.34,
       "rasterBytes": 43999,
       "rasterSha": "d2a4d166c5ae2c29ac8b3f71271b088a8649249b8ee00ddf97c4bfdacc94395a"
     },
@@ -1818,7 +1948,7 @@
       "mood": "cute",
       "moodReason": "雨中落泪的单猪，卡通泪不是血",
       "adopted": true,
-      "sizeRatio": 101.56,
+      "sizeRatio": 100.98,
       "rasterBytes": 44397,
       "rasterSha": "5e85fe7e9cae136397374bd28b3b927db3d45bbe9b13b1e17c78dbcba4049737"
     },
@@ -1847,7 +1977,7 @@
       "mood": "cute",
       "moodReason": "倒置的单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 95.75,
+      "sizeRatio": 95.21,
       "rasterBytes": 47675,
       "rasterSha": "874ad2fcd031918bd4095953031fe8841d618d2f9bad4989de85323527ed5123"
     },
@@ -1876,7 +2006,7 @@
       "mood": "cute",
       "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 94.66,
+      "sizeRatio": 94.12,
       "rasterBytes": 32816,
       "rasterSha": "b4cf0a5b8c9c7be5269def453ef7fab1984f20c64bd10b33f08109e125f990b3"
     },
@@ -1930,7 +2060,7 @@
       },
       "mood": "cute",
       "moodReason": "红包猪：头顶红包金币，喜庆。",
-      "sizeRatio": 96.2,
+      "sizeRatio": 95.65,
       "rasterBytes": 195067,
       "rasterSha": "997bb40387a0849b3c905f554279cf8eb6944531de9e86b80b58c29a9bb568bb"
     },
@@ -1959,7 +2089,7 @@
       "mood": "cute",
       "moodReason": "包子造型猪 + 爱心，可爱",
       "adopted": true,
-      "sizeRatio": 100.87,
+      "sizeRatio": 100.3,
       "objectPig": true,
       "objectPigReason": "包子造型：身体是包子 + 爱心（标题「爱心馅猪包」）。",
       "rasterBytes": 61233,
@@ -1990,7 +2120,7 @@
       "mood": "cute",
       "moodReason": "单猪 + 暖色光晕，构图完整",
       "adopted": true,
-      "sizeRatio": 80.83,
+      "sizeRatio": 80.36,
       "rasterBytes": 69277,
       "rasterSha": "0d0c335f77a3112877a2536af2ddb9157cc54cfed1c7754e9fb99e8ba33d9bff"
     },
@@ -2019,7 +2149,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，紧张表情憨态",
       "adopted": true,
-      "sizeRatio": 165.27,
+      "sizeRatio": 127.69,
       "rasterBytes": 52287,
       "rasterSha": "e851ebb0b8389efa47fc47e248c598b46f3c27a49f0d7ae2f04a0b1dfccf6275"
     },
@@ -2048,7 +2178,7 @@
       "mood": "cute",
       "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 95.68,
+      "sizeRatio": 95.13,
       "rasterBytes": 43050,
       "rasterSha": "c01036451053e6a155e4bb128a5f96a5def80d2e124bd96441ad787f17850cd8"
     },
@@ -2077,7 +2207,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，天使造型柔和",
       "adopted": true,
-      "sizeRatio": 166.03,
+      "sizeRatio": 129.3,
       "rasterBytes": 49621,
       "rasterSha": "23fa1c7a880d396c2217adb6a320b831a8cc8c36a9ec7aaa963e53004718c071"
     },
@@ -2106,7 +2236,7 @@
       "mood": "cute",
       "moodReason": "裂缝光弧是冲击特效，无血无獠牙无武器",
       "adopted": true,
-      "sizeRatio": 112.64,
+      "sizeRatio": 112,
       "rasterBytes": 43046,
       "rasterSha": "b7e23ba1492fb996c1aaa4a9e509f27d3569d1e7c3f97f92a7a1e0e2cbe5088f"
     },
@@ -2135,7 +2265,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子配围裙装束，无血无武器",
       "adopted": true,
-      "sizeRatio": 71.51,
+      "sizeRatio": 71.71,
       "rasterBytes": 66277,
       "rasterSha": "d4e639473bb6e42713e058b0ba9f961570439ad80f91999e6c1e6dd23ed53bb4"
     },
@@ -2164,7 +2294,7 @@
       "mood": "cute",
       "moodReason": "X 眼是「喝趴」的通用表情，无血无武器",
       "adopted": true,
-      "sizeRatio": 102.61,
+      "sizeRatio": 102.02,
       "rasterBytes": 50122,
       "rasterSha": "da6aac699e83bac0d927c2d9a5a86018368fdd266393c2df32eaf141b0902a4d"
     },
@@ -2193,7 +2323,7 @@
       "mood": "cute",
       "moodReason": "X 眼瘫倒的通用梗，无血无獠牙无武器",
       "adopted": true,
-      "sizeRatio": 117.56,
+      "sizeRatio": 116.88,
       "rasterBytes": 30684,
       "rasterSha": "28e04b9dfd40ae06901f34a0896fc16f9065e1db46bcdb170ec86bf13c8d1a98"
     },
@@ -2222,7 +2352,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体与粉色鼻子，手柄为纯道具",
       "adopted": true,
-      "sizeRatio": 83.93,
+      "sizeRatio": 83.45,
       "rasterBytes": 62896,
       "rasterSha": "d9e51da606e218d0c84302120bca37e6bc5766c48c07e3f136784b4b5b114ec6"
     },
@@ -2251,7 +2381,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；鱼竿渔具属道具",
       "adopted": true,
-      "sizeRatio": 130.1,
+      "sizeRatio": 129.93,
       "rasterBytes": 40886,
       "rasterSha": "57a378b19a30c292e90ea4ac94d2d881c21f000633000aee37f4abf689e8c007"
     },
@@ -2280,7 +2410,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体配蜜蜂小道具，无血无武器",
       "adopted": true,
-      "sizeRatio": 95.46,
+      "sizeRatio": 94.91,
       "rasterBytes": 55151,
       "rasterSha": "cad53e06459fbd3552666d9f859043fc500aa85c63d94ba882334221a2e6f451"
     },
@@ -2309,7 +2439,7 @@
       "mood": "cute",
       "moodReason": "圆胖身形配学位装束，无血无武器",
       "adopted": true,
-      "sizeRatio": 75.39,
+      "sizeRatio": 75.28,
       "rasterBytes": 58702,
       "rasterSha": "11cb09eee7fbe197d8e18945e19521ab5133bc23c9e3b36669cb71cdeefdb118"
     },
@@ -2338,7 +2468,7 @@
       "mood": "cute",
       "moodReason": "弯眼笑配腮红，抱花姿势，纯无攻击性道具",
       "adopted": true,
-      "sizeRatio": 96.02,
+      "sizeRatio": 95.47,
       "rasterBytes": 64324,
       "rasterSha": "9803c5c7f7be4c60d2db7129e5d21317ba8e41c5b89cbd5cdb14de442e6e78c8"
     },
@@ -2367,7 +2497,7 @@
       "mood": "cute",
       "moodReason": "包子造型猪 + 光环，可爱",
       "adopted": true,
-      "sizeRatio": 90.85,
+      "sizeRatio": 90.59,
       "objectPig": true,
       "objectPigReason": "包子造型：身体就是一只带褶的包子（标题「猪包」），没有腿是造型本身。",
       "rasterBytes": 53546,
@@ -2398,7 +2528,7 @@
       "mood": "cute",
       "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 98.82,
+      "sizeRatio": 98.25,
       "rasterBytes": 35049,
       "rasterSha": "1a3e03cf25c9fa31a77654e319bf8a3db1653a444d04a168ee08eb0a7291dcec"
     },
@@ -2427,7 +2557,7 @@
       "mood": "cute",
       "moodReason": "红肿关节是「痛风」健康梗，无獠牙血迹与武器",
       "adopted": true,
-      "sizeRatio": 95.9,
+      "sizeRatio": 95.35,
       "rasterBytes": 64310,
       "rasterSha": "268551c773350d4e8e85322f0df7d2ad2ad7827cade2b2f531122681fb15578e"
     },
@@ -2456,7 +2586,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，面罩造型，无血无武器",
       "adopted": true,
-      "sizeRatio": 93.97,
+      "sizeRatio": 93.43,
       "rasterBytes": 64510,
       "rasterSha": "8eb286886b4849af49b4ff03197fb62bd5988a363fea7e3fb32ea989950b7530"
     },
@@ -2485,7 +2615,7 @@
       "mood": "cute",
       "moodReason": "闭眼享受的圆胖小猪，道具是奶茶与爱心",
       "adopted": true,
-      "sizeRatio": 105.08,
+      "sizeRatio": 104.48,
       "rasterBytes": 51076,
       "rasterSha": "a104717017307b7262cc92ddf0757403a6acd1128b516165de1ea3334c5c932e"
     },
@@ -2514,7 +2644,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，胡萝卜为符号",
       "adopted": true,
-      "sizeRatio": 134.72,
+      "sizeRatio": 156.76,
       "background": {
         "key": "near-white",
         "threshold": 252,
@@ -2554,7 +2684,7 @@
       "mood": "cute",
       "moodReason": "圆胖身形、粉色鼻子配星星眼，造型清甜",
       "adopted": true,
-      "sizeRatio": 161.3,
+      "sizeRatio": 124.5,
       "rasterBytes": 61910,
       "rasterSha": "1707f7e7b0b011e283dc1623e8f40a42c0832de3f76f67314f11f487341a6f36"
     },
@@ -2583,9 +2713,38 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，无语表情憨态",
       "adopted": true,
-      "sizeRatio": 163.92,
+      "sizeRatio": 126.67,
       "rasterBytes": 35683,
       "rasterSha": "638dc860564c894a1b19919102100325bd678cf35e38e6070122500368a6f505"
+    },
+    {
+      "id": "pighub-219",
+      "title": "猪热死",
+      "kind": "live",
+      "note": "用户 2026-11-14 手调后重新入库",
+      "vector": false,
+      "animated": false,
+      "file": "assets/img/pighub-219.png",
+      "raster": "assets/img/pighub-219.png",
+      "bytes": 47598,
+      "sha256": "47eb308b850babf2834f64c65fa63924db0e28156cd7af60fc3a18910893458e",
+      "size": {
+        "width": 370,
+        "height": 360
+      },
+      "source": {
+        "group": "pighub-online",
+        "via": "cards",
+        "file": "assets/cards/img/pighub-219.png",
+        "sha256": "ccfd8e93c2fa41d23ac976d6a0384449590f9605c5fdb3236c95d3ae6b16c939",
+        "url": "https://pighub.top/images/%E7%8C%AA%E7%83%AD%E6%AD%BB.png"
+      },
+      "mood": "cute",
+      "moodReason": "通红是「热」的表现、蓝色为汗滴，无血无伤口",
+      "adopted": true,
+      "sizeRatio": 156.82,
+      "rasterBytes": 47598,
+      "rasterSha": "47eb308b850babf2834f64c65fa63924db0e28156cd7af60fc3a18910893458e"
     },
     {
       "id": "pighub-222",
@@ -2612,7 +2771,7 @@
       "mood": "cute",
       "moodReason": "融化是软塌塌的甜点式梗，无血无伤口无武器",
       "adopted": true,
-      "sizeRatio": 96.6,
+      "sizeRatio": 96.04,
       "rasterBytes": 65753,
       "rasterSha": "4e0624bc69ee3afaffc68a7cedf90a036e384e37d22c715999c5fc004f666a54"
     },
@@ -2641,7 +2800,7 @@
       "mood": "cute",
       "moodReason": "圆胖瘫躺姿势，场景道具温和无血",
       "adopted": true,
-      "sizeRatio": 120.54,
+      "sizeRatio": 119.85,
       "rasterBytes": 37424,
       "rasterSha": "f5dced80543afc19414ca8cd49b6c439f77b39d26add4852e4005124b8a6e439"
     },
@@ -2670,7 +2829,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，卧床姿势温和",
       "adopted": true,
-      "sizeRatio": 130.19,
+      "sizeRatio": 100.63,
       "completenessNote": "现场核过：切的是布景（横幅/床架），猪身轮廓闭合，不残缺。",
       "rasterBytes": 36804,
       "rasterSha": "186bca7ca17e88683176643efd0b905ecec8cddcc9a1e092144888f9a6b2dec4"
@@ -2700,7 +2859,7 @@
       "mood": "cute",
       "moodReason": "倒过来的单猪",
       "adopted": true,
-      "sizeRatio": 107.48,
+      "sizeRatio": 106.87,
       "rasterBytes": 29154,
       "rasterSha": "9acf6996903c798a2b78a96f96bf9f4b50a8d53eb1f98f9e8398fae6f36cde93"
     },
@@ -2729,7 +2888,7 @@
       "mood": "cute",
       "moodReason": "闭眼熟睡的圆胖小猪，桌面书本为道具",
       "adopted": true,
-      "sizeRatio": 108.45,
+      "sizeRatio": 107.88,
       "rasterBytes": 51982,
       "rasterSha": "302da73a3fdf75bb7e2785a8c27b9f2a5fd3f6bb7d2ea10f073f34ce9ab03bc6"
     },
@@ -2758,7 +2917,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，踩鱼姿势滑稽无害",
       "adopted": true,
-      "sizeRatio": 116.08,
+      "sizeRatio": 89.82,
       "rasterBytes": 34229,
       "rasterSha": "6a1442df4815beba1e4caaa4f33ff4989349d942a80427068161027a37035bc7"
     },
@@ -2787,7 +2946,7 @@
       "mood": "cute",
       "moodReason": "闭眼微笑的圆胖小猪；鼻环与钓线属道具，无血无獠牙",
       "adopted": true,
-      "sizeRatio": 89.39,
+      "sizeRatio": 88.88,
       "rasterBytes": 28814,
       "rasterSha": "18e1deb8f9322b3d6c140eb41ab7696c65f3b94e4acf8dfdec4747466eba51f4"
     },
@@ -2816,7 +2975,7 @@
       "mood": "cute",
       "moodReason": "闭眼微笑、粉色鼻子与耳朵，构图干净可爱",
       "adopted": true,
-      "sizeRatio": 101.15,
+      "sizeRatio": 100.57,
       "rasterBytes": 42518,
       "rasterSha": "45c30ee530a13126c32f0cf198ebe2532747f238e1c84c41740c3ff5d2c314d6"
     },
@@ -2845,7 +3004,7 @@
       "mood": "cute",
       "moodReason": "闭眼微笑的单猪",
       "adopted": true,
-      "sizeRatio": 87.38,
+      "sizeRatio": 86.88,
       "completion": {
         "mode": "contour-closure",
         "at": "2026-11-13",
@@ -2880,7 +3039,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，嫌弃表情憨态",
       "adopted": true,
-      "sizeRatio": 164.02,
+      "sizeRatio": 126.47,
       "rasterBytes": 36844,
       "rasterSha": "630e058ced0aa95d94660b10b30dd7916231d13942092d2a0bc0e9c5508a7776"
     },
@@ -2909,7 +3068,7 @@
       "mood": "cute",
       "moodReason": "紧闭眼啃菜的憨态、粉鼻腮红，无血无武器",
       "adopted": true,
-      "sizeRatio": 96.9,
+      "sizeRatio": 96.34,
       "rasterBytes": 72329,
       "rasterSha": "e7aa1fdb6ec2b3d83ff7bf70040ebc228bae1824cdd4d751369b9a9443db8f24"
     },
@@ -2938,7 +3097,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，呆萌表情",
       "adopted": true,
-      "sizeRatio": 163.35,
+      "sizeRatio": 126.18,
       "rasterBytes": 28597,
       "rasterSha": "e85662bedb39cd94c420e2af9ad6061a82e4a5b0a283ed0e00449d7e7913916f"
     },
@@ -2967,9 +3126,131 @@
       "mood": "cute",
       "moodReason": "弯眼笑配粉色鼻子，小彩件无攻击性",
       "adopted": true,
-      "sizeRatio": 100.08,
+      "sizeRatio": 99.51,
       "rasterBytes": 56339,
       "rasterSha": "88b51e9e12f90ad2d91bfbfd1c2f140cb7bf89f282a47c8bf5b03b13012a2a99"
+    },
+    {
+      "id": "pighub-27-1",
+      "title": "忘猪",
+      "kind": "live",
+      "note": "来自 pighub-27「猪忘了」的用户手调版本（2026-11-14 拆分并调整）",
+      "vector": false,
+      "animated": false,
+      "file": "assets/img/pighub-27-1.png",
+      "raster": "assets/img/pighub-27-1.png",
+      "bytes": 36532,
+      "sha256": "7ac47a2049ffd75ca8f6e912ea6027a42922a9231c775076040022ac8bc4efc9",
+      "size": {
+        "width": 370,
+        "height": 360
+      },
+      "sizeRatio": 161.73,
+      "mood": "cute",
+      "moodReason": "用户手调后的猪，造型正常、无血腥怪异元素",
+      "source": {
+        "url": "https://pighub.top/images/%E7%8C%AA%E5%BF%98%E4%BA%86.jpg",
+        "group": "pighub-online",
+        "sha256": "4d1b836bbee0acbbe7ca99dc2497b3a02aeb3e71807705f7a3951196768849b8"
+      },
+      "background": {
+        "key": "none",
+        "threshold": 0,
+        "all": false,
+        "removed": 0
+      },
+      "completion": {
+        "mode": "user-edit",
+        "at": "2026-11-14",
+        "note": "用户手调后新增"
+      },
+      "cut": {
+        "trim": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "white": 0
+      },
+      "patch": {
+        "holes": 0,
+        "filled": 0,
+        "skipped": "animated_passthrough"
+      },
+      "style": {
+        "verdict": "match",
+        "palette": 1,
+        "flatness": 0.978,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "sizeOpaque": 57400,
+      "rasterBytes": 36532,
+      "rasterSha": "7ac47a2049ffd75ca8f6e912ea6027a42922a9231c775076040022ac8bc4efc9"
+    },
+    {
+      "id": "pighub-27-2",
+      "title": "猪忘了",
+      "kind": "live",
+      "note": "来自 pighub-27「猪忘了」的用户手调版本（2026-11-14 拆分并调整）",
+      "vector": false,
+      "animated": false,
+      "file": "assets/img/pighub-27-2.png",
+      "raster": "assets/img/pighub-27-2.png",
+      "bytes": 22519,
+      "sha256": "8fd0e58195a5f56028a3829f95402e92f808975769d3435976b6b3b55fad596f",
+      "size": {
+        "width": 370,
+        "height": 360
+      },
+      "sizeRatio": 164.09,
+      "mood": "cute",
+      "moodReason": "用户手调后的猪，造型正常、无血腥怪异元素",
+      "source": {
+        "url": "https://pighub.top/images/%E7%8C%AA%E5%BF%98%E4%BA%86.jpg",
+        "group": "pighub-online",
+        "sha256": "4d1b836bbee0acbbe7ca99dc2497b3a02aeb3e71807705f7a3951196768849b8"
+      },
+      "background": {
+        "key": "none",
+        "threshold": 0,
+        "all": false,
+        "removed": 0
+      },
+      "completion": {
+        "mode": "user-edit",
+        "at": "2026-11-14",
+        "note": "用户手调后新增"
+      },
+      "cut": {
+        "trim": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "white": 0
+      },
+      "patch": {
+        "holes": 0,
+        "filled": 0,
+        "skipped": "animated_passthrough"
+      },
+      "style": {
+        "verdict": "match",
+        "palette": 1,
+        "flatness": 0.978,
+        "thresholds": {
+          "paletteMin": 0.55,
+          "flatnessMin": 0.35
+        }
+      },
+      "sizeOpaque": 57400,
+      "rasterBytes": 22519,
+      "rasterSha": "8fd0e58195a5f56028a3829f95402e92f808975769d3435976b6b3b55fad596f"
     },
     {
       "id": "pighub-271",
@@ -2996,7 +3277,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，大葱为道具",
       "adopted": true,
-      "sizeRatio": 143.26,
+      "sizeRatio": 147.32,
       "background": {
         "key": "near-white",
         "threshold": 252,
@@ -3036,7 +3317,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；电脑为道具",
       "adopted": true,
-      "sizeRatio": 146.13,
+      "sizeRatio": 112.99,
       "rasterBytes": 45356,
       "rasterSha": "757b538509722c692ebac2eb07e33ce2f39d6f50ac795b5bddb1550ddd629d9f"
     },
@@ -3065,7 +3346,7 @@
       "mood": "cute",
       "moodReason": "皱眉的单猪，表情不吓人",
       "adopted": true,
-      "sizeRatio": 95.62,
+      "sizeRatio": 95.07,
       "rasterBytes": 52068,
       "rasterSha": "2f386677ed2b1b99a001ee5256e3b5217b75587d5b9c8e6e695a204edab5bd71"
     },
@@ -3094,7 +3375,7 @@
       "mood": "cute",
       "moodReason": "圆润身体、粉色鼻头，造型呆萌",
       "adopted": true,
-      "sizeRatio": 106.96,
+      "sizeRatio": 106.35,
       "rasterBytes": 48743,
       "rasterSha": "954773dbf8637a95dcfac78872bd87d02d20f5ba158b34a13a0fba1a2961e47e"
     },
@@ -3123,7 +3404,7 @@
       "mood": "cute",
       "moodReason": "火焰用于表现「红温」生气，无血无獠牙无武器",
       "adopted": true,
-      "sizeRatio": 95.64,
+      "sizeRatio": 95.09,
       "rasterBytes": 62826,
       "rasterSha": "37f943271595a0e53aabdc27c0995b23a25a06991bc62d473958ae11c2e2b960"
     },
@@ -3152,7 +3433,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；小车为道具，无血无武器",
       "adopted": true,
-      "sizeRatio": 89.81,
+      "sizeRatio": 89.36,
       "rasterBytes": 45718,
       "rasterSha": "32e4e415b2b80299607a238fda0488a4767276497bc66d0ef0611fa04a76407a"
     },
@@ -3181,7 +3462,7 @@
       "mood": "cute",
       "moodReason": "巧克力质感造型，无血无武器",
       "adopted": true,
-      "sizeRatio": 96.05,
+      "sizeRatio": 95.5,
       "objectPig": true,
       "objectPigReason": "巧克力造型：身体是分格的巧克力块（标题「猪克力」），没有腿是造型本身。",
       "rasterBytes": 92412,
@@ -3212,7 +3493,7 @@
       "mood": "cute",
       "moodReason": "流鼻涕的单猪，不是血",
       "adopted": true,
-      "sizeRatio": 95.73,
+      "sizeRatio": 95.18,
       "rasterBytes": 39089,
       "rasterSha": "0d1dcad35b8de12337ccdb815cb7d2fe958de5232ff41c2857f4519bd8dd36bf"
     },
@@ -3241,7 +3522,7 @@
       "mood": "cute",
       "moodReason": "是「装死/躺平」的通用可爱梗，无血无武器无伤口",
       "adopted": true,
-      "sizeRatio": 95.48,
+      "sizeRatio": 94.94,
       "rasterBytes": 56299,
       "rasterSha": "c78c1ce1f60d86e296a6eedb7ff8d225eee9866c47e4f60ac4fdf1fa6cfeb3be"
     },
@@ -3269,7 +3550,7 @@
       "mood": "cute",
       "moodReason": "圆胖造型配粉色腮线，闭口微笑，无獠牙血迹",
       "adopted": true,
-      "sizeRatio": 105.48,
+      "sizeRatio": 104.87,
       "sizeOpaque": 132024
     },
     {
@@ -3297,7 +3578,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；汉堡为道具",
       "adopted": true,
-      "sizeRatio": 162.71,
+      "sizeRatio": 125.61,
       "rasterBytes": 43299,
       "rasterSha": "e42adb161307c32884ae23f5fb523e16db180f3bc574991e3c2d46020a9d2599"
     },
@@ -3326,7 +3607,7 @@
       "mood": "cute",
       "moodReason": "笑脸配奖杯道具，无血无武器",
       "adopted": true,
-      "sizeRatio": 82.57,
+      "sizeRatio": 82.1,
       "rasterBytes": 58942,
       "rasterSha": "69f404d3d988b3a8fa7d382dc045812b271442d2487fb7a30c5c152a2a892ea8"
     },
@@ -3355,7 +3636,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，闪电为速度符号",
       "adopted": true,
-      "sizeRatio": 127.55,
+      "sizeRatio": 126.82,
       "rasterBytes": 35940,
       "rasterSha": "f3e92ad2b2220ce82ecaabe2f154636e3153f1e726ef14fecbf166b42f9e22a1"
     },
@@ -3384,7 +3665,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子配围裙装束，无血无武器",
       "adopted": true,
-      "sizeRatio": 71.78,
+      "sizeRatio": 71.99,
       "rasterBytes": 66119,
       "rasterSha": "158468725f5d1dd038beb53a1955e4db1982868a45a809af33af8119d734ab69"
     },
@@ -3413,7 +3694,7 @@
       "mood": "cute",
       "moodReason": "猪主体圆润可爱；配图为图标小道具，无血腥",
       "adopted": true,
-      "sizeRatio": 91.8,
+      "sizeRatio": 91.36,
       "rasterBytes": 54619,
       "rasterSha": "7a4ced82689508d9d3970682b12e27f63c7babf5182f0aed0c4ec694957e08d8"
     },
@@ -3442,7 +3723,7 @@
       "mood": "cute",
       "moodReason": "单猪，身上是褐色泥土不是伤口",
       "adopted": true,
-      "sizeRatio": 95.79,
+      "sizeRatio": 95.24,
       "rasterBytes": 57685,
       "rasterSha": "76ff2fca2042dfa856c9798609334c88aeedbde233ec2f3d1b44ac9bb9b125e6"
     },
@@ -3471,7 +3752,7 @@
       "mood": "cute",
       "moodReason": "戴女仆发带的单猪，可爱",
       "adopted": true,
-      "sizeRatio": 94.5,
+      "sizeRatio": 94.07,
       "rasterBytes": 55431,
       "rasterSha": "e92873a699a0d71d092b8c3515039575b310b53e46d5d300bc089d3e9e389b6f"
     },
@@ -3500,7 +3781,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，哭泣表情无害",
       "adopted": true,
-      "sizeRatio": 158.45,
+      "sizeRatio": 122.36,
       "rasterBytes": 38195,
       "rasterSha": "6b73a5388943147e1e50b7bac27525be48e8f98d465c33722fa10013312e3236"
     },
@@ -3529,7 +3810,7 @@
       "mood": "cute",
       "moodReason": "落泪的单猪，卡通泪不是血",
       "adopted": true,
-      "sizeRatio": 102.95,
+      "sizeRatio": 96.7,
       "completion": {
         "mode": "original-as-is",
         "at": "2026-11-14",
@@ -3569,7 +3850,7 @@
       "mood": "cute",
       "moodReason": "单猪 + 问号气泡，表情困惑、不吓人",
       "adopted": true,
-      "sizeRatio": 88.91,
+      "sizeRatio": 89.01,
       "rasterBytes": 57700,
       "rasterSha": "a2ee96ad8c46bec1053fc10035178f3be57589c4c1e1085c85d9b26a8282d7ce"
     },
@@ -3598,7 +3879,7 @@
       "mood": "cute",
       "moodReason": "单猪 + 逗猪小杆，动作可爱、无武器",
       "adopted": true,
-      "sizeRatio": 94.38,
+      "sizeRatio": 93.84,
       "rasterBytes": 34373,
       "rasterSha": "dc8ae401b18ed2b4df8258be984e87228f590d5aa67ce42c29afd1e01c84bc7a"
     },
@@ -3651,7 +3932,7 @@
       },
       "mood": "cute",
       "moodReason": "圆猪：几乎正圆的粉猪，无任何攻击性元素。",
-      "sizeRatio": 86.2,
+      "sizeRatio": 85.71,
       "rasterBytes": 77248,
       "rasterSha": "bbdf26c25c299ac2958aeb416fbc445a1b75053380e5d92b54e1f0be7248b297"
     },
@@ -3705,7 +3986,7 @@
       },
       "mood": "cute",
       "moodReason": "苹果猪：猪头 + 苹果叶，造型甜，无血无獠牙。",
-      "sizeRatio": 85.77,
+      "sizeRatio": 85.28,
       "objectPig": true,
       "objectPigReason": "苹果造型：身体是一只带叶苹果（标题「苹果猪」）。",
       "rasterBytes": 53004,
@@ -3736,7 +4017,7 @@
       "mood": "cute",
       "moodReason": "鼻梁到两耳缠一条暗红色带子（似头巾/彩带），无血滴、无伤口、无獠牙武器",
       "adopted": true,
-      "sizeRatio": 74.02,
+      "sizeRatio": 73.59,
       "rasterBytes": 41712,
       "rasterSha": "efb441be756576baddaeb4747f99a2221569290307b25ec0b86ff18438134ed5"
     },
@@ -3765,7 +4046,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，送花表情可爱",
       "adopted": true,
-      "sizeRatio": 185.49,
+      "sizeRatio": 142.95,
       "completenessNote": "现场核过：切的是布景（横幅/床架），猪身轮廓闭合，不残缺。",
       "rasterBytes": 49083,
       "rasterSha": "61ac066e4eeef5aa77baa3cd875a4481aaf669271e4921b7f8e400100f4cb61e"
@@ -3795,7 +4076,7 @@
       "mood": "cute",
       "moodReason": "床单幽灵造型猪，憨态",
       "adopted": true,
-      "sizeRatio": 73.65,
+      "sizeRatio": 73.23,
       "completion": {
         "mode": "contour-closure",
         "at": "2026-11-13",
@@ -3830,7 +4111,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，胡萝卜为符号",
       "adopted": true,
-      "sizeRatio": 151.62,
+      "sizeRatio": 118.77,
       "rasterBytes": 54088,
       "rasterSha": "a6e3d532035d618bfc7aa1e7ca49321bde5e8cb080b78a39d05fa9e057ca0a53"
     },
@@ -3859,7 +4140,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，画板为道具",
       "adopted": true,
-      "sizeRatio": 96.55,
+      "sizeRatio": 96,
       "rasterBytes": 40301,
       "rasterSha": "f83067e34df77f01ed3a9c9e9c453abd3e1be85df355aa38127946c922cacd50"
     },
@@ -3888,7 +4169,7 @@
       "mood": "cute",
       "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 105.71,
+      "sizeRatio": 105.76,
       "rasterBytes": 40198,
       "rasterSha": "0aaa78e554ed1d9243b1b69ba49974616818a2d1727d0857fc0b1a265a0d20ce"
     },
@@ -3917,7 +4198,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色耳朵与鼻头，闭口无害",
       "adopted": true,
-      "sizeRatio": 100.42,
+      "sizeRatio": 99.84,
       "rasterBytes": 79459,
       "rasterSha": "6905faa37b71d3bb77be30338dd0ad35f51e55b7c301e0e82a9aa2bccc0fad78"
     },
@@ -3946,7 +4227,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；书本为道具",
       "adopted": true,
-      "sizeRatio": 159.77,
+      "sizeRatio": 122.93,
       "rasterBytes": 57232,
       "rasterSha": "0ebfaac59a4f65ff349b54f559a32a589ae1a6da8a6d73feba98e7b244199dac"
     },
@@ -3975,7 +4256,7 @@
       "mood": "cute",
       "moodReason": "圆胖身形、粉色鼻子，书本闹钟为道具",
       "adopted": true,
-      "sizeRatio": 95.21,
+      "sizeRatio": 94.86,
       "rasterBytes": 75987,
       "rasterSha": "84d7981ae54f71059b6ae722c34a031e213324c3bddbc00f81937880087ef03c"
     },
@@ -4004,7 +4285,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子配红心，无血无武器",
       "adopted": true,
-      "sizeRatio": 93.78,
+      "sizeRatio": 93.25,
       "rasterBytes": 54228,
       "rasterSha": "2cd0bcfeba36b0bacad527b855deba18f7bc5354d28d0349b7a14d6d8f50f7ff"
     },
@@ -4033,7 +4314,7 @@
       "mood": "cute",
       "moodReason": "笑脸配王冠，圆润无害",
       "adopted": true,
-      "sizeRatio": 68.52,
+      "sizeRatio": 68.13,
       "completion": {
         "mode": "body-graft",
         "at": "2026-11-13",
@@ -4068,7 +4349,7 @@
       "mood": "cute",
       "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 74.94,
+      "sizeRatio": 74.51,
       "rasterBytes": 36423,
       "rasterSha": "71e24fefa3b4439fe06f286ba94f341b3118d3514898e03976297aa1abda30e3"
     },
@@ -4097,7 +4378,7 @@
       "mood": "cute",
       "moodReason": "站在地球上的单猪，构型完整",
       "adopted": true,
-      "sizeRatio": 94.57,
+      "sizeRatio": 94.03,
       "rasterBytes": 55533,
       "rasterSha": "8f3fb37fe6c6abf5055fbf6dc1b7cc017f2fa62d5fa358f57f3e46ac8378f0ba"
     },
@@ -4126,7 +4407,7 @@
       "mood": "cute",
       "moodReason": "西瓜造型猪，可爱",
       "adopted": true,
-      "sizeRatio": 93.35,
+      "sizeRatio": 92.82,
       "objectPig": true,
       "objectPigReason": "西瓜造型：下半身是西瓜（标题「西瓜猪」）。",
       "rasterBytes": 57883,
@@ -4157,7 +4438,7 @@
       "mood": "cute",
       "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 88.5,
+      "sizeRatio": 87.99,
       "rasterBytes": 43252,
       "rasterSha": "e7fc61c88ba7f48a9ace41f741e961a4d5e35da8c429994350e2a094e37ce32d"
     },
@@ -4187,7 +4468,7 @@
       "moodReason": "圆胖粉猪闭眼眯笑、叼荧光棒打 call，无獠牙无血无武器",
       "visionReason": "单只粉猪侧身站立，耳朵、嘴鼻、卷尾与四条腿齐全，嘴里叼着两根黄色荧光棒，透明底无文字",
       "adopted": true,
-      "sizeRatio": 105.46,
+      "sizeRatio": 104.85,
       "rasterBytes": 37602,
       "rasterSha": "3dae005d26d5361f9d2cbde751d0202610dcf7021b5bb20e70d7e33bfe2d9dd7"
     },
@@ -4216,7 +4497,7 @@
       "mood": "cute",
       "moodReason": "火苗是情绪/状态特效（口径第 5 条），无獠牙无血无武器",
       "adopted": true,
-      "sizeRatio": 123.78,
+      "sizeRatio": 135.41,
       "background": {
         "key": "near-white",
         "threshold": 252,
@@ -4256,7 +4537,7 @@
       "mood": "cute",
       "moodReason": "闭眼笑的单猪",
       "adopted": true,
-      "sizeRatio": 95.65,
+      "sizeRatio": 95.1,
       "rasterBytes": 42689,
       "rasterSha": "65db934cc7279cb79ca0b3ae53cae3c5a8df6a15554b5fdbffdcaabfa77827ae"
     },
@@ -4285,7 +4566,7 @@
       "mood": "cute",
       "moodReason": "圆润猪脸特写，表情平静，无血无武器",
       "adopted": true,
-      "sizeRatio": 70.7,
+      "sizeRatio": 70.3,
       "completion": {
         "mode": "body-graft",
         "at": "2026-11-13",
@@ -4320,7 +4601,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；魔法棒与虾为道具，无血无利刃",
       "adopted": true,
-      "sizeRatio": 101.56,
+      "sizeRatio": 101.09,
       "rasterBytes": 74634,
       "rasterSha": "e9c4aa9a89834f543ddaf37e5cc0640cc1b72977245fc6a041ff7e96adb45850"
     },
@@ -4349,7 +4630,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；书本为道具，无血腥",
       "adopted": true,
-      "sizeRatio": 98.47,
+      "sizeRatio": 97.9,
       "rasterBytes": 64848,
       "rasterSha": "f5b4c83ba97ad22bd14a28b17939afcd3f2951bc9adb3121a7e56e6be1d59ce9"
     },
@@ -4378,7 +4659,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；书本为道具，无血腥",
       "adopted": true,
-      "sizeRatio": 97.23,
+      "sizeRatio": 96.67,
       "rasterBytes": 74142,
       "rasterSha": "f963c91260c0bb749197c278345fdd330602a0f2134f1136161dca9592cdf069"
     },
@@ -4407,7 +4688,7 @@
       "mood": "cute",
       "moodReason": "兔耳装扮的圆胖小猪，造型清甜",
       "adopted": true,
-      "sizeRatio": 88.93,
+      "sizeRatio": 88.43,
       "rasterBytes": 50896,
       "rasterSha": "cd5adfb6a25b5afac9861c2c1d77c68d6a15f4d9c1a83e63d18d44abd9f171b7"
     },
@@ -4436,7 +4717,7 @@
       "mood": "cute",
       "moodReason": "圆胖站姿配话筒道具，无血腥",
       "adopted": true,
-      "sizeRatio": 93.45,
+      "sizeRatio": 92.96,
       "rasterBytes": 48233,
       "rasterSha": "642aa72504edfc519f388b72f6efc8ad7560586199a0ca65495bbccbba278b4a"
     },
@@ -4490,7 +4771,7 @@
       },
       "mood": "cute",
       "moodReason": "愤怒猪：只露齿 + 怒眉，是「生气」这一表情，不是撕咬/伤口/血；保留。",
-      "sizeRatio": 95.22,
+      "sizeRatio": 94.71,
       "rasterBytes": 130806,
       "rasterSha": "64d03d0ac1e70c5d03c16f28b4722f13472918c1ea10663f5c006f2fb7352001"
     },
@@ -4519,7 +4800,7 @@
       "mood": "cute",
       "moodReason": "弯眼笑、圆胖身体；道具是手机与游戏立绘，无血腥",
       "adopted": true,
-      "sizeRatio": 94.66,
+      "sizeRatio": 94.12,
       "rasterBytes": 65429,
       "rasterSha": "e4a585aafa680747eda73cefe971dc38c7066afbc8728d4faa3e0d64e43d67fc"
     },
@@ -4548,7 +4829,7 @@
       "mood": "cute",
       "moodReason": "带小翅膀的单猪，可爱",
       "adopted": true,
-      "sizeRatio": 137.4,
+      "sizeRatio": 106.79,
       "rasterBytes": 32686,
       "rasterSha": "04324b030bb1c14c5972db85696b26f5ecd21042a2b7dcc5fa41c1303f4fa70f"
     },
@@ -4577,7 +4858,7 @@
       "mood": "cute",
       "moodReason": "圆胖身形、粉色鼻子，造型清甜",
       "adopted": true,
-      "sizeRatio": 103.61,
+      "sizeRatio": 103.02,
       "rasterBytes": 27304,
       "rasterSha": "5adc53d9b8d8c907a7c77cf0bde6e80768f7efa9ebdf5f6330c4c9d1f9ba8a5e"
     },
@@ -4606,7 +4887,7 @@
       "mood": "cute",
       "moodReason": "吐气的单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 94.68,
+      "sizeRatio": 94.14,
       "rasterBytes": 47710,
       "rasterSha": "40a575a99720de678856ffd5fafb9cbfefdfe0c4fae3762190e559b9f0098d13"
     },
@@ -4635,7 +4916,7 @@
       "mood": "cute",
       "moodReason": "干净单猪，圆脸圆鼻",
       "adopted": true,
-      "sizeRatio": 92.94,
+      "sizeRatio": 92.41,
       "rasterBytes": 67236,
       "rasterSha": "21fcbbf419454e22b51ed1cf2cf3511f362e83e014642a6f5b353d5cc4c63b19"
     },
@@ -4664,7 +4945,7 @@
       "mood": "cute",
       "moodReason": "白胡子老猪造型憨态，无獠牙血迹",
       "adopted": true,
-      "sizeRatio": 96.72,
+      "sizeRatio": 96.16,
       "rasterBytes": 44179,
       "rasterSha": "35e10720e294ac7ff6b8496f32cb659073ea78f52a3124efc37037ab6814b6eb"
     },
@@ -4693,7 +4974,7 @@
       "mood": "cute",
       "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 107.29,
+      "sizeRatio": 106.68,
       "rasterBytes": 50804,
       "rasterSha": "d061ac1c76335e4d7458b890e850f55a44edc0e081fbeabdda67ee3d58b45bbf"
     },
@@ -4722,7 +5003,7 @@
       "mood": "cute",
       "moodReason": "摩羯座造型猪（羊角+鱼尾），单主体",
       "adopted": true,
-      "sizeRatio": 103.95,
+      "sizeRatio": 103.35,
       "rasterBytes": 59313,
       "rasterSha": "763093a0317e4e54716379dc0c8715dc93d8e1c2c96889e6d397a3dc182d0d66"
     },
@@ -4751,7 +5032,7 @@
       "mood": "cute",
       "moodReason": "单猪 + 小扫帚，可爱",
       "adopted": true,
-      "sizeRatio": 106.04,
+      "sizeRatio": 105.77,
       "rasterBytes": 53962,
       "rasterSha": "6055d0351f87bc3b06624e34fd20edca1c3c0e063b0229c21a33b84dffca35ee"
     },
@@ -4780,7 +5061,7 @@
       "mood": "cute",
       "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 112.31,
+      "sizeRatio": 111.66,
       "rasterBytes": 40657,
       "rasterSha": "8f78e3a06b27bb848e93cba98bda97846504edff62e506c139d7a2dc57dd7944"
     },
@@ -4809,7 +5090,7 @@
       "mood": "cute",
       "moodReason": "单猪 + 小蟹钳/小鱼配件，整体仍是一只可爱猪",
       "adopted": true,
-      "sizeRatio": 103.36,
+      "sizeRatio": 102.77,
       "rasterBytes": 49230,
       "rasterSha": "6a8489c62ee77049db20276906830441a1145d2bb9060ca48218b3bb5ec7866e"
     },
@@ -4838,7 +5119,7 @@
       "mood": "cute",
       "moodReason": "狮子鬃毛造型猪，可爱",
       "adopted": true,
-      "sizeRatio": 97.13,
+      "sizeRatio": 96.57,
       "rasterBytes": 74099,
       "rasterSha": "ea382dc29d7138a8847bd8547d2dfea149a4c32ea5bd1ffe6272ad11dc5448be"
     },
@@ -4867,7 +5148,7 @@
       "mood": "cute",
       "moodReason": "天蝎座造型猪（蝎尾），单主体",
       "adopted": true,
-      "sizeRatio": 113.96,
+      "sizeRatio": 113.31,
       "rasterBytes": 53129,
       "rasterSha": "d6d89300f81fcc3d16f55a6bdcdbf5ea82c60648b16dc6d24f67cd1a1d90b463"
     },
@@ -4896,7 +5177,7 @@
       "mood": "cute",
       "moodReason": "戴皇冠捧花瓶的单猪，可爱",
       "adopted": true,
-      "sizeRatio": 101.46,
+      "sizeRatio": 101.04,
       "rasterBytes": 58943,
       "rasterSha": "83cb89b4d8826b461c684672a269a0996ca654d8b0f09db00e2585609558a87f"
     },
@@ -4925,7 +5206,7 @@
       "mood": "cute",
       "moodReason": "爆炸是落地冲击的卡通表现，无血无獠牙无武器",
       "adopted": true,
-      "sizeRatio": 108.25,
+      "sizeRatio": 107.65,
       "rasterBytes": 58555,
       "rasterSha": "65149d652b1bccbe6a40bfee98abe51b89eea85af2985bfa21ca10c9517af921"
     },
@@ -4954,7 +5235,7 @@
       "mood": "cute",
       "moodReason": "单猪 + 天平道具，无武器",
       "adopted": true,
-      "sizeRatio": 113.8,
+      "sizeRatio": 113.25,
       "rasterBytes": 47052,
       "rasterSha": "8b79c113b044c67db139d91729aa802d679dbdbfe287a4eee4a097bffeba437f"
     },
@@ -4983,7 +5264,7 @@
       "mood": "cute",
       "moodReason": "圆成一个球的单猪，可爱",
       "adopted": true,
-      "sizeRatio": 85.35,
+      "sizeRatio": 84.86,
       "rasterBytes": 35002,
       "rasterSha": "3673c761f952a939e232936b194f8c968e7cc2933543f0fca905220c2622f8fa"
     },
@@ -5012,7 +5293,7 @@
       "mood": "cute",
       "moodReason": "幽灵造型猪，白色憨态，不恐怖",
       "adopted": true,
-      "sizeRatio": 91.98,
+      "sizeRatio": 91.51,
       "rasterBytes": 42780,
       "rasterSha": "6c92637fae701e3d4b2119acafee3bf4a6420c175a19651ecb4b8dc95aa2103b"
     },
@@ -5041,7 +5322,7 @@
       "mood": "cute",
       "moodReason": "戴护目镜拿试管的单猪，可爱",
       "adopted": true,
-      "sizeRatio": 94.57,
+      "sizeRatio": 94.04,
       "rasterBytes": 60627,
       "rasterSha": "1ccca94b9a1ec1e310fc340d3b0e5bfe0ddf487dd6a43c3bcf116a8f3137e031"
     },
@@ -5095,7 +5376,7 @@
       },
       "mood": "cute",
       "moodReason": "幽灵猪：半透明鬼造型，但表情憨、粉色调，属可爱而非恐怖（与「恐怖猪」的区别正是：无獠牙、无血、无怒眉）。",
-      "sizeRatio": 67.73,
+      "sizeRatio": 67.34,
       "rasterBytes": 96407,
       "rasterSha": "c352dbd907c6905eb1e7a968f0f366f758d90b1cc3db5bc6a75b6b9c0ef21c01"
     },
@@ -5124,7 +5405,7 @@
       "mood": "cute",
       "moodReason": "圆胖站姿配快递箱道具，无血腥",
       "adopted": true,
-      "sizeRatio": 86.32,
+      "sizeRatio": 85.83,
       "rasterBytes": 58671,
       "rasterSha": "2d31c7f11bae0fdf86aff41db475e588cd756cfdb36e2daf68f917753f12031e"
     },
@@ -5153,7 +5434,7 @@
       "mood": "cute",
       "moodReason": "闪电是「渡劫」符号，无血无武器无獠牙",
       "adopted": true,
-      "sizeRatio": 103.46,
+      "sizeRatio": 102.87,
       "rasterBytes": 42218,
       "rasterSha": "6c7af4921a92794b5bcc69814e57bccfee8974cccc2c4d08c6ca01b124795d22"
     },
@@ -5182,7 +5463,7 @@
       "mood": "cute",
       "moodReason": "圆胖站姿、粉色鼻子；钩挂属展示道具，无血",
       "adopted": true,
-      "sizeRatio": 114.41,
+      "sizeRatio": 114.39,
       "rasterBytes": 27332,
       "rasterSha": "71442ed08fe1625b756a5016342921ee22d9a6acda07a061c6144554a187c7bd"
     },
@@ -5211,7 +5492,7 @@
       "mood": "cute",
       "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 87.97,
+      "sizeRatio": 87.46,
       "rasterBytes": 42205,
       "rasterSha": "27edfbeedb6276c404c2df1dc5e8d17eabff7ebce452d8bc1fa8b0e3f8408d62"
     },
@@ -5240,7 +5521,7 @@
       "mood": "cute",
       "moodReason": "小丑造型猪，红鼻头是化妆不是伤口",
       "adopted": true,
-      "sizeRatio": 86.88,
+      "sizeRatio": 86.38,
       "completion": {
         "mode": "contour-closure",
         "at": "2026-11-13",
@@ -5300,7 +5581,7 @@
       },
       "mood": "cute",
       "moodReason": "小眼猪：小眼圆身，配色单一，可爱。",
-      "sizeRatio": 95.97,
+      "sizeRatio": 95.42,
       "rasterBytes": 171859,
       "rasterSha": "089bb2f15b20fe6da805fc9d7a120fe659e4cdcb85ebf27c941bed700edbe0f3"
     },
@@ -5329,7 +5610,7 @@
       "mood": "cute",
       "moodReason": "热狗造型猪，幽默不怪",
       "adopted": true,
-      "sizeRatio": 62.43,
+      "sizeRatio": 62.08,
       "objectPig": true,
       "objectPigReason": "热狗造型：身体是夹在面包里的热狗肠（标题「热猪」）。",
       "rasterBytes": 42946,
@@ -5360,7 +5641,7 @@
       "mood": "cute",
       "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 82,
+      "sizeRatio": 81.53,
       "rasterBytes": 47278,
       "rasterSha": "e5ac45136d9634708e096355697e0463203757104034d7233894687bc8805493"
     },
@@ -5389,7 +5670,7 @@
       "mood": "cute",
       "moodReason": "黄色配色单猪，干净",
       "adopted": true,
-      "sizeRatio": 95.24,
+      "sizeRatio": 94.7,
       "rasterBytes": 33892,
       "rasterSha": "387a17afbb690c56f673a2d29579a766551f589d5ba3b914d7e0d7a20b87db59"
     },
@@ -5418,7 +5699,7 @@
       "mood": "cute",
       "moodReason": "粉色腮红、星形魔杖，纯魔法小道具",
       "adopted": true,
-      "sizeRatio": 103.36,
+      "sizeRatio": 102.95,
       "rasterBytes": 46545,
       "rasterSha": "ffbbe4dfb0191323f138bcfdcf0dcf8d4dc16f8965dd5a6ae85cde98b01dde9c"
     },
@@ -5447,7 +5728,7 @@
       "mood": "cute",
       "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 98.58,
+      "sizeRatio": 98.02,
       "rasterBytes": 47053,
       "rasterSha": "c1709d449863c774df60d61fd8fcc7f247461b8288ae64bc83fd8f62274bad13"
     },
@@ -5476,7 +5757,7 @@
       "mood": "cute",
       "moodReason": "火焰用于表现「元气/上火」，无血无獠牙无武器",
       "adopted": true,
-      "sizeRatio": 107.99,
+      "sizeRatio": 107.57,
       "rasterBytes": 49430,
       "rasterSha": "d6bf07fcf64c9da1aaa4d09f85592f32ca955d995e44ff610d01f36af13fc289"
     },
@@ -5505,7 +5786,7 @@
       "mood": "cute",
       "moodReason": "弯眉小眼、粉色鼻子，图标为纯道具",
       "adopted": true,
-      "sizeRatio": 103.22,
+      "sizeRatio": 103.62,
       "rasterBytes": 40839,
       "rasterSha": "2c62aa158f94861fccbfb77b21648170f2f077d86c4312c2f1a97e6a0480a166"
     },
@@ -5534,7 +5815,7 @@
       "mood": "cute",
       "moodReason": "弯眼笑、粉色鼻子，举牌姿势可爱无害",
       "adopted": true,
-      "sizeRatio": 139.05,
+      "sizeRatio": 106.86,
       "rasterBytes": 40203,
       "rasterSha": "6819dbd4c4f00554b44dc811954c1bb1d91323ab4a918da2cca8b43d66e736fa"
     },
@@ -5563,7 +5844,7 @@
       "mood": "cute",
       "moodReason": "弯眼笑、粉色鼻子，点赞图标为纯道具",
       "adopted": true,
-      "sizeRatio": 102.58,
+      "sizeRatio": 102.26,
       "rasterBytes": 46586,
       "rasterSha": "1783615a3e0423256139e8148ab2bbbfd04e4871befa4034857b37f64b4be57a"
     },
@@ -5592,7 +5873,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，像素块为纯装饰",
       "adopted": true,
-      "sizeRatio": 173.0,
+      "sizeRatio": 133.3,
       "rasterBytes": 44305,
       "rasterSha": "24ff045b7ff175011fc0807beea25b551554e11bc89fef905d5b03a894a3184d"
     },
@@ -5621,7 +5902,7 @@
       "mood": "cute",
       "moodReason": "晶体与红色图标是状态特效/道具，无獠牙无血无武器",
       "adopted": true,
-      "sizeRatio": 133.27,
+      "sizeRatio": 103.02,
       "rasterBytes": 37054,
       "rasterSha": "7b3b4568782619bc4e111f88d78c36dce81b58f0387b4c3354b08dc83baca48e"
     },
@@ -5650,7 +5931,7 @@
       "mood": "cute",
       "moodReason": "圆胖仰躺、粉色鼻子；小鸡为道具，无血无武器",
       "adopted": true,
-      "sizeRatio": 90.77,
+      "sizeRatio": 90.25,
       "rasterBytes": 46606,
       "rasterSha": "4fb5e47bc4072b55162b32bc018aff733218524f3a3704b19f3d49d68ff06803"
     },
@@ -5679,7 +5960,7 @@
       "mood": "cute",
       "moodReason": "戴细框眼镜的单猪，表情温和",
       "adopted": true,
-      "sizeRatio": 96.08,
+      "sizeRatio": 95.53,
       "rasterBytes": 44009,
       "rasterSha": "f6d1b0cf26daee01e250dc60c2b71cf3e925fd89c3f1922dfbe1d9ebd6f859b6"
     },
@@ -5708,7 +5989,7 @@
       "mood": "cute",
       "moodReason": "爆炸是冲击特效（口径第 5 条），无獠牙无血无武器",
       "adopted": true,
-      "sizeRatio": 101.14,
+      "sizeRatio": 100.56,
       "rasterBytes": 94280,
       "rasterSha": "9c2d7465424c296f426df4f9917ac2850fcc50bc1d7dffc71b384d3e07190869"
     },
@@ -5737,7 +6018,7 @@
       "mood": "cute",
       "moodReason": "粉发圆身造型猪，可爱",
       "adopted": true,
-      "sizeRatio": 102.29,
+      "sizeRatio": 101.7,
       "rasterBytes": 77858,
       "rasterSha": "8b63c1223ee65ebdd34daf481773c0de2dafad141ecc35cabc18016a3343cb11"
     },
@@ -5766,7 +6047,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子配蓝边云朵，柔和可爱",
       "adopted": true,
-      "sizeRatio": 88.18,
+      "sizeRatio": 87.67,
       "rasterBytes": 43205,
       "rasterSha": "a3f29848cc6f322d5c46a38bd650aaefd9b5dea58f788eb3ea2b94f56141a20f"
     },
@@ -5795,7 +6076,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；篝火与烤杆是野外道具，无血",
       "adopted": true,
-      "sizeRatio": 122.46,
+      "sizeRatio": 121.76,
       "rasterBytes": 38454,
       "rasterSha": "69e81e82c9b340cf4ab6012f22a992c7efe1381093cc6f29e28058a02f1160bf"
     },
@@ -5824,7 +6105,7 @@
       "mood": "cute",
       "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 105.78,
+      "sizeRatio": 105.18,
       "rasterBytes": 46777,
       "rasterSha": "70fbd89a842d52e755ffac3bd97c981275f27fafd09851b60eec6098196f5974"
     },
@@ -5853,7 +6134,7 @@
       "mood": "cute",
       "moodReason": "侧躺睡觉的单猪",
       "adopted": true,
-      "sizeRatio": 102.25,
+      "sizeRatio": 101.67,
       "rasterBytes": 32443,
       "rasterSha": "4f7cd31246fa562d823c6945682e4fc895a52cdbc5747436cebd831295a8360d"
     },
@@ -5882,7 +6163,7 @@
       "mood": "cute",
       "moodReason": "歪倒的单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 102.62,
+      "sizeRatio": 102.04,
       "rasterBytes": 31626,
       "rasterSha": "3345db83288894ed9463bd83550a11b9109baf2777b199f6ea5503a5ebe257ef"
     },
@@ -5911,7 +6192,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；篝火烤鱼为野外道具",
       "adopted": true,
-      "sizeRatio": 120.94,
+      "sizeRatio": 120.25,
       "rasterBytes": 47375,
       "rasterSha": "89e65070534d4bcc9e2b53596afc2dc14243c12cf4b1183bd4b684b25e4c3a43"
     },
@@ -5940,7 +6221,7 @@
       "mood": "cute",
       "moodReason": "干净单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 95.86,
+      "sizeRatio": 95.32,
       "rasterBytes": 33624,
       "rasterSha": "633de56e3b66f28207de37b5f092dc89f4c225d3273f5fd0044b609bd5c97c23"
     },
@@ -5969,7 +6250,7 @@
       "mood": "cute",
       "moodReason": "首轮目检通过：单只猪角色、图上无角色名、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 94.89,
+      "sizeRatio": 94.34,
       "rasterBytes": 42221,
       "rasterSha": "c24dfbc8f9f0b2916899bc6e27519bfd6770e38ad67ddd0a90d2e85e4f66f09a"
     },
@@ -5998,7 +6279,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；城堡为场景道具，无血",
       "adopted": true,
-      "sizeRatio": 77.66,
+      "sizeRatio": 77.21,
       "rasterBytes": 89819,
       "rasterSha": "f26e6c89f5525d6ff0c536e6cfd42dea560228f20d2b327f9244e396073e51bc"
     },
@@ -6027,7 +6308,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；城堡软垫为道具",
       "adopted": true,
-      "sizeRatio": 76.5,
+      "sizeRatio": 76.07,
       "rasterBytes": 83949,
       "rasterSha": "e461d5dd5f73d79ff7c5879b199bea97922bc6261db90305964962fe395f5052"
     },
@@ -6056,7 +6337,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，藤椒枝条为道具",
       "adopted": true,
-      "sizeRatio": 120.29,
+      "sizeRatio": 119.6,
       "rasterBytes": 51052,
       "rasterSha": "7b82263a8de4a9dfc990b66edf70db76e1c928fbbf494feaacaaa96f7eaf4af9"
     },
@@ -6085,7 +6366,7 @@
       "mood": "cute",
       "moodReason": "举手投降姿势的单猪",
       "adopted": true,
-      "sizeRatio": 88.55,
+      "sizeRatio": 88.04,
       "rasterBytes": 58185,
       "rasterSha": "535b9268e365de2132cad1fa406fc9f0a05a89de50162a57b28cf018611dc54d"
     },
@@ -6113,7 +6394,7 @@
       "mood": "cute",
       "moodReason": "普通可爱造型，无獠牙无血无武器",
       "adopted": true,
-      "sizeRatio": 98.84,
+      "sizeRatio": 98.27,
       "sizeOpaque": 70005
     },
     {
@@ -6140,7 +6421,7 @@
       "mood": "cute",
       "moodReason": "普通可爱造型，无獠牙无血无武器",
       "adopted": true,
-      "sizeRatio": 98.82,
+      "sizeRatio": 98.26,
       "sizeOpaque": 142831
     },
     {
@@ -6168,7 +6449,7 @@
       "mood": "cute",
       "moodReason": "瘫倒吐舌的通用表情梗，无血无伤口无武器",
       "adopted": true,
-      "sizeRatio": 105.58,
+      "sizeRatio": 104.98,
       "rasterBytes": 45721,
       "rasterSha": "18eb6b7e0458873cf0a7d1bfe33d1f40feb7689af1cd0b31f271e1bcf51a90b8"
     },
@@ -6196,7 +6477,7 @@
       "mood": "cute",
       "moodReason": "按 pighub-878 的判法——绳绕躯干、猪眼睛正常、标题为荡秋千——不算勒颈",
       "adopted": true,
-      "sizeRatio": 114.15,
+      "sizeRatio": 113.5,
       "sizeOpaque": 49804
     },
     {
@@ -6224,7 +6505,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体配墨镜胡须，无血无武器",
       "adopted": true,
-      "sizeRatio": 95.52,
+      "sizeRatio": 94.97,
       "rasterBytes": 51596,
       "rasterSha": "2deadc2c7060db0f45c75dd99dca5020019c5bb7345ae05629fd08a217f24af1"
     },
@@ -6253,7 +6534,7 @@
       "mood": "cute",
       "moodReason": "戴墨镜的单猪",
       "adopted": true,
-      "sizeRatio": 95.93,
+      "sizeRatio": 95.38,
       "rasterBytes": 38825,
       "rasterSha": "7783eebec142cc6125c002ad4f28ca631e6bdb4b2abb8e64e6a8940309dbf15b"
     },
@@ -6282,7 +6563,7 @@
       "mood": "cute",
       "moodReason": "斗鸡眼单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 85.66,
+      "sizeRatio": 86.26,
       "completion": {
         "mode": "contour-closure",
         "at": "2026-11-13",
@@ -6317,7 +6598,7 @@
       "mood": "cute",
       "moodReason": "嫌弃脸的单猪，表情可爱",
       "adopted": true,
-      "sizeRatio": 94.49,
+      "sizeRatio": 93.95,
       "rasterBytes": 50371,
       "rasterSha": "e634fd44254ef441f7b98fba47eb38b7cbdbfc302a361682ad62c31b5a50d969"
     },
@@ -6346,7 +6627,7 @@
       "mood": "cute",
       "moodReason": "叉腰姿势的单猪，可爱",
       "adopted": true,
-      "sizeRatio": 84.24,
+      "sizeRatio": 84.18,
       "completion": {
         "mode": "belly-arc-redraw",
         "at": "2026-11-13",
@@ -6387,7 +6668,7 @@
       "mood": "cute",
       "moodReason": "单猪，白色头发造型，不吓人",
       "adopted": true,
-      "sizeRatio": 97.66,
+      "sizeRatio": 98.12,
       "rasterBytes": 73188,
       "rasterSha": "3bb285ea40398c0e54d1e299af5ca03b24fbebcf752b996d549eb521a219f805"
     },
@@ -6416,7 +6697,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；手提箱为道具",
       "adopted": true,
-      "sizeRatio": 130.51,
+      "sizeRatio": 106.33,
       "background": {
         "key": "near-white",
         "threshold": 252,
@@ -6456,7 +6737,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；机械为游戏道具，无血无武器",
       "adopted": true,
-      "sizeRatio": 101.82,
+      "sizeRatio": 101.24,
       "rasterBytes": 82183,
       "rasterSha": "20cc3f02f9028ded3b88bed72a6d99846b4f94276a19c56e753c8ec269f5484b"
     },
@@ -6484,7 +6765,7 @@
       "mood": "cute",
       "moodReason": "造型圆胖、黑点眼睛和粉色鼻头，无獠牙血迹",
       "adopted": true,
-      "sizeRatio": 122.04,
+      "sizeRatio": 121.35,
       "sizeOpaque": 43571
     },
     {
@@ -6512,7 +6793,7 @@
       "mood": "cute",
       "moodReason": "猪脸圆润、粉色鼻子；画面大部分为杆，未见血腥",
       "adopted": true,
-      "sizeRatio": 82.9,
+      "sizeRatio": 82.43,
       "rasterBytes": 10784,
       "rasterSha": "8aa2921fb0b0024af0845c89d0c6dfb854a11d7ccce9eee64b9ebb7eec960280"
     },
@@ -6541,7 +6822,7 @@
       "mood": "cute",
       "moodReason": "洗淋浴的单猪，水珠道具，无武器",
       "adopted": true,
-      "sizeRatio": 82.59,
+      "sizeRatio": 82.84,
       "rasterBytes": 38689,
       "rasterSha": "4d1a1e5950960f6cdfab09adbadfab07bdcc25be3b9680b061c20cfa39ed4fc1"
     },
@@ -6570,7 +6851,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，气球为道具",
       "adopted": true,
-      "sizeRatio": 97.43,
+      "sizeRatio": 96.87,
       "rasterBytes": 26339,
       "rasterSha": "14b4b595d458427c6c0029ffb8465a0c5c10e75bd5ab75c3e303b979e5a3db82"
     },
@@ -6599,7 +6880,7 @@
       "mood": "cute",
       "moodReason": "蛋形单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 76.27,
+      "sizeRatio": 75.83,
       "objectPig": true,
       "objectPigReason": "蛋形造型：身体是一枚蛋（标题「猪蛋」），没有耳/腿是造型本身。",
       "rasterBytes": 43515,
@@ -6630,7 +6911,7 @@
       "mood": "cute",
       "moodReason": "圆胖站立姿势配王冠；断链是「枷锁」道具，无血无武器",
       "adopted": true,
-      "sizeRatio": 94.28,
+      "sizeRatio": 93.74,
       "rasterBytes": 55546,
       "rasterSha": "0a3a8dde3557c814c44c213cd87f77ba227ac9d9b13405df40ed17ee9f9718e7"
     },
@@ -6659,7 +6940,7 @@
       "mood": "cute",
       "moodReason": "包子造型猪，圆润可爱",
       "adopted": true,
-      "sizeRatio": 94.8,
+      "sizeRatio": 94.26,
       "objectPig": true,
       "objectPigReason": "包子造型：身体是带褶包子 + 小蘑菇（标题「咕咕猪包」）。",
       "rasterBytes": 62437,
@@ -6690,7 +6971,7 @@
       "mood": "cute",
       "moodReason": "团子串造型的三只小猪，可爱",
       "adopted": true,
-      "sizeRatio": 120.13,
+      "sizeRatio": 119.44,
       "objectPig": true,
       "objectPigReason": "丸子串造型：三颗猪团子串在签子上（标题「丸子猪」）。",
       "rasterBytes": 28163,
@@ -6721,7 +7002,7 @@
       "mood": "cute",
       "moodReason": "趴着睡的单猪，表情憨",
       "adopted": true,
-      "sizeRatio": 111,
+      "sizeRatio": 110.37,
       "rasterBytes": 48942,
       "rasterSha": "ee0f8291b1b8744a77b1abf058c37acdaa8f4eeeb26498043fc6ee17775e3c26"
     },
@@ -6750,7 +7031,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，眩晕星为通用表情符号",
       "adopted": true,
-      "sizeRatio": 114.89,
+      "sizeRatio": 114.23,
       "rasterBytes": 43438,
       "rasterSha": "401b5e0417995a28079c65a1d3f629edb5ce72b634d2b0554b073c21b03ed68b"
     },
@@ -6779,7 +7060,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；焊接工具为道具",
       "adopted": true,
-      "sizeRatio": 156.59,
+      "sizeRatio": 121.49,
       "rasterBytes": 35573,
       "rasterSha": "b864fef048f5d9f7af1c7343fda792d22fe940cdd609ded04a75174d64332573"
     },
@@ -6808,7 +7089,7 @@
       "mood": "cute",
       "moodReason": "疲惫耷眉的圆胖趴姿，表情无害",
       "adopted": true,
-      "sizeRatio": 114.42,
+      "sizeRatio": 113.76,
       "rasterBytes": 35602,
       "rasterSha": "98ee06ffb911a3206d68bbf79516127a66f1da39366c72e5ce84bcf0bf468386"
     },
@@ -6837,7 +7118,7 @@
       "mood": "cute",
       "moodReason": "圆胖头部、粉色腮线，表情温和可爱",
       "adopted": true,
-      "sizeRatio": 92.88,
+      "sizeRatio": 92.35,
       "rasterBytes": 52119,
       "rasterSha": "0433b80f2ab0a583c0d20908e240c04cf071ecc0d395c1b1fdf294fee36c2c9a"
     },
@@ -6866,7 +7147,7 @@
       "mood": "cute",
       "moodReason": "眨眼的单猪，单只猪角色、图上无文字、造型可爱无血腥",
       "adopted": true,
-      "sizeRatio": 95.8,
+      "sizeRatio": 95.25,
       "rasterBytes": 53890,
       "rasterSha": "547290c91c197b47f06ef51ce3c0ad84913c97f41962d235dce99f82127ca888"
     },
@@ -6895,7 +7176,7 @@
       "mood": "cute",
       "moodReason": "只是皱眉表情，无獠牙血迹与武器",
       "adopted": true,
-      "sizeRatio": 96,
+      "sizeRatio": 95.45,
       "rasterBytes": 57597,
       "rasterSha": "91dbfe34b30d16d5cc7fa60d436b09a0c553a4a0782d757e3ca0612c8f1e0c3c"
     },
@@ -6924,7 +7205,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子配王冠，无血无武器",
       "adopted": true,
-      "sizeRatio": 89.62,
+      "sizeRatio": 89.11,
       "rasterBytes": 47132,
       "rasterSha": "9e53be8371c5a837af86a200a3c401f200065cfde7394ddf890fde8fb99b5307"
     },
@@ -6953,7 +7234,7 @@
       "mood": "cute",
       "moodReason": "圆胖笑脸、粉色鼻子；木马为游乐设施道具",
       "adopted": true,
-      "sizeRatio": 83.23,
+      "sizeRatio": 83.08,
       "rasterBytes": 75073,
       "rasterSha": "3f2415ca7844d065b8279a7c1b2b1dc9f125aa32bbe5ae249c294885702d9af7"
     },
@@ -6982,7 +7263,7 @@
       "mood": "cute",
       "moodReason": "节日装扮，无血无武器（与 pighub-1000 画面几乎相同）",
       "adopted": true,
-      "sizeRatio": 90.47,
+      "sizeRatio": 89.95,
       "rasterBytes": 73341,
       "rasterSha": "325070d65822136a959e860435770da0725cb51a4073d6a7117bb46c256beee6"
     },
@@ -7011,7 +7292,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；胡子羽扇为装扮道具",
       "adopted": true,
-      "sizeRatio": 88.84,
+      "sizeRatio": 88.35,
       "rasterBytes": 90002,
       "rasterSha": "bbad085492a72f46a7c8858516006e9d1d7c5b68cfdc939af6d79120a7c27186"
     },
@@ -7041,7 +7322,7 @@
       "moodReason": "戴圆眼镜的圆胖小猪捧着黄油吐司，两道蓝线是泪水不是伤口（§E.5），无獠牙无血无武器",
       "visionReason": "单只粉猪侧身，戴圆框眼镜、前爪捧着一片抹黄油的吐司，耳朵、卷尾与四条腿齐全，透明底无文字",
       "adopted": true,
-      "sizeRatio": 94.15,
+      "sizeRatio": 93.61,
       "rasterBytes": 64321,
       "rasterSha": "8ab087e90fa05bcffb5217b658cb70169adb03754592695b69e94e52756ceb4c"
     },
@@ -7070,7 +7351,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子，葡萄为道具",
       "adopted": true,
-      "sizeRatio": 88.38,
+      "sizeRatio": 87.88,
       "rasterBytes": 64018,
       "rasterSha": "2f0ed50e0ed53a19dd3141c888878b41352f0472485d3a2165b5c60af408bd7e"
     },
@@ -7099,7 +7380,7 @@
       "mood": "cute",
       "moodReason": "呆滞小眼配粉色鼻子，疑惑表情呆萌",
       "adopted": true,
-      "sizeRatio": 96.68,
+      "sizeRatio": 96.14,
       "rasterBytes": 57808,
       "rasterSha": "91fa60cdf20c600fe08380bf1197a1e18b9239ece0c021b79a45f0286f920e1b"
     },
@@ -7153,7 +7434,7 @@
       },
       "mood": "cute",
       "moodReason": "斗鸡眼猪：两只斗鸡眼 + 圆鼻，滑稽不惊悚。",
-      "sizeRatio": 98.41,
+      "sizeRatio": 97.85,
       "completion": {
         "mode": "head-swap",
         "at": "2026-11-13",
@@ -7188,7 +7469,7 @@
       "mood": "cute",
       "moodReason": "圣诞帽单猪，可爱",
       "adopted": true,
-      "sizeRatio": 94.54,
+      "sizeRatio": 94.31,
       "rasterBytes": 72335,
       "rasterSha": "942ea318e1277034cac3bd87e2442047b8bd0553ccb97eb15217cff0f02ffffb"
     },
@@ -7217,7 +7498,7 @@
       "mood": "cute",
       "moodReason": "单猪 + 一滴汗，卡通不是血",
       "adopted": true,
-      "sizeRatio": 95.43,
+      "sizeRatio": 94.89,
       "rasterBytes": 30265,
       "rasterSha": "7509cc9d180aad2698a06f4ce905299cd60abea4d31280be2e4f903d976398a1"
     },
@@ -7246,7 +7527,7 @@
       "mood": "cute",
       "moodReason": "圆胖身体、粉色鼻子；行李箱为道具",
       "adopted": true,
-      "sizeRatio": 93.92,
+      "sizeRatio": 93.39,
       "rasterBytes": 45760,
       "rasterSha": "8a35fe01afc14950fc81d151133f1dc6d1fbfe5030c3cbb26b6db3ede6a71732"
     },
@@ -7292,166 +7573,15 @@
       "mood": "cute",
       "moodReason": "项目自带的标志猪：圆润侧身、闭眼微笑、无獠牙无血无武器。",
       "rarity": "common",
-      "sizeRatio": 98.86,
+      "sizeRatio": 98.3,
       "rasterBytes": 76303,
       "rasterSha": "210af09de9cfba463a7d08047e9b0078646ba56c2bbefe44da47df530e4ec796"
-    },
-    {
-      "id": "pighub-27-1",
-      "title": "忘猪",
-      "kind": "live",
-      "note": "来自 pighub-27「猪忘了」的用户手调版本（2026-11-14 拆分并调整）",
-      "vector": false,
-      "animated": false,
-      "file": "assets/img/pighub-27-1.png",
-      "raster": "assets/img/pighub-27-1.png",
-      "bytes": 36532,
-      "sha256": "7ac47a2049ffd75ca8f6e912ea6027a42922a9231c775076040022ac8bc4efc9",
-      "size": {
-        "width": 370,
-        "height": 360
-      },
-      "sizeRatio": 85.08,
-      "mood": "cute",
-      "moodReason": "用户手调后入库",
-      "source": {
-        "url": "https://pighub.top/images/%E7%8C%AA%E5%BF%98%E4%BA%86.jpg",
-        "group": "pighub-online",
-        "sha256": "4d1b836bbee0acbbe7ca99dc2497b3a02aeb3e71807705f7a3951196768849b8"
-      },
-      "background": {
-        "key": "none",
-        "threshold": 0,
-        "all": false,
-        "removed": 0
-      },
-      "completion": {
-        "mode": "user-edit",
-        "at": "2026-11-14",
-        "note": "用户手调后新增"
-      },
-      "cut": {
-        "trim": [
-          0,
-          0,
-          1,
-          1
-        ],
-        "white": 0
-      },
-      "patch": {
-        "holes": 0,
-        "filled": 0,
-        "skipped": "animated_passthrough"
-      },
-      "style": {
-        "verdict": "match",
-        "palette": 1,
-        "flatness": 0.978,
-        "thresholds": {
-          "paletteMin": 0.55,
-          "flatnessMin": 0.35
-        }
-      },
-      "sizeOpaque": 57400,
-      "rasterBytes": 36532,
-      "rasterSha": "7ac47a2049ffd75ca8f6e912ea6027a42922a9231c775076040022ac8bc4efc9"
-    },
-    {
-      "id": "pighub-27-2",
-      "title": "猪忘了",
-      "kind": "live",
-      "note": "来自 pighub-27「猪忘了」的用户手调版本（2026-11-14 拆分并调整）",
-      "vector": false,
-      "animated": false,
-      "file": "assets/img/pighub-27-2.png",
-      "raster": "assets/img/pighub-27-2.png",
-      "bytes": 22519,
-      "sha256": "8fd0e58195a5f56028a3829f95402e92f808975769d3435976b6b3b55fad596f",
-      "size": {
-        "width": 370,
-        "height": 360
-      },
-      "sizeRatio": 85.08,
-      "mood": "cute",
-      "moodReason": "用户手调后入库",
-      "source": {
-        "url": "https://pighub.top/images/%E7%8C%AA%E5%BF%98%E4%BA%86.jpg",
-        "group": "pighub-online",
-        "sha256": "4d1b836bbee0acbbe7ca99dc2497b3a02aeb3e71807705f7a3951196768849b8"
-      },
-      "background": {
-        "key": "none",
-        "threshold": 0,
-        "all": false,
-        "removed": 0
-      },
-      "completion": {
-        "mode": "user-edit",
-        "at": "2026-11-14",
-        "note": "用户手调后新增"
-      },
-      "cut": {
-        "trim": [
-          0,
-          0,
-          1,
-          1
-        ],
-        "white": 0
-      },
-      "patch": {
-        "holes": 0,
-        "filled": 0,
-        "skipped": "animated_passthrough"
-      },
-      "style": {
-        "verdict": "match",
-        "palette": 1,
-        "flatness": 0.978,
-        "thresholds": {
-          "paletteMin": 0.55,
-          "flatnessMin": 0.35
-        }
-      },
-      "sizeOpaque": 57400,
-      "rasterBytes": 22519,
-      "rasterSha": "8fd0e58195a5f56028a3829f95402e92f808975769d3435976b6b3b55fad596f"
-    },
-    {
-      "id": "pighub-219",
-      "title": "猪热死",
-      "kind": "live",
-      "note": "用户 2026-11-14 手调后重新入库",
-      "vector": false,
-      "animated": false,
-      "file": "assets/img/pighub-219.png",
-      "raster": "assets/img/pighub-219.png",
-      "bytes": 47598,
-      "sha256": "47eb308b850babf2834f64c65fa63924db0e28156cd7af60fc3a18910893458e",
-      "size": {
-        "width": 370,
-        "height": 360
-      },
-      "source": {
-        "group": "pighub-online",
-        "via": "cards",
-        "file": "assets/cards/img/pighub-219.png",
-        "sha256": "ccfd8e93c2fa41d23ac976d6a0384449590f9605c5fdb3236c95d3ae6b16c939",
-        "url": "https://pighub.top/images/%E7%8C%AA%E7%83%AD%E6%AD%BB.png"
-      },
-      "mood": "cute",
-      "moodReason": "通红是「热」的表现、蓝色为汗滴，无血无伤口",
-      "adopted": true,
-      "sizeRatio": 102.18,
-      "rasterBytes": 47598,
-      "rasterSha": "47eb308b850babf2834f64c65fa63924db0e28156cd7af60fc3a18910893458e"
     }
   ],
   "moodGate": {
     "rule": "只收可爱；血腥（獠牙撕咬/伤口/血）、身体恐怖（一具身体多张脸）、惊悚造型一律 reject。",
     "decidedAt": "2026-11-12",
-    "appliedAt": "2026-11-13T13:08:12.205Z"
+    "appliedAt": "2026-11-15T07:34:12.261Z"
   },
   "moodRejected": [
     {
@@ -7478,7 +7608,7 @@
   "sizeRatioBasis": {
     "basis": "sqrt(opaque area)",
     "targetPx": 96,
-    "measuredAt": "2026-11-13"
+    "measuredAt": "2026-11-15"
   },
   "incompletePolicy": "标 incomplete 的猪不参与抽取（draw），但保留可渲染，避免删掉用户已拥有的猪。"
 }

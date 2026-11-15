@@ -4215,13 +4215,144 @@
       "id": "pighub-27-1",
       "mood": "cute",
       "moodReason": "用户手调后的猪，造型正常、无血腥怪异元素",
-      "category": "species"
+      "category": "species",
+      "title": "pighub-27-1",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "visionReason": "用户手调后重新入库的猪（2026-11-14），非上游卡片产物",
+      "note": "用户手调产物：已在清单里（adopted），本条目只用于让收编链认得出「已有同一只」",
+      "sourceFile": "assets/img/pighub-27-1.png"
     },
     {
       "id": "pighub-27-2",
       "mood": "cute",
       "moodReason": "用户手调后的猪，造型正常、无血腥怪异元素",
-      "category": "species"
+      "category": "species",
+      "title": "pighub-27-2",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "visionReason": "用户手调后重新入库的猪（2026-11-14），非上游卡片产物",
+      "note": "用户手调产物：已在清单里（adopted），本条目只用于让收编链认得出「已有同一只」",
+      "sourceFile": "assets/img/pighub-27-2.png"
+    },
+    {
+      "id": "card-zhufan",
+      "title": "猪饭",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "一碗圆滚小猪配米饭，五官与卷尾完整，无血无伤口无武器，可爱",
+      "visionReason": "一只白瓷碗，碗里和碗身都是小猪；单张角色卡，画面里除碗与小猪外没有别的主体，无文字",
+      "note": "用户 2026-11-15 对话内提供的角色卡；原图自带透明底，逐字节入库（未裁切/未改色/未重编码）",
+      "sourceGroup": "user-provided",
+      "sourceFile": "assets/cards/img/card-zhufan.png",
+      "bytes": 57301,
+      "size": {
+        "width": 240,
+        "height": 240
+      },
+      "sha256": "a1fb034a87be8598babc91fe668a1f0f70a5043ccad7a826941a7825edc0316a"
+    },
+    {
+      "id": "card-boshizhu",
+      "title": "博士猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "学位帽 + 圆眼镜 + 领结的博士造型，表情憨厚，无血无伤口，可爱",
+      "visionReason": "单只粉猪戴黑色学位帽、圆框眼镜与红领结；四足完整，画面无文字无场景",
+      "note": "用户 2026-11-15 对话内提供的角色卡；原图自带透明底，逐字节入库（未裁切/未改色/未重编码）",
+      "sourceGroup": "user-provided",
+      "sourceFile": "assets/cards/img/card-boshizhu.png",
+      "bytes": 56536,
+      "size": {
+        "width": 240,
+        "height": 240
+      },
+      "sha256": "55e78014d8baf8c279c326fc93286aac5dd02b24befb6ecffed7ef099ffafed9"
+    },
+    {
+      "id": "card-zhumaimai",
+      "title": "猪麦麦",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "背着一袋汉堡薯条的馋猪，造型谐趣、无血无武器，可爱；红底黄 M 是用户设计的一部分（角色名即「麦麦」），不是残留的角色名文字",
+      "visionReason": "单只粉猪趴在速食纸袋后，袋口露出汉堡与薯条；袋身有红底黄色「M」标记，除该标记外无文字",
+      "note": "用户 2026-11-15 对话内提供的角色卡；原图自带透明底，逐字节入库。袋身红底黄「M」为用户设计元素，按用户口径收录并在此点名",
+      "sourceGroup": "user-provided",
+      "sourceFile": "assets/cards/img/card-zhumaimai.png",
+      "bytes": 35203,
+      "size": {
+        "width": 240,
+        "height": 240
+      },
+      "sha256": "612601a7b7e7a43b37ceba053921bf680a815f6ffcec947cb6db8aaf1c4034f8"
+    },
+    {
+      "id": "card-dongfangmingzhu",
+      "title": "东方明猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "把地标换成两张猪脸的谐音梗，构图干净、无血无武器，可爱",
+      "visionReason": "东方明珠塔的双球造型各是一张猪脸，塔身/斜撑/天线完整，塔底一条蓝色波浪；无文字",
+      "note": "用户 2026-11-15 对话内提供的角色卡；原图自带透明底，逐字节入库。蓝色波浪与塔身斜撑在画布左右各贴边 8/9 px（源图本身如此，未裁切）",
+      "sourceGroup": "user-provided",
+      "sourceFile": "assets/cards/img/card-dongfangmingzhu.png",
+      "bytes": 32708,
+      "size": {
+        "width": 240,
+        "height": 240
+      },
+      "sha256": "bc7c08aae405a9dfb7ef4058da889ae02b8da359791e139aedef1c4dd3c5b3c7"
+    },
+    {
+      "id": "card-tingzhu",
+      "title": "停猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "cute",
+      "moodReason": "停在车位上的小猪，表情淡定、造型干净，无血无武器，可爱",
+      "visionReason": "单只粉猪站在一块沥青路面上（白色车道线与车位标线）；四足、卷尾、耳朵完整，画面无文字",
+      "note": "用户 2026-11-15 对话内提供的角色卡；原图自带透明底，逐字节入库。路面贴画布左边缘 1 px（源图本身如此，未裁切）",
+      "sourceGroup": "user-provided",
+      "sourceFile": "assets/cards/img/card-tingzhu.png",
+      "bytes": 25708,
+      "size": {
+        "width": 240,
+        "height": 240
+      },
+      "sha256": "e6973aad9af08a98a8a2c789fabba18b18a9baea77be65d2b7e4c511f2857e7e"
+    },
+    {
+      "id": "pighub-737",
+      "title": "恐怖猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "reject",
+      "moodReason": "露齿獠牙 + 嘴角红色血痕、怒眉：典型血腥恐怖造型，按新约束不进包。",
+      "note": "可爱闸门拒收留档（历史记录，2026-11-12 判定）：只留档，不进包",
+      "sourceFile": "assets/cards/img/pighub-737.png"
+    },
+    {
+      "id": "pighub-96",
+      "title": "双面幽灵猪",
+      "kind": "live",
+      "vector": false,
+      "animated": false,
+      "mood": "reject",
+      "moodReason": "一具身体上叠了三张脸（三个鼻头、多只眼）：身体恐怖式的「怪异」，不进包。",
+      "note": "可爱闸门拒收留档（历史记录，2026-11-12 判定）：只留档，不进包",
+      "sourceFile": "assets/cards/img/pighub-96.png"
     }
   ]
 }

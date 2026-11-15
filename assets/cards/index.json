@@ -1,8 +1,8 @@
 {
   "summary": {
     "generatedAt": "2026-11-13T13:02:31.965Z",
-    "source": "https://pighub.top/api/images?sort=2",
-    "requested": 588,
+    "source": "https://pighub.top/api/images?sort=2 + 用户对话内提供（2026-11-15）",
+    "requested": 593,
     "produced": 576,
     "character": 486,
     "nameRemoved": 445,
@@ -10,10 +10,10 @@
     "animated": 28,
     "skipped": 90,
     "vision": {
-      "checked": 528,
-      "pass": 270,
-      "fail": 258,
-      "pending": 60
+      "checked": 539,
+      "pass": 278,
+      "fail": 261,
+      "pending": 54
     }
   },
   "cards": [
@@ -19888,6 +19888,126 @@
       "flags": [],
       "sha256": "68e34fd828e8933ff250194c2886345d94410ba1762b6bb19353fb98772b3a53",
       "vision": "pending"
+    },
+    {
+      "id": "card-zhufan",
+      "title": "猪饭",
+      "kind": "static",
+      "file": "assets/cards/img/card-zhufan.png",
+      "bytes": 57301,
+      "size": [
+        240,
+        240
+      ],
+      "sha256": "a1fb034a87be8598babc91fe668a1f0f70a5043ccad7a826941a7825edc0316a",
+      "category": "character",
+      "categoryBasis": "用户 2026-11-15 在对话里直接交付的单张角色卡（不是上游抓取）",
+      "nameRemoved": "not-needed",
+      "flags": [],
+      "sourceGroup": "user-provided",
+      "suppliedBy": "user",
+      "suppliedAt": "2026-11-15",
+      "vision": "pass",
+      "visionReason": "一只白瓷碗，碗里和碗身都是小猪；单张角色卡，画面里除碗与小猪外没有别的主体，无文字",
+      "mood": "cute",
+      "moodReason": "一碗圆滚小猪配米饭，五官与卷尾完整，无血无伤口无武器，可爱",
+      "note": "用户 2026-11-15 对话内提供的角色卡；原图自带透明底，逐字节入库（未裁切/未改色/未重编码）"
+    },
+    {
+      "id": "card-boshizhu",
+      "title": "博士猪",
+      "kind": "static",
+      "file": "assets/cards/img/card-boshizhu.png",
+      "bytes": 56536,
+      "size": [
+        240,
+        240
+      ],
+      "sha256": "55e78014d8baf8c279c326fc93286aac5dd02b24befb6ecffed7ef099ffafed9",
+      "category": "character",
+      "categoryBasis": "用户 2026-11-15 在对话里直接交付的单张角色卡（不是上游抓取）",
+      "nameRemoved": "not-needed",
+      "flags": [],
+      "sourceGroup": "user-provided",
+      "suppliedBy": "user",
+      "suppliedAt": "2026-11-15",
+      "vision": "pass",
+      "visionReason": "单只粉猪戴黑色学位帽、圆框眼镜与红领结；四足完整，画面无文字无场景",
+      "mood": "cute",
+      "moodReason": "学位帽 + 圆眼镜 + 领结的博士造型，表情憨厚，无血无伤口，可爱",
+      "note": "用户 2026-11-15 对话内提供的角色卡；原图自带透明底，逐字节入库（未裁切/未改色/未重编码）"
+    },
+    {
+      "id": "card-zhumaimai",
+      "title": "猪麦麦",
+      "kind": "static",
+      "file": "assets/cards/img/card-zhumaimai.png",
+      "bytes": 35203,
+      "size": [
+        240,
+        240
+      ],
+      "sha256": "612601a7b7e7a43b37ceba053921bf680a815f6ffcec947cb6db8aaf1c4034f8",
+      "category": "character",
+      "categoryBasis": "用户 2026-11-15 在对话里直接交付的单张角色卡（不是上游抓取）",
+      "nameRemoved": "not-needed",
+      "flags": [],
+      "sourceGroup": "user-provided",
+      "suppliedBy": "user",
+      "suppliedAt": "2026-11-15",
+      "vision": "pass",
+      "visionReason": "单只粉猪趴在速食纸袋后，袋口露出汉堡与薯条；袋身有红底黄色「M」标记，除该标记外无文字",
+      "mood": "cute",
+      "moodReason": "背着一袋汉堡薯条的馋猪，造型谐趣、无血无武器，可爱；红底黄 M 是用户设计的一部分（角色名即「麦麦」），不是残留的角色名文字",
+      "note": "用户 2026-11-15 对话内提供的角色卡；原图自带透明底，逐字节入库。袋身红底黄「M」为用户设计元素，按用户口径收录并在此点名"
+    },
+    {
+      "id": "card-dongfangmingzhu",
+      "title": "东方明猪",
+      "kind": "static",
+      "file": "assets/cards/img/card-dongfangmingzhu.png",
+      "bytes": 32708,
+      "size": [
+        240,
+        240
+      ],
+      "sha256": "bc7c08aae405a9dfb7ef4058da889ae02b8da359791e139aedef1c4dd3c5b3c7",
+      "category": "character",
+      "categoryBasis": "用户 2026-11-15 在对话里直接交付的单张角色卡（不是上游抓取）",
+      "nameRemoved": "not-needed",
+      "flags": [],
+      "sourceGroup": "user-provided",
+      "suppliedBy": "user",
+      "suppliedAt": "2026-11-15",
+      "vision": "pass",
+      "visionReason": "东方明珠塔的双球造型各是一张猪脸，塔身/斜撑/天线完整，塔底一条蓝色波浪；无文字",
+      "mood": "cute",
+      "moodReason": "把地标换成两张猪脸的谐音梗，构图干净、无血无武器，可爱",
+      "note": "用户 2026-11-15 对话内提供的角色卡；原图自带透明底，逐字节入库。蓝色波浪与塔身斜撑在画布左右各贴边 8/9 px（源图本身如此，未裁切）"
+    },
+    {
+      "id": "card-tingzhu",
+      "title": "停猪",
+      "kind": "static",
+      "file": "assets/cards/img/card-tingzhu.png",
+      "bytes": 25708,
+      "size": [
+        240,
+        240
+      ],
+      "sha256": "e6973aad9af08a98a8a2c789fabba18b18a9baea77be65d2b7e4c511f2857e7e",
+      "category": "character",
+      "categoryBasis": "用户 2026-11-15 在对话里直接交付的单张角色卡（不是上游抓取）",
+      "nameRemoved": "not-needed",
+      "flags": [],
+      "sourceGroup": "user-provided",
+      "suppliedBy": "user",
+      "suppliedAt": "2026-11-15",
+      "vision": "pass",
+      "visionReason": "单只粉猪站在一块沥青路面上（白色车道线与车位标线）；四足、卷尾、耳朵完整，画面无文字",
+      "mood": "cute",
+      "moodReason": "停在车位上的小猪，表情淡定、造型干净，无血无武器，可爱",
+      "note": "用户 2026-11-15 对话内提供的角色卡；原图自带透明底，逐字节入库。路面贴画布左边缘 1 px（源图本身如此，未裁切）"
     }
   ]
 }

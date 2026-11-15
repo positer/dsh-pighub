@@ -172,7 +172,12 @@ check('可信来源登记表：每条都有许可结论与证据', () => {
       assert.equal(pig.source.group, 'builtin', pig.id + ' 自带素材来源必须是 builtin');
       continue;
     }
-    assert.equal(pig.source.group, 'pighub-online', pig.id + ' 必须来自唯一可信源 PigHub，实际 ' + pig.source.group);
+    // 2026-11-15：来源组从「硬编码只认 pighub-online」改成「必须在 libraries.json 里登记且 verdict 不是 reference-only」。
+    // 起因是用户在对话里直接交付了 5 张角色卡（sourceGroup=user-provided）：它们既不是 builtin、
+    // 也不该冒用上游 PigHub 的名义，所以给它们一个如实登记的可信组。判据本身没有放宽 ——
+    // 进包的来源仍然一个 reference-only 都不许有。
+    assert.ok(allowed.has(pig.source.group), pig.id + ' 的来源不在可信清单里：' + pig.source.group);
+    if (pig.source.group === 'pighub-online') assert.equal(libs.libraries.find((item) => item.id === 'pighub-online').verdict, 'trusted');
   }
 });
 

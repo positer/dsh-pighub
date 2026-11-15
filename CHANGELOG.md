@@ -3,6 +3,51 @@
 本项目遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)；每条记录只写「对使用者可见的变化」，
 内部重构不单列。README 只描述项目整体，**版本相关内容一律记在这里**。
 
+## [1.0.2] — 2026-11-15
+
+### Added — 5 张用户提供的角色卡进冻结库（235 → 240 只）
+
+用户 2026-11-15 在对话里直接给了 5 张卡，按「原图逐字节入库、不重画不改色」收编：
+
+| 卡 | id | 画布 | 字节 | sizeRatio |
+|---|---|---|---|---|
+| 猪饭 | `card-zhufan` | 240×240 | 57 301 | 104.96 |
+| 博士猪 | `card-boshizhu` | 240×240 | 56 536 | 101.07 |
+| 猪麦麦 | `card-zhumaimai` | 240×240 | 35 203 | 114.07 |
+| 东方明猪 | `card-dongfangmingzhu` | 240×240 | 32 708 | 194.86 |
+| 停猪 | `card-tingzhu` | 240×240 | 25 708 | 149.10 |
+
+- **来源如实登记**：这 5 张不是 pighub.top 抓的，清单里写 `source.group = "user-provided"`、`via = "cards"`，
+  不构造假 URL（指纹与用户附件逐字节相同，可直接回查）。`assets/libraries.json` 新增 `user-provided` 条目
+  （verdict=trusted，**只覆盖这 5 张**，不能据此认为任何上游图库可采集）。
+- **可爱闸门逐张写理由**：一碗小猪 / 博士帽猪 / 背速食袋的猪 / 东方明珠双球猪脸 / 停车的猪；
+  猪麦麦袋上的红底黄「M」是用户设计元素（角色名即「麦麦」），在判定理由里点名，不当作残留文字。
+- **体量归一化照旧**：`size-ratios --write` 复算 240 只，视觉体量 spread **0.0%**；
+  东方明猪是最宽的一只（194.86，塔身细高、画布 85% 透明 —— 归一化按"不透明面积"算，本来就会给它更大的宽度）。
+- **完整性普查**：`audit-completeness.py` 把 5 张都算进去了，`cuts` 全空（塔底蓝波浪、路面贴边都是窄段装饰，不是被切断）。
+
+### Fixed — 收编链上两个会让人白跑一趟的坑（这一轮撞上的）
+
+1. **`adopt-cards.mjs` 会抹掉历史拒收记录**：它把 `manifest.moodRejected` 直接写成"本次 selection 里的 reject"，
+   而 selection 里早已只剩 cute，于是「恐怖猪 / 双面幽灵猪」两条留档被清空 —— 冒烟的
+   「可爱闸门至少要有一条真实拒收」当场变红。现在改成**按 id 合并**（老的保留、本次新拒的覆盖同名 id）。
+2. **`selection.json` 里 2 条用户手调条目缺字段**：2026-11-14 把 `pighub-27` 拆成 `27-1/27-2` 时只写了 mood，
+   没有 `kind`/`vector`/`sourceFile`，于是 `adopt-cards` 一跑就 `fail: pighub-27-1 的 kind 必须是 live/dead`。
+   已补齐这三项（它们本来就在清单里，补完正好被识别为"已有同一只 → 跳过"）。
+
+### Changed — 进包来源的校验从"只认 pighub-online"改成"可信来源白名单"
+
+`test/smoke.mjs` 原来硬断言每只猪的 `source.group === 'pighub-online'`。新增 `user-provided` 组后，
+改成「必须在 `libraries.json` 里登记、且 verdict 不是 `reference-only`」——判据没有放宽，
+一个 reference-only 来源照旧不许进包。
+
+### Known issue — `cards-selection.mjs` 的全量重算与 id 重映射不同源（本轮没修，只写明）
+
+实测重跑它会**洗回 24 个已 remap 的旧 id**（`pighub-1124 → pighub-1114` 等，与已有新 id 重复），
+并**丢掉 `pighub-27-1 / pighub-27-2`**（它们在 `index.json` 里不存在，只活在重映射之后）。
+所以本轮新增单卡走的是 `scripts/_append-user-cards.mjs`（只增追加），并在脚本头把这个缺口写清了；
+要恢复那条重算链，得先让 `index.json` 也走一遍 `lib/migrations.js` 的 remap。
+
 ## [1.0.1] — 2026-11-15
 
 ### Fixed — 一只桌宠走动时，其它没动的桌宠会一起颤动
