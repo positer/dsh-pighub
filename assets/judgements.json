@@ -3,26 +3,6 @@
   "assetVersion": "2026.11.12",
   "judgements": [
     {
-      "id": "pig-1354",
-      "kind": "dead",
-      "cut": {
-        "trim": [
-          0,
-          0,
-          1,
-          1
-        ],
-        "white": 236,
-        "vector": false
-      },
-      "note": "漫画格：左侧白色对白气泡承载信息（文字），按规则**保留**；卡片其余白底去掉，裁到猪身。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
-      "vector": false,
-      "category": "behavior",
-      "categoryReason": "求情气泡 + 挂科情境：猪在做一件事（求别挂科），属于行为梗，不是一种猪。",
-      "mood": "cute",
-      "moodReason": "求情人形猪 + 白色对白气泡：憨态、无獠牙无伤口，属可爱表情。"
-    },
-    {
       "id": "pig-1358",
       "kind": "dead",
       "cut": {
@@ -63,26 +43,6 @@
       "moodReason": "圆润单猪、闭眼微笑状：名字叫「怪猪」，但像素上就是一只普通可爱猪（判定只看像素，不看名字）。"
     },
     {
-      "id": "pig-1357",
-      "kind": "dead",
-      "cut": {
-        "trim": [
-          0,
-          0,
-          1,
-          1
-        ],
-        "white": 226,
-        "vector": false
-      },
-      "note": "实拍场景图（猪躺在路上 + 罚单）。规格用 163 个 erase 小框覆盖 97.55% 街景（矩形无法沿椭圆曲线切割，精确覆盖需 610 框），并用 keep 框还原罚单白纸（white=236 会削掉它）。实测：猪像素 150,478 一个不少、非猪残留 1,422px。",
-      "vector": false,
-      "category": "behavior",
-      "categoryReason": "躺在马路上贴罚单（乱停被贴）：明确的行为情境，不是一种猪。",
-      "mood": "cute",
-      "moodReason": "躺地贴罚单：是场景梗，不是血腥；构图里有猪身与单据，仍属可爱。"
-    },
-    {
       "id": "pig-1361",
       "kind": "live",
       "cut": {
@@ -101,26 +61,6 @@
       "categoryReason": "去掉重复文字后就是一只站立的猪，属于种类形象。",
       "mood": "cute",
       "moodReason": "「你知道吗」造型猪：问号形状但不狰狞，无血无獠牙。"
-    },
-    {
-      "id": "pig-1360",
-      "kind": "dead",
-      "cut": {
-        "trim": [
-          0,
-          0,
-          1,
-          1
-        ],
-        "white": 226,
-        "vector": false
-      },
-      "note": "电脑前场景卡：卡片白底去掉（里面塞着图，密度高），屏幕里的白清单是信息白，保留。 去白口径：白底一律去掉，仅保留「承载信息的白」（内容稀疏的气泡/清单）。",
-      "vector": false,
-      "category": "behavior",
-      "categoryReason": "在电脑前哭（你已笨哭）：场景 + 行为，不是一种猪。",
-      "mood": "cute",
-      "moodReason": "电脑前哭：卡通泪线，两道，不是血；表情可怜不属于血腥怪异。"
     },
     {
       "id": "pig-1131",
@@ -142,28 +82,6 @@
       "categoryReason": "像素风的猪形象（8 帧小动画），属于种类/风格化的猪本身。",
       "mood": "cute",
       "moodReason": "像素风小猪：方头方身、圆鼻，GIF 里只有呼吸与眨眼，无攻击性元素。"
-    },
-    {
-      "id": "pig-1300",
-      "kind": "live",
-      "vector": false,
-      "cut": {
-        "trim": [
-          0,
-          0,
-          1,
-          1
-        ],
-        "white": 236,
-        "vector": false
-      },
-      "note": "源文件实为 **62 帧动图 WebP**（.gif 扩展名不实，magic=RIFF/WEBP+ANIM）。按「动图原样分发、不做去白/裁切/描摹」的规则处理：整图风格分 0.361、裁到联合框但不做去白时 0.488，都低于闸门 0.55，**因此不进包**。要收它必须先实现「逐帧去白后重编码动图」（当前管线未做）。",
-      "animated": true,
-      "excludedReason": "animated_webp_needs_per_frame_alpha",
-      "category": "behavior",
-      "categoryReason": "被网兜捕捉 + 「哼唧」：捕捉行为的情境，不是一种猪。",
-      "mood": "cute",
-      "moodReason": "网兜里的小猪：被困但表情憨、无伤口无血。"
     },
     {
       "id": "pighub-1018",
@@ -364,6 +282,18 @@
       "note": "**双色背景**：白 52.62%（中间光柱）+ 紫 14.22%（左右角）。收紧 trim 后紫只剩左上 479px 三角，用 1 个 erase 框删；白用色键（threshold 220，猪身最亮 min=214，T=220 误删 0px）all:true。装饰（光环、底部斑点）被 trim 挤出画布。成品不透明连通块 = 1。",
       "mood": "cute",
       "moodReason": "幽灵猪：半透明鬼造型，但表情憨、粉色调，属可爱而非恐怖（与「恐怖猪」的区别正是：无獠牙、无血、无怒眉）。"
+    },
+    {
+      "id": "pighub-27-1",
+      "mood": "cute",
+      "moodReason": "用户手调后的猪，造型正常、无血腥怪异元素",
+      "category": "species"
+    },
+    {
+      "id": "pighub-27-2",
+      "mood": "cute",
+      "moodReason": "用户手调后的猪，造型正常、无血腥怪异元素",
+      "category": "species"
     }
   ],
   "categoryNote": "只收「猪的种类」（species）：角色/品种/风格本身。带场景或动作的行为梗（behavior）一律不收——它们描述的是猪在做某件事，不是一种猪。",
