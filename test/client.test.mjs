@@ -557,6 +557,34 @@ await acheck('桌宠层：有桌宠时渲染在页面级容器里，可拖动、
   assert.equal(requests.filter((r) => r.body.action === 'place' && r.body.to === 'pen').length, before + 1, '双击应发一次放回猪圈');
 });
 
+await acheck('页面级桌宠：点一下要弹（没挪过 + 很快松手），拖动不算点击', async () => {
+  // 用户口径 2026-11-16：「猪猪在桌宠状态下没有点击弹性」——原生窗口由 PetSquish 负责，
+  // 这条守的是**回退路径**（没有原生窗口时，桌宠画在页面里）。
+  // 上一条用例把它双击放回猪圈了，这里先放回桌面
+  await plugin.__test.place('3', 'pet');
+  await new Promise((r) => setTimeout(r, 20));
+  const tree = await render(overlay);
+  const pet = findByClass(tree, 'pighub-pet')[0];
+  assert.ok(pet, '应有桌宠元素');
+  const capture = { setPointerCapture() {}, releasePointerCapture() {} };
+  // ① 点一下（按下与松开同一点）→ 出现 is-squish
+  pet.props.onPointerDown({ button: 0, pointerId: 7, clientX: 640, clientY: 420, currentTarget: capture });
+  pet.props.onPointerUp({ clientX: 640, clientY: 420 });
+  const squished = findByClass(await render(overlay), 'pighub-pet')
+    .filter((node) => String(node.props.className).indexOf('is-squish') >= 0);
+  assert.equal(squished.length, 1, '点一下之后桌宠应带 is-squish');
+  // 等上一下的 600ms 动画窗口过去，再验拖动：
+  await new Promise((r) => setTimeout(r, 650));
+  // ② 拖一段距离再松手 → 不算点击（也不能顺手把它放回猪圈）
+  const fresh = findByClass(await render(overlay), 'pighub-pet')[0];
+  fresh.props.onPointerDown({ button: 0, pointerId: 8, clientX: 640, clientY: 420, currentTarget: capture });
+  fresh.props.onPointerMove({ clientX: 700, clientY: 470 });
+  fresh.props.onPointerUp({ clientX: 700, clientY: 470 });
+  const afterDrag = findByClass(await render(overlay), 'pighub-pet')
+    .filter((node) => String(node.props.className).indexOf('is-squish') >= 0);
+  assert.equal(afterDrag.length, 0, '拖动松手不该被当成点击');
+});
+
 await acheck('单步 = 1.65–3.0 个身位（与桌宠同口径），一次决策最多走 1.7 身位，且不越出活动区', () => {
   const { penStep, penBodyPct, stepRangePct, PEN_BOX, PIG_PX, STEP_MIN_BODY, STEP_MAX_BODY, STEP_CAP_BODY } = plugin.__test;
   assert.equal(typeof penStep, 'function', 'penStep 应作为纯函数暴露给测试');

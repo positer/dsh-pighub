@@ -45,6 +45,18 @@ check('客户区↔屏幕坐标换算全部读 canvasRect（不再读 Bounds）'
   assert.ok((code.match(/canvasRect\.(Left|Top)/g) || []).length >= 6, '读 canvasRect 的地方少于预期，可能有坐标换算漏改');
 });
 
+check('点击弹性：松手判定写 SquishAtMs，渲染里按它算形变（防回退）', () => {
+  const code = source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+  assert.ok(/class PetSquish/.test(code), '缺少 PetSquish（点击弹性的曲线）');
+  assert.ok(/if \(clicked\)/.test(code), '松手时没有「这是点击」的分支');
+  assert.ok(/dropped\.Motion\) dropped\.SquishAtMs = nowUp/.test(code), '点击后没有记录弹性起点（或没有按 Motion 门控）');
+  assert.ok(/PetSquish\.Scale\(/.test(code), '渲染时没有调用 PetSquish.Scale —— 记了时间但没画出来');
+  assert.ok(/SquishAtMs = -1L/.test(code), 'SquishAtMs 的哨兵值必须是 long -1（float 存不下 epoch 毫秒）');
+  // 点击必须提前 return：否则一只正压在猪圈矩形上的猪，点一下会被判成「拖回猪圈」
+  const clickBlock = code.slice(code.indexOf('if (clicked)'), code.indexOf('if (penRect.HasValue)') > 0 ? code.indexOf('if (penRect.HasValue)') : code.length);
+  assert.ok(/return;/.test(clickBlock), '点击分支里没有提前 return，会顺路触发拖回猪圈');
+});
+
 /* ---- ② 编译真代码，跑真规则 ---- */
 if (process.platform !== 'win32') skip('非 win32：原生桌宠窗口只在 Windows 上存在');
 if (!existsSync(harnessPath)) skip('缺少 test/native/canvas-harness.cs（发布包里不带它）');
@@ -65,7 +77,7 @@ try {
   const stdout = execFileSync(exe, [], { encoding: 'utf8' });
   const rows = stdout.split(/\r?\n/).filter((line) => line.trim().startsWith('{')).map((line) => JSON.parse(line));
   const byName = Object.fromEntries(rows.map((row) => [row.case, row]));
-  assert.equal(rows.length, 5, '五个场景都要跑出来：' + stdout);
+  assert.equal(rows.length, 6, '六个场景都要跑出来（五个画布场景 + 一个点击弹性）：' + stdout);
 
   check('猪走 600px：画布搬家次数 <= 8（旧策略每帧一次，约 188 次）', () => {
     assert.ok(byName.walkRight.changes <= 8, '搬家次数 ' + byName.walkRight.changes);
@@ -91,6 +103,47 @@ try {
   });
 } finally {
   rmSync(root, { recursive: true, force: true });
+}
+
+/* ---- ④ 点击弹性的读数（真编译出来的 PetSquish） ---- */
+if (process.platform === 'win32' && existsSync(harnessPath) && existsSync(compiler)) {
+  const root2 = mkdtempSync(join(tmpdir(), 'pighub-squish-'));
+  try {
+    const localHarness = join(root2, 'canvas-harness.cs');
+    writeFileSync(localHarness, readFileSync(harnessPath, 'utf8'), 'utf8');
+    const exe = join(root2, 'canvas-probe.exe');
+    execFileSync(compiler, [
+      '/nologo', '/target:exe', '/platform:x64', '/main:Harness',
+      '/r:System.Drawing.dll', '/r:System.Windows.Forms.dll', '/r:System.Web.Extensions.dll',
+      '/out:' + exe, sourcePath, localHarness,
+    ], { stdio: ['ignore', 'pipe', 'pipe'] });
+    const rows = execFileSync(exe, [], { encoding: 'utf8' })
+      .split(/\r?\n/).filter((line) => line.trim().startsWith('{')).map((line) => JSON.parse(line));
+    const squish = rows.find((row) => row.case === 'clickSquish');
+    check('点击弹性曲线：先压扁再回弹，560ms 内收敛到原状', () => {
+      assert.ok(squish, '没有 clickSquish 读数');
+      // 峰值形变要「看得见」但不夸张：猪圈 CSS 是 0.18，原生取 0.12–0.20 之间
+      assert.ok(squish.peakSquash >= 0.12 && squish.peakSquash <= 0.20, '压扁峰值 ' + squish.peakSquash);
+      assert.ok(squish.peakAtMs >= 60 && squish.peakAtMs <= 140, '峰值时刻应在前 1/4 段，实际 ' + squish.peakAtMs + 'ms');
+      assert.ok(squish.peakStretch <= -0.03, '没有反向回弹（只压一下就平了），peakStretch=' + squish.peakStretch);
+      assert.ok(squish.crossings >= 1, '曲线没有过零（不是弹性，是单向过渡）');
+      assert.equal(squish.waveAt0, 0, '按下瞬间不该有位移');
+      assert.ok(squish.waveAtEnd <= 0.02, '到时长末尾还没收敛：' + squish.waveAtEnd);
+      // 面积守恒：纵向取横向的倒数（与走动那套同口径），乘积应恒为 1
+      const area = squish.scaleXAtPeak * squish.scaleYAtPeak;
+      assert.ok(Math.abs(area - 1) <= 0.005, '压扁时面积不守恒：' + area);
+      // 峰值必须是「看得见」的压扁：横向 >1.10、纵向 <0.92（猪圈 CSS 是 1.18 / 0.8）
+      assert.ok(squish.scaleXAtPeak >= 1.10, '横向几乎没变化：' + squish.scaleXAtPeak);
+      assert.ok(squish.scaleYAtPeak <= 0.92, '纵向几乎没变化：' + squish.scaleYAtPeak);
+    });
+    check('点击 vs 拖动/长按：只有「没挪过且很快松手」才算点击', () => {
+      assert.equal(squish.clickSmall, true, '按住不动 120ms 松手应判为点击');
+      assert.equal(squish.clickDragged, false, '挪了 10px 不该判成点击（那是拖动）');
+      assert.equal(squish.clickHeld, false, '按住 1.2s 不该判成点击（那是长按）');
+    });
+  } finally {
+    rmSync(root2, { recursive: true, force: true });
+  }
 }
 
 console.log('\n' + passed + ' 项通过（画布几何）');

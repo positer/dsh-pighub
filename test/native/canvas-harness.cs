@@ -3,8 +3,12 @@
 // 每个场景打印一行 JSON，断言在 test/native-canvas.test.mjs 里。
 using System;
 using System.Drawing;
+using System.Globalization;
 
 internal static class Harness {
+    /// <summary>按不变文化输出数字：这台机器可能是 zh-CN，但 JSON 的小数点必须是 '.'。</summary>
+    private static string N(float value) { return value.ToString("0.######", CultureInfo.InvariantCulture); }
+
     // 与 PetForm.Frame() 里那套算式逐项对应：两只猪的包围盒 + margin
     private static Rectangle Need(float ax, float ay, float bx, float by, float size) {
         float minX = Math.Min(ax, bx);
@@ -87,6 +91,36 @@ internal static class Harness {
         Rectangle[] negative = new Rectangle[120];
         for (int i = 0; i < negative.Length; i++) negative[i] = Need(-500f + i * 3.2f, 300f, -800f, 300f, size);
         Run("negativeScreen", screen2, negative);
+
+        /* 6) 点击弹性（2026-11-16）：读的是 lib/native/pet-window.cs 里那份 PetSquish —— 同一份产品代码。 */
+        float peakSquash = 0f, peakStretch = 0f, peakAtMs = 0f;
+        int crossings = 0;
+        float prevWave = PetSquish.Wave(0f);
+        float lastWave = 0f;
+        for (int i = 1; i <= (int)PetSquish.DurationMs; i++) {
+            float wave = PetSquish.Wave(i);
+            if (wave > peakSquash) { peakSquash = wave; peakAtMs = i; }
+            if (wave < peakStretch) peakStretch = wave;
+            if ((prevWave > 0f && wave <= 0f) || (prevWave < 0f && wave >= 0f)) crossings++;
+            prevWave = wave;
+            lastWave = wave;
+        }
+        float sx, sy;
+        PetSquish.Scale(peakAtMs, out sx, out sy);
+        Console.WriteLine("{\"case\":\"clickSquish\""
+            + ",\"duration\":" + N(PetSquish.DurationMs)
+            + ",\"peakSquash\":" + N(peakSquash)
+            + ",\"peakStretch\":" + N(peakStretch)
+            + ",\"peakAtMs\":" + N(peakAtMs)
+            + ",\"crossings\":" + crossings
+            + ",\"waveAt0\":" + N(PetSquish.Wave(0f))
+            + ",\"waveAtEnd\":" + N(Math.Abs(lastWave))
+            + ",\"scaleXAtPeak\":" + N(sx)
+            + ",\"scaleYAtPeak\":" + N(sy)
+            + ",\"clickSmall\":" + (PetSquish.IsClick(2f, 2f, 120f, PetSquish.ClickSlopPx) ? "true" : "false")
+            + ",\"clickDragged\":" + (PetSquish.IsClick(10f, 0f, 120f, PetSquish.ClickSlopPx) ? "true" : "false")
+            + ",\"clickHeld\":" + (PetSquish.IsClick(0f, 0f, 1200f, PetSquish.ClickSlopPx) ? "true" : "false")
+            + "}");
 
         return 0;
     }

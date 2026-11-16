@@ -3,6 +3,44 @@
 本项目遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)；每条记录只写「对使用者可见的变化」，
 内部重构不单列。README 只描述项目整体，**版本相关内容一律记在这里**。
 
+## [1.0.6] — 2026-11-16
+
+### Fixed — 桌宠被点一下没有弹性（用户口径：「猪猪在桌宠状态下没有点击弹性」）
+
+**成因**：原生窗口的鼠标处理只有两条路 —— 按下 = 开始拖动、松手 = 结束拖动（可能顺路回猪圈），
+**没有「点击」这个分支**；页面级桌宠的回退路径也一样只有拖动。猪圈里那只早就有 `.pighub-squish` 动画，
+桌面上那只没有。
+
+**修法**（两半都补）：
+
+- **原生窗口**：新增 `PetSquish` —— 衰减正弦 `a(t) = A·e^(−t/τ)·sin(2πft)`，屏幕上取
+  `scaleX = 1+a`、`scaleY = 1/scaleX`（与走动那套同口径，面积守恒），时长 560ms、峰值 ≈ +15.5% / −13.2%。
+  松手时判定「按的是同一只 + 没挪过（≤ 4px×DPI）+ 按下到松手 ≤ 900ms」才算点击；
+  点击分支**提前 return**，不再顺路触发「拖回猪圈」（那只猪可能正压在猪圈矩形上）。
+  点击与走动的形变**相乘**，锚点仍是脚底中点。
+- **页面级桌宠（回退路径）**：pointerdown 记账、pointerup 判定同一条规则，命中就加 `.pighub-pet.is-squish`
+  600ms（复用猪圈那套 keyframes）。
+
+**实测踩到的坑**：`Capture = false` 会**同步**触发 `WM_CAPTURECHANGED`，而那段代码会把 `pressPet` 清空，
+于是后面 `pressPet == dropped` 恒为 false —— 表现就是「点了完全没反应」，
+而临时 debug 日志里 `hit=pet / press=set / moved=false` 全都正常。修法是**先把 pressed / moved 存成本地变量**，
+再释放捕获。
+
+**判据 / 读数**：
+
+- `test/native-canvas.test.mjs` **7 → 10 项**：新增 ①「松手写 SquishAtMs、渲染调 PetSquish.Scale」的源码契约（防回退），
+  ② 曲线形状（峰值 0.12–0.20、峰值时刻 60–140ms、有反向回弹、560ms 收敛、面积守恒），
+  ③ 点击 vs 拖动/长按的三分类。
+- `test/client.test.mjs` **46 → 47 项**：页面级桌宠「点一下弹、拖一段不弹」。
+- 真机像素读数（自建 `pet-window.exe` + PostMessage 点击 + 猪身主色掩膜 + 10ms 采样）：
+  对照轮 `maxWidth 168 / minHeight 142`；点击轮 **`maxWidth 194–196`（+15.5%）/ `minHeight 123–124`（−13.2%）**，
+  与 PetSquish 的理论值一致；`npm test` **150 PASS / 0 FAIL**。
+
+### Changed — 「保持静止」的桌宠不响应点击
+
+与猪圈一致（那边的 `clickProps` 也是按 `pigCanMove` 挂的）：`motion:false` 的猪点一下不弹。
+这是刻意的 —— 弹性是「它在动」的视觉反馈，静止猪没有这个承诺。
+
 ## [1.0.5] — 2026-11-16
 
 ### Fixed — 发布校准：仓库 / npm / 已安装三处对齐（无运行时行为变化）

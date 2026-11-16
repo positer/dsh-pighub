@@ -105,6 +105,58 @@ internal static class CanvasFit {
     }
 }
 
+/// <summary>
+/// 点击弹性：桌宠被**点一下**时的 squash & stretch。
+///
+/// 形状是衰减正弦 a(t) = A·e^(−t/τ)·sin(2πft)，屏幕上取 scaleX = 1 + a、scaleY = 1 − a ——
+/// 面积近似守恒，读起来是「Q 弹一下再回正」。振幅、频率、时长都从猪圈 CSS 的观感反推（那边是 0.18 的手感），
+/// 再按原生窗口 33ms 一帧的刷新率调到「看得见但不夸张」。
+///
+/// 抽成**静态纯函数**是为了能被 test/native/canvas-harness.cs 编译后直接断言（与 CanvasFit 同一套做法），
+/// 而不是靠截图猜「看起来弹了没有」。
+/// </summary>
+internal static class PetSquish {
+    /// <summary>整段时长（毫秒）：超过它就不再变形。</summary>
+    internal const float DurationMs = 560f;
+    /// <summary>起始振幅（比例）。峰值实际约 0.155（见 NativePath 的测试读数）。</summary>
+    internal const float Amplitude = 0.24f;
+    /// <summary>衰减时间常数（秒）：越小衰减越快。</summary>
+    internal const float Tau = 0.22f;
+    /// <summary>振荡频率（Hz）：560ms 里大约一个半来回。</summary>
+    internal const float Frequency = 2.6f;
+
+    /// <summary>点击与拖动/长按的分界：位移不超过它、且按下不超过 LongPressMs，才算「点了一下」。</summary>
+    internal const float ClickSlopPx = 4f;
+    internal const float LongPressMs = 900f;
+
+    /// <summary>t 毫秒时的形变振幅 a（正 = 压扁、负 = 拉长）。区间外恒为 0。</summary>
+    internal static float Wave(float elapsedMs) {
+        if (elapsedMs <= 0f || elapsedMs >= DurationMs) return 0f;
+        float t = elapsedMs / 1000f;
+        float decay = (float)Math.Exp(-t / Tau);
+        float osc = (float)Math.Sin(2.0 * Math.PI * Frequency * t);
+        return Amplitude * decay * osc;
+    }
+
+    /// <summary>
+    /// t 毫秒时的两个缩放系数（锚点由调用方施加：脚底中点）。
+    ///
+    /// 横向取 1+a、**纵向取它的倒数**，而不是 1−a —— 与走动那套 squash & stretch 同一条口径：面积守恒。
+    /// 用 1−a 的话面积 = 1−a²，峰值时白丢 2.4%，肉眼是「猪变瘦了一点」而不是「被压了一下」。
+    /// </summary>
+    internal static void Scale(float elapsedMs, out float scaleX, out float scaleY) {
+        float a = Wave(elapsedMs);
+        scaleX = 1f + a;
+        scaleY = 1f / scaleX;
+    }
+
+    /// <summary>这一次按下→松手算不算「点击」（而不是拖动或长按）。</summary>
+    internal static bool IsClick(float dx, float dy, float elapsedMs, float slopPx) {
+        float slop = slopPx > 0f ? slopPx : ClickSlopPx;
+        return elapsedMs >= 0f && elapsedMs <= LongPressMs && dx * dx + dy * dy <= slop * slop;
+    }
+}
+
 internal sealed class Pet {
     public string Id;
     public string Path;
@@ -118,6 +170,8 @@ internal sealed class Pet {
     public float TargetX, TargetY;
     public long NextDecision;
     public bool FacingRight;
+    /// <summary>上次被「点一下」的时刻（UtcMs，**long**：float 的 24 位尾数在 epoch 毫秒上误差约 131 秒）。-1 = 从没点过。</summary>
+    public long SquishAtMs = -1L;
 }
 
 internal sealed class PetForm : Form {
@@ -131,6 +185,11 @@ internal sealed class PetForm : Form {
     private long petsStamp;
     private Pet dragging;
     private float dragDX, dragDY;
+    /// <summary>按下的起点与时刻：松手时用它区分「点一下」和「拖动/长按」（点击 → 弹性，拖动 → 原来那套）。</summary>
+    private Pet pressPet;
+    private float pressX, pressY;
+    private long pressAtMs;
+    private bool pressMoved;
     private Bitmap cursorMask;
     private long lastReport;
     /// <summary>浏览器半报上来的猪圈矩形（屏幕坐标）：拖到里面松手 = 回猪圈。</summary>
@@ -352,6 +411,7 @@ internal sealed class PetForm : Form {
     private static readonly Random rng = new Random();
 
     private void Render() {
+        long nowMs = UtcMs();
         using (Graphics g = Graphics.FromImage(canvas)) {
             g.Clear(Color.Transparent);
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -374,13 +434,28 @@ internal sealed class PetForm : Form {
                 // **锚点是脚底中点，不是盒子中心**：围绕中心缩会让脚在触地时往上收、起跳时往下探，
                 // 读起来像「原地往上飘一下」；钉在脚底，地面那一条线才不动。
                 const float squashSwing = 0.12f;   // 纵向总摆幅 = 0.12 → 0.94 … 1.06
-                bool squashing = pet.Walking;
-                if (squashing) {
-                    float scaleY = 1f + squashSwing * (hopUnit - 0.5f);
+                /* 两套形变**相乘**：
+                 *   ① 走动的是节拍（hopUnit 相位，触地压扁 / 最高点拉长）；
+                 *   ② 被点一下是衰减正弦（PetSquish，560ms 内 Q 弹一下）。
+                 * 相乘而不是二选一：边走边被点的时候，两者都该有。锚点仍是脚底中点，
+                 * 所以压扁时地面那条线不动（围绕盒子中心缩会让脚往上收，读起来像「飘」）。 */
+                float scaleY = pet.Walking ? 1f + squashSwing * (hopUnit - 0.5f) : 1f;
+                float scaleX = 1f / scaleY;
+                if (pet.SquishAtMs >= 0L) {
+                    float clickMs = (float)(nowMs - pet.SquishAtMs);
+                    if (clickMs >= 0f && clickMs < PetSquish.DurationMs) {
+                        float clickX, clickY;
+                        PetSquish.Scale(clickMs, out clickX, out clickY);
+                        scaleX *= clickX;
+                        scaleY *= clickY;
+                    }
+                }
+                bool deformed = Math.Abs(scaleX - 1f) > 0.0005f || Math.Abs(scaleY - 1f) > 0.0005f;
+                if (deformed) {
                     float footX = x + w * 0.5f;
                     float footY = y + h;           // 未缩放盒子的底边 = 脚底
                     g.TranslateTransform(footX, footY);
-                    g.ScaleTransform(1f / scaleY, scaleY);
+                    g.ScaleTransform(scaleX, scaleY);
                     g.TranslateTransform(-footX, -footY);
                 }
                 if (pet.FacingRight) {
@@ -389,7 +464,7 @@ internal sealed class PetForm : Form {
                     g.DrawImage(pet.Sprite, new Rectangle(x, y, w, h));
                 }
                 // 星级胶囊不跟着压扁（文字被缩放会发虚），所以先把变换还原再画它。
-                if (squashing) g.ResetTransform();
+                if (deformed) g.ResetTransform();
                 DrawBadge(g, pet, x, y, w, h);
             }
         }
@@ -755,6 +830,12 @@ internal sealed class PetForm : Form {
                 dragDX = hit.X - (client.X + canvasRect.Left);
                 dragDY = hit.Y - (client.Y + canvasRect.Top);
                 hit.Walking = false;
+                // 点击判定的起点：松手时用「位移 + 按下时长」区分『点一下』与『拖动/长按』。
+                pressPet = hit;
+                pressX = client.X;
+                pressY = client.Y;
+                pressAtMs = UtcMs();
+                pressMoved = false;
                 // 抓取期间要把鼠标事件留在本窗口（NOACTIVATE 窗口默认不会自动捕获），
                 // 否则指针一离开这个小窗口，WM_MOUSEMOVE 就收不到了。
                 Capture = true;
@@ -765,18 +846,48 @@ internal sealed class PetForm : Form {
             dragging.X = client.X + canvasRect.Left + dragDX;
             dragging.Y = client.Y + canvasRect.Top + dragDY;
             dragging.Walking = false;
+            // 鼠标按住后只要真的挪过（超过容差×DPI），这一次就不可能是「点一下」。
+            if (!pressMoved) {
+                float ddx = client.X - pressX;
+                float ddy = client.Y - pressY;
+                float slop = PetSquish.ClickSlopPx * Math.Max(1f, dpiScale);
+                if (ddx * ddx + ddy * ddy > slop * slop) pressMoved = true;
+            }
             return;
         }
         if (m.Msg == WM_LBUTTONUP) {
             // 先把引用取出来再释放捕获：`Capture = false` 会同步触发 WM_CAPTURECHANGED，
             // 那里面会把 dragging 清空——顺序反了的话，松手后的"拖回猪圈"判定永远拿不到猪（实测踩过）。
             Pet dropped = dragging;
+            /* 必须**先**把点击判定的中间状态存成本地变量：`Capture = false` 会同步触发
+             * WM_CAPTURECHANGED，那个分支会把 dragging/pressPet/pressMoved 一起清掉。
+             * 2026-11-16 实测：写在后面时 pressPet 已经是 null，`pressPet == dropped` 恒 false ——
+             * 表现就是「点了没反应」，而 debug 日志里 hit=pet、press=set 一切正常。 */
+            Pet pressed = pressPet;
+            bool movedDuringPress = pressMoved;
+            long nowUp = UtcMs();
             dragging = null;
             Capture = false;
-            if (dropped == null) return;
+            if (dropped == null) { pressPet = null; return; }
             dropped.Walking = false;
             dropped.NextDecision = DateTime.UtcNow.Ticks / 10000 + 6000;
+            /* 点一下 = 弹性（用户口径 2026-11-16：「猪猪在桌宠状态下没有点击弹性」）。
+             * 判定要看三件事：按的是同一只、没挪过、按下到松手不超过 900ms ——
+             * 否则一次「拖起来又放回原处」会被误判成点击，反而把它顶掉原来的落点语义。
+             * 命中后**提前 return**：点击不该再触发「拖回猪圈」（那只猪可能正压在猪圈矩形上）。
+             * 与猪圈里那只一致：不允许运动的猪不响应点击（那边 clickProps 也是按 pigCanMove 挂的）。 */
+            float upDx = client.X - pressX;
+            float upDy = client.Y - pressY;
+            float upSlop = PetSquish.ClickSlopPx * Math.Max(1f, dpiScale);
+            bool clicked = pressed == dropped && !movedDuringPress
+                && PetSquish.IsClick(upDx, upDy, nowUp - pressAtMs, upSlop);
+            pressPet = null;
+            pressMoved = false;
             Report(0);
+            if (clicked) {
+                if (dropped.Motion) dropped.SquishAtMs = nowUp;
+                return;
+            }
             // 用户口径：支持"拖回猪圈"。猪圈矩形由浏览器半实测后经宿主下发。
             // 判定用**矩形相交**而不是"中心点落在圈里"：用户把猪头一段搭进猪圈就想让它回去，
             // 只测中心会导致"明明拖进去了却没返回"（真机反馈）。
@@ -805,6 +916,8 @@ internal sealed class PetForm : Form {
         if (m.Msg == WM_CAPTURECHANGED) {
             // 捕获被抢走（例如别的窗口抢焦点）时把拖拽状态清掉，避免"没按键却跟着鼠标走"。
             if (dragging != null) { dragging.Walking = false; Report(0); dragging = null; }
+            pressPet = null;
+            pressMoved = false;
             return;
         }
         base.WndProc(ref m);
