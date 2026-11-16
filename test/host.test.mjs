@@ -4,7 +4,7 @@
  * 素材已随包分发，所以这里没有任何上游请求：状态路由 + 每张素材一条 exact 静态路由。
  */
 import assert from 'node:assert/strict';
-import { mkdtempSync, readFileSync, existsSync, rmSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, existsSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -13,13 +13,33 @@ const plugin = await import(new URL('../lib/index.js', import.meta.url).href);
 const manifest = JSON.parse(readFileSync(new URL('../assets/manifest.json', import.meta.url), 'utf8'));
 
 const tools = new Map();
-const routes = new Map();
+/* 宿主的命名路由表分成 exact 与前缀两张（契约实测自安装目录的 WebServer.match：
+ * 先 exact，再最长前缀，且前缀必须落在路径段边界上）。这里照抄那套规则，
+ * 否则测试会放过「前缀写错了但 exact 仍然命中」这种情况。 */
+const routes = { exact: new Map(), prefixes: new Map() };
 const ctx = {
   effect(fn) { return fn(); },
   tools: { register(def) { tools.set(def.name, def); return () => tools.delete(def.name); } },
-  webServer: { register(route) { routes.set(route.path, route); return () => routes.delete(route.path); } },
+  webServer: {
+    register(route) {
+      const table = route.kind === 'prefix' ? routes.prefixes : routes.exact;
+      table.set(route.path, route);
+      return () => table.delete(route.path);
+    },
+  },
   logger: { warn() {} },
 };
+/** 按宿主规则找路由：exact 优先，其次最长前缀。 */
+function routeFor(pathname) {
+  const exact = routes.exact.get(pathname);
+  if (exact) return exact;
+  let best = null;
+  for (const [prefix, route] of routes.prefixes) {
+    if (pathname !== prefix && !pathname.startsWith(prefix + '/')) continue;
+    if (!best || prefix.length > best.prefix.length) best = { prefix, route };
+  }
+  return best ? best.route : null;
+}
 // 离线测试不碰原生桌宠：编译/拉起是真实副作用，测试只验 HTTP 面。
 plugin.apply(ctx, { root, desktopPet: false });
 
@@ -27,9 +47,10 @@ let passed = 0;
 const check = (label, fn) => { fn(); passed += 1; console.log('PASS  ' + label); };
 const acheck = async (label, fn) => { await fn(); passed += 1; console.log('PASS  ' + label); };
 
-function makeReq(method, body) {
+function makeReq(method, body, url) {
   return {
     method,
+    url,
     async *[Symbol.asyncIterator]() { if (body !== undefined) yield Buffer.from(JSON.stringify(body), 'utf8'); },
   };
 }
@@ -37,23 +58,33 @@ function makeRes() {
   return { status: 0, headers: null, body: '', writeHead(status, headers) { this.status = status; this.headers = headers; }, end(text) { this.body = text; } };
 }
 async function call(method, body) {
-  const route = routes.get('/pighub');
+  const route = routeFor('/pighub');
   assert.ok(route, '状态路由未注册');
   const res = makeRes();
-  await route.handler(makeReq(method, body), res);
+  await route.handler(makeReq(method, body, '/pighub'), res);
   return { status: res.status, headers: res.headers, json: JSON.parse(res.body || '{}') };
 }
+/** 按 URL 打一次静态图路由（走宿主的匹配规则取路由，再把请求交给它）。 */
+async function fetchAsset(url, method = 'GET') {
+  const pathname = url.split('?')[0];
+  const route = routeFor(pathname);
+  assert.ok(route, '没有匹配的路由：' + pathname);
+  const res = makeRes();
+  await route.handler(makeReq(method, undefined, url), res);
+  return { status: res.status, headers: res.headers, body: res.body };
+}
 
-check('注册了工具、状态路由与每张素材的静态路由', () => {
+check('注册了工具、状态路由与三条**前缀**图路由（不再每张素材一条 exact）', () => {
   assert.ok(tools.has('pighub_about'));
-  assert.ok(routes.has('/pighub'));
-  const assetRoutes = [...routes.keys()].filter((path) => path.startsWith('/pighub/asset/'));
-  assert.equal(assetRoutes.length, manifest.pigs.length, '每张素材应有一条路由，实际 ' + assetRoutes.length);
-  // 猪圈布景（木栅栏）走单独一条前缀：它不是素材库的一部分，不能混进上面那条「每只猪一条路由」。
-  const penRoutes = [...routes.keys()].filter((path) => path.startsWith('/pighub/pen/'));
-  /* 猪圈布景现在有两张：围栏 + 谷仓小屋（0.9.73 起）。断言条数与内容都跟 PEN_ART 对齐。 */
-  assert.deepEqual(penRoutes, ['/pighub/pen/pen-fence.png', '/pighub/pen/house-closed.png', '/pighub/pen/house-open.png'],
-    '猪圈布景应有 3 条静态路由（围栏 + 仓库关/开），实际 ' + JSON.stringify(penRoutes));
+  assert.ok(routes.exact.has('/pighub'), '状态路由应是 exact');
+  /* 2026-11-16：静态图改成前缀路由 —— exact 表在 apply 时按当时的清单冻结，
+   * 「换版本 / 自动更新装新包 / 有人丢一张新图」都得重启才看得见。 */
+  assert.ok(routes.prefixes.has('/pighub/asset'), '素材应有前缀路由 /pighub/asset');
+  assert.ok(routes.prefixes.has('/pighub/pen'), '猪圈布景应有前缀路由 /pighub/pen');
+  assert.ok(routes.prefixes.has('/pighub/theme'), '主题图片应有前缀路由 /pighub/theme');
+  // 反向守卫：不许再出现「每张图一条 exact 路由」的旧形态（那正是「必须重启」的根因）
+  const perFile = [...routes.exact.keys()].filter((path) => /^\/pighub\/(asset|pen|theme)\//.test(path));
+  assert.deepEqual(perFile, [], '不该再逐张注册静态图：' + JSON.stringify(perFile.slice(0, 3)));
   assert.deepEqual(plugin.inject, ['tools'], '只注入 tools：webServer 缺失时不能让整个 profile 启动失败');
 });
 
@@ -203,24 +234,52 @@ await acheck('rev 令牌：小、空闲不变、place/pos 一变就变', async (
 await acheck('错误路径：未知动作 400、方法 405、坏请求体 500', async () => {
   assert.equal((await call('POST', { action: 'nope' })).status, 400);
   assert.equal((await call('PUT')).status, 405);
-  const route = routes.get('/pighub');
+  const route = routeFor('/pighub');
   const res = makeRes();
-  await route.handler({ method: 'POST', async *[Symbol.asyncIterator]() { yield Buffer.from('{not json'); } }, res);
+  await route.handler({ method: 'POST', url: '/pighub', async *[Symbol.asyncIterator]() { yield Buffer.from('{not json'); } }, res);
   assert.equal(res.status, 500);
 });
 
-await acheck('素材路由：能取到字节、类型正确、且拒绝非 GET', async () => {
+await acheck('素材路由（前缀）：能取到字节、类型正确、且拒绝非 GET', async () => {
   const pig = manifest.pigs[0];
-  const route = routes.get('/pighub/asset/' + pig.file.split('/').pop());
-  assert.ok(route, '缺少素材路由');
-  const res = makeRes();
-  await route.handler({ method: 'GET' }, res);
-  assert.equal(res.status, 200);
-  assert.ok(/^image\/(png|svg\+xml|gif)$/.test(res.headers['content-type']), '类型：' + res.headers['content-type']);
-  assert.ok(Buffer.byteLength(res.body) > 100, '应返回真实字节');
-  const bad = makeRes();
-  await route.handler({ method: 'POST' }, bad);
-  assert.equal(bad.status, 405);
+  const name = pig.file.split('/').pop();
+  const url = '/pighub/asset/' + name;
+  const ok = await fetchAsset(url + '?v=' + String(pig.sha256 || '').slice(0, 8));
+  assert.equal(ok.status, 200);
+  assert.ok(/^image\/(png|svg\+xml|gif)$/.test(ok.headers['content-type']), '类型：' + ok.headers['content-type']);
+  assert.ok(Buffer.byteLength(ok.body) > 100, '应返回真实字节');
+  const onDisk = readFileSync(new URL('../assets/img/' + name, import.meta.url));
+  assert.ok(onDisk.equals(Buffer.from(ok.body)), '返回的字节与包内文件不同');
+  assert.equal((await fetchAsset(url, 'POST')).status, 405, '非 GET/HEAD 一律 405');
+});
+
+await acheck('素材路由（前缀）：越界名与不认识的扩展名一律 404（它不是文件读取接口）', async () => {
+  const bads = [
+    '/pighub/asset/missing-file.png',
+    '/pighub/asset/package.json',
+    '/pighub/asset/..%2F..%2Fpackage.json',
+    '/pighub/asset/%2e%2e%2f%2e%2e%2fpackage.json',
+    '/pighub/asset/notes.txt',
+  ];
+  for (const bad of bads) {
+    assert.equal((await fetchAsset(bad)).status, 404, bad + ' 不该被服务');
+  }
+});
+
+await acheck('动态注册表：新落盘的图**不用重启**立刻可取，删掉立刻 404', async () => {
+  const name = 'zz-no-restart-probe.png';
+  const target = new URL('../assets/img/' + name, import.meta.url);
+  assert.equal(existsSync(target), false, '探针文件名不该真的存在');
+  writeFileSync(target, readFileSync(new URL('../assets/img/pen-fence.png', import.meta.url)));
+  try {
+    const res = await fetchAsset('/pighub/asset/' + name);
+    assert.equal(res.status, 200, '新文件必须立刻可取（不重启、不重新注册）');
+    assert.equal(res.headers['content-type'], 'image/png');
+    assert.equal(Buffer.byteLength(res.body), readFileSync(target).length);
+  } finally {
+    rmSync(target, { force: true });
+  }
+  assert.equal((await fetchAsset('/pighub/asset/' + name)).status, 404, '删掉之后必须立刻 404');
 });
 
 await acheck('木栅栏路由：客户端写死的那条路径必须真有路由，且字节与包内文件逐字节相同', async () => {
@@ -230,20 +289,60 @@ await acheck('木栅栏路由：客户端写死的那条路径必须真有路由
   const m = clientSrc.match(/const PEN_FENCE_URL = '([^']+)'/);
   assert.ok(m, 'client.js 里找不到 PEN_FENCE_URL');
   const url = m[1];
-  const route = routes.get(url);
-  assert.ok(route, '客户端引用的 ' + url + ' 没有对应的路由');
-  const res = makeRes();
-  await route.handler({ method: 'GET' }, res);
-  assert.equal(res.status, 200);
+  const res = await fetchAsset(url);
+  assert.equal(res.status, 200, '客户端引用的 ' + url + ' 取不到图');
   assert.equal(res.headers['content-type'], 'image/png', '围栏必须是 PNG：' + res.headers['content-type']);
   assert.equal(res.headers['cache-control'], 'private, no-cache, must-revalidate', '围栏图也要回源校验');
   const onDisk = readFileSync(new URL('../assets/img/pen-fence.png', import.meta.url));
   assert.equal(Buffer.byteLength(res.body), onDisk.length, '路由返回的字节数与包内文件不同');
   assert.ok(onDisk.equals(Buffer.from(res.body)), '路由返回的字节与包内文件不同（围栏被改写过了？）');
   // 非 GET 一律 405，和素材路由同一套规矩
-  const bad = makeRes();
-  await route.handler({ method: 'POST' }, bad);
-  assert.equal(bad.status, 405);
+  assert.equal((await fetchAsset(url, 'POST')).status, 405);
+  // 布景是显式白名单：同目录里的其它图不许借 /pighub/pen 出去
+  assert.equal((await fetchAsset('/pighub/pen/pighub-12.png')).status, 404, 'PEN_ART 之外的图不该从 /pighub/pen 出去');
+});
+
+await acheck('动态注册表：清单落盘一变，快照 / 图鉴 / 工具**立刻**跟上（无需重启）', async () => {
+  /* 这条是「不要重启」的核心证据：进程里没有任何按时间过期的缓存，
+   * 只按 manifest.json 的落盘状态（mtime + size）判变化。
+   * 写法上必须 try/finally 还原：它在改包内的真清单（否则测不到动态性）。 */
+  const manifestPath = new URL('../assets/manifest.json', import.meta.url);
+  const original = readFileSync(manifestPath);
+  const before = (await call('GET')).json;
+  const source = manifest.pigs[0];
+  try {
+    const next = JSON.parse(original.toString('utf8'));
+    next.pigs = next.pigs.concat([Object.assign({}, source, { id: 'zz-manifest-probe', title: '探针猪' })]);
+    next.counts = Object.assign({}, next.counts, { total: (next.counts.total || 0) + 1 });
+    writeFileSync(manifestPath, JSON.stringify(next, null, 2) + '\n');
+    const after = (await call('GET')).json;
+    assert.equal(after.assets.total, before.assets.total + 1, '快照的素材数要立刻变');
+    assert.ok(after.pool.some((item) => item.id === 'zz-manifest-probe'), '图鉴要立刻包含新 id');
+    assert.notEqual(after.assets.rev, before.assets.rev, '清单版本戳必须变（客户端令牌靠它触发重取）');
+    const about = await tools.get('pighub_about').execute({}, {});
+    assert.ok(about.pool.some((pig) => pig.id === 'zz-manifest-probe'), '工具读的也必须是当前清单');
+  } finally {
+    writeFileSync(manifestPath, original);
+  }
+  assert.ok(readFileSync(manifestPath).equals(original), '清单必须逐字节还原');
+  const restored = (await call('GET')).json;
+  assert.equal(restored.assets.total, before.assets.total, '还原后要立刻回到原数');
+});
+
+await acheck('主题图片（前缀）：运行中新建的主题目录不用重载就能取到', async () => {
+  const themeDir = join(root, 'themes', 'probe-theme');
+  mkdirSync(themeDir, { recursive: true });
+  writeFileSync(join(themeDir, 'bg.png'), readFileSync(new URL('../assets/img/pen-fence.png', import.meta.url)));
+  try {
+    const ok = await fetchAsset('/pighub/theme/probe-theme/bg.png');
+    assert.equal(ok.status, 200, '刚建的目录里那张图必须立刻可取（旧实现要重载插件）');
+    assert.equal(ok.headers['content-type'], 'image/png');
+    assert.equal((await fetchAsset('/pighub/theme/probe-theme/nope.png')).status, 404);
+    assert.equal((await fetchAsset('/pighub/theme/probe-theme/a/bg.png')).status, 404, '路径必须恰好两级');
+    assert.equal((await fetchAsset('/pighub/theme/probe-theme/bg.txt')).status, 404, '主题路由只发图片');
+  } finally {
+    rmSync(join(root, 'themes'), { recursive: true, force: true });
+  }
 });
 
 await acheck('工具 pighub_about：报告版本、素材摘要与本地贴图清单', async () => {

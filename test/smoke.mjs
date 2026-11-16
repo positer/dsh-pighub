@@ -9,7 +9,7 @@
  * 任何一条不成立就非零退出——坏包发不出去。
  */
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync, readdirSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { mkdtempSync, rmSync } from 'node:fs';
@@ -24,8 +24,6 @@ const root = mkdtempSync(join(tmpdir(), 'pighub-smoke-'));
 globalThis.fetch = async () => ({ ok: true, status: 200, json: async () => ({ code: 0, data: [] }) });
 
 const plugin = await import(new URL('../lib/index.js', here).href);
-// 猪圈布景图有几张（PEN_ART）——下面数 disposer 时按它算，不把数字抄两遍。
-const { PEN_ART } = await import(new URL('../lib/assets.js', here).href);
 
 let passed = 0;
 const check = (label, fn) => { fn(); passed += 1; console.log('PASS  ' + label); };
@@ -193,24 +191,30 @@ const ctx = {
 };
 plugin.apply(ctx, { root });
 
-check('注册了 pighub_about / pig-say 工具、状态路由与每张素材的静态路由', () => {
+check('注册了 pighub_about / pig-say 工具、状态路由与三条前缀图路由', () => {
   assert.deepEqual([...tools.keys()], ['pighub_about', 'pig-say']);
   const paths = [...routes.keys()];
   assert.ok(paths.indexOf('/pighub') >= 0, '缺少状态路由');
-  const assetRoutes = paths.filter((path) => path.startsWith('/pighub/asset/'));
-  const manifest = JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8'));
-  assert.equal(assetRoutes.length, manifest.pigs.length, '每张素材一条路由，实际 ' + assetRoutes.length + ' / ' + manifest.pigs.length);
+  /* 2026-11-16：静态图从「每张一条 exact」改成三条前缀路由。
+   * 判据跟着变化，但守的东西更强了：目录里任何一张白名单图片都立刻可取，
+   * 不再依赖「apply 那一刻清单里正好有它」。 */
+  for (const prefix of ['/pighub/asset', '/pighub/pen', '/pighub/theme']) {
+    assert.ok(routes.has(prefix), '缺少前缀图路由 ' + prefix);
+    assert.equal(routes.get(prefix).kind, 'prefix', prefix + ' 必须是 prefix 路由');
+  }
+  const perFile = paths.filter((path) => /^\/pighub\/(asset|pen|theme)\//.test(path));
+  assert.deepEqual(perFile, [], '不该再逐张注册静态图（那正是「必须重启才看得见」的根因）：' + JSON.stringify(perFile.slice(0, 3)));
   assert.equal(paths.some((path) => path === '/pighub/image'), false, '不应再有图片代理（运行时不链接素材库）');
-  for (const path of paths) assert.equal(routes.get(path).kind, 'exact');
+  for (const [path, route] of routes) {
+    assert.ok(route.kind === 'exact' || route.kind === 'prefix', path + ' 的 kind 未知：' + route.kind);
+  }
 });
 check('每个注册都包在 ctx.effect 里（可回收）', () => {
-  const manifestCount = JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8')).pigs.length;
-  // 两个工具 + 状态路由 + 每张素材 + 猪圈布景图（PEN_ART）+ 原生桌面桌宠 + 静默自动更新的定时器
-  // 主题包的图片也是逐张注册的（classic 目录里有几张就几条），这里一起算进去
-  const themeImageCount = readdirSync(new URL('../assets/themes/classic', here)).filter((f) => /\.(png|jpg|jpeg|webp|svg)$/i.test(f)).length;
-  // PEN_ART 会被注册两次：一次是 /pighub/pen（布景），一次是 /pighub/theme/classic（主题包里的同一张图）
-  assert.equal(disposers.length, manifestCount + PEN_ART.length * 2 + 6 + themeImageCount,
-    '两个工具 + 状态路由 + 每张素材 + 每张布景 + 桌面桌宠 + 自动更新定时器 + 主题导入路由 + 每张主题图，各一个 disposer');
+  /* 2026-11-16：静态图改成前缀路由后，注册数**不再随素材数量增长**（这本身就是「动态注册表」的可测副作用）。
+   * 现在固定是：两个工具 + 状态路由 + 主题导入路由 + 三条前缀图路由 + 桌面桌宠 + 自动更新定时器 = 9。 */
+  assert.equal(disposers.length, 9,
+    '注册数应固定为 9（与素材数量无关），实际 ' + disposers.length + '；素材数 '
+    + JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8')).pigs.length);
   for (const dispose of disposers) assert.equal(typeof dispose, 'function');
 });
 check('pighub_about 的参数 schema 封闭、描述非空', () => {
