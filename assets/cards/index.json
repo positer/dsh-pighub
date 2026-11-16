@@ -1,8 +1,8 @@
 {
   "summary": {
     "generatedAt": "2026-11-13T13:02:31.965Z",
-    "source": "https://pighub.top/api/images?sort=2 + 用户对话内提供（2026-11-15）",
-    "requested": 593,
+    "source": "https://pighub.top/api/images?sort=2 + 用户对话内提供（2026-11-15） + 用户对话内提供（2026-11-16） + 用户对话内提供（2026-11-16）",
+    "requested": 596,
     "produced": 576,
     "character": 486,
     "nameRemoved": 445,
@@ -10,8 +10,8 @@
     "animated": 28,
     "skipped": 90,
     "vision": {
-      "checked": 539,
-      "pass": 278,
+      "checked": 542,
+      "pass": 281,
       "fail": 261,
       "pending": 54
     }
@@ -20008,6 +20008,78 @@
       "mood": "cute",
       "moodReason": "停在车位上的小猪，表情淡定、造型干净，无血无武器，可爱",
       "note": "用户 2026-11-15 对话内提供的角色卡；原图自带透明底，逐字节入库。路面贴画布左边缘 1 px（源图本身如此，未裁切）"
+    },
+    {
+      "id": "card-meidouzhu",
+      "title": "妹抖猪",
+      "kind": "static",
+      "file": "assets/cards/img/card-meidouzhu.png",
+      "bytes": 38431,
+      "size": [
+        240,
+        240
+      ],
+      "sha256": "56f6a13e9532e2da4b048ac226664b00415b69c357bad3118894e29c2a6e7809",
+      "category": "character",
+      "categoryBasis": "用户 2026-11-15 在对话里直接交付的单张角色卡（不是上游抓取）",
+      "nameRemoved": "not-needed",
+      "flags": [],
+      "sourceGroup": "user-provided",
+      "suppliedBy": "user",
+      "suppliedAt": "2026-11-15",
+      "vision": "pass",
+      "visionReason": "单只粉猪，头顶一条带三片白色荷叶边（蕾丝）的发箍带、两侧各一枚洋红色卷曲发片；四足、卷尾、粉鼻完整，画面无文字。画布左下角另有一块与猪身不连通的黑白小物件（黑色底 + 白色褶边），按造型读作女仆装的黑色鞋袜/发饰道具",
+      "mood": "cute",
+      "moodReason": "女仆装束（白色荷叶边发箍 + 洋红发卷）的粉猪，表情憨圆，无血无伤口无武器，可爱；左下角那块是服装道具，不是第二只角色",
+      "note": "用户 2026-11-16 对话内提供的角色卡；原图自带透明底（alpha=0 占 56.00%），逐字节入库（未裁切/未改色/未重编码）。不透明像素 25,235（43.81%），连通块 2：猪身 23,270 px @ bbox(40,27,193x170)、左下道具 1,965 px @ bbox(5,174,46x58)；道具按用户交付原样保留"
+    },
+    {
+      "id": "card-zhugui",
+      "title": "猪龟",
+      "kind": "static",
+      "file": "assets/cards/img/card-zhugui.png",
+      "bytes": 34854,
+      "size": [
+        240,
+        240
+      ],
+      "sha256": "9b1f4ca6161f57f2d65d2872bffaca289287c09358358124db4929e2b367e281",
+      "category": "character",
+      "categoryBasis": "用户 2026-11-15 在对话里直接交付的单张角色卡（不是上游抓取）",
+      "nameRemoved": "not-needed",
+      "flags": [],
+      "sourceGroup": "user-provided",
+      "suppliedBy": "user",
+      "suppliedAt": "2026-11-15",
+      "vision": "pass",
+      "visionReason": "单只黄绿色猪，背上一块深绿龟壳（六边形分块 + 壳缘），两侧耳朵与尾巴是黄绿色卷曲造型；四足、深绿鼻孔完整，背景全透明，画面无文字",
+      "mood": "cute",
+      "moodReason": "猪与龟合体的谐趣造型，配色干净、无血无伤口无武器，可爱",
+      "note": "用户 2026-11-16 对话内提供的角色卡；原图自带透明底（alpha=0 占 35.16%），逐字节入库（未裁切/未改色/未重编码）。不透明连通块恰为 1（37,257 px，64.68%），龟壳与猪身连成一体"
+    },
+    {
+      "id": "card-daxiangzhu",
+      "title": "大象猪",
+      "kind": "static",
+      "file": "assets/cards/img/card-daxiangzhu.png",
+      "bytes": 27524,
+      "size": [
+        240,
+        240
+      ],
+      "sha256": "5669e96a0b2b02f7430e4e1cecdb41a5377c3689fe7a6ba00c3e8738de10ace6",
+      "category": "character",
+      "categoryBasis": "用户 2026-11-15 在对话里直接交付的单张角色卡（不是上游抓取）",
+      "nameRemoved": "not-needed",
+      "flags": [],
+      "sourceGroup": "user-provided",
+      "suppliedBy": "user",
+      "suppliedAt": "2026-11-15",
+      "vision": "pass",
+      "visionReason": "单只粉猪，嘴里横衔一根大葱：白色葱白从嘴部向左伸出、深绿葱叶贴着画布左缘；两侧洋红色卷曲耳朵、卷尾、粉鼻完整，画面无文字。造型是把大葱当象鼻的象形梗（角色名即「大象猪」）",
+      "mood": "cute",
+      "moodReason": "叼葱当象鼻的谐趣造型，配色干净、无血无伤口无武器，可爱",
+      "note": "用户 2026-11-16 对话内提供的角色卡；原图自带透明底（alpha=0 占 61.44%），逐字节入库（未裁切/未改色/未重编码）。不透明连通块恰为 1（22,115 px，38.39%）；葱叶在画布左缘贴边 5 px（源图本身如此，未裁切）"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-15",
+  "checkedAt": "2026-11-16",
   "method": "逐仓库查 GitHub API 的 license.spdx_id（权威字段，不是 README 自述），并核对是否写了数据条款。判定只回答一个问题：**能不能把图打进包里再分发**。",
   "verdictPolicy": {
     "bundle": "SPDX 许可明确允许再分发（MIT 等）且仓库内确有图片 → 可进候选池、可打包",
@@ -141,16 +141,16 @@
       "kind": "用户交付素材（对话内直接提供）",
       "url": null,
       "license": null,
-      "licenseSource": "用户于 2026-11-15 在对话里直接给出 5 张角色卡（猪饭 / 博士猪 / 猪麦麦 / 东方明猪 / 停猪）；来源与再分发许可由用户负责，**不是任何上游图库**",
-      "images": 5,
+      "licenseSource": "用户于 2026-11-15 在对话里直接给出 5 张角色卡（猪饭 / 博士猪 / 猪麦麦 / 东方明猪 / 停猪）；来源与再分发许可由用户负责，**不是任何上游图库**。2026-11-16 再补 3 张（妹抖猪 / 猪龟 / 大象猪），同样是用户在对话里直接交付",
+      "images": 8,
       "verdict": "trusted",
-      "note": "只登记「用户在对话里亲手交付的那几张」，不能据此判定任何上游图库可采集，也不能当作批量来源。每张的指纹与字节数在 assets/cards/index.json 的 sourceGroup=user-provided 条目里。",
+      "note": "只登记「用户在对话里亲手交付的那几张」，不能据此判定任何上游图库可采集，也不能当作批量来源。每张的指纹与字节数在 assets/cards/index.json 的 sourceGroup=user-provided 条目里。 2026-11-16 补：妹抖猪 / 猪龟 / 大象猪 三张同属 user-provided，指纹与字节数见 assets/cards/index.json 里 sourceGroup=user-provided 的对应条目。",
       "decidedBy": "用户（2026-11-15）",
       "licenseExcerpt": "用户原话：「新增角色卡，猪饭，博士猪，猪麦麦，东方明猪，停猪」（随 5 张图一并交付）",
       "role": "用户交付（一次性、逐张登记）",
       "collected": true
     }
   ],
-  "conclusion": "PigHub（pighub.top）是唯一可信源，全部素材只从该库采集并逐图精修；其余仓库仅登记事实（是什么、许可如何），一律不采集。 2026-11-15 补：新增 user-provided（用户在对话里直接交付的 5 张角色卡），verdict=trusted，只覆盖这 5 张。",
+  "conclusion": "PigHub（pighub.top）是唯一可信源，全部素材只从该库采集并逐图精修；其余仓库仅登记事实（是什么、许可如何），一律不采集。 2026-11-15 补：新增 user-provided（用户在对话里直接交付的 5 张角色卡），verdict=trusted，只覆盖这 5 张。 2026-11-16 补：user-provided 增至 8 张（再收 3 张角色卡）。",
   "policy": "**PigHub（pighub.top）是唯一可信源**（用户 2026-11-12 决定）。其余仓库只做登记，说明它们是什么、许可如何，以及为什么**不采集**。"
 }
