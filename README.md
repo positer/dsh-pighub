@@ -122,9 +122,10 @@ dsh plugin --profile <你的 profile> add dsh-pighub
 装完重启 DSH：Host 半负责数据与抽取，浏览器半在启动时进图。
 （**素材本身不需要这一步** —— 见上一节「图库是动态的」；重启是为了加载新代码。）
 
-**开发机上的装法**（本仓库即插件源码）：`npm pack` 出 tgz，再用 harness 的插件管理器 `install_bundle` 指向它
-（等价 CLI：`dsh plugin --profile <profile> add <tgz>`）。注意 profile 的依赖会被记成 `file:<那个 tgz 的路径>`，
-**删掉 tgz 之后下一次 `pnpm install` 就会失败** —— 要么保留它，要么改用 npm 上的正式包。
+**开发机上的两种装法**：① 直接装 npm 上的正式包（`install_bundle` 目标写 `dsh-pighub@^<version>`，
+等价 CLI `dsh plugin --profile <profile> add dsh-pighub`）—— 依赖记成版本范围，**推荐**；
+② 装本地 `npm pack` 出来的 tgz —— 依赖会被记成 `file:<tgz 路径>`，**删掉 tgz 之后下一次 `pnpm install` 就会失败**。
+本机（2026-11-16 起）走的是 ①：`dependencies.dsh-pighub = ^1.0.5`，已经不再依赖任何本地 tgz。
 
 **装完之后请再点一次侧边栏的 PigHub 入口。** 实测（6/6 次「卸载 → 安装 → 打开面板」）：
 安装返回成功、素材路由已经 200，但主区域**不会自己重新挂载面板**，看起来就是一片空白；

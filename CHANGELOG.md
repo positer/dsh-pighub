@@ -3,6 +3,25 @@
 本项目遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)；每条记录只写「对使用者可见的变化」，
 内部重构不单列。README 只描述项目整体，**版本相关内容一律记在这里**。
 
+## [1.0.5] — 2026-11-16
+
+### Fixed — 发布校准：仓库 / npm / 已安装三处对齐（无运行时行为变化）
+
+1.0.4 首次走上 npm Trusted Publishing（OIDC + provenance）之后做了一次逐文件对账：**501 个文件里 500 个与仓库逐字节相同**，
+差异只有 `README.md` —— 因为发布提交之后又补了一段安装说明。这一版把那段文字发出去，并顺手堵掉一个打包口径的坑：
+
+- **`files: ["test/*.mjs"]` 会把本地未跟踪的 `test/_*.mjs` 一起打进包**：agent 的临时测试脚本符合这个 glob，
+  于是本地 `npm pack` 出 506 个文件，而 CI 从干净检出打出来是 501 个。现在加了 `!test/_*.mjs`（`.gitignore` 里本来就忽略它们）。
+  实测：清理后本地包也是 **501 个文件，文件清单与 npm 上的 1.0.4 完全一致**。
+- 版本号只动补丁位（1.0.4 → 1.0.5），运行时代码与素材零改动。
+
+### 发布记录（1.0.4）
+
+- 触发：推 `v1.0.4` tag → workflow `publish`（run `43843532518`）：包 `pack`（无凭据，版本校验 + 离线测试）→ 发布（OIDC + provenance）。
+- 回执：`+ dsh-pighub@1.0.4`，provenance 写入 sigstore 透明日志，`dist.attestations.provenance.predicateType = https://slsa.dev/provenance/v1`。
+- **npm 有几分钟的最终一致延迟**：`npm publish` 说成功之后，`npm view dsh-pighub@1.0.4` 仍报 E404 约 2 分钟才出现，
+  `dist-tags.latest` 同步跟上。这件事写在这里，免得下次以为发布失败而重发。
+
 ## [1.0.4] — 2026-11-16
 
 ### Changed — 图库注册表改成**动态**：启动即发现，安装/更新后无需重启
