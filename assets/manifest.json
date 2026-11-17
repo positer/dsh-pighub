@@ -6759,11 +6759,11 @@
       "animated": false,
       "file": "assets/img/pighub-873.png",
       "raster": "assets/img/pighub-873.png",
-      "bytes": 171955,
-      "sha256": "4e31aa179bfda6632854fad32c089daeaf71da8ea2dcc22e10cd21624b9ddcf7",
+      "bytes": 84384,
+      "sha256": "67bb228e6a4ba48d6570878ce8b8a3fadba23e7a8ad178483073221b84eaf78a",
       "size": {
-        "width": 512,
-        "height": 512
+        "width": 358,
+        "height": 293
       },
       "source": {
         "group": "pighub-online",
@@ -6773,22 +6773,23 @@
         "url": "https://pighub.top/images/%E7%8C%AA%E5%86%8D%E8%A7%81.jpg"
       },
       "mood": "cute",
-      "moodReason": "圆胖身体、粉色鼻子；手提箱为道具",
+      "moodReason": "圆胖身体、粉色鼻子；手提箱为道具。2026-11-17 清理：去掉左右紫幕、星光与 \\\"Goodbye.\\\" 字幕（幕布/字幕与描边同色，故只删\\\"粗块紫\\\"，细描边原样保留）",
       "adopted": true,
-      "sizeRatio": 106.33,
+      "sizeRatio": 104.35,
       "background": {
         "key": "near-white",
         "threshold": 252,
         "all": false,
-        "removed": 128197
+        "removed": 128197,
+        "propsRemoved": 59392
       },
       "completion": {
-        "mode": "original-as-is",
-        "at": "2026-11-14",
-        "note": "按用户口径改为直接使用上游原图（零改动），仅去纯白底；旧补全曾重绘/删改原图内容。"
+        "mode": "props-removed",
+        "at": "2026-11-17",
+        "note": "用户口径 2026-11-17：原图带着幕布与字幕，去掉背景配件后再进包 —— 删掉左右紫色幕布、星光与 \\\"Goodbye.\\\" 字幕（共 59,392 px），只留猪本体 + 手提箱；这一版不再直接用上游原图。"
       },
-      "rasterBytes": 171955,
-      "rasterSha": "4e31aa179bfda6632854fad32c089daeaf71da8ea2dcc22e10cd21624b9ddcf7"
+      "rasterBytes": 84384,
+      "rasterSha": "67bb228e6a4ba48d6570878ce8b8a3fadba23e7a8ad178483073221b84eaf78a"
     },
     {
       "id": "pighub-874",
@@ -7686,7 +7687,7 @@
   "sizeRatioBasis": {
     "basis": "sqrt(opaque area)",
     "targetPx": 96,
-    "measuredAt": "2026-11-16"
+    "measuredAt": "2026-11-17"
   },
   "incompletePolicy": "标 incomplete 的猪不参与抽取（draw），但保留可渲染，避免删掉用户已拥有的猪。"
 }
