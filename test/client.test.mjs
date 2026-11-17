@@ -1032,6 +1032,40 @@ await acheck('设置按钮在面板右上角，三档星级显示可切换', asy
   assert.ok(labels.indexOf('2026.11.12') >= 0, '应显示 assetVersion');
 });
 
+await acheck('素材缺失时设置里明说（2026-11-17「有些丢失」那次：接口只回 404，用户不翻到那一页就发现不了）', async () => {
+  // ① 正常包：没有提示，别制造噪音
+  const clean = await render(main);
+  const cleanBtn = collect(findByClass(clean, 'pighub-settings')[0]).find((x) => typeof x === 'object' && x.type === 'button');
+  cleanBtn.props.onClick();
+  const cleanPop = findByClass(await render(main), 'pighub-pop');
+  assert.equal(findByClass(cleanPop[0], 'pighub-asset-missing').length, 0, '素材齐全时不该出现缺失提示');
+
+  // ② 宿主报「缺 3 张」：设置里必须有一行明说 + 给出修法
+  snapshot.assets.missing = 3;
+  snapshot.assets.missingIds = ['pighub-376', 'pighub-604'];
+  await render(main);
+  await new Promise((r) => setTimeout(r, 30));
+  const opened = await render(main);
+  const btn = collect(findByClass(opened, 'pighub-settings')[0]).find((x) => typeof x === 'object' && x.type === 'button');
+  btn.props.onClick();
+  const pop = findByClass(await render(main), 'pighub-pop');
+  const warn = findByClass(pop[0], 'pighub-asset-missing');
+  assert.equal(warn.length, 1, '素材缺失时必须有一行提示');
+  const text = textOf(warn[0]);
+  assert.ok(text.indexOf('3') >= 0, '提示里要报缺了几张：' + text);
+  assert.ok(text.indexOf('重装') >= 0, '提示里要给出修法（重装插件）：' + text);
+
+  // 复原：后面的用例还要用干净的快照
+  delete snapshot.assets.missing;
+  delete snapshot.assets.missingIds;
+  await render(main);
+  await new Promise((r) => setTimeout(r, 20));
+  const reset = await render(main);
+  const resetBtn = collect(findByClass(reset, 'pighub-settings')[0]).find((x) => typeof x === 'object' && x.type === 'button');
+  resetBtn.props.onClick();
+  assert.equal(findByClass((await render(main))[0] || {}, 'pighub-asset-missing').length, 0, '复原后提示应消失');
+});
+
 await acheck('不运动的猪静止、会动的猪走动：class 与行为都分开', async () => {
   const tree = await render(main);
   const wrappers = findByClass(tree, 'pighub-actor');

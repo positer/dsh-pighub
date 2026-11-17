@@ -522,6 +522,17 @@ await acheck('拖回猪圈：落点从物理像素换算成猪圈百分比（进
   assert.equal(plugin.penPercentFromScreen(NaN, 100, rect), null, '非法坐标返回 null');
 });
 
+await acheck('素材体检：清单里每一张图都真的在包里（缺了就在快照里报出来）', async () => {
+  /* 2026-11-17 用户报「有些丢失」：安装目录少了 171 个贴图文件，接口对它们照常回 404，
+   * 面板上就是破图，而且没人吭声。这条断言守住「仓库里是完整的」，另外把体检读数暴露给面板。 */
+  const snapshot2 = await call('POST', { action: 'state' });
+  const assets = snapshot2.json.assets || {};
+  assert.equal(typeof assets.missing, 'number', '快照里必须有 assets.missing 这个体检读数');
+  assert.equal(assets.missing, 0, '仓库里清单与贴图对不上：缺 ' + JSON.stringify(assets.missingIds));
+  assert.deepEqual(assets.missingIds, [], '齐全时不该有缺失 id');
+  assert.ok(assets.total > 0 && assets.bytes > 0, '摘要里的只数与体积还在');
+});
+
 await acheck('猪圈矩形可以**撤销**（rect:null）：宿主把状态清干净，并回 null', async () => {
   /* 用户口径 2026-11-17：「拖动返回猪圈只在 PigHub 的页面内才应该生效，其他页面都不应该触发返回」。
    * 浏览器半换页面时会发 rect:null —— 宿主必须**清空**而不是「保持上次的值」，否则桌宠拖到那块
