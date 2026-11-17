@@ -76,6 +76,14 @@ check('画面没变就不重画、不重贴：视觉签名相同就跳过 Render
   }
 });
 
+check('拖回猪圈：判定区必须经 PenTarget 有效期（不在 PigHub 页面时不许回圈）', () => {
+  const code = source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+  assert.ok(/if \(PenTarget\.Usable\(penRect\.HasValue, penAtMs, UtcMs\(\)\)\)/.test(code),
+    '松手判定没走 PenTarget：过期/来路不明的矩形也会被当成猪圈');
+  assert.ok(/penAtMs = r\.TryGetValue\("at", out at\)/.test(code), '没有解析负载里的 at（那就永远判过期）');
+  assert.ok(/internal const long TtlMs = \d+L;/.test(code), '缺少 TTL 常量');
+});
+
 check('走动速度按真实时间积分（帧率提高、速度不变）', () => {
   const code = source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
   assert.ok(/float speed = pet\.Size \* WalkTempo\.SpeedBodiesPerSecond \* \(dtMs \/ 1000f\);/.test(code),
@@ -115,7 +123,7 @@ try {
   const stdout = execFileSync(exe, [], { encoding: 'utf8' });
   const rows = stdout.split(/\r?\n/).filter((line) => line.trim().startsWith('{')).map((line) => JSON.parse(line));
   const byName = Object.fromEntries(rows.map((row) => [row.case, row]));
-  assert.equal(rows.length, 8, '八个场景都要跑出来（五个画布场景 + 帧节拍 + 游走常量 + 点击弹性）：' + stdout);
+  assert.equal(rows.length, 9, '九个场景都要跑出来（五个画布场景 + 帧节拍 + 游走常量 + 猪圈判定区 + 点击弹性）：' + stdout);
 
   check('猪走 600px：画布搬家次数 <= 8（旧策略每帧一次，约 188 次）', () => {
     assert.ok(byName.walkRight.changes <= 8, '搬家次数 ' + byName.walkRight.changes);
@@ -151,6 +159,18 @@ try {
     assert.ok(row.moveStepNormal > 5.9 && row.moveStepNormal < 6.2, '正常帧（165 Hz）的 dt 应原样放行：' + row.moveStepNormal);
     assert.ok(row.moveStepZero > 1 && row.moveStepZero < 100, '首帧要给一个合理默认：' + row.moveStepZero);
     assert.ok(row.moveStepNan > 1 && row.moveStepNan < 100, 'NaN 不许传下去：' + row.moveStepNan);
+  });
+  check('猪圈判定区只在「PigHub 页面在眼前」时有效（真编译出来的 PenTarget）', () => {
+    const row = byName.penTarget;
+    assert.ok(row, '没有 penTarget 读数');
+    assert.equal(row.fresh, true, '刚量到的矩形要有效');
+    assert.equal(row.edge, true, '正好到期（= TTL）仍算有效，边界不许抖');
+    assert.equal(row.expired, false, 'TTL 一过就作废：没有续期说明 PigHub 页面已经不在了');
+    assert.equal(row.wayExpired, false, '十分钟前的矩形更不许算数');
+    assert.equal(row.noRect, false, '没有矩形当然不能用');
+    assert.equal(row.noAt, false, '没有时间戳的矩形当作来路不明（宁可不在页面，也不要凭旧数据回圈）');
+    assert.equal(row.future, true, '时钟回拨/宿主给了未来时刻时不许把功能关掉');
+    assert.ok(row.ttlMs >= 4000 && row.ttlMs <= 30000, 'TTL 要和「面板每 2 s 续期」同量级：' + row.ttlMs);
   });
   check('游走节奏常量：决策 1700ms、发呆 0.72、速度 0.704 身位/秒（与猪圈侧刻意不一致，见 client.js）', () => {
     const row = byName.walkTempo;

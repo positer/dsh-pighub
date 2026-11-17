@@ -8,6 +8,7 @@ using System.Globalization;
 internal static class Harness {
     /// <summary>按不变文化输出数字：这台机器可能是 zh-CN，但 JSON 的小数点必须是 '.'。</summary>
     private static string N(float value) { return value.ToString("0.######", CultureInfo.InvariantCulture); }
+    private static string B(bool value) { return value ? "true" : "false"; }
 
     // 与 PetForm.Frame() 里那套算式逐项对应：两只猪的包围盒 + margin
     private static Rectangle Need(float ax, float ay, float bx, float by, float size) {
@@ -128,6 +129,20 @@ internal static class Harness {
             + ",\"decisionMs\":" + WalkTempo.DecisionMs
             + ",\"idleWeight\":" + N((float)WalkTempo.IdleWeight)
             + ",\"speedBodiesPerSecond\":" + N(WalkTempo.SpeedBodiesPerSecond)
+            + "}");
+
+        /* 9) 「拖回猪圈」判定区的有效期（用户口径 2026-11-17：只有 PigHub 页面在眼前时才算数）。
+         *    读的同样是产品代码里的 PenTarget。 */
+        const long t0 = 1794897000000L;
+        Console.WriteLine("{\"case\":\"penTarget\""
+            + ",\"ttlMs\":" + PenTarget.TtlMs
+            + ",\"fresh\":" + B(PenTarget.Usable(true, t0, t0 + 1000L))
+            + ",\"edge\":" + B(PenTarget.Usable(true, t0, t0 + PenTarget.TtlMs))
+            + ",\"expired\":" + B(PenTarget.Usable(true, t0, t0 + PenTarget.TtlMs + 1L))
+            + ",\"wayExpired\":" + B(PenTarget.Usable(true, t0, t0 + 600000L))
+            + ",\"noRect\":" + B(PenTarget.Usable(false, t0, t0))
+            + ",\"noAt\":" + B(PenTarget.Usable(true, 0L, t0))
+            + ",\"future\":" + B(PenTarget.Usable(true, t0 + 5000L, t0))
             + "}");
 
         Console.WriteLine("{\"case\":\"clickSquish\""

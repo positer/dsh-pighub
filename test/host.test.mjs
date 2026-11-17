@@ -522,5 +522,43 @@ await acheck('拖回猪圈：落点从物理像素换算成猪圈百分比（进
   assert.equal(plugin.penPercentFromScreen(NaN, 100, rect), null, '非法坐标返回 null');
 });
 
+await acheck('猪圈矩形可以**撤销**（rect:null）：宿主把状态清干净，并回 null', async () => {
+  /* 用户口径 2026-11-17：「拖动返回猪圈只在 PigHub 的页面内才应该生效，其他页面都不应该触发返回」。
+   * 浏览器半换页面时会发 rect:null —— 宿主必须**清空**而不是「保持上次的值」，否则桌宠拖到那块
+   * 屏幕区域（此刻是聊天记录或别的应用）仍会被判成「拖回猪圈」。 */
+  const set = await call('POST', { action: 'penRect', dpr: 2, rect: { left: 100, top: 200, width: 300, height: 400 } });
+  assert.equal(set.status, 200);
+  assert.deepEqual(set.json.penRect, { left: 100, top: 200, width: 300, height: 400 });
+  const before = await call('POST', { action: 'state' });
+  assert.deepEqual(before.json.penRect, { left: 100, top: 200, width: 300, height: 400 }, '快照里应能看到这块矩形');
+
+  const cleared = await call('POST', { action: 'penRect', rect: null });
+  assert.equal(cleared.status, 200);
+  assert.equal(cleared.json.ok, true);
+  assert.equal(cleared.json.penRect, null, '撤销后必须回 null');
+  const after = await call('POST', { action: 'state' });
+  assert.equal(after.json.penRect, null, '快照里的矩形也必须清掉（否则面板/原生两边会各持一份旧真相）');
+
+  // 撤销只有 null 这一种写法：坏矩形仍然拒绝，并且**不许**顺手把已有状态清掉。
+  await call('POST', { action: 'penRect', dpr: 2, rect: { left: 10, top: 20, width: 300, height: 400 } });
+  const bad = await call('POST', { action: 'penRect', rect: { left: 1, top: 2, width: 0, height: 4 } });
+  assert.equal(bad.json.ok, false);
+  assert.equal(bad.json.error, 'bad_rect');
+  const still = await call('POST', { action: 'state' });
+  assert.deepEqual(still.json.penRect, { left: 10, top: 20, width: 300, height: 400 }, '坏请求不该把好矩形清掉');
+  await call('POST', { action: 'penRect', rect: null });
+});
+
+await acheck('下发给原生窗口的 pen 带**量的时刻** at（原生按 TTL 判它还算不算数）', async () => {
+  const petModule = await import(new URL('../lib/desktop-pet.js', import.meta.url).href);
+  const fresh = petModule.petsPayload([{ id: '1', path: 'x.png', pen: { left: 10, top: 20, width: 300, height: 400, at: 1794897000000 } }]);
+  assert.equal(fresh.pen.at, 1794897000000, 'at 必须原样带过去');
+  assert.deepEqual([fresh.pen.left, fresh.pen.top, fresh.pen.width, fresh.pen.height], [10, 20, 300, 400]);
+  const noAt = petModule.petsPayload([{ id: '1', path: 'x.png', pen: { left: 10, top: 20, width: 300, height: 400 } }]);
+  assert.equal('at' in noAt.pen, false, '没有 at 时不要编一个时间戳：原生会按「来路不明」处理');
+  const none = petModule.petsPayload([{ id: '1', path: 'x.png' }]);
+  assert.equal('pen' in none, false, '没有矩形时负载里不该出现 pen 字段');
+});
+
 rmSync(root, { recursive: true, force: true });
 console.log('\n' + passed + ' PASS / 0 FAIL  —  host HTTP surface');

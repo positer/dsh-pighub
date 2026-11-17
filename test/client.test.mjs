@@ -527,6 +527,56 @@ await acheck('桌宠拖进猪圈即回圈（不必双击）', async () => {
   await new Promise((r) => setTimeout(r, 20));
 });
 
+await acheck('离开 PigHub 页面就撤销猪圈矩形：桌宠拖到**原来那块屏幕区域**不再回圈', async () => {
+  /* 用户口径 2026-11-17：「拖动返回猪圈只在 PigHub 的页面内才应该生效，其他页面包括 dsh 的其他页面，
+   * 拖动到对应的位置但你不在 PigHub 页面都不应该触发返回」。
+   * 三件事必须同时成立：① 页面在 → 量到就报；② 页面走了 → **明确撤销**（rect:null，不是沉默）；
+   * ③ 撤销之后，桌宠在旧猪圈坐标上松手什么都不发生；回到页面又能恢复。 */
+  requests.length = 0;
+  plugin.__test.setPenRect({ left: 200, top: 200, width: 400, height: 400 });
+  await new Promise((r) => setTimeout(r, 15));
+  const reported = requests.filter((r) => r.body.action === 'penRect');
+  assert.equal(reported.length, 1, '量到矩形要报给宿主一次');
+  assert.ok(reported[0].body.rect && reported[0].body.rect.width > 0, '矩形要带上宽高（宿主按物理像素判相交）');
+
+  plugin.__test.setPenRect(null);   // ← 面板卸载 / 换到别的页面 / 页面被隐藏
+  await new Promise((r) => setTimeout(r, 15));
+  const cleared = requests.filter((r) => r.body.action === 'penRect' && r.body.rect === null);
+  assert.equal(cleared.length, 1, '撤销必须**明确发一次 rect:null**：沉默等于让宿主一直揣着旧矩形');
+  assert.equal(plugin.__test.storeState().penRect, null, 'store 里的矩形也要一起清掉');
+
+  plugin.__test.setPenRect(null);   // 幂等：已经撤过了不重复发
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(requests.filter((r) => r.body.action === 'penRect' && r.body.rect === null).length, 1, '撤销要幂等');
+
+  // 用户可见的后果：桌宠在**旧猪圈坐标**（200..600）上松手，不该回圈
+  const tree = await render(overlay);
+  const pet = findByClass(tree, 'pighub-pet')[0];
+  assert.ok(pet, '应有桌宠元素');
+  const before = requests.filter((r) => r.body.action === 'place' && r.body.to === 'pen').length;
+  pet.props.onPointerUp({ clientX: 300, clientY: 300 });
+  await new Promise((r) => setTimeout(r, 20));
+  assert.equal(requests.filter((r) => r.body.action === 'place' && r.body.to === 'pen').length, before,
+    '不在 PigHub 页面时，拖到那块屏幕区域不该回圈');
+
+  // 回到 PigHub 页面：重新量到就恢复（不是一次性的关闭）
+  plugin.__test.setPenRect({ left: 200, top: 200, width: 400, height: 400 });
+  await new Promise((r) => setTimeout(r, 10));
+  const restored = plugin.__test.storeState().penRect;
+  assert.ok(restored && Math.round(restored.width) === 400, '回到页面要能重新生效');
+});
+
+check('面板卸载 / 页面隐藏时撤销猪圈矩形的**装配**（源码契约，结构测试跑不到 unmount）', () => {
+  const source = readFileSync(new URL('../lib/client.js', import.meta.url), 'utf8');
+  assert.ok(/const withdraw = \(\) => \{ if \(alive\) STORE\.setPenRect\(null\); \}/.test(source), '缺少「撤销」入口');
+  assert.ok(/document\.addEventListener\('visibilitychange', onVisibility\)/.test(source), '窗口被切走/最小化时没有撤销');
+  const from = source.indexOf('const measure = () => {', source.indexOf('猪圈矩形要实时报给 store'));
+  const effect = source.slice(from, source.indexOf('}, []);', from));
+  assert.ok(effect.length > 200, '没找到那段 effect');
+  assert.ok(effect.indexOf('STORE.setPenRect(null)') >= 0, 'effect 的清理函数里必须撤销矩形（换到别的页面就不该回圈）');
+  assert.ok(effect.indexOf("removeEventListener('visibilitychange'") >= 0, '清理时要摘掉可见性监听');
+});
+
 await acheck('桌宠层：有桌宠时渲染在页面级容器里，可拖动、可双击回圈', async () => {
   const tree = await render(overlay);
   assert.ok(tree, '有桌宠时桌宠层必须存在');

@@ -181,6 +181,30 @@ internal static class WalkTempo {
 }
 
 /// <summary>
+/// 「把桌宠拖到猪圈位置松手 → 回猪圈」这块判定区什么时候才算数（纯函数，可被测试真编译断言）。
+///
+/// 用户口径 2026-11-17：「拖动返回猪圈只在 PigHub 的页面内才应该生效，其他页面（包括 DSH 的其它页面）
+/// 拖到对应的位置都不应该触发返回」。所以矩形必须**只在猪圈真的在眼前时**有效：
+///   - 浏览器半每次量到矩形都会带上**量它的时刻**（at），并且每 2 s 续期一次；
+///   - 换页面 / 面板卸载 / 窗口被隐藏时，浏览器半会显式撤销（rect: null）——宿主把 pen 从负载里删掉；
+///   - 万一撤销没送到（客户端崩了、页面重载、请求丢了），**没有续期**这件事本身就足以作废它。
+/// </summary>
+internal static class PenTarget {
+    /// <summary>矩形多久没被续期就作废（毫秒）。浏览器半每 2 s 量一次，这里留 4 倍余量。</summary>
+    internal const long TtlMs = 8000L;
+
+    /// <summary>这块矩形此刻能不能当「猪圈」用。</summary>
+    internal static bool Usable(bool hasRect, long atMs, long nowMs) {
+        if (!hasRect) return false;
+        // 老格式的负载没有 at：宁可当作「不在 PigHub 页面」，也不要凭一个来路不明的矩形回圈。
+        if (atMs <= 0L) return false;
+        long age = nowMs - atMs;
+        if (age < 0L) return true;   // 时钟回拨 / 宿主给了未来时刻：不因为时钟问题把功能关掉
+        return age <= TtlMs;
+    }
+}
+
+/// <summary>
 /// 帧节拍规则（纯函数：test/native/canvas-harness.cs 把这份源码编出来直接断言）。
 ///
 /// 旧版是 System.Windows.Forms.Timer + Interval = 33 —— 30 fps 的硬上限，而且 WM_TIMER 的分辨率
@@ -338,6 +362,8 @@ internal sealed class PetForm : Form {
     private long lastReport;
     /// <summary>浏览器半报上来的猪圈矩形（屏幕坐标）：拖到里面松手 = 回猪圈。</summary>
     private Rectangle? penRect;
+    /// <summary>这块矩形是什么时候量的（Unix 毫秒）：过期就不算数，见 PenTarget.TtlMs。</summary>
+    private long penAtMs;
     /// <summary>星级胶囊的显示档位（off / hover / always），与面板的设置同一份。</summary>
     private string starMode = "hover";
     private Font badgeFont = new Font("Segoe UI", 9f, FontStyle.Bold);
@@ -442,9 +468,12 @@ internal sealed class PetForm : Form {
                     penRect = new Rectangle(
                         Convert.ToInt32(r["left"]), Convert.ToInt32(r["top"]),
                         Convert.ToInt32(r["width"]), Convert.ToInt32(r["height"]));
+                    object at;
+                    penAtMs = r.TryGetValue("at", out at) && at != null ? Convert.ToInt64(at) : 0L;
                 }
             } else {
                 penRect = null;
+                penAtMs = 0L;
             }
             object list;
             if (!root.TryGetValue("pets", out list)) return;
@@ -1316,7 +1345,9 @@ internal sealed class PetForm : Form {
             // 用户口径：支持"拖回猪圈"。猪圈矩形由浏览器半实测后经宿主下发。
             // 判定用**矩形相交**而不是"中心点落在圈里"：用户把猪头一段搭进猪圈就想让它回去，
             // 只测中心会导致"明明拖进去了却没返回"（真机反馈）。
-            if (penRect.HasValue) {
+            // 但**矩形必须还在续期**（用户口径 2026-11-17）：换到别的页面时那块屏幕区域不是猪圈，
+            // 拖过去不许回圈 —— 没有续期的矩形按过期处理（见 PenTarget）。
+            if (PenTarget.Usable(penRect.HasValue, penAtMs, UtcMs())) {
                 int petW = dropped.Size;
                 int petH = dropped.Sprite == null
                     ? dropped.Size
