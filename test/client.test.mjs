@@ -846,24 +846,29 @@ check('游走模型逐参数对齐 pet-window.cs：每个常量都从桌宠源�
     assert.ok(m, 'pet-window.cs 里找不到「' + what + '」——桌宠侧的结构变了，猪圈这边必须跟着改，而不是碰巧数字还对');
     return m;
   };
-  // ① 决策间隔（cs:230 / 229）
-  const decision = grab(/pet\.NextDecision = now \+ (\d+);/, '决策间隔');
-  assert.equal(M.DECISION_MS, Number(decision[1]), '决策间隔要和桌宠一致（cs:230）');
-  // ② 发呆概率（cs:232）
-  const idle = grab(/if \(Unity < ([\d.]+)\)/, '发呆概率');
-  assert.equal(M.IDLE_CHANCE, Number(idle[1]), '发呆概率要和桌宠一致（cs:232）');
+  // ① 决策间隔（桌宠侧在 WalkTempo.DecisionMs）
+  const decision = grab(/internal const long DecisionMs = (\d+);/, '决策间隔');
+  assert.equal(M.DECISION_MS, Number(decision[1]), '决策间隔要和桌宠一致（WalkTempo.DecisionMs）');
+  // ② 发呆概率（WalkTempo.IdleWeight）
+  const idle = grab(/internal const double IdleWeight = ([\d.]+);/, '发呆概率');
+  assert.equal(M.IDLE_CHANCE, Number(idle[1]), '发呆概率要和桌宠一致（WalkTempo.IdleWeight）');
   // ③ 单步 = pet.Size * (a + b * Unity)（cs:234）
   const step = grab(/pet\.Size \* \(([\d.]+)f \+ ([\d.]+)f \* \(float\)Unity\)/, '单步距离');
   assert.equal(M.STEP_MIN_BODY, Number(step[1]), '步长下限 = cs:234 的常数项');
   assert.equal(M.STEP_MAX_BODY, Number(step[1]) + Number(step[2]), '步长上限 = 常数项 + 系数（cs:234）');
   // ④ 方向：angle = Unity * PI * 2（cs:233）
   grab(/double angle = Unity \* Math\.PI \* 2;/, '方向');
-  // ⑤ 速度 = Size × 系数 × (帧长/1000)（cs:244；帧长来自 cs:101 的 Timer）
-  const speed = grab(/float speed = pet\.Size \* ([\d.]+)f \* \((\d+)f \/ (\d+)f\);/, '移动速度');
-  const frame = grab(/timer\.Interval = (\d+);/, '帧间隔');
-  assert.equal(Number(speed[2]), Number(frame[1]), '速度里的帧长必须与 Timer.Interval 是同一个数');
-  assert.equal(Number(speed[3]), 1000, '速度是「像素/毫秒 × 尺寸」，分母应为 1000');
-  assert.equal(M.SPEED_BODY_PER_S, Number(speed[1]), '每秒几个身位（cs:244 的系数）');
+  /* ⑤ 速度：桌宠侧现在是一个**显式常量**，不再是「33ms/帧」的隐含系数（2026-11-17）。
+   * 这个常量与猪圈侧**刻意不同**，所以这里断的不是「相等」，而是两件更硬的事：
+   *   a) 桌宠的速度是时间基准的（算式里必须乘真实 dt，不能写死帧长）；
+   *   b) 它的取值等于「用户 2026-11-13 调完之后真正看到的手感」——0.704 身位/秒
+   *      （旧版每帧走 Size×0.033，WM_TIMER 把 33ms 量化成 46.875ms → 0.033/0.046875）。
+   * 谁要改这个数，必须先改这一条断言里的推导，而不是顺手抹掉它。 */
+  const speedConst = grab(/internal const float SpeedBodiesPerSecond = ([\d.]+)f;/, '走动速度常量');
+  const speedExpr = grab(/float speed = pet\.Size \* WalkTempo\.SpeedBodiesPerSecond \* \(dtMs \/ (\d+)f\);/, '移动速度算式');
+  assert.equal(Number(speedExpr[1]), 1000, '速度是「像素/毫秒 × 尺寸」，分母应为 1000');
+  assert.ok(Math.abs(Number(speedConst[1]) - 0.704) < 0.001, '桌宠速度常量被改了：' + speedConst[1]);
+  assert.equal(M.SPEED_BODY_PER_S, 1, '猪圈侧仍是设计值 1 身位/秒（两边刻意不同，见 client.js 的说明）');
   assert.equal(M.WALK_PX_PER_S, M.PIG_PX * M.SPEED_BODY_PER_S, '每秒像素 = 身位 × 速度系数');
   // ⑥ 一窗上限：下一次决策（cs:230）会打断走路，所以每段位移 ≤ 速度 × 决策间隔
   assert.ok(Math.abs(M.STEP_CAP_BODY - M.SPEED_BODY_PER_S * (M.DECISION_MS / 1000)) < 1e-9,

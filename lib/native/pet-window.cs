@@ -15,6 +15,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
@@ -23,6 +24,12 @@ internal static class Native {
     [StructLayout(LayoutKind.Sequential)] internal struct Size { public int X, Y; public Size(int x, int y) { X = x; Y = y; } }
     [StructLayout(LayoutKind.Sequential, Pack = 1)] internal struct Blend { public byte Operation, Flags, Alpha, Format; }
     [StructLayout(LayoutKind.Sequential)] internal struct Rect { public int Left, Top, Right, Bottom; }
+    [StructLayout(LayoutKind.Sequential)] internal struct BitmapInfoHeader {
+        public int Size, Width, Height;
+        public short Planes, BitCount;
+        public int Compression, SizeImage, XPelsPerMeter, YPelsPerMeter, ClrUsed, ClrImportant;
+    }
+    [StructLayout(LayoutKind.Sequential)] internal struct BitmapInfo { public BitmapInfoHeader Header; public int Colors; }
 
     [DllImport("user32.dll")] internal static extern bool UpdateLayeredWindow(IntPtr hwnd, IntPtr dst, ref Point src, ref Size size, IntPtr dc, ref Point origin, uint colorKey, ref Blend blend, uint flags);
     [DllImport("user32.dll")] internal static extern IntPtr GetDC(IntPtr hwnd);
@@ -34,24 +41,73 @@ internal static class Native {
     [DllImport("user32.dll")] internal static extern bool SetProcessDpiAwarenessContext(IntPtr context);
     [DllImport("user32.dll")] internal static extern bool SetWindowPos(IntPtr hwnd, IntPtr after, int x, int y, int cx, int cy, uint flags);
     [DllImport("user32.dll")] internal static extern int GetDpiForWindow(IntPtr hwnd);
+    [DllImport("user32.dll")] internal static extern bool PostMessage(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam);
+    [DllImport("dwmapi.dll")] internal static extern int DwmFlush();
+    [DllImport("winmm.dll")] internal static extern uint timeBeginPeriod(uint milliseconds);
+    [DllImport("winmm.dll")] internal static extern uint timeEndPeriod(uint milliseconds);
+    [DllImport("gdi32.dll")] internal static extern IntPtr CreateDIBSection(IntPtr dc, ref BitmapInfo info, uint usage, out IntPtr bits, IntPtr section, uint offset);
 
-    internal static void Present(IntPtr hwnd, Bitmap canvas, Point location) {
-        IntPtr screen = GetDC(IntPtr.Zero);
-        IntPtr mem = CreateCompatibleDC(screen);
-        IntPtr hbmp = canvas.GetHbitmap(Color.FromArgb(0));
-        IntPtr old = SelectObject(mem, hbmp);
-        try {
-            Size size = new Size(canvas.Width, canvas.Height);
-            Point src = new Point(0, 0);
-            Blend blend = new Blend();
-            blend.Operation = 0; blend.Flags = 0; blend.Alpha = 255; blend.Format = 1;
-            UpdateLayeredWindow(hwnd, IntPtr.Zero, ref location, ref size, mem, ref src, 0, ref blend, 2);
-        } finally {
-            SelectObject(mem, old);
-            DeleteObject(hbmp);
-            DeleteDC(mem);
-            ReleaseDC(IntPtr.Zero, screen);
+    /// <summary>
+    /// 一块**常驻**的合成面：32bpp 预乘 alpha 的 DIB + 一张包着同一块像素的 Bitmap。
+    ///
+    /// 为什么要有它（2026-11-17 实测）：旧写法每帧都 canvas.GetHbitmap() + CreateCompatibleDC，
+    /// 等于每帧把整块画布复制一遍再交给 UpdateLayeredWindow —— 4 只猪铺开时画布 1792×1216（8.7 MB），
+    /// **30 fps 就吃掉一个核的 78%**（同一台机器、同一个探针量的）。改成「一次分配、每帧只画不复制」。
+    ///
+    /// 像素格式必须是 **PArgb（预乘 alpha）**：UpdateLayeredWindow 的 ULW_ALPHA 按预乘解释 RGB，
+    /// 送未预乘的 ARGB 会让半透明边缘按 alpha 偏亮一次（描边发白）。GDI+ 画进 PArgb 目标时自动预乘。
+    ///
+    /// biHeight 取负数 = 自上而下的 DIB，与 Bitmap 的行序一致；取正数会整幅上下颠倒。
+    /// </summary>
+    internal sealed class Surface : IDisposable {
+        internal readonly int Width;
+        internal readonly int Height;
+        internal readonly Bitmap Bitmap;
+        internal readonly Graphics Graphics;
+        private readonly IntPtr screenDc;
+        private readonly IntPtr memoryDc;
+        private readonly IntPtr dib;
+        private readonly IntPtr previous;
+
+        internal Surface(int width, int height) {
+            Width = width;
+            Height = height;
+            screenDc = GetDC(IntPtr.Zero);
+            memoryDc = CreateCompatibleDC(screenDc);
+            BitmapInfo info = new BitmapInfo();
+            info.Header.Size = Marshal.SizeOf(typeof(BitmapInfoHeader));
+            info.Header.Width = width;
+            info.Header.Height = -height;
+            info.Header.Planes = 1;
+            info.Header.BitCount = 32;
+            info.Header.Compression = 0;   // BI_RGB
+            IntPtr bits;
+            dib = CreateDIBSection(screenDc, ref info, 0, out bits, IntPtr.Zero, 0);
+            previous = SelectObject(memoryDc, dib);
+            Bitmap = new Bitmap(width, height, width * 4, PixelFormat.Format32bppPArgb, bits);
+            Graphics = Graphics.FromImage(Bitmap);
         }
+
+        /// <summary>交给 UpdateLayeredWindow 的源 DC：位图已经选在里面。</summary>
+        internal IntPtr MemoryDc { get { return memoryDc; } }
+
+        public void Dispose() {
+            Graphics.Dispose();
+            Bitmap.Dispose();
+            SelectObject(memoryDc, previous);
+            DeleteObject(dib);
+            DeleteDC(memoryDc);
+            ReleaseDC(IntPtr.Zero, screenDc);
+        }
+    }
+
+    /// <summary>把合成面贴到窗口上（位置、尺寸、位图**一次提交**：分两步会出现「窗口是新的、内容是旧的」）。</summary>
+    internal static void Present(IntPtr hwnd, Surface surface, Point location) {
+        Size size = new Size(surface.Width, surface.Height);
+        Point src = new Point(0, 0);
+        Blend blend = new Blend();
+        blend.Operation = 0; blend.Flags = 0; blend.Alpha = 255; blend.Format = 1;
+        UpdateLayeredWindow(hwnd, IntPtr.Zero, ref location, ref size, surface.MemoryDc, ref src, 0, ref blend, 2);
     }
 }
 
@@ -102,6 +158,58 @@ internal static class CanvasFit {
         int right = (int)Math.Ceiling(rect.Right / (double)Grid) * Grid;
         int bottom = (int)Math.Ceiling(rect.Bottom / (double)Grid) * Grid;
         return Rectangle.FromLTRB(left, top, right, bottom);
+    }
+}
+
+/// <summary>
+/// 游走节奏的口径常量（与猪圈浏览器半 lib/client.js 的同一套参数对齐）。
+/// **参数是口径，不是玄学**：调它们之前先改这里，不要散落在 Step() 的算式里。
+/// </summary>
+internal static class WalkTempo {
+    /// <summary>每 1.7 s 决策一次（client.js DECISION_MS）。</summary>
+    internal const long DecisionMs = 1700;
+    /// <summary>72% 原地发呆（client.js 的 IDLE_WEIGHT）。</summary>
+    internal const double IdleWeight = 0.72;
+    /// <summary>
+    /// 走动速度（身位/秒）。**这个数是从旧版实测反推的，不是新定的**：
+    /// 旧版每帧走 Size×0.033，而 WM_TIMER 把 33 ms 量化成 3 个系统时钟（3×15.625 = 46.875 ms），
+    /// 所以实际速度 = 0.033 / 0.046875 ≈ 0.704 身位/秒 —— 用户 2026-11-13 把速度「减慢」之后
+    /// 看到的就是这个数（本次探针实测中位 0.70、峰值 0.72 身位/秒）。
+    /// 这一轮只改帧率、不改手感，所以把它钉成显式常量，不再跟着帧间隔漂移。
+    /// </summary>
+    internal const float SpeedBodiesPerSecond = 0.704f;
+}
+
+/// <summary>
+/// 帧节拍规则（纯函数：test/native/canvas-harness.cs 把这份源码编出来直接断言）。
+///
+/// 旧版是 System.Windows.Forms.Timer + Interval = 33 —— 30 fps 的硬上限，而且 WM_TIMER 的分辨率
+/// 跟着系统时钟走（默认 15.6 ms），实测帧间隔 31.6 ms、抖动约 ±4 ms。现在帧由后台线程按**合成节拍**驱动
+/// （DwmFlush 一次 = 一次 vblank），上限因此是显示器刷新率（本机 165 Hz）；这条规则只管两件事：
+/// 有动画时按合成节拍走，没动画时退到 10 Hz 轮询（静止的猪不该每秒被合成 165 次）。
+/// </summary>
+internal static class FrameCadence {
+    /// <summary>没有动画时的轮询间隔：读 pets.json / commands.jsonl 的 mtime、回报位置，10 Hz 够用。</summary>
+    internal const int IdleIntervalMs = 100;
+    /// <summary>有动画时两次投递之间的**最小**间隔（250 Hz）。DwmFlush 若立刻返回（合成暂停、远程会话），
+    /// 没有这条兜底就会变成全速空转，把 CPU 打满。</summary>
+    internal const int FloorMs = 4;
+    /// <summary>位移积分的时间步上限（毫秒）：一次卡顿或一次空闲轮询（100 ms）不许让猪瞬移。
+    /// 正常帧（165 Hz ≈ 6 ms）远低于它，所以这个夹取只在「从发呆切到走动」和真卡顿时生效。</summary>
+    internal const int MoveStepMs = 20;
+
+    /// <summary>这一帧之后还要等多久（毫秒）。elapsedMs = 刚才那次「等合成」已经花掉的时间。</summary>
+    internal static int SleepFor(bool animating, int elapsedMs) {
+        if (!animating) return IdleIntervalMs;
+        if (elapsedMs < 0) return 0;
+        int rest = FloorMs - elapsedMs;
+        return rest > 0 ? rest : 0;
+    }
+
+    /// <summary>把「距上一帧的真实毫秒数」夹成可用的积分步长。首帧/时钟异常给一个 60 Hz 的典型值。</summary>
+    internal static float MoveStep(float elapsedMs) {
+        if (elapsedMs <= 0f || float.IsNaN(elapsedMs)) return 1000f / 60f;
+        return elapsedMs > (float)MoveStepMs ? (float)MoveStepMs : elapsedMs;
     }
 }
 
@@ -161,6 +269,12 @@ internal sealed class Pet {
     public string Id;
     public string Path;
     public Bitmap Sprite;
+    /// <summary>按屏幕尺寸**预缩放**好的贴图（朝左）。Size 变了才重建：旧版每帧都从原图重采样一次。</summary>
+    public Bitmap Scaled;
+    /// <summary>预缩放的镜像版（朝右走时用）。</summary>
+    public Bitmap ScaledFlip;
+    /// <summary>上面两份缓存是按哪个 Size 生成的；-1 = 还没有。</summary>
+    public int ScaledFor = -1;
     public float X, Y;          // 屏幕坐标（左上角）
     public int Size;            // 宽度像素
     public long SpriteStamp;
@@ -175,11 +289,41 @@ internal sealed class Pet {
 }
 
 internal sealed class PetForm : Form {
+    /// <summary>后台节拍线程投给本窗口的消息：该画下一帧了。所有窗口/位图操作仍在 UI 线程上做。</summary>
+    private const int WM_FRAME = 0x0400 + 0x5150;
     private readonly string directory;
-    private readonly Timer timer;
     private readonly JavaScriptSerializer json = new JavaScriptSerializer();
     private readonly Dictionary<string, Pet> pets = new Dictionary<string, Pet>();
-    private Bitmap canvas;
+    /// <summary>常驻合成面：画布矩形不变就一直是同一块 DIB（旧版每帧 GetHbitmap，见 Native.Surface）。</summary>
+    private Native.Surface surface;
+
+    /* ---- 帧节拍（2026-11-17 重写）----
+     * 旧版 System.Windows.Forms.Timer(33ms)：WM_TIMER 的分辨率跟着系统时钟走，实测帧间隔 31.6 ms、
+     * 上限 30 fps。现在由 pacer 线程按合成节拍驱动（DwmFlush 一次 = 一次 vblank），上限就是显示器刷新率。
+     * 线程只发消息、不碰窗口；画面该不该重画由「视觉签名」决定（见 Signature）。
+     * */
+    private Thread pacer;
+    private volatile bool pacerStop;
+    /// <summary>这一帧之后按什么节拍走：true = 有动画（合成节拍），false = 空闲（10 Hz）。</summary>
+    private volatile bool fastMode;
+    private int framePending;
+    private readonly AutoResetEvent pacerWake = new AutoResetEvent(false);
+    /// <summary>窗口句柄缓存：pacer 线程只读它，绝不在别的线程上碰 Form.Handle（那会在错的线程建窗口）。</summary>
+    private IntPtr hwnd;
+    private long lastFrameStamp;
+    /// <summary>上一帧的「视觉签名」：一样就不重画也不重贴。</summary>
+    private string lastSignature = "";
+    /// <summary>画布刚重建 → 内容无效，下一帧必须重画。</summary>
+    private bool canvasFresh;
+    /* ---- 帧率统计（只在设置了 PIGHUB_PET_STATS 时写；默认完全不写）---- */
+    private string statsFile;
+    private long statFrames, statDrawn, statBusyFrames, statStartAt;
+    private long statWindowAt;
+    private long statDrawFirst, statDrawLast;
+    private double statSumMs, statMaxMs;
+    private double statRenderMs, statPresentMs;
+    private double statDtSum, statDtMin, statDtMax;
+    private long statDtCount;
     /// <summary>当前画布对应的**屏幕矩形**：它同时就是窗口矩形（位置与尺寸只经 UpdateLayeredWindow 生效）。</summary>
     private Rectangle canvasRect;
     private long petsStamp;
@@ -238,17 +382,25 @@ internal sealed class PetForm : Form {
         TopMost = true;
         AutoScaleMode = AutoScaleMode.None;
         BackColor = Color.Black;
-        timer = new Timer();
-        timer.Interval = 33;
-        timer.Tick += delegate { Frame(); };
         Shown += delegate {
+            // 句柄一旦拿到就缓存：pacer 线程只用这个值投消息（绝不跨线程读 Form.Handle）。
+            hwnd = Handle;
             try {
-                int dpi = Native.GetDpiForWindow(Handle);
+                int dpi = Native.GetDpiForWindow(hwnd);
                 if (dpi > 0) dpiScale = dpi / 96f;
             } catch (Exception) { }
+            statsFile = Environment.GetEnvironmentVariable("PIGHUB_PET_STATS");
+            statStartAt = UtcMs();
+            statWindowAt = Stopwatch.GetTimestamp();
             LoadPets();
-            Frame();
-            timer.Start();
+            FrameTick();
+            StartPacer();
+        };
+        FormClosed += delegate {
+            StopPacer();
+            // 进程马上要退，但把 GDI 对象还回去是「谁申请谁释放」的基本纪律（也方便测泄漏）。
+            if (surface != null) { surface.Dispose(); surface = null; }
+            ReleaseBubbleTools();
         };
     }
 
@@ -312,7 +464,7 @@ internal sealed class PetForm : Form {
                 pet.Path = path;
                 long spriteStamp = File.GetLastWriteTimeUtc(path).Ticks;
                 if (pet.SpriteStamp != spriteStamp) {
-                    if (pet.Sprite != null) pet.Sprite.Dispose();
+                    ReleaseSprites(pet);
                     pet.Sprite = new Bitmap(path);
                     pet.SpriteStamp = spriteStamp;
                 }
@@ -332,20 +484,206 @@ internal sealed class PetForm : Form {
             }
             List<string> gone = new List<string>();
             foreach (string id in pets.Keys) if (!seen.Contains(id)) gone.Add(id);
-            foreach (string id in gone) { if (pets[id].Sprite != null) pets[id].Sprite.Dispose(); pets.Remove(id); }
+            foreach (string id in gone) { ReleaseSprites(pets[id]); pets.Remove(id); }
         } catch (Exception) { /* 文件正在被替换：下一帧再读 */ }
     }
 
-    private void Frame() {
-        if (File.Exists(StopFile)) { timer.Stop(); ReleaseBubbleTools(); Close(); return; }
+    /// <summary>释放一只猪的全部位图（原图 + 预缩放缓存）；缓存不跟着老贴图走就是内存泄漏。</summary>
+    private static void ReleaseSprites(Pet pet) {
+        if (pet.Sprite != null) { pet.Sprite.Dispose(); pet.Sprite = null; }
+        if (pet.Scaled != null) { pet.Scaled.Dispose(); pet.Scaled = null; }
+        if (pet.ScaledFlip != null) { pet.ScaledFlip.Dispose(); pet.ScaledFlip = null; }
+        pet.ScaledFor = -1;
+    }
+
+    /* ------------------------------ 帧节拍（pacer） ------------------------------
+     * 线程只做一件事：按节拍投一条 WM_FRAME 给本窗口。
+     *   - 有动画：DwmFlush() 阻塞到下一次显示器合成 → 帧率上限 = 刷新率（本机 165 Hz）；
+     *   - 没动画：10 Hz 轮询（读文件 mtime、回报位置），静止的猪不该每秒被合成 165 次；
+     *   - 上一条帧消息没处理完就不投下一条：UI 线程慢的时候宁丢帧，也不要堆一队消息。
+     * 窗口与位图操作全部留在 UI 线程（跨线程碰 HWND 是不受支持的写法）。
+     * */
+    private void StartPacer() {
+        Native.timeBeginPeriod(1);          // Sleep/WaitOne 的精度到 ~1 ms（空闲节拍与兜底等待都靠它）
+        pacerStop = false;
+        pacer = new Thread(PaceLoop);
+        pacer.IsBackground = true;          // 宿主强杀时不拖住进程退出
+        pacer.Name = "pighub-pet-pacer";
+        pacer.Start();
+    }
+
+    private void StopPacer() {
+        pacerStop = true;
+        try { pacerWake.Set(); } catch (Exception) { }
+        Thread thread = pacer;
+        pacer = null;
+        if (thread != null) thread.Join(300);
+        try { Native.timeEndPeriod(1); } catch (Exception) { }
+    }
+
+    private void PaceLoop() {
+        while (!pacerStop) {
+            if (fastMode) {
+                long started = Stopwatch.GetTimestamp();
+                try { Native.DwmFlush(); } catch (Exception) { }
+                int rest = FrameCadence.SleepFor(true, ElapsedMs(started));
+                if (rest > 0) pacerWake.WaitOne(rest);
+            } else {
+                pacerWake.WaitOne(FrameCadence.IdleIntervalMs);
+            }
+            if (pacerStop) return;
+            PostFrame();
+        }
+    }
+
+    private static int ElapsedMs(long since) {
+        long ticks = Stopwatch.GetTimestamp() - since;
+        return (int)(ticks * 1000L / Stopwatch.Frequency);
+    }
+
+    private void PostFrame() {
+        if (Interlocked.CompareExchange(ref framePending, 1, 0) != 0) return;
+        IntPtr target = hwnd;
+        if (target == IntPtr.Zero || !Native.PostMessage(target, WM_FRAME, IntPtr.Zero, IntPtr.Zero)) {
+            Interlocked.Exchange(ref framePending, 0);
+        }
+    }
+
+    /// <summary>处理一条帧消息：算出「距上一帧真实过了多少毫秒」，再交给 Frame。</summary>
+    private void FrameTick() {
+        long now = Stopwatch.GetTimestamp();
+        long previous = lastFrameStamp;
+        lastFrameStamp = now;
+        float dtMs = previous == 0L ? 1000f / 60f : (now - previous) * 1000f / Stopwatch.Frequency;
+        if (previous != 0L) {
+            // 帧间隔本身也是读数：它落在 1000/刷新率 附近，才说明是「顶满显示上限」而不是碰巧快。
+            if (dtMs > statDtMax) statDtMax = dtMs;
+            if (statDtCount == 0L || dtMs < statDtMin) statDtMin = dtMs;
+            statDtSum += dtMs;
+            statDtCount += 1;
+        }
+        Frame(FrameCadence.MoveStep(dtMs));
+    }
+
+    /// <summary>一只猪的渲染高度（物理像素）：贴图紧裁到猪身，宽高比决定高度。</summary>
+    private static float PetHeight(Pet pet) {
+        if (pet.Sprite == null) return pet.Size;
+        return pet.Size * (pet.Sprite.Height / (float)pet.Sprite.Width);
+    }
+
+    /// <summary>蹦跳相位 0..1（0 = 触地、1 = 最高点）：周期 π×90 ms ≈ 283 ms，与猪圈 CSS 同一节拍。</summary>
+    private static float HopUnit() {
+        return (float)Math.Abs(Math.Sin(Environment.TickCount % 100000 / 90.0));
+    }
+
+    /// <summary>这一帧之后要不要按合成节拍跑：只要还有东西在动就算。</summary>
+    private bool animatingNow(long nowMs) {
+        if (dragging != null) return true;
+        if (bubbleVisible) return true;
+        foreach (Pet pet in pets.Values) {
+            if (pet.Walking) return true;
+            if (pet.SquishAtMs >= 0L && nowMs - pet.SquishAtMs < (long)PetSquish.DurationMs) return true;
+        }
+        return false;
+    }
+
+    /// <summary>星级胶囊会盖在哪只猪身上（星档不是 always 时按光标位置判）。空串 = 谁都不盖。</summary>
+    private string HoveredBadgeId() {
+        System.Drawing.Point cursor = PointToClient(Cursor.Position);
+        foreach (Pet pet in pets.Values) {
+            if (pet.Stars < 1 || pet.Sprite == null) continue;
+            int x = (int)Math.Round(pet.X - canvasRect.Left);
+            int y = (int)Math.Round(pet.Y - canvasRect.Top);
+            int w = pet.Size;
+            int h = (int)Math.Round(PetHeight(pet));
+            if (cursor.X >= x && cursor.X <= x + w && cursor.Y >= y && cursor.Y <= y + h) return pet.Id;
+        }
+        return "";
+    }
+
+    /// <summary>
+    /// 这一帧的「视觉签名」：只装**会改变像素**的东西。和上一帧一样就既不重画也不重贴 ——
+    /// 旧版每帧无条件重画整块画布，静止的猪也在被合成 30 次/秒；换到 165 Hz 就成了白白烧 CPU。
+    /// 漏一项的后果是「状态变了、画面停在上一帧」，所以凡是参与渲染的状态都必须进这个签名
+    /// （画布矩形、气泡、星档、每只猪的位置/朝向/星级/蹦跳相位/点击弹性相位、拖动中、悬停的猪）。
+    /// </summary>
+    private string Signature(long nowMs, bool animating) {
+        StringBuilder text = new StringBuilder(256);
+        text.Append(canvasRect.Left).Append(',').Append(canvasRect.Top).Append(',')
+            .Append(canvasRect.Width).Append(',').Append(canvasRect.Height).Append('|');
+        text.Append(bubbleVisible ? 1 : 0).Append(',').Append(bubbleBox.Left).Append(',')
+            .Append(bubbleBox.Top).Append(',').Append(bubbleBox.Width).Append(',')
+            .Append(bubbleBox.Height).Append(',').Append(bubbleTailX).Append(',')
+            .Append(bubbleTailUp ? 1 : 0).Append('|');
+        text.Append(starMode).Append('|');
+        int hopBucket = (int)(HopUnit() * 64f);
+        foreach (Pet pet in pets.Values) {
+            text.Append(pet.Id).Append(',')
+                .Append((int)Math.Round(pet.X)).Append(',').Append((int)Math.Round(pet.Y)).Append(',')
+                .Append(pet.Walking ? 1 : 0).Append(',').Append(pet.FacingRight ? 1 : 0).Append(',')
+                .Append(pet.Stars).Append(',');
+            if (pet.Walking) text.Append(hopBucket);        // 位置没动也要重画：蹦跳是纯相位
+            text.Append(',');
+            long clickAge = pet.SquishAtMs >= 0L ? nowMs - pet.SquishAtMs : -1L;
+            text.Append(clickAge >= 0L && clickAge < (long)PetSquish.DurationMs ? clickAge : -1L).Append(';');
+        }
+        if (dragging != null) text.Append("drag:").Append(dragging.Id);
+        if (starMode != "always") text.Append("hover:").Append(HoveredBadgeId());
+        return text.ToString();
+    }
+
+    /// <summary>
+    /// 每秒一行帧率读数（**只有**环境变量 PIGHUB_PET_STATS 给了路径才写，默认一行都不写）。
+    /// 口径：frames = 处理过的帧消息；drawn = 真的重画并重贴的次数；
+    /// drawFps = 相邻两次重画间隔的倒数（发呆的那一秒它是 0，走动的那一秒才是刷新率）。
+    /// </summary>
+    private void WriteStats(long nowStamp) {
+        if (statsFile == null || statsFile.Length == 0) return;
+        double windowMs = (nowStamp - statWindowAt) * 1000.0 / Stopwatch.Frequency;
+        if (windowMs < 1000.0) return;
+        statWindowAt = nowStamp;
+        double drawFps = statDrawn > 1 && statDrawLast > statDrawFirst
+            ? (statDrawn - 1) * 1000.0 / ((statDrawLast - statDrawFirst) * 1000.0 / Stopwatch.Frequency)
+            : 0.0;
+        StringBuilder row = new StringBuilder(220);
+        row.Append("{\"t\":").Append(UtcMs())
+            .Append(",\"uptimeMs\":").Append(UtcMs() - statStartAt)
+            .Append(",\"frames\":").Append(statFrames)
+            .Append(",\"drawn\":").Append(statDrawn)
+            .Append(",\"busyFrames\":").Append(statBusyFrames)
+            .Append(",\"drawFps\":").Append(Format(drawFps))
+            .Append(",\"avgFrameMs\":").Append(Format(statFrames > 0 ? statSumMs / statFrames : 0.0))
+            .Append(",\"maxFrameMs\":").Append(Format(statMaxMs))
+            .Append(",\"renderMs\":").Append(Format(statDrawn > 0 ? statRenderMs / statDrawn : 0.0))
+            .Append(",\"presentMs\":").Append(Format(statDrawn > 0 ? statPresentMs / statDrawn : 0.0))
+            .Append(",\"dtAvgMs\":").Append(Format(statDtCount > 0 ? statDtSum / statDtCount : 0.0))
+            .Append(",\"dtMinMs\":").Append(Format(statDtCount > 0 ? statDtMin : 0.0))
+            .Append(",\"dtMaxMs\":").Append(Format(statDtMax))
+            .Append(",\"pets\":").Append(pets.Count)
+            .Append(",\"canvas\":\"").Append(canvasRect.Width).Append("x").Append(canvasRect.Height).Append("\"}")
+            .Append(Environment.NewLine);
+        try { File.AppendAllText(statsFile, row.ToString()); } catch (Exception) { statsFile = null; }
+        statFrames = 0; statDrawn = 0; statBusyFrames = 0; statSumMs = 0; statMaxMs = 0;
+        statRenderMs = 0; statPresentMs = 0;
+        statDtSum = 0; statDtMin = 0; statDtMax = 0; statDtCount = 0;
+        statDrawFirst = 0; statDrawLast = 0;
+    }
+
+    private static string Format(double value) {
+        return value.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture);
+    }
+
+    private void Frame(float dtMs) {
+        long frameStamp = Stopwatch.GetTimestamp();
+        if (File.Exists(StopFile)) { StopPacer(); ReleaseBubbleTools(); Close(); return; }
         LoadPets();
         LoadSay();
         long now = DateTime.UtcNow.Ticks / 10000;
         long nowMs = UtcMs();
         float minX = float.MaxValue, minY = float.MaxValue, maxX = float.MinValue, maxY = float.MinValue;
         foreach (Pet pet in pets.Values) {
-            float height = pet.Sprite == null ? pet.Size : pet.Size * (pet.Sprite.Height / (float)pet.Sprite.Width);
-            if (pet != dragging) Step(pet, now);
+            float height = PetHeight(pet);
+            if (pet != dragging) Step(pet, now, dtMs);
             if (pet.X < minX) minX = pet.X;
             if (pet.Y < minY) minY = pet.Y;
             if (pet.X + pet.Size > maxX) maxX = pet.X + pet.Size;
@@ -368,24 +706,52 @@ internal sealed class PetForm : Form {
         if (need.Width < 64 || need.Height < 64) return;
         Rectangle fitted = CanvasFit.Fit(canvasRect, need, SystemInformation.VirtualScreen);
         if (fitted.Width < 64 || fitted.Height < 64) return;
-        if (canvas == null || fitted != canvasRect) {
+        if (surface == null || fitted != canvasRect) {
             canvasRect = fitted;
-            if (canvas != null) canvas.Dispose();
-            canvas = new Bitmap(fitted.Width, fitted.Height, PixelFormat.Format32bppArgb);
+            if (surface != null) surface.Dispose();
+            surface = new Native.Surface(fitted.Width, fitted.Height);
+            canvasFresh = true;   // 新画布 = 上一帧的像素已经没了，这一帧必须重画
         }
-        Render();
-        // 搬家与贴图**一次提交**：位置、尺寸、位图都交给 UpdateLayeredWindow。
-        // 这里绝不能先写 Bounds 再 Present —— 那一帧窗口是新的、内容是旧的，整窗猪一起位移。
-        Native.Present(Handle, canvas, new Native.Point(canvasRect.Left, canvasRect.Top));
+        bool animating = animatingNow(nowMs);
+        // 画面和上一帧一模一样就不重画、不重贴：静止的猪不该每秒被合成 165 次。
+        string signature = Signature(nowMs, animating);
+        bool redraw = canvasFresh || signature != lastSignature;
+        if (redraw) {
+            long renderStamp = Stopwatch.GetTimestamp();
+            Render();
+            statRenderMs += (Stopwatch.GetTimestamp() - renderStamp) * 1000.0 / Stopwatch.Frequency;
+            // 搬家与贴图**一次提交**：位置、尺寸、位图都交给 UpdateLayeredWindow。
+            // 这里绝不能先写 Bounds 再 Present —— 那一帧窗口是新的、内容是旧的，整窗猪一起位移。
+            long presentStamp = Stopwatch.GetTimestamp();
+            Native.Present(hwnd, surface, new Native.Point(canvasRect.Left, canvasRect.Top));
+            statPresentMs += (Stopwatch.GetTimestamp() - presentStamp) * 1000.0 / Stopwatch.Frequency;
+            lastSignature = signature;
+            canvasFresh = false;
+            statDrawn += 1;
+            if (statDrawFirst == 0L) statDrawFirst = frameStamp;
+            statDrawLast = frameStamp;
+        }
+        fastMode = animating;
+        if (animating) { try { pacerWake.Set(); } catch (Exception) { } }   // 从空闲节拍立刻切到合成节拍
+        statFrames += 1;
+        if (animating) statBusyFrames += 1;
+        double costMs = (Stopwatch.GetTimestamp() - frameStamp) * 1000.0 / Stopwatch.Frequency;
+        statSumMs += costMs;
+        if (costMs > statMaxMs) statMaxMs = costMs;
         if (now - lastReport > 400) Report(now);
+        WriteStats(frameStamp);
     }
 
-    private void Step(Pet pet, long now) {
+    /// <summary>
+    /// 走动积分。速度按**真实帧间隔**算（dtMs），不写死每帧 33 ms ——
+    /// 旧版把 33 ms 塞进速度里，帧率一高猪就会快 5 倍（165/30）。
+    /// </summary>
+    private void Step(Pet pet, long now, float dtMs) {
         if (!pet.Motion || pet == dragging) { pet.Walking = false; return; }
         if (now >= pet.NextDecision) {
-            pet.NextDecision = now + 1700;
+            pet.NextDecision = now + WalkTempo.DecisionMs;
             // 发呆权重 0.72，与插件内一致；走动时一步最多 3 个身位。
-            if (Unity < 0.72) { pet.Walking = false; return; }
+            if (Unity < WalkTempo.IdleWeight) { pet.Walking = false; return; }
             double angle = Unity * Math.PI * 2;
             float step = pet.Size * (1.65f + 1.35f * (float)Unity);
             pet.TargetX = pet.X + (float)Math.Cos(angle) * step;
@@ -396,8 +762,9 @@ internal sealed class PetForm : Form {
         float dx = pet.TargetX - pet.X;
         float dy = pet.TargetY - pet.Y;
         float distance = (float)Math.Sqrt(dx * dx + dy * dy);
-        // 移动速度（像素/毫秒×尺寸）：1.6 → 1.0，用户口径 2026-11-13「运动的速度减慢」。
-        float speed = pet.Size * 1.0f * (33f / 1000f);
+        // 速度 = 身位/秒 × 真实帧间隔。旧版把 33 ms 写死在算式里，帧间隔一变速度就跟着变 ——
+        // 这也是旧版「写着 1 身位/秒、实际跑 0.70」的原因（见 WalkTempo.SpeedBodiesPerSecond）。
+        float speed = pet.Size * WalkTempo.SpeedBodiesPerSecond * (dtMs / 1000f);
         if (distance <= speed) { pet.X = pet.TargetX; pet.Y = pet.TargetY; pet.Walking = false; return; }
         pet.X += dx / distance * speed;
         pet.Y += dy / distance * speed;
@@ -410,64 +777,115 @@ internal sealed class PetForm : Form {
     private static double Unity { get { return rng.NextDouble(); } }
     private static readonly Random rng = new Random();
 
+    /// <summary>整帧重画：清空 → 气泡 → 所有猪。只有「视觉签名变了」才会走到这里（见 Frame）。</summary>
     private void Render() {
+        Graphics g = surface.Graphics;
+        g.ResetTransform();
+        g.CompositingMode = CompositingMode.SourceOver;
+        /* 贴图已经按屏幕尺寸预缩放好了，这一层只剩 ±6% 的 squash。插值模式不是随手挑的
+         * （2026-11-17 实测，192×200 的贴图、同一块 DIB 目标、单次缩放绘制的耗时）：
+         *   NearestNeighbor 0.18 ms / HighQualityBilinear 1.66 ms / HighQualityBicubic 2.09 ms /
+         *   **Low 5.57 ms** —— GDI+ 的 Low 反而最慢（它走的是另一条软件重采样路径），
+         *   而 1:1 的 DrawImageUnscaled 只要 0.08 ms。所以：不变形就 1:1 贴，变形才用 HighQualityBilinear。
+         * 旧版每帧每只猪都用 HighQualityBicubic 从原图重采样，是 30 fps 下也吃掉大半颗核的原因之一。 */
+        g.InterpolationMode = InterpolationMode.HighQualityBilinear;
+        g.PixelOffsetMode = PixelOffsetMode.None;
+        g.Clear(Color.Transparent);
+        // 气泡先画：它按构造落在猪头顶之外，但"先画猪"会让任何一次几何失误直接盖住猪脸，
+        // 而"不遮脸"是这条功能的硬要求 —— 让结构上做不到，而不是靠算术凑对。
+        DrawBubble(g);
+        DrawPets(g);
+    }
+
+    /// <summary>猪本体：走动节拍、点击弹性、星级胶囊。</summary>
+    private void DrawPets(Graphics g) {
         long nowMs = UtcMs();
-        using (Graphics g = Graphics.FromImage(canvas)) {
-            g.Clear(Color.Transparent);
-            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-            // 气泡先画：它按构造落在猪头顶之外，但"先画猪"会让任何一次几何失误直接盖住猪脸，
-            // 而"不遮脸"是这条功能的硬要求 —— 让结构上做不到，而不是靠算术凑对。
-            DrawBubble(g);
-            foreach (Pet pet in pets.Values) {
-                if (pet.Sprite == null) continue;
-                int w = pet.Size;
-                int h = (int)Math.Round(pet.Size * (pet.Sprite.Height / (float)pet.Sprite.Width));
-                // 走动节拍：|sin(tick/90)| 的周期 = π × 90ms ≈ 283ms（触地 → 最高点 → 触地），
-                // hopUnit = 0 触地、1 最高点。位移弧与下面的 squash & stretch 共用这一个相位，天然同相。
-                float hopUnit = (float)Math.Abs(Math.Sin(Environment.TickCount % 100000 / 90.0));
-                float hop = pet.Walking ? hopUnit * pet.Size * 0.12f : 0f;
-                int x = (int)Math.Round(pet.X - canvasRect.Left);
-                int y = (int)Math.Round(pet.Y - canvasRect.Top - hop);
-                // squash & stretch：与猪圈 .pighub-actor.is-walk 的 pighub-hop 同一套口径（纵向 .94 ↔ 1.06）。
-                // 触地压扁（矮而宽）、最高点拉长（高而窄），横向取纵向的倒数 —— 面积守恒。
-                // **锚点是脚底中点，不是盒子中心**：围绕中心缩会让脚在触地时往上收、起跳时往下探，
-                // 读起来像「原地往上飘一下」；钉在脚底，地面那一条线才不动。
-                const float squashSwing = 0.12f;   // 纵向总摆幅 = 0.12 → 0.94 … 1.06
-                /* 两套形变**相乘**：
-                 *   ① 走动的是节拍（hopUnit 相位，触地压扁 / 最高点拉长）；
-                 *   ② 被点一下是衰减正弦（PetSquish，560ms 内 Q 弹一下）。
-                 * 相乘而不是二选一：边走边被点的时候，两者都该有。锚点仍是脚底中点，
-                 * 所以压扁时地面那条线不动（围绕盒子中心缩会让脚往上收，读起来像「飘」）。 */
-                float scaleY = pet.Walking ? 1f + squashSwing * (hopUnit - 0.5f) : 1f;
-                float scaleX = 1f / scaleY;
-                if (pet.SquishAtMs >= 0L) {
-                    float clickMs = (float)(nowMs - pet.SquishAtMs);
-                    if (clickMs >= 0f && clickMs < PetSquish.DurationMs) {
-                        float clickX, clickY;
-                        PetSquish.Scale(clickMs, out clickX, out clickY);
-                        scaleX *= clickX;
-                        scaleY *= clickY;
-                    }
+        foreach (Pet pet in pets.Values) {
+            if (pet.Sprite == null) continue;
+            int w = pet.Size;
+            int h = (int)Math.Round(PetHeight(pet));
+            // 走动节拍：HopUnit() 的周期 = π × 90ms ≈ 283ms（触地 → 最高点 → 触地），
+            // 0 = 触地、1 = 最高点。位移弧与下面的 squash & stretch 共用这一个相位，天然同相。
+            float hopUnit = HopUnit();
+            float hop = pet.Walking ? hopUnit * pet.Size * 0.12f : 0f;
+            int x = (int)Math.Round(pet.X - canvasRect.Left);
+            int y = (int)Math.Round(pet.Y - canvasRect.Top - hop);
+            // squash & stretch：与猪圈 .pighub-actor.is-walk 的 pighub-hop 同一套口径（纵向 .94 ↔ 1.06）。
+            // 触地压扁（矮而宽）、最高点拉长（高而窄），横向取纵向的倒数 —— 面积守恒。
+            // **锚点是脚底中点，不是盒子中心**：围绕中心缩会让脚在触地时往上收、起跳时往下探，
+            // 读起来像「原地往上飘一下」；钉在脚底，地面那一条线才不动。
+            const float squashSwing = 0.12f;   // 纵向总摆幅 = 0.12 → 0.94 … 1.06
+            /* 两套形变**相乘**：
+             *   ① 走动的是节拍（hopUnit 相位，触地压扁 / 最高点拉长）；
+             *   ② 被点一下是衰减正弦（PetSquish，560ms 内 Q 弹一下）。
+             * 相乘而不是二选一：边走边被点的时候，两者都该有。锚点仍是脚底中点，
+             * 所以压扁时地面那条线不动（围绕盒子中心缩会让脚往上收，读起来像「飘」）。 */
+            float scaleY = pet.Walking ? 1f + squashSwing * (hopUnit - 0.5f) : 1f;
+            float scaleX = 1f / scaleY;
+            if (pet.SquishAtMs >= 0L) {
+                float clickMs = (float)(nowMs - pet.SquishAtMs);
+                if (clickMs >= 0f && clickMs < PetSquish.DurationMs) {
+                    float clickX, clickY;
+                    PetSquish.Scale(clickMs, out clickX, out clickY);
+                    scaleX *= clickX;
+                    scaleY *= clickY;
                 }
-                bool deformed = Math.Abs(scaleX - 1f) > 0.0005f || Math.Abs(scaleY - 1f) > 0.0005f;
-                if (deformed) {
-                    float footX = x + w * 0.5f;
-                    float footY = y + h;           // 未缩放盒子的底边 = 脚底
-                    g.TranslateTransform(footX, footY);
-                    g.ScaleTransform(scaleX, scaleY);
-                    g.TranslateTransform(-footX, -footY);
-                }
-                if (pet.FacingRight) {
-                    g.DrawImage(pet.Sprite, new Rectangle(x + w, y, -w, h));
-                } else {
-                    g.DrawImage(pet.Sprite, new Rectangle(x, y, w, h));
-                }
-                // 星级胶囊不跟着压扁（文字被缩放会发虚），所以先把变换还原再画它。
-                if (deformed) g.ResetTransform();
-                DrawBadge(g, pet, x, y, w, h);
             }
+            bool deformed = Math.Abs(scaleX - 1f) > 0.0005f || Math.Abs(scaleY - 1f) > 0.0005f;
+            if (deformed) {
+                float footX = x + w * 0.5f;
+                float footY = y + h;           // 未缩放盒子的底边 = 脚底
+                g.TranslateTransform(footX, footY);
+                g.ScaleTransform(scaleX, scaleY);
+                g.TranslateTransform(-footX, -footY);
+            }
+            // 预缩放 + 预镜像缓存：没变形时就是一次 1:1 blit，不再走重采样。
+            Bitmap sprite = SpriteFor(pet);
+            if (deformed) {
+                g.DrawImage(sprite, new Rectangle(x, y, w, h));
+            } else {
+                g.DrawImageUnscaled(sprite, x, y);
+            }
+            // 星级胶囊不跟着压扁（文字被缩放会发虚），所以先把变换还原再画它。
+            if (deformed) g.ResetTransform();
+            DrawBadge(g, pet, x, y, w, h);
         }
+    }
+
+    /// <summary>
+    /// 取这只猪**已经缩放到屏幕物理尺寸**的贴图（必要时现建，Size 变了才重建）。
+    /// 旧版每帧都用 HighQualityBicubic 把原图缩到目标尺寸：4 只猪 × 165 帧/秒 = 每秒 660 次重采样。
+    /// 镜像是另一份缓存 —— 朝右走不该每帧翻一次。
+    /// </summary>
+    private Bitmap SpriteFor(Pet pet) {
+        if (pet.Scaled != null && pet.ScaledFor == pet.Size) {
+            return pet.FacingRight ? pet.ScaledFlip : pet.Scaled;
+        }
+        if (pet.Scaled != null) { pet.Scaled.Dispose(); pet.Scaled = null; }
+        if (pet.ScaledFlip != null) { pet.ScaledFlip.Dispose(); pet.ScaledFlip = null; }
+        int w = Math.Max(1, pet.Size);
+        int h = Math.Max(1, (int)Math.Round(PetHeight(pet)));
+        pet.Scaled = ScaleSprite(pet.Sprite, w, h, false);
+        pet.ScaledFlip = ScaleSprite(pet.Sprite, w, h, true);
+        pet.ScaledFor = pet.Size;
+        return pet.FacingRight ? pet.ScaledFlip : pet.Scaled;
+    }
+
+    /// <summary>把原图缩到目标尺寸一次（预乘 alpha 目标 + 源复制：透明处保持透明）。</summary>
+    private static Bitmap ScaleSprite(Bitmap source, int w, int h, bool flip) {
+        Bitmap target = new Bitmap(w, h, PixelFormat.Format32bppPArgb);
+        using (Graphics g = Graphics.FromImage(target)) {
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;   // 缩一次，代价只付一次
+            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            g.CompositingMode = CompositingMode.SourceCopy;
+            g.Clear(Color.Transparent);
+            if (flip) {
+                g.TranslateTransform(w, 0f);
+                g.ScaleTransform(-1f, 1f);
+            }
+            g.DrawImage(source, new Rectangle(0, 0, w, h));
+        }
+        return target;
     }
 
     /* ------------------------------- 气泡（pig-say） -------------------------------
@@ -776,21 +1194,22 @@ internal sealed class PetForm : Form {
 
     private Pet HitTest(int clientX, int clientY) {
         // 还没画出第一帧时不要把所有点击都判成"透明"，否则窗口在启动瞬间是穿透的。
-        if (canvas == null) return pets.Count > 0 ? FirstPet() : null;
+        if (surface == null) return pets.Count > 0 ? FirstPet() : null;
         int x = clientX, y = clientY;
-        if (x < 0 || y < 0 || x >= canvas.Width || y >= canvas.Height) return null;
+        if (x < 0 || y < 0 || x >= surface.Width || y >= surface.Height) return null;
         // 气泡不吃鼠标：点在气泡上等于点在桌面上（否则它 6 秒内会悄悄吞掉那块区域的点击）。
         if (bubbleVisible) {
             Rectangle box = new Rectangle(bubbleBox.Left - canvasRect.Left, bubbleBox.Top - canvasRect.Top, bubbleBox.Width, bubbleBox.Height);
             if (bubbleTailUp) box.Y -= bubbleTailSize; else box.Height += bubbleTailSize;
             if (box.Contains(x, y)) return null;
         }
-        Color pixel = canvas.GetPixel(x, y);
+        // 画布是常驻的 DIB：没重画说明画面内容没变，读它做命中测试依然是对的。
+        Color pixel = surface.Bitmap.GetPixel(x, y);
         if (pixel.A < 24) return null;
         foreach (Pet pet in pets.Values) {
             if (pet.Sprite == null) continue;
             int w = pet.Size;
-            int h = (int)Math.Round(pet.Size * (pet.Sprite.Height / (float)pet.Sprite.Width));
+            int h = (int)Math.Round(PetHeight(pet));
             int px = (int)Math.Round(pet.X - canvasRect.Left);
             int py = (int)Math.Round(pet.Y - canvasRect.Top);
             if (x >= px && x <= px + w && y >= py && y <= py + h) return pet;
@@ -811,6 +1230,12 @@ internal sealed class PetForm : Form {
         const int WM_MOUSEMOVE = 0x0200;
         const int WM_LBUTTONDBLCLK = 0x0203;
         const int WM_RBUTTONUP = 0x0205;
+        if (m.Msg == WM_FRAME) {
+            // pacer 投来的帧消息：先清 pending 再画 —— 画的过程中新的一条才有地方落。
+            Interlocked.Exchange(ref framePending, 0);
+            FrameTick();
+            return;
+        }
         if (m.Msg == WM_NCHITTEST) {
             // 屏幕坐标 → 客户区坐标 → 查 alpha：透明像素让鼠标穿过去。
             int sx = (short)(m.LParam.ToInt64() & 0xFFFF);

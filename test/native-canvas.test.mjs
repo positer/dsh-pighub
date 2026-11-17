@@ -36,13 +36,51 @@ const skip = (why) => { console.log('SKIP  ' + why); process.exit(0); };
 check('画布搬家只经 UpdateLayeredWindow 一次提交：源码里不存在单独写 Bounds 的赋值', () => {
   assert.equal(/Bounds\s*=\s*(bounds|fitted|need|target|Rectangle\.)/.test(source), false, '又出现了「先搬窗口、再贴位图」的两步搬家');
   assert.ok(source.indexOf('CanvasFit.Fit(') > 0, '缺少画布裁定函数 CanvasFit.Fit');
-  assert.ok(source.indexOf('Native.Present(Handle, canvas, new Native.Point(canvasRect.Left, canvasRect.Top))') > 0,
+  assert.ok(source.indexOf('Native.Present(hwnd, surface, new Native.Point(canvasRect.Left, canvasRect.Top))') > 0,
     'Present 必须同时带上画布位置（位置与尺寸只经它生效）');
 });
 check('客户区↔屏幕坐标换算全部读 canvasRect（不再读 Bounds）', () => {
   const code = source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
   assert.equal(/Bounds\.(Left|Top|Right|Bottom)/.test(code), false, '还有 Bounds.Left/Top 用于坐标换算：画布搬家后它会和实际窗口脱节');
   assert.ok((code.match(/canvasRect\.(Left|Top)/g) || []).length >= 6, '读 canvasRect 的地方少于预期，可能有坐标换算漏改');
+});
+
+check('帧节拍：由合成节拍线程驱动，不再是 33ms 的 WinForms Timer（防回退）', () => {
+  const code = source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+  assert.equal(/timer\.Interval\s*=/.test(code), false, '又出现了 Timer.Interval：WM_TIMER 被量化到系统时钟，30 fps 就是天花板');
+  assert.ok(/DwmFlush\(\)/.test(code), '没有 DwmFlush：帧上限就不是显示器刷新率了');
+  assert.ok(/const int WM_FRAME/.test(code) && /PostMessage\(target, WM_FRAME/.test(code), 'pacer 必须只发消息、由 UI 线程画帧');
+  assert.ok(/Interlocked\.CompareExchange\(ref framePending, 1, 0\)/.test(code), '缺「上一条帧消息没处理就不投下一条」的保护，UI 慢时会堆消息');
+  assert.ok(/FrameCadence\.SleepFor\(true, ElapsedMs\(started\)\)/.test(code), 'DwmFlush 立即返回时没有兜底等待（会全速空转）');
+});
+
+check('每帧成本：常驻合成面 + 预缩放贴图（不再每帧 GetHbitmap / 重采样原图）', () => {
+  const code = source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+  assert.equal(/GetHbitmap/.test(code), false, '又回到每帧 GetHbitmap：那是每帧把整块画布复制一遍');
+  assert.ok(/class Surface/.test(code) && /CreateDIBSection/.test(code), '缺少常驻合成面（DIB）');
+  assert.ok(/PixelFormat\.Format32bppPArgb/.test(code), '合成面必须是预乘 alpha：ULW_ALPHA 按预乘解释 RGB');
+  assert.ok(/DrawImageUnscaled\(sprite, x, y\)/.test(code), '没变形的帧要走 1:1 贴图（缩放绘制是 10 倍代价）');
+  assert.ok(/private Bitmap SpriteFor\(Pet pet\)/.test(code), '缺少预缩放贴图缓存');
+});
+
+check('画面没变就不重画、不重贴：视觉签名相同就跳过 Render+Present', () => {
+  const code = source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+  assert.ok(/string signature = Signature\(nowMs, animating\);/.test(code), '没有计算视觉签名');
+  assert.ok(/bool redraw = canvasFresh \|\| signature != lastSignature;/.test(code), '重画的判据不是签名比较');
+  const block = code.slice(code.indexOf('if (redraw)'), code.indexOf('fastMode = animating;'));
+  assert.ok(block.indexOf('Render()') >= 0 && block.indexOf('Native.Present(') >= 0, 'Render 与 Present 必须都在 if (redraw) 里');
+  // 签名必须把参与渲染的状态都装进去：漏一项就是「状态变了、画面停在上一帧」
+  const signatureFn = code.slice(code.indexOf('private string Signature('), code.indexOf('private void WriteStats('));
+  for (const key of ['pet.Walking', 'pet.FacingRight', 'pet.Stars', 'bubbleVisible', 'starMode', 'canvasRect.Height']) {
+    assert.ok(signatureFn.indexOf(key) >= 0, '签名里漏了 ' + key + '：它变了画面不会重画');
+  }
+});
+
+check('走动速度按真实时间积分（帧率提高、速度不变）', () => {
+  const code = source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+  assert.ok(/float speed = pet\.Size \* WalkTempo\.SpeedBodiesPerSecond \* \(dtMs \/ 1000f\);/.test(code),
+    '速度必须乘真实 dt（写死帧长会让 165 Hz 下的猪快 7 倍）');
+  assert.ok(/Frame\(FrameCadence\.MoveStep\(dtMs\)\)/.test(code), 'dt 必须经 MoveStep 夹取（卡顿不许瞬移）');
 });
 
 check('点击弹性：松手判定写 SquishAtMs，渲染里按它算形变（防回退）', () => {
@@ -77,7 +115,7 @@ try {
   const stdout = execFileSync(exe, [], { encoding: 'utf8' });
   const rows = stdout.split(/\r?\n/).filter((line) => line.trim().startsWith('{')).map((line) => JSON.parse(line));
   const byName = Object.fromEntries(rows.map((row) => [row.case, row]));
-  assert.equal(rows.length, 6, '六个场景都要跑出来（五个画布场景 + 一个点击弹性）：' + stdout);
+  assert.equal(rows.length, 8, '八个场景都要跑出来（五个画布场景 + 帧节拍 + 游走常量 + 点击弹性）：' + stdout);
 
   check('猪走 600px：画布搬家次数 <= 8（旧策略每帧一次，约 188 次）', () => {
     assert.ok(byName.walkRight.changes <= 8, '搬家次数 ' + byName.walkRight.changes);
@@ -100,6 +138,26 @@ try {
   check('负坐标的第二块屏：向外取整不越界、画布始终装得下', () => {
     assert.equal(byName.negativeScreen.contained, true);
     assert.ok(byName.negativeScreen.changes <= 4, '搬家次数 ' + byName.negativeScreen.changes);
+  });
+  check('帧节拍规则（真编译出来的 FrameCadence）：空闲 10 Hz、有动画最多 250 Hz、位移步长有上限', () => {
+    const row = byName.frameCadence;
+    assert.ok(row, '没有 frameCadence 读数');
+    assert.equal(row.sleepIdle, row.idleIntervalMs, '没动画时要按空闲间隔等');
+    assert.equal(row.sleepBusyFresh, row.floorMs, '刚等完合成就要按最小间隔兜底（DwmFlush 立即返回时不空转）');
+    assert.equal(row.sleepBusyHalf, Math.floor(row.floorMs / 2), '等了一半就只补剩下的');
+    assert.equal(row.sleepBusySlow, 0, '已经超时就不再等');
+    assert.equal(row.sleepBusyNegative, 0, '负值不许变成无限等');
+    assert.ok(row.moveStepHuge <= row.moveStepMs + 0.001, '位移步长没有被夹住：' + row.moveStepHuge);
+    assert.ok(row.moveStepNormal > 5.9 && row.moveStepNormal < 6.2, '正常帧（165 Hz）的 dt 应原样放行：' + row.moveStepNormal);
+    assert.ok(row.moveStepZero > 1 && row.moveStepZero < 100, '首帧要给一个合理默认：' + row.moveStepZero);
+    assert.ok(row.moveStepNan > 1 && row.moveStepNan < 100, 'NaN 不许传下去：' + row.moveStepNan);
+  });
+  check('游走节奏常量：决策 1700ms、发呆 0.72、速度 0.704 身位/秒（与猪圈侧刻意不一致，见 client.js）', () => {
+    const row = byName.walkTempo;
+    assert.ok(row, '没有 walkTempo 读数');
+    assert.equal(row.decisionMs, 1700);
+    assert.ok(Math.abs(row.idleWeight - 0.72) < 1e-6, '发呆权重 ' + row.idleWeight);
+    assert.ok(Math.abs(row.speedBodiesPerSecond - 0.704) < 0.001, '速度常量 ' + row.speedBodiesPerSecond);
   });
 } finally {
   rmSync(root, { recursive: true, force: true });

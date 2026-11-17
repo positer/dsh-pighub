@@ -107,6 +107,29 @@ internal static class Harness {
         }
         float sx, sy;
         PetSquish.Scale(peakAtMs, out sx, out sy);
+        /* 7) 帧节拍（2026-11-17）：读的是 lib/native/pet-window.cs 里的 FrameCadence —— 同一份产品代码。 */
+        Console.WriteLine("{\"case\":\"frameCadence\""
+            + ",\"idleIntervalMs\":" + FrameCadence.IdleIntervalMs
+            + ",\"floorMs\":" + FrameCadence.FloorMs
+            + ",\"moveStepMs\":" + FrameCadence.MoveStepMs
+            + ",\"sleepIdle\":" + FrameCadence.SleepFor(false, 0)
+            + ",\"sleepBusyFresh\":" + FrameCadence.SleepFor(true, 0)
+            + ",\"sleepBusyHalf\":" + FrameCadence.SleepFor(true, FrameCadence.FloorMs / 2)
+            + ",\"sleepBusySlow\":" + FrameCadence.SleepFor(true, 1000)
+            + ",\"sleepBusyNegative\":" + FrameCadence.SleepFor(true, -5)
+            + ",\"moveStepZero\":" + N(FrameCadence.MoveStep(0f))
+            + ",\"moveStepNormal\":" + N(FrameCadence.MoveStep(6.06f))
+            + ",\"moveStepHuge\":" + N(FrameCadence.MoveStep(5000f))
+            + ",\"moveStepNan\":" + N(FrameCadence.MoveStep(float.NaN))
+            + "}");
+
+        /* 8) 游走节奏常量（与猪圈 lib/client.js 对齐的那三个数）。 */
+        Console.WriteLine("{\"case\":\"walkTempo\""
+            + ",\"decisionMs\":" + WalkTempo.DecisionMs
+            + ",\"idleWeight\":" + N((float)WalkTempo.IdleWeight)
+            + ",\"speedBodiesPerSecond\":" + N(WalkTempo.SpeedBodiesPerSecond)
+            + "}");
+
         Console.WriteLine("{\"case\":\"clickSquish\""
             + ",\"duration\":" + N(PetSquish.DurationMs)
             + ",\"peakSquash\":" + N(peakSquash)
