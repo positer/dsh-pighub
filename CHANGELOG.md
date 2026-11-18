@@ -3,6 +3,45 @@
 本项目遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)；每条记录只写「对使用者可见的变化」，
 内部重构不单列。README 只描述项目整体，**版本相关内容一律记在这里**。
 
+## [1.0.11] — 2026-11-18
+
+### Fixed — 开机那一刻 webServer 还没就绪，整片 HTTP 面永久消失（用户口径：「本地 pighub 怎么崩溃了」）
+
+**现象**：本机面板整片空白、图全破。三层逐层判过 —— 进程没崩（应用日志/CrashDumps/crash-*.log 都干净）、
+插件也没掉（`include:dsh-pighub` `fiberPhase=active`、`pighub_about` 正常回 1.0.6 / 243 只），
+崩的是**宿主侧那段 HTTP 面**：`GET /pighub` 404、`POST /pighub` 405、`/pighub/asset/*` 404。
+对照组成立：同一宿主上 `/newmark-memorylab/short-memory` 200，未知路径 GET→404 而 POST→405 ——
+所以缺的不是宿主，是 pighub 自己的路由。
+
+**成因**：`apply()` 只在当时探一次 `lookupWebServer(ctx)`，探空就 `log.warn` 并**跳过全部路由注册、永不重试**。
+这一次开机恰好探早了，于是「工具在、路由全无」。而稳如老狗的 newmark2dsh 之所以每次都稳，
+是因为它写了 `export const inject = ['webServer']`（cordis 等就绪再 apply）。
+
+**改法**：把「探一次」换成**就绪等待**。不照抄 `inject`（写进 `export const inject` 会让没有 Web 的 profile
+整套启动失败，taste 2026-11-12 实测过），而是给一个**占位服务**：注册先排队，`ctx.inject(['webServer'], …)`
+报到时按原顺序补录；服务当场就绪时行为与旧版完全一致；服务永不到则什么都不发生（不再谎报「这是没有 Web 的宿主」）。
+补录失败不拖垮宿主，卸载后排队项打取消标、不会留下谁也收不走的僵尸路由。
+
+**验证**：新增 `test/web-late.test.mjs` 四条（当场就绪不回归 / 晚到补录四条路由 / 卸载后不许补录 / 老宿主只 warn 不抛）；
+真机把 1.0.11 装回后 `GET /pighub`、`POST /pighub`、`/pighub/asset/*` 均 200。
+
+### Fixed — 自动更新检修：不再谎报 up_to_date、不再在 pnpm 树上跑 npm、装完要验版本
+
+查日志 `~/.PigHub/logs/auto-update.log` 发现三件事，都不是「能跑就行」的层面：
+
+1. **本地比 registry 新时写的是 `up_to_date`**。2026-11-17 22:27 那行是
+   `current=1.0.10 latest=1.0.6` —— 本地明明比 npm 新四个版本（那四个修复都没发布），日志却说「已最新」。
+   现在单独记 **`ahead`**，并写明 `local is newer than registry`。这一条会把「你手里有未发布的修复」直接说出来。
+2. **profile 是 pnpm 目录，装的却是 npm**。旧代码在 `<profile>` 里跑 `npm install dsh-pighub@x`，
+   会改写 `dependencies` 的 spec 并与 `pnpm-lock.yaml` 打架 —— 与「热补丁被依赖重装覆盖回旧版」是同一类事故。
+   现在按目录形态选：有 `pnpm-lock.yaml` 或 `node_modules/.pnpm` 就用 `pnpm add`（PATH 上没有就退到 DSH 自带的
+   `resources/runtime/primary-runtime/dependencies/pnpm/bin/pnpm.mjs`），**两条都没有就放弃并记日志**，
+   绝不在 pnpm 树上跑 npm。非 pnpm 目录才用 npm，且固定带 `--no-save`。
+3. **命令 exit 0 被当成装上了**。现在装完回读 `node_modules/dsh-pighub/package.json`，
+   版本对得上才写 `install ok … verified=…`，对不上报 **`install_unverified`**；日志里还带 `via=pnpm|npm`。
+
+**验证**：`test/auto-update.test.mjs` 7 → **11** 条（ahead / pnpm 选择 / ENOENT 退内置 pnpm / 装了但没装上）。
+
 ## [1.0.10] — 2026-11-17
 
 ### Fixed — pighub-873「猪再见」去掉了背景幕布与字幕（用户口径：「把背景配件去掉就行」）
