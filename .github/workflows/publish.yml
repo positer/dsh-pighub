@@ -37,6 +37,11 @@ jobs:
       - name: 校验 tag 与 package.json 版本
         run: node scripts/check-version.mjs
 
+      # 发布顺序闸门：npm 只拦「同版本重复发布」，**不拦**把 latest 往回推。
+      # 回退一次，所有靠「升到 latest」自愈的客户端就被集体拽回旧版。
+      - name: 校验发布顺序（不许低于 registry latest）
+        run: node scripts/check-release-order.mjs
+
       # 三个测试都是离线的：不联网、不启动 DSH、不写真实用户目录。
       - name: 离线测试
         run: |
