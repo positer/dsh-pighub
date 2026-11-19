@@ -3,6 +3,35 @@
 本项目遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)；每条记录只写「对使用者可见的变化」，
 内部重构不单列。README 只描述项目整体，**版本相关内容一律记在这里**。
 
+## [1.0.13] — 2026-11-19
+
+### Fixed — 发布年龄豁免收回到「只写自己那一行」（与 newmark2dsh 0.3.85 同一契约）
+
+**背景**：1.0.12 的处置是「绝不写 profile 策略 + 只装发布满 24h 的版本」。这能保证不越权，但留下了同一类问题的另一半：
+本插件**只要有一个刚发布的版本进了 lockfile**（例如 1.0.11），profile 里任何安装（别的插件、DSH 自身）都会在
+「校验整份 lockfile」这一步失败，一直持续到那个版本满 24h。DSH 用**冻结锁文件**安装，pnpm 没有「自己补豁免」的窗口；
+等 24h 等于让用户的更新停在原地。newmark2dsh 0.3.85 已经按「每个包只维护自己在 `minimumReleaseAgeExclude` 里的那一行」
+解决（用户口径：「对应的权限约束操作」），本版与它对齐。
+
+**改法**：新增 `lib/release-age.js`。
+
+- `applySelfExemption(text)` 纯函数：只重写 `minimumReleaseAgeExclude` 一块，把本插件条目收成**裸包名** `dsh-pighub`
+  （覆盖所有版本、不会因为发新版而失效），删掉本插件按版本写死的旧条目；**别人的条目逐字保留、顺序不变**；
+  别的键、注释、`nodeLinker` 等一行不动；**从不写 `minimumReleaseAge` 本身**（等待期是用户的决定）。
+- `ensureSelfExemption({profileDir})`：原子写入（临时文件 + rename），文件已正确时**不重写**，没有 workspace 文件时
+  **不凭空创建**，每种结局都回执、永不抛。
+- 接线：`index.js` 在挂载时跑一次（修复已被旧版本弄坏的 profile），`auto-update.js` 在每次自我安装**前**再跑一次
+  （安装才是引入年轻条目的那一步）；回执进 `pighub_about.release.policy`。
+- **范围靠对照实验**，不是靠注释：同一个文件里另一个刚发布的包，豁免之后仍然不在豁免里（离线测试直接判），
+  并且实测「只豁免一个包时，另一个年轻包仍被 pnpm 拒绝并点名」。
+
+**保留**：版本地板（回退锁，`~/.PigHub/version-floor.json`）与「只装发布满 24h 的版本」都还在。地板管回退，
+成熟期管「不运行谁都没验过的代码」，豁免管「不要把整棵树卡住」——三件事各管一段。
+
+**验证**：`npm test` 全绿（新增 `release-age` 13 条、auto-update 20 → 21 条）；`pihub_about` 的 `release.policy`
+回执可读。发布后用安装目录换血 + 重载，现场 profile 从「整份 lockfile 被拒」变为可通过（见归档）。
+
+
 ## [1.0.12] — 2026-11-19
 
 ### Fixed — 「版本回退锁」越权：它把整台机器的 pnpm 更新都堵死了（用户口径：「版本回退锁只能在本插件内限制本插件的版本回退」）

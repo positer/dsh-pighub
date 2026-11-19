@@ -212,9 +212,10 @@ check('注册了 pighub_about / pig-say 工具、状态路由与三条前缀图�
 check('每个注册都包在 ctx.effect 里（可回收）', () => {
   /* 2026-11-16：静态图改成前缀路由后，注册数**不再随素材数量增长**（这本身就是「动态注册表」的可测副作用）。
    * 2026-11-19：新增版本地板（回退锁只有它一个 effect，且只在 ~/.PigHub 里记数），总数 9 → 10。
-   * 现在固定是：两个工具 + 状态路由 + 主题导入路由 + 三条前缀图路由 + 桌面桌宠 + 自动更新定时器 + 版本地板 = 10。 */
-  assert.equal(disposers.length, 10,
-    '注册数应固定为 10（与素材数量无关），实际 ' + disposers.length + '；素材数 '
+   * 同日又加「发布年龄豁免」的挂载期维护（只写 profile 里自己那一行），总数 10 → 11。
+   * 现在固定是：两个工具 + 状态路由 + 主题导入路由 + 三条前缀图路由 + 桌面桌宠 + 自动更新定时器 + 版本地板 + 发布年龄豁免 = 11。 */
+  assert.equal(disposers.length, 11,
+    '注册数应固定为 11（与素材数量无关），实际 ' + disposers.length + '；素材数 '
     + JSON.parse(readFileSync(new URL('../assets/manifest.json', here), 'utf8')).pigs.length);
   for (const dispose of disposers) assert.equal(typeof dispose, 'function');
 });

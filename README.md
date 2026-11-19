@@ -149,18 +149,23 @@ dsh plugin --profile <你的 profile> add dsh-pighub
 ## 自动更新与版本回退锁（2026-11-19）
 
 插件启动 15 s 后静默检查一次 npm，不弹窗、不提供开关；日志在 `~/.PigHub/logs/auto-update.log`。
-两条硬约束都来自 2026-11-19 那次事故（更新任何插件都报 `ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION`）：
+三条约束都来自 2026-11-19 那次事故（更新任何插件都报 `ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION`）：
 
 | 约束 | 做法 | 为什么 |
 |---|---|---|
-| **只装「发布满 24 h」的版本** | 读整份 registry packument 的 `time` 表，挑最新的成熟版；最新版还年轻就记 `check hold`，一次安装都不发起 | profile 的 lockfile 是整棵树共用的：塞进一个年轻版本，下一次任何 pnpm 操作都会校验整份 lockfile 并失败，**连带堵死别的插件与 DSH 更新** |
-| **绝不改写 profile 的策略文件** | 安装命令带一次性 `--config.minimumReleaseAgeStrict=true`；不写 `pnpm-workspace.yaml` / `.npmrc`，不追加豁免，不加 `--trust-lockfile` | pnpm 在非 strict 模式下会自动把年轻版本追加进豁免清单（实测连别的包也一起加）——一个插件没有改整台机器信任策略的权力 |
+| **只装「发布满 24 h」的版本** | 读整份 registry packument 的 `time` 表，挑最新的成熟版；最新版还年轻就记 `check hold`，一次安装都不发起 | 不给用户装一个谁都没验过的新版本；成熟期是 profile 的策略，插件自己先遵守 |
+| **只维护自己那一行豁免** | 把 profile `pnpm-workspace.yaml` 的 `minimumReleaseAgeExclude` 里属于本插件的那条收成裸包名 `dsh-pighub`（覆盖所有版本、不会因为发新版而失效）；**别的包的条目逐字保留、顺序不变**，也不写 `minimumReleaseAge` 本身；挂载时与每次自我安装前各跑一次 | DSH 用**冻结锁文件**安装，pnpm 没有「自己补豁免」的窗口；不写这一行，本插件任何一个新版本都会让整份 lockfile 校验失败，**堵死别的插件与 DSH**。只写自己 = 只给自己发权限：别的包仍受 24h 约束（对照实验：同一个 lockfile 里另一个刚发布的包仍被拒绝并点名） |
 
 **版本回退锁只在插件内**：见过的最高版本记在 `~/.PigHub/version-floor.json`，只升不降。
 启动时若发现「盘上装着的版本 < 地板」，只做一件事——把**地板那一版 `dsh-pighub`** 装回来（`pnpm add dsh-pighub@<floor>`），
 别的依赖一概不碰；地板版本若还没过成熟期，只记 `repair held`，不会用绕过策略的方式硬装。
 地板本身不动 profile 的 `package.json` / lockfile，也不影响任何其它插件。
-回退是否发生、地板是多少，可直接读 `pighub_about` 的 `release` 字段（`running` / `installed` / `floor` / `rollback`）。
+回退是否发生、地板是多少、豁免那一行这次改没改，可直接读 `pighub_about` 的 `release` 字段
+（`running` / `installed` / `floor` / `rollback` / `policy`）。
+
+**这条豁免的代价要写清楚**：裸包名覆盖**未来所有版本**，所以「安装 pighub」这一步本身不再受 24h 等待期约束
+（自动更新仍然只装成熟版，那是插件自己的克制，不是策略强制的）。想把这权限收回去：删掉
+`pnpm-workspace.yaml` 里 `minimumReleaseAgeExclude` 的 `- dsh-pighub` 那一行即可；之后新发布的版本会重新需要等 24h。
 
 想主动允许一次降级：删掉 `~/.PigHub/version-floor.json` 再重载插件即可（插件会以当前盘上版本重新起算地板）。
 
@@ -184,9 +189,10 @@ dsh plugin --profile <你的 profile> add dsh-pighub
 ```text
 dsh-pighub/
 ├── lib/index.js             Host 半：读盘、POST /pighub、每张素材一条 /pighub/asset/<file>、pighub_about / pig-say
-├── lib/auto-update.js       静默更新：只装成熟版（24 h）、strict 一次性覆盖；地板回退时只重装自己
+├── lib/auto-update.js       静默更新：只装成熟版（24 h）、安装前写自己那一行豁免；地板回退时只重装自己
 ├── lib/version-floor.js     版本回退锁：~/.PigHub/version-floor.json，只升不降
-├── lib/semver.js            语义化版本比较（上面两个模块共用）
+├── lib/release-age.js       发布年龄豁免：只维护 profile 里属于本插件的那一行，别的条目逐字保留
+├── lib/semver.js            语义化版本比较（auto-update 与 version-floor 共用）
 ├── lib/store.js             抽取 / 升星 / 排序 / 原子写盘
 ├── lib/assets.js            冻结库读取（抽猪池只认它）
 ├── lib/client.js            浏览器半：closure-factory bundle，注册三个槽位

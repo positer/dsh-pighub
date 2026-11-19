@@ -127,6 +127,44 @@ await acheck('远端有更成熟的版本：装成熟版（不是最新版），
   assert.ok(calls[0].indexOf('minimumReleaseAge=0') < 0, '不许出现绕过策略的 0 窗口');
 });
 
+await acheck('安装前先写自己那一行豁免；写失败也不阻断安装', async () => {
+  const dir = pnpmProfile();
+  const ws = join(dir, 'pnpm-workspace.yaml');
+  writeFileSync(ws, 'packages:\n  - .\n\nminimumReleaseAgeExclude:\n  - other@1.0.0\n', 'utf8');
+  const calls = [];
+  const ok = await runAutoUpdate({
+    currentVersion: '1.0.10',
+    profileDir: dir,
+    writeLog: () => {},
+    fetchImpl: fetchJson(packumentOf([{ version: '1.0.11', hoursAgo: 30 }])),
+    execFileImpl: fakeExec(calls),
+    readVersionImpl: () => '1.0.11',
+    nowMs: NOW,
+  });
+  assert.equal(ok.status, 'installed');
+  assert.equal(calls.length, 1);
+  const text = readFileSync(ws, 'utf8');
+  assert.ok(text.includes('  - other@1.0.0'), '别人的豁免要保留：' + text);
+  assert.ok(text.includes('  - dsh-pighub'), '安装前必须写好自己的裸名：' + text);
+
+  // 写豁免抛错时，安装照旧发起（由 pnpm 自己决定成败），不把插件卡死。
+  const dir2 = pnpmProfile();
+  writeFileSync(join(dir2, 'pnpm-workspace.yaml'), 'packages:\n  - .\n', 'utf8');
+  const calls2 = [];
+  const out2 = await runAutoUpdate({
+    currentVersion: '1.0.10',
+    profileDir: dir2,
+    writeLog: () => {},
+    fetchImpl: fetchJson(packumentOf([{ version: '1.0.11', hoursAgo: 30 }])),
+    execFileImpl: fakeExec(calls2),
+    readVersionImpl: () => '1.0.11',
+    ensureExemptionImpl: async () => { throw new Error('EACCES'); },
+    nowMs: NOW,
+  });
+  assert.equal(out2.status, 'installed');
+  assert.equal(calls2.length, 1, '豁免写失败也要尝试安装');
+});
+
 await acheck('pnpm 不存在（ENOENT）：退到内置 pnpm 重试一次', async () => {
   const dir = pnpmProfile();
   const calls = [];
