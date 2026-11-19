@@ -3,6 +3,45 @@
 本项目遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)；每条记录只写「对使用者可见的变化」，
 内部重构不单列。README 只描述项目整体，**版本相关内容一律记在这里**。
 
+## [1.0.12] — 2026-11-19
+
+### Fixed — 「版本回退锁」越权：它把整台机器的 pnpm 更新都堵死了（用户口径：「版本回退锁只能在本插件内限制本插件的版本回退」）
+
+**现象**：本机更新任何插件都失败，DSH 也升不动，回执是
+`[ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION] 2 lockfile entries failed verification: dsh-pighub@1.0.11 … within the minimumReleaseAge cutoff`。
+四个不同的安装操作（10:44:16 / 10:44:38 / 10:45:44 / 10:48:20）全部倒在同一步：pnpm 校验**整份** `pnpm-lock.yaml`。
+
+**成因（实测，不是推测）**：
+
+1. 上一版自动更新直接跑 `pnpm add dsh-pighub@latest`。profile 的 lockfile 是**整棵树共用**的，把刚发布、
+   还在 24h 成熟期内的版本写进去，下一次任何 pnpm 操作都会先校验整份 lockfile → 所有插件与 DSH 更新被连带拒绝。
+2. pnpm 11.28.5 在非 strict 模式下，遇到年轻版本会**静默改写 profile 的 `pnpm-workspace.yaml`**
+   （自动追加豁免）。实测它甚至替别的包加过豁免（`pnpm add dsh-pighub@1.0.11` 那次把 `newmark2dsh@0.3.84` 也加上了）。
+   一个插件不该有改整台机器信任策略的权力 —— 这就是「权限溢出」。
+
+**改法**：
+
+- **只装「发布满 24h」的版本**：判据来自 registry 的 `time` 表（实际读整份 packument，不是 `/latest`）。
+  最新版还年轻就记一行 `check hold … age_h=…`，**一次安装都不发起**；有更成熟的版本就装那一版（不是 latest）。
+- **安装命令带一次性 `--config.minimumReleaseAgeStrict=true`**：让 pnpm 在遇到年轻版本时**拒绝**，
+  而不是把豁免写进 `pnpm-workspace.yaml`。命令行覆盖不落盘、不改任何配置文件。
+  实测三种情形：成熟版本 + strict → exit 0 且不创建/不改写 workspace 文件；年轻版本 + strict →
+  `ERR_PNPM_NO_MATURE_MATCHING_VERSION`、exit 1、同样不动 policy 文件；lockfile 已含年轻条目 + strict →
+  exit 1 且 workspace 逐字节不变（非 strict 会改写它）。
+- **版本回退锁搬进插件自己**：新增 `lib/version-floor.js`，地板记在 `~/.PigHub/version-floor.json`，**只升不降**；
+  启动 5s 后把「盘上装着的版本」喂给地板，发现低于地板就**只重装地板那一版**（`dsh-pighub@<floor>`），
+  别的依赖一概不碰。地板版本若还没过成熟期，只记 `repair held`，不用绕过策略的方式硬装。
+  `pighub_about` 新增 `release` 读数（running / installed / floor / rollback），回退这件事从此可被读到。
+
+**没做/做不到的**：已经写进 lockfile 的年轻条目无法「变老」，只能等成熟窗口过去（本机两条：
+`newmark2dsh@0.3.84` 于 2026-11-19 16:45 +08、`dsh-pighub@1.0.11` 于 19:03 +08 过期）。
+插件不会为此写豁免 —— 那是被明确禁掉的越权行为。1.0.12 起，它自己不再制造新的年轻条目。
+
+**验证**：`npm test` **193 PASS / 0 FAIL**（auto-update 11 → 20 条，新增 version-floor 8 条），
+其中包含一条**越权守卫**：源码里不允许出现 `minimumReleaseAgeExclude` / `pnpm-workspace` / `.npmrc` /
+`minimumReleaseAge=0` / `--trust-lockfile`（注释先剥离再查，查的是代码不是文档）。
+
+
 ## [1.0.11] — 2026-11-18
 
 ### Fixed — 开机那一刻 webServer 还没就绪，整片 HTTP 面永久消失（用户口径：「本地 pighub 怎么崩溃了」）

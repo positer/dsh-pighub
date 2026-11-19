@@ -132,7 +132,10 @@ dsh plugin --profile <你的 profile> add dsh-pighub
 **开发机上的两种装法**：① 直接装 npm 上的正式包（`install_bundle` 目标写 `dsh-pighub@^<version>`，
 等价 CLI `dsh plugin --profile <profile> add dsh-pighub`）—— 依赖记成版本范围，**推荐**；
 ② 装本地 `npm pack` 出来的 tgz —— 依赖会被记成 `file:<tgz 路径>`，**删掉 tgz 之后下一次 `pnpm install` 就会失败**。
-本机（2026-11-16 起）走的是 ①：`dependencies.dsh-pighub = ^1.0.5`，已经不再依赖任何本地 tgz。
+本机（2026-11-16 起）走的是 ①，已经不再依赖任何本地 tgz。
+
+依赖声明写范围还是写精确版本都不影响**回退锁**：锁在插件自己（`~/.PigHub/version-floor.json`），
+不靠 profile 的依赖声明去挡降级 —— 依赖声明只决定「pnpm 装哪一版」，决定不了「跑起来之后允不允许往回退」。
 
 **装完之后请再点一次侧边栏的 PigHub 入口。** 实测（6/6 次「卸载 → 安装 → 打开面板」）：
 安装返回成功、素材路由已经 200，但主区域**不会自己重新挂载面板**，看起来就是一片空白；
@@ -143,6 +146,25 @@ dsh plugin --profile <你的 profile> add dsh-pighub
 桌宠浮层与游走。那次核验暴露的三个「只有真机才会犯」的缺陷（宿主 `ToolDefinition.output` 必填、
 围栏 SVG 只占猪圈宽 58.6%、统计行误用候选池计数）都已在 0.5.10 修掉，逐条数字见 CHANGELOG。
 
+## 自动更新与版本回退锁（2026-11-19）
+
+插件启动 15 s 后静默检查一次 npm，不弹窗、不提供开关；日志在 `~/.PigHub/logs/auto-update.log`。
+两条硬约束都来自 2026-11-19 那次事故（更新任何插件都报 `ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION`）：
+
+| 约束 | 做法 | 为什么 |
+|---|---|---|
+| **只装「发布满 24 h」的版本** | 读整份 registry packument 的 `time` 表，挑最新的成熟版；最新版还年轻就记 `check hold`，一次安装都不发起 | profile 的 lockfile 是整棵树共用的：塞进一个年轻版本，下一次任何 pnpm 操作都会校验整份 lockfile 并失败，**连带堵死别的插件与 DSH 更新** |
+| **绝不改写 profile 的策略文件** | 安装命令带一次性 `--config.minimumReleaseAgeStrict=true`；不写 `pnpm-workspace.yaml` / `.npmrc`，不追加豁免，不加 `--trust-lockfile` | pnpm 在非 strict 模式下会自动把年轻版本追加进豁免清单（实测连别的包也一起加）——一个插件没有改整台机器信任策略的权力 |
+
+**版本回退锁只在插件内**：见过的最高版本记在 `~/.PigHub/version-floor.json`，只升不降。
+启动时若发现「盘上装着的版本 < 地板」，只做一件事——把**地板那一版 `dsh-pighub`** 装回来（`pnpm add dsh-pighub@<floor>`），
+别的依赖一概不碰；地板版本若还没过成熟期，只记 `repair held`，不会用绕过策略的方式硬装。
+地板本身不动 profile 的 `package.json` / lockfile，也不影响任何其它插件。
+回退是否发生、地板是多少，可直接读 `pighub_about` 的 `release` 字段（`running` / `installed` / `floor` / `rollback`）。
+
+想主动允许一次降级：删掉 `~/.PigHub/version-floor.json` 再重载插件即可（插件会以当前盘上版本重新起算地板）。
+
+
 ## 数据放在哪
 
 所有本地数据都在用户主目录的 `/.PigHub/：
@@ -152,6 +174,8 @@ dsh plugin --profile <你的 profile> add dsh-pighub
 | `state.json` | 拥有哪些猪（含活/死判定与切分参数）、星级、首次获得与最近升星、每日抽取记录、**桌宠列表** |
 | `catalog.json` | 下一版候选池的目录缓存（只有 id/标题/文件名/URL） |
 | `prefs.json` | 排序偏好与星级显示档位 |
+| `version-floor.json` | 版本回退锁：这台机器上跑过的最高版本（只升不降；删掉即允许降级） |
+| `logs/auto-update.log` | 静默自动更新的每次检查/安装/暂缓记录（只追加） |
 
 状态文件损坏时不会静默覆盖：原文改名为 `state.json.corrupt-<时间戳>` 留着，插件退回空状态继续可用。
 
@@ -160,6 +184,9 @@ dsh plugin --profile <你的 profile> add dsh-pighub
 ```text
 dsh-pighub/
 ├── lib/index.js             Host 半：读盘、POST /pighub、每张素材一条 /pighub/asset/<file>、pighub_about / pig-say
+├── lib/auto-update.js       静默更新：只装成熟版（24 h）、strict 一次性覆盖；地板回退时只重装自己
+├── lib/version-floor.js     版本回退锁：~/.PigHub/version-floor.json，只升不降
+├── lib/semver.js            语义化版本比较（上面两个模块共用）
 ├── lib/store.js             抽取 / 升星 / 排序 / 原子写盘
 ├── lib/assets.js            冻结库读取（抽猪池只认它）
 ├── lib/client.js            浏览器半：closure-factory bundle，注册三个槽位
