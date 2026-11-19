@@ -164,8 +164,11 @@ dsh plugin --profile <你的 profile> add dsh-pighub
 （`running` / `installed` / `floor` / `rollback` / `policy`）。
 
 **这条豁免的代价要写清楚**：裸包名覆盖**未来所有版本**，所以「安装 pighub」这一步本身不再受 24h 等待期约束
-（自动更新仍然只装成熟版，那是插件自己的克制，不是策略强制的）。想把这权限收回去：删掉
-`pnpm-workspace.yaml` 里 `minimumReleaseAgeExclude` 的 `- dsh-pighub` 那一行即可；之后新发布的版本会重新需要等 24h。
+（自动更新仍然只装成熟版，那是插件自己的克制，不是策略强制的）。
+
+**想收回这条权限**：删掉 `pnpm-workspace.yaml` 里 `minimumReleaseAgeExclude` 的 `- dsh-pighub` 那一行只在**下次挂载前**有效——
+插件在每次挂载、以及每次自我安装前都会把它写回（实测：删掉后重载一次，那行又回来了，文件 sha256 与原值一致）。
+要长期收回，得先**禁用或卸载 pighub**（它不运行，就没人写这一行），或者改代码里的这一条契约。
 
 想主动允许一次降级：删掉 `~/.PigHub/version-floor.json` 再重载插件即可（插件会以当前盘上版本重新起算地板）。
 
